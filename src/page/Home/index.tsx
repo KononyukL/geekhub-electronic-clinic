@@ -4,7 +4,7 @@ import { ContainerHome, Title } from './styled';
 const Home = () => {
   return (
     <ContainerHome>
-      <Title>Home</Title>
+      <Title>Home Page</Title>
     </ContainerHome>
   );
 };
