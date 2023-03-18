@@ -1,30 +1,14 @@
 import styled from 'styled-components';
 
-export const P = styled.p`
-  font-size: 20px;
+export const ErrorText = styled.p`
+  font-size: 16px;
+  color: red;
 `
 
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-export const StyledLabel = styled.label`
-  margin-top: 10px;
-  margin-bottom: 5px;
-`;
-
-export const StyledInput = styled.input`
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: none;
-`;
-
-const StyledError = styled.span`
-  color: red;
-  margin-bottom: 10px;
 `;
 
 export const StyledButton = styled.button`

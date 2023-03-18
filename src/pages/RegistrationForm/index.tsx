@@ -1,15 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledForm, StyledLabel, StyledInput, StyledButton, P } from './styled';
+import { StyledForm, StyledButton, ErrorText } from './styled';
 import Input from '../../components/Input';
+import SelectInput from '../../components/SelectInput';
 
 interface IFormInput {
-  firsName: string;
+  firstName: string;
   lastName: string;
-  fullName: string;
+  fatherName: string;
   login: string;
   password: string;
-  gender: any; // ??
+  gender: string;
   birthData: string;
 }
 
@@ -20,9 +21,9 @@ const RegistrationForm = () => {
     formState: { errors }
   } = useForm<any>({
     defaultValues: {
-      firsName: '',
+      firstName: '',
       lastName: '',
-      fullName: '', // ??
+      fatherName: '',
       login: '',
       password: '',
       gender: '',
@@ -30,20 +31,74 @@ const RegistrationForm = () => {
     }
   });
 
+  const genderOptions = [
+    { value: 'female', label: 'Female' },
+    { value: 'male', label: 'Male' },
+    { value: 'other', label: 'Other' }
+  ];
+
   const onSubmit = (data: IFormInput) => console.log(data);
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Input
+        label="First Name"
+        name="firstName"
+        register={register}
+        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+      />
+      {errors.firstName && <ErrorText>This field is required</ErrorText>}
+      <Input
+        label="Last Name"
         name="lastName"
         register={register}
-        // registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
       />
-      {errors.firstName && <P>This field is required</P>}
-
-      {/*<StyledLabel>Last Name</StyledLabel>*/}
-      {/*<StyledInput {...register('lastName', { required: true, minLength: 3, maxLength: 255 })} />*/}
-      {/*{errors.lastName && <p>This field is required</p>}*/}
+      {errors.lastName && <ErrorText>This field is required</ErrorText>}
+      <Input
+        label="Father Name"
+        name="fatherName"
+        register={register}
+        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+      />
+      {errors.fatherName && <ErrorText>This field is required</ErrorText>}
+      <Input
+        label="Login"
+        name="login"
+        register={register}
+        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+      />
+      {errors.login && <ErrorText>This field is required</ErrorText>}
+      <Input
+        label="Password"
+        name="password"
+        register={register}
+        registerOptions={{
+          required: true,
+          pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,255}$/
+        }}
+      />
+      {errors.password && <ErrorText>This field is required</ErrorText>}
+      <SelectInput
+        label="Gender"
+        name="gender"
+        options={genderOptions}
+        register={register}
+        registerOptions={{
+          required: true
+        }}
+      />
+      {errors.gender && <ErrorText>This field is required</ErrorText>}
+      <Input
+        type="date"
+        max="today"
+        label="Birth Data"
+        name="birthData"
+        register={register}
+        registerOptions={{
+          required: true
+        }}
+      />
 
       <StyledButton type="submit">Login</StyledButton>
     </StyledForm>
