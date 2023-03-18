@@ -1,6 +1,7 @@
 {
   "title": "Electronic polyclinic",
   "buttons": {
-    "translate": "Translate"
+    "translate": "Translate",
+    "login:": "login"
   }
 }
