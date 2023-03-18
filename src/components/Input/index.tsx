@@ -1,17 +1,18 @@
 import React from 'react';
 import { Label, StyledInput } from './styled';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldValues, UseFormRegister, RegisterOptions } from 'react-hook-form';
 
 interface IInput extends React.InputHTMLAttributes<any> {
   label?: string;
   register: UseFormRegister<FieldValues>;
+  registerOptions?: RegisterOptions;
 }
 
-const Input: React.FC<IInput> = ({ label, name = '', register, ...rest }) => {
+const Input: React.FC<IInput> = ({ label, name = '', register, registerOptions, ...rest }) => {
   return (
     <Label>
       {label}
-      <StyledInput {...rest} {...register(name)} />
+      <StyledInput {...rest} {...register(name, { ...registerOptions })} />
     </Label>
   );
 };
