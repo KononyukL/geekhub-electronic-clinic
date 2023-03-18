@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const P = styled.p`
+  font-size: 20px;
+`
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;

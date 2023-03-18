@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledForm, StyledLabel, StyledInput, StyledButton } from './styled';
+import { StyledForm, StyledLabel, StyledInput, StyledButton, P } from './styled';
+import Input from '../../components/Input';
 
-interface FormInput {
+interface IFormInput {
   firsName: string;
   lastName: string;
   fullName: string;
@@ -29,18 +30,20 @@ const RegistrationForm = () => {
     }
   });
 
-  const onSubmit = (data: FormInput) => console.log(data);
+  const onSubmit = (data: IFormInput) => console.log(data);
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <StyledLabel>Firs Name</StyledLabel>
-      {/*<Input ></Input>*/}
-      {/*<StyledInput {...register('firsName', { required: true, minLength: 3, maxLength: 255 })} />*/}
-      {/*{errors.firstName && <p>This field is required</p>}*/}
+      <Input
+        name="lastName"
+        register={register}
+        // registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+      />
+      {errors.firstName && <P>This field is required</P>}
 
-      <StyledLabel>Last Name</StyledLabel>
-      <StyledInput {...register('lastName', { required: true, minLength: 3, maxLength: 255 })} />
-      {errors.lasttName && <p>This field is required</p>}
+      {/*<StyledLabel>Last Name</StyledLabel>*/}
+      {/*<StyledInput {...register('lastName', { required: true, minLength: 3, maxLength: 255 })} />*/}
+      {/*{errors.lastName && <p>This field is required</p>}*/}
 
       <StyledButton type="submit">Login</StyledButton>
     </StyledForm>
