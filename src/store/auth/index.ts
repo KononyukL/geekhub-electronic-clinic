@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { login } from './thunks';
+import { RootState } from '../index';
 
 interface IAuthState {
   user: Record<string, unknown>;
   isLoading: boolean;
-  error: Error;
+  error: Error | string;
 }
 
-const initialState = {
+const initialState: IAuthState = {
   user: {},
   isLoading: false,
   error: ''
@@ -36,6 +37,6 @@ export const newsSlice = createSlice({
 export { login };
 export const {} = newsSlice.actions;
 
-export const selectUser = (state: IAuthState) => state.user;
+export const selectAuth = (state: RootState) => state.auth;
 
 export default newsSlice.reducer;
