@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const SelectWrapper = styled.div`
+export const StyledSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const Label = styled.label`
+export const StyledLabel = styled.label`
   margin-bottom: 4px;
 `;
 
@@ -15,6 +15,6 @@ export const StyledSelect = styled.select`
   border: 1px solid #ccc;
 `;
 
-export const Option = styled.option`
+export const StyledOption = styled.option`
 
 `;

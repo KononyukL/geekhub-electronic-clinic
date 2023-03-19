@@ -1,8 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledForm, StyledButton, ErrorText } from './styled';
+import { StyledForm, ErrorText } from './styled';
 import Input from '../../components/Input';
 import SelectInput from '../../components/SelectInput';
+import Button from '../../components/Button';
 
 interface IFormInput {
   firstName: string;
@@ -14,11 +15,18 @@ interface IFormInput {
   birthData: string;
 }
 
+const genderOptions = [
+  { value: 'female', label: 'Female' },
+  { value: 'male', label: 'Male' },
+  { value: 'other', label: 'Other' }
+];
+
 const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    reset,
+    formState: { errors, isSubmitting, isValid }
   } = useForm<any>({
     defaultValues: {
       firstName: '',
@@ -31,13 +39,15 @@ const RegistrationForm = () => {
     }
   });
 
-  const genderOptions = [
-    { value: 'female', label: 'Female' },
-    { value: 'male', label: 'Male' },
-    { value: 'other', label: 'Other' }
-  ];
+  const onSubmit = async (data: IFormInput) => {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    console.log(data);
+    reset();
+  };
 
-  const onSubmit = (data: IFormInput) => console.log(data);
+  const shouldDisable = () => {
+    return !isValid || isSubmitting;
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -91,7 +101,7 @@ const RegistrationForm = () => {
       {errors.gender && <ErrorText>This field is required</ErrorText>}
       <Input
         type="date"
-        max="today"
+        max={new Date().toISOString().split('T')[0]}
         label="Birth Data"
         name="birthData"
         register={register}
@@ -99,8 +109,12 @@ const RegistrationForm = () => {
           required: true
         }}
       />
-
-      <StyledButton type="submit">Login</StyledButton>
+      {errors.birthData && <ErrorText>This field is required</ErrorText>}
+      <Button
+        label="Register"
+        type="submit"
+        disabled={shouldDisable()}
+      />
     </StyledForm>
   );
 };

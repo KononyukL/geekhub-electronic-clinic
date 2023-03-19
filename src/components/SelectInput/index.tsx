@@ -1,13 +1,13 @@
 import React from 'react';
 import { RegisterOptions, UseFormRegister } from 'react-hook-form';
-import { Label, StyledSelect, SelectWrapper, Option } from './styled';
+import {StyledLabel, StyledSelect, StyledSelectWrapper, StyledOption} from './styled';
 
 interface SelectOption {
   value: string;
   label: string;
 }
 
-interface SelectProps {
+interface SelectProps extends React.InputHTMLAttributes<any> {
   name: string;
   label?: string;
   options: SelectOption[];
@@ -17,16 +17,16 @@ interface SelectProps {
 
 const SelectInput: React.FC<SelectProps> = ({ name, label, options, register, registerOptions }) => {
   return (
-    <SelectWrapper>
-      {label && <Label htmlFor={name}>{label}</Label>}
+    <StyledSelectWrapper>
+      {label && <StyledLabel htmlFor={name}>{label}</StyledLabel>}
       <StyledSelect {...register(name, { ...registerOptions })}>
         {options.map((option, index) => (
-          <Option key={index} value={option.value}>
+          <StyledOption key={index} value={option.value}>
             {option.label}
-          </Option>
+          </StyledOption>
         ))}
       </StyledSelect>
-    </SelectWrapper>
+    </StyledSelectWrapper>
   );
 };
 
