@@ -11,4 +11,8 @@ export const Button = styled.button`
   &:hover {
     background-color: #0069d9;
   }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;

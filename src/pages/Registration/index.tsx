@@ -26,8 +26,9 @@ const Registration = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isValid }
+    formState: { errors, isValid }
   } = useForm<any>({
+    mode: "onBlur",
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -109,7 +110,7 @@ const Registration = () => {
       <Button
         children="Register"
         type="submit"
-        disabled={!isValid || isSubmitting}
+        disabled={!isValid}
       />
     </StyledForm>
   );
