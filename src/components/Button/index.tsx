@@ -2,13 +2,13 @@ import React from 'react';
 import { Button } from './styled';
 
 interface IButton extends React.ButtonHTMLAttributes<any> {
-  label: string;
+  children: string;
 }
 
-const SubmitButton: React.FC<IButton> = ({ label, ...rest }) => {
+const SubmitButton: React.FC<IButton> = ({ children, ...rest }) => {
   return (
     <Button {...rest}>
-      {label}
+      {children}
     </Button>
   );
 };

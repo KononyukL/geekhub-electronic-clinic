@@ -21,7 +21,7 @@ const genderOptions = [
   { value: 'other', label: 'Other' }
 ];
 
-const RegistrationForm = () => {
+const Registration = () => {
   const {
     register,
     handleSubmit,
@@ -43,10 +43,6 @@ const RegistrationForm = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log(data);
     reset();
-  };
-
-  const shouldDisable = () => {
-    return !isValid || isSubmitting;
   };
 
   return (
@@ -111,12 +107,12 @@ const RegistrationForm = () => {
       />
       {errors.birthData && <ErrorText>This field is required</ErrorText>}
       <Button
-        label="Register"
+        children="Register"
         type="submit"
-        disabled={shouldDisable()}
+        disabled={!isValid || isSubmitting}
       />
     </StyledForm>
   );
 };
 
-export default RegistrationForm;
+export default Registration;
