@@ -6,13 +6,15 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import Home from './pages/Home';
-import Registration from "./pages/Registration";
+import Registration from './pages/Registration';
+import Login from './pages/Login';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<Home />} />
       <Route path="registration" element={<Registration />} />
+      <Route path="login" element={<Login />} />
     </Route>
   )
 );

@@ -1,7 +1,12 @@
 {
   "title": "Electronic polyclinic",
   "buttons": {
-    "translate": "Translate",
-    "login:": "login"
+    "translate": "Translate"
+  },
+  "validationErrors": {
+    "required": "This field is required",
+    "email": "Invalid email address",
+    "password": "Invalid password"
   }
+
 }
