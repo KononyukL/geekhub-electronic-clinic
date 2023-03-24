@@ -69,6 +69,6 @@ export const Span = styled.div``;
 export const Text = styled.p``;
 
 export const Calendar = styled.div`
-  width: 300px;
+  width: 400px;
   height: 300px;
 `;

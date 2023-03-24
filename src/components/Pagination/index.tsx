@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-const Paination: FC = () => {
+const Pagination: FC = () => {
   return <h1>Pagination</h1>;
 };
 
-export default Paination;
+export default Pagination;

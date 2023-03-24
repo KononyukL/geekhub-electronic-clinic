@@ -18,6 +18,7 @@ import {
   Text,
   Calendar
 } from './styled';
+import Pagination from '../../Pagination';
 
 const doctors = [
   {
@@ -142,6 +143,7 @@ const Main = () => {
             <Calendar></Calendar>
           </MainWrapper>
         ))}
+      <Pagination />
     </GlobalWrapper>
   );
 };

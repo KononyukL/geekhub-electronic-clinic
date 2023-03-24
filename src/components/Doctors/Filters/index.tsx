@@ -1,9 +1,9 @@
 import React from 'react';
 import { Aside, StyledButton } from './styled';
-
+import { FC } from 'react';
 const doctors = ['Дерматолог', 'Ендокринолог', 'Кардіолог'];
 
-const Filters = () => {
+const Filters: FC = () => {
   return (
     <Aside>
       <StyledButton children={'Всі лікарі'} />
