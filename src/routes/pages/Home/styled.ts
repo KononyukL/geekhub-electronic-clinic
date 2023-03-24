@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TTheme } from '../../theme';
+import { TTheme } from '../../../theme';
 
 export const ContainerHome = styled.div``;
 

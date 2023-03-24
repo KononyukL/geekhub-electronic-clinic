@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyledWrapper, StyledContainer } from './styled';
+import { Wrapper, Container } from './styled';
 import { Link } from 'react-router-dom';
 import Filters from '../../components/Doctors/Filters';
 import Main from '../../components/Doctors/Main';
 
 const Doctors = () => {
   return (
-    <StyledWrapper>
+    <Wrapper>
       <Link to="/">Головна</Link>/Пошук лікаря
-      <StyledContainer>
+      <Container>
         <Filters />
         <Main />
-      </StyledContainer>
-    </StyledWrapper>
+      </Container>
+    </Wrapper>
   );
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { StyledForm, ErrorText } from './styled';
-import Input from '../../components/Input';
-import SelectInput from '../../components/SelectInput';
-import Button from '../../components/Button';
+import Input from '../../../components/Input';
+import SelectInput from '../../../components/SelectInput';
+import Button from '../../../components/Button';
 
 interface IFormInput {
   firstName: string;
@@ -28,7 +28,7 @@ const Registration = () => {
     reset,
     formState: { errors, isValid, isSubmitting }
   } = useForm<any>({
-    mode: "onBlur",
+    mode: 'onBlur',
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -107,11 +107,7 @@ const Registration = () => {
         }}
       />
       {errors.birthData && <ErrorText>This field is required</ErrorText>}
-      <Button
-        children="Register"
-        type="submit"
-        disabled={!isValid || isSubmitting}
-      />
+      <Button children="Register" type="submit" disabled={!isValid || isSubmitting} />
     </StyledForm>
   );
 };

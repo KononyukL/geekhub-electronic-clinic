@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyledFormLogin } from './styled';
 import { useForm } from 'react-hook-form';
-import Input from '../../components/Input';
+import Input from '../../../components/Input';
 import { ErrorText } from '../Registration/styled';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 
 interface IFormLoginInput {
   login: string;
