@@ -14,12 +14,20 @@ const Navigation: FC<INavigation> = ({ isHeader }) => {
       {NAVIGATION_CONFIG.map((nav) => {
         if (nav.isHeader) {
           if (isHeader) {
-            return <Link to={nav.path}>{t(nav.name)}</Link>;
+            return (
+              <Link key={nav.name} to={nav.path}>
+                {t(nav.name)}
+              </Link>
+            );
           }
           return null;
         }
 
-        return <Link to={nav.path}>{t(nav.name)}</Link>;
+        return (
+          <Link key={nav.name} to={nav.path}>
+            {t(nav.name)}
+          </Link>
+        );
       })}
     </Container>
   );
