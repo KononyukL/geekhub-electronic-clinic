@@ -7,6 +7,9 @@ import App from './App';
 import './index.css';
 import { theme } from './theme';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
