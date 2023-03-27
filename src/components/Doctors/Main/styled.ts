@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-export const GlobalWrapper = styled.main``;
+export const GlobalWrapper = styled.main`
+  height: 1015px;
+`;
 
 export const MainWrapper = styled.div`
   display: flex;
   width: 100%;
-  margin-left: 20px;
   padding: 25px;
   background-color: #f4f4f4;
   border-radius: 10px;
   margin-bottom: 25px;
 `;
 
-export const Wrapper = styled.div`
+export const DoctorWrapper = styled.div`
   max-width: 610px;
 `;
 
@@ -29,13 +30,11 @@ export const Img = styled.img`
   border-radius: 10px;
 `;
 
-export const Container = styled.div``;
-
 export const NameAndRating = styled.div`
   margin-bottom: 10px;
 `;
 
-export const H2 = styled.h2`
+export const Title = styled.h2`
   display: inline-block;
   margin-right: 50px;
   font-weight: 500;
@@ -56,19 +55,18 @@ export const LowContainer = styled.div`
   margin-top: 25px;
 `;
 
-export const Info = styled.div`
+export const InfoSCR = styled.div`
   margin-right: 30px;
 `;
 
-export const SpanG = styled.div`
+export const SpanTitle = styled.div`
   color: #989898;
 `;
 
-export const Span = styled.div``;
+export const SpanInfo = styled.div``;
 
 export const Text = styled.p``;
 
 export const Calendar = styled.div`
   width: 400px;
-  height: 300px;
 `;

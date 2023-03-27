@@ -11,7 +11,7 @@ import Registration from './routes/pages/Registration';
 import Login from './routes/pages/Login';
 import ROUTES from './routes/constants';
 import Layout from './routes/Layout';
-import Doctors from './pages/Doctors';
+import Doctors from './routes/pages/Doctors';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
