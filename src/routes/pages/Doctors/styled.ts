@@ -15,16 +15,27 @@ export const Container = styled.div`
 export const Aside = styled.aside`
   display: flex;
   flex-direction: column;
-  width: 335px;
   border-radius: 10px;
 `;
 
 export const Doctor = styled(Button)`
+  width: 260px;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 10px;
+  color: #000000;
+  background: #F4F4F4;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.24);
+  }
 `;
 
 export const AllDoctors = styled(Doctor)`
-  background: #2421f3;
+  color: #000000;
+  background: #bcbcbc;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
 `;

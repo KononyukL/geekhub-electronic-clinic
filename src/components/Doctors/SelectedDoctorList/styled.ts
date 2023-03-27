@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const GlobalWrapper = styled.main`
-  height: 1015px;
+  min-height: 1130px;
 `;
 
 export const MainWrapper = styled.div`
   display: flex;
-  width: 100%;
   padding: 25px;
   background-color: #f4f4f4;
   border-radius: 10px;
@@ -47,7 +46,9 @@ export const Rating = styled.span`
 
 export const Direction = styled.div`
   font-size: 16px;
-  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #B8B8B8;
+  color: #58B9CE;
 `;
 
 export const LowContainer = styled.div`
@@ -67,6 +68,3 @@ export const SpanInfo = styled.div``;
 
 export const Text = styled.p``;
 
-export const Calendar = styled.div`
-  width: 400px;
-`;

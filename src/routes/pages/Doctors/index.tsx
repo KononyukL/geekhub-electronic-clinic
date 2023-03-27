@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FC } from 'react';
 import { Wrapper, Container, Aside, Doctor, AllDoctors } from './styled';
 import { Link } from 'react-router-dom';
-import Main from '../../../components/Doctors/Main';
+import SelectedDoctorList from '../../../components/Doctors/SelectedDoctorList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { IDoctor } from '../../../components/Doctors/config';
@@ -40,7 +40,7 @@ const Doctors: FC = () => {
               />
             ))}
         </Aside>
-        <Main selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors} />
+        <SelectedDoctorList selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors} />
       </Container>
     </Wrapper>
   );

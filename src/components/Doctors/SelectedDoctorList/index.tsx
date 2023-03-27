@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { Pagination } from '@mui/material';
-import { SelectedDoctor} from '../config';
+import { SelectedDoctor } from '../config';
+import Calendar from '../WorkingHours';
 import {
   GlobalWrapper,
   MainWrapper,
@@ -16,12 +17,15 @@ import {
   InfoSCR,
   SpanTitle,
   SpanInfo,
-  Text,
-  Calendar
+  Text
 } from './styled';
 
-const Main: FC<SelectedDoctor> = ({ selectedDoctors }) => {
+const SelectedDoctorList: FC<SelectedDoctor> = ({ selectedDoctors }) => {
   const [page, setPage] = useState<number>(1);
+
+  useEffect(() => {
+    setPage(1);
+  }, [selectedDoctors]);
 
   const itemsPerPage = 3;
   const pageCount = Math.ceil(selectedDoctors.length / itemsPerPage);
@@ -55,7 +59,6 @@ const Main: FC<SelectedDoctor> = ({ selectedDoctors }) => {
                       <Rating>{doctor.rating} ★</Rating>
                     </NameAndRating>
                     <Direction>{doctor.profession}</Direction>
-                    <hr />
                     <LowContainer>
                       <InfoSCR>
                         <SpanTitle>Стаж:</SpanTitle>
@@ -74,19 +77,21 @@ const Main: FC<SelectedDoctor> = ({ selectedDoctors }) => {
                 </AboutDoctor>
                 <Text>{doctor.information}</Text>
               </DoctorWrapper>
-              <Calendar></Calendar>
+              <Calendar />
             </MainWrapper>
           ))}
       </GlobalWrapper>
-      <Pagination
-        count={pageCount}
-        page={page}
-        onChange={handleChangePage}
-        variant="outlined"
-        shape="rounded"
-      />
+      {selectedDoctors.length >= 3 ? (
+        <Pagination
+          count={pageCount}
+          page={page}
+          onChange={handleChangePage}
+          variant="outlined"
+          shape="rounded"
+        />
+      ) : null}
     </div>
   );
 };
 
-export default Main;
+export default SelectedDoctorList;
