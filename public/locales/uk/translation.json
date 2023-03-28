@@ -7,11 +7,25 @@
     }
   },
   "buttons": {
-    "translate": "Перекласти"
+    "translate": "Перекласти",
+    "edit": "Редагувати"
   },
   "validationErrors": {
     "required": "Це поле є обов'язковим",
     "login": "Невірна адреса електронної пошти",
     "password": "Невірний пароль"
+  },
+  "userProfile": {
+    "tabs": {
+      "profile": "Профіль",
+      "visits": "Мої візити",
+      "card": "Моя картка пацієнта"
+    },
+    "profile": {
+      "cardNumber": "Номер картки пацієнта",
+      "data": "Персональні дані",
+      "address": "Адреса",
+      "security": "Безпека"
+    }
   }
 }

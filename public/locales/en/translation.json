@@ -7,11 +7,25 @@
     }
   },
   "buttons": {
-    "translate": "Translate"
+    "translate": "Translate",
+    "edit": "Edit"
   },
   "validationErrors": {
     "required": "This field is required",
     "email": "Invalid email address",
     "password": "Invalid password"
+  },
+  "userProfile": {
+    "tabs": {
+      "profile": "Profile",
+      "visits": "My visits",
+      "card": "My patient card"
+    },
+    "profile": {
+      "cardNumber": "Patient card number",
+      "data": "Personal data",
+      "address": "Address",
+      "security": "Security"
+    }
   }
 }
