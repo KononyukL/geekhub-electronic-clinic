@@ -1,6 +1,5 @@
-import React, { createContext, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { TimeButton, Container, Wrapper } from './styled';
-
 import Calendar from '../Calendar';
 
 const data = [
@@ -18,10 +17,8 @@ const data = [
   '16:00'
 ];
 
-export const MyContext = createContext({});
-
 const WorkingHours: FC = () => {
-  const [bookingReception, setBookingReception] = useState({});
+  const [bookingReception, setBookingReception] = useState<any>({});
 
   const handleBookingReception = (day: any) => {
     setBookingReception({
@@ -31,9 +28,8 @@ const WorkingHours: FC = () => {
   };
 
   return (
-    <MyContext.Provider value={bookingReception}>
       <Container>
-        <Calendar />
+        <Calendar bookingReception={bookingReception}/>
         <Wrapper>
           {data.length > 0 &&
             data.map((day, index) => (
@@ -41,7 +37,6 @@ const WorkingHours: FC = () => {
             ))}
         </Wrapper>
       </Container>
-    </MyContext.Provider>
   );
 };
 

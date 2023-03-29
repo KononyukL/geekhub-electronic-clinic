@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from '../../Button';
+import Button from "../../../../components/Button";
 
 export const Container = styled.div`
   background-color: #ffffff;
@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 360px;
-  height: 220px;
+  height: 200px;
 `;
 
 export const TimeButton = styled(Button)`
