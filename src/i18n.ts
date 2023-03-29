@@ -8,13 +8,18 @@ import en from '../public/locales/en/translation.json';
 
 export const languages = ['en', 'uk'];
 
+const options = {
+  order: ['localStorage'],
+  lookupQuerystring: 'lng'
+};
+
 i18n
   .use(initReactI18next)
   .use(LanguageDetector)
   .use(Backend)
   .init({
     supportedLngs: languages,
-    lng: 'en',
+    detection: options,
     fallbackLng: 'en',
     defaultNS: 'translation',
     react: {
