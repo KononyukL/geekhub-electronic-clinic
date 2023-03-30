@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Container, Wrapper, AboutDoctor, PhotoDoctor, Img, Direction, InfoDoctor } from './styled';
-import { IDoctorAndIndex } from '../config';
+import { IDoctorAndIndex } from '../typesAndInterfaces';
 import WorkingHours from '../WorkingHours';
 import { Box } from '@mui/material';
 import NameAndRating from './NameAndRating';

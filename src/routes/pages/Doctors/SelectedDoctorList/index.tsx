@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Pagination } from '@mui/material';
-import { SelectedDoctor } from '../config';
+import { SelectedDoctor } from '../typesAndInterfaces';
 
 import { Wrapper, Container } from './styled';
-import Doctor from '../Doctor';
+import Doctor from '../AboutDoctor';
 
 const SelectedDoctorList: FC<SelectedDoctor> = ({ selectedDoctors }) => {
   const [page, setPage] = useState<number>(1);
