@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Wrapper, Block, ServiceInfo, ServiceText } from './styled';
-import { IService } from '../../config';
+import { IService } from '../../typesAndInterfaces';
 
 const Index: FC<IService> = ({ doctor }) => {
   return (

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Name, Rating, Wrapper } from './styled';
-import { INameAndRating } from '../../config';
+import { INameAndRating } from '../../typesAndInterfaces';
 
 const NameAndRating: FC<INameAndRating> = ({ doctor }) => {
   return (

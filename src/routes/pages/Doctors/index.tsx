@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SelectedDoctorList from './SelectedDoctorList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { IDoctor } from './config';
+import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [
   'Терапевт',

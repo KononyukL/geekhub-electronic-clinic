@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import moment from 'moment/moment';
 import 'moment/locale/uk';
 import { Container, ButtonSwitch, ButtonWrapper, Data, Day } from './styled';
-import { IBookingReception } from '../config';
+import { IBookingReception } from '../typesAndInterfaces';
 
 const Calendar: FC<IBookingReception> = ({ bookingReception }) => {
   const [currentDate, setCurrentDate] = useState(moment());
