@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Container, Aside, Doctor, AllDoctors } from './styled';
+import { Wrapper, Container, Navigation, FindDoctor, Aside, Doctor, AllDoctors } from './styled';
 import { Link } from 'react-router-dom';
-import Main from '../../../components/Doctors/Main';
+import SelectedDoctorList from './SelectedDoctorList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { IDoctor } from '../../../components/Doctors/config';
+import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [
   'Терапевт',
@@ -26,9 +26,12 @@ const Doctors: FC = () => {
   };
 
   return (
-    <Wrapper>
-      <Link to="/">Головна</Link>/Пошук лікаря
-      <Container>
+    <Container>
+      <Navigation>
+        <Link to="/">Головна/</Link>
+        <FindDoctor>Пошук лікаря</FindDoctor>
+      </Navigation>
+      <Wrapper>
         <Aside>
           <AllDoctors children={'Всі лікарі'} onClick={() => setSelectedDoctors([])} />
           {specialties.length > 0 &&
@@ -40,9 +43,11 @@ const Doctors: FC = () => {
               />
             ))}
         </Aside>
-        <Main selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors} />
-      </Container>
-    </Wrapper>
+        <SelectedDoctorList
+          selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
+        />
+      </Wrapper>
+    </Container>
   );
 };
 
