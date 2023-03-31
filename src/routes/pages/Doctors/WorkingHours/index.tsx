@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { TimeButton, Container, Wrapper } from './styled';
+import { Container, Wrapper, TimeList, TimeItem, TimeLink } from './styled';
 import Calendar from '../Calendar';
 
 const data = [
@@ -14,7 +14,13 @@ const data = [
   '—',
   '15:00',
   '15:30',
-  '16:00'
+  '16:00',
+  '16:00',
+  '16:00',
+  '16:00',
+  '16:00',
+  '16:00',
+  '16:00',
 ];
 
 const WorkingHours: FC = () => {
@@ -28,15 +34,23 @@ const WorkingHours: FC = () => {
   };
 
   return (
-      <Container>
-        <Calendar bookingReception={bookingReception}/>
-        <Wrapper>
+    <Container>
+      <Calendar bookingReception={bookingReception} />
+      <Wrapper>
+        <TimeList>
           {data.length > 0 &&
             data.map((day, index) => (
-              <TimeButton key={index} onClick={() => handleBookingReception(day)} children={day} />
+              <TimeItem key={index}>
+                <TimeLink
+                  to={'/doctor'}
+                  onClick={() => handleBookingReception(day)}
+                  children={day}
+                />
+              </TimeItem>
             ))}
-        </Wrapper>
-      </Container>
+        </TimeList>
+      </Wrapper>
+    </Container>
   );
 };
 

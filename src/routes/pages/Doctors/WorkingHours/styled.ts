@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from "../../../../components/Button";
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   background-color: #ffffff;
@@ -8,21 +8,31 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 360px;
-  height: 200px;
+  min-width: 355px;
+  width: 100%;
 `;
 
-export const TimeButton = styled(Button)`
-  width: 75px;
+export const TimeList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 26px;
+`;
+
+export const TimeItem = styled.li`
+  list-style-type: none;
+`;
+
+export const TimeLink = styled(NavLink)`
+  display: block;
+  width: 55px;
   height: 45px;
-  margin: 10px;
+  margin: 2px;
+  padding-top: 12px;
+  text-align: center;
   border-radius: 10px;
-  color: #000000;
-  background-color: #CFCFCF;
+  color: rgb(0, 0, 0);
+  background-color: #cfcfcf;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.47);

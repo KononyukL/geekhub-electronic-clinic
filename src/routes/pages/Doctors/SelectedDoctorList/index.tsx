@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Pagination } from '@mui/material';
+import { Box, Pagination } from '@mui/material';
 import { SelectedDoctor } from '../typesAndInterfaces';
 
 import { Wrapper, Container } from './styled';
-import Doctor from '../AboutDoctor';
+import DoctorInfoBlock from '../DoctorInfoBlock';
 
 const SelectedDoctorList: FC<SelectedDoctor> = ({ selectedDoctors }) => {
   const [page, setPage] = useState<number>(1);
@@ -30,18 +30,20 @@ const SelectedDoctorList: FC<SelectedDoctor> = ({ selectedDoctors }) => {
       <Wrapper>
         {selectedDoctors.length > 0 &&
           getCurrentDoctors().map((doctor, index) => (
-            <Doctor key={index} doctor={doctor} index={index} />
+            <DoctorInfoBlock key={index} doctor={doctor} index={index} />
           ))}
       </Wrapper>
-      {selectedDoctors.length >= 3 ? (
-        <Pagination
-          count={pageCount}
-          page={page}
-          onChange={handleChangePage}
-          variant="outlined"
-          shape="rounded"
-        />
-      ) : null}
+      <Box>
+        {selectedDoctors.length >= 3 ? (
+          <Pagination
+            count={pageCount}
+            page={page}
+            onChange={handleChangePage}
+            variant="outlined"
+            shape="rounded"
+          />
+        ) : null}
+      </Box>
     </Container>
   );
 };

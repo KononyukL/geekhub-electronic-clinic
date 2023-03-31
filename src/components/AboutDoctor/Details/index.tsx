@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Wrapper, Block, ServiceInfo, ServiceText } from './styled';
-import { IService } from '../../typesAndInterfaces';
+import { IDoctorDetails } from '../../../routes/pages/Doctors/typesAndInterfaces';
 
-const Index: FC<IService> = ({ doctor }) => {
+const DoctorDetails: FC<IDoctorDetails> = ({ doctor }) => {
   return (
     <Wrapper>
       <Block>
@@ -21,4 +21,4 @@ const Index: FC<IService> = ({ doctor }) => {
   );
 };
 
-export default Index;
+export default DoctorDetails;

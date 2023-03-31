@@ -29,7 +29,7 @@ export interface IDoctorAndIndex {
   index: number;
 }
 
-export interface IService {
+export interface IDoctorDetails {
   doctor: IDoctor;
 }
 

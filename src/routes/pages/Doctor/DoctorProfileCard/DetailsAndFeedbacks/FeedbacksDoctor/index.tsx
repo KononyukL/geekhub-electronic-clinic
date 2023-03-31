@@ -1,0 +1,101 @@
+import React, { FC, useState } from 'react';
+import {
+  Container,
+  Wrapper,
+  Feedbacks,
+  NameAndRating,
+  Name,
+  Rating,
+  Feedback,
+  Data,
+  PaginationWrapper,
+  HorizontalLine
+} from './styled';
+import { Pagination } from '@mui/material';
+
+const feedbacks = [
+  {
+    name: 'Чорний Влад',
+    rating: '5',
+    data: '23.03.2023',
+    feedback:
+      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я.ням до своєї роботи."
+  },
+  {
+    name: 'Макс Прокопенко',
+    rating: '5',
+    data: '21.02.2023',
+    feedback:
+      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоздоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
+  },
+  {
+    name: 'Макс Прокопенко',
+    rating: '5',
+    data: '21.02.2023',
+    feedback:
+      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
+  },
+  {
+    name: 'Макс Прокопенко',
+    rating: '5',
+    data: '13.01.2022',
+    feedback:
+      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був пся до ендокринолога з проблемндокринолога з прооти."
+  },
+  {
+    name: 'Влад Чорний',
+    rating: '5',
+    data: '10.02.2023',
+    feedback:
+      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
+  }
+];
+
+const FeedbacksDoctor: FC = () => {
+  const [page, setPage] = useState<number>(1);
+
+  const itemsPerPage = 3;
+  const pageCount = Math.ceil(feedbacks.length / itemsPerPage);
+
+  const getCurrentDoctors = () => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return feedbacks.slice(startIndex, endIndex);
+  };
+
+  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  return (
+    <Container>
+      <Wrapper>
+        {feedbacks.length > 0 &&
+          getCurrentDoctors().map((feedback, index) => (
+            <Feedbacks key={index}>
+              <NameAndRating>
+                <Name>{feedback.name}</Name>
+                <Rating>{feedback.rating}★</Rating>
+              </NameAndRating>
+              <Feedback>{feedback.feedback}</Feedback>
+              <Data>{feedback.data}</Data>
+              {index !== getCurrentDoctors().length - 1 && <HorizontalLine />}
+            </Feedbacks>
+          ))}
+      </Wrapper>
+      <PaginationWrapper>
+        {feedbacks.length >= 3 ? (
+          <Pagination
+            count={pageCount}
+            page={page}
+            onChange={handleChangePage}
+            variant="outlined"
+            shape="rounded"
+          />
+        ) : null}
+      </PaginationWrapper>
+    </Container>
+  );
+};
+
+export default FeedbacksDoctor;
