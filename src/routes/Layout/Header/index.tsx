@@ -28,9 +28,9 @@ const Header = () => {
       <ContainerContacts>
         <StyledContentContainer>
           <ContactsWrap>
-            <Tel href="tel:+380670000000">+380670000000</Tel>
-            <ContactsInfo>Черкаси Чорновола 82</ContactsInfo>
-            <ContactsInfo>пн-пт 8:00-18:00</ContactsInfo>
+            <ContactsInfo>{t('layout.address')}</ContactsInfo>
+            <Tel href="tel:+380670000000">+38 (067) 20 20 773</Tel>
+            <ContactsInfo>пн-пт 09:00-18:00</ContactsInfo>
           </ContactsWrap>
           <button onClick={handleLangChange}>{t('buttons.translate')}</button>
         </StyledContentContainer>

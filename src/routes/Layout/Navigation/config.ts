@@ -15,5 +15,17 @@ export const NAVIGATION_CONFIG = [
   {
     path: ROUTES.DOCTORS.PATH,
     name: 'layout.navigation.doctors'
+  },
+  {
+    path: ROUTES.DOCTORS.PATH,
+    name: 'layout.navigation.questions'
+  },
+  {
+    path: ROUTES.DOCTORS.PATH,
+    name: 'layout.navigation.aboutUs'
+  },
+  {
+    path: ROUTES.DOCTORS.PATH,
+    name: 'layout.navigation.contacts'
   }
 ] as INavigationConfig[];
