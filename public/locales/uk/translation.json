@@ -8,7 +8,8 @@
   },
   "buttons": {
     "translate": "Перекласти",
-    "edit": "Редагувати"
+    "edit": "Редагувати",
+    "save": "Зберегти"
   },
   "validationErrors": {
     "required": "Це поле є обов'язковим",
@@ -23,9 +24,39 @@
     },
     "profile": {
       "cardNumber": "Номер картки пацієнта",
-      "data": "Персональні дані",
-      "address": "Адреса",
-      "security": "Безпека"
+      "data": {
+        "personalData": "Персональні дані",
+        "firstName": "Ім’я",
+        "lastName": "Прізвище",
+        "middleName": "По-батькові",
+        "birthday": "Дата народження",
+        "email": "Електронна пошта",
+        "phone": "Номер телефону",
+        "gender": "Стать"
+      },
+      "address":{
+        "address": "Адреса",
+        "city": "Місто",
+        "street": "Вулиця",
+        "house": "Будинок",
+        "apartment": "Квартира"
+      },
+      "security": {
+        "security": "Безпека",
+        "oldPassword": "Старий пароль",
+        "newPassword": "Новий пароль",
+        "config": "Підтвердження паролю"
+      }
+    },
+    "visits": {
+      "tabs": {
+        "planned": "Заплановані",
+        "completed": "Завершені"
+      },
+      "date": "Дата",
+      "time": "Час",
+      "reception": "Прийом",
+      "currency": "грн"
     }
   }
 }

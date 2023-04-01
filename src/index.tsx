@@ -6,6 +6,8 @@ import { index } from './store';
 import App from './App';
 import './index.css';
 import { theme } from './theme';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -17,7 +19,9 @@ root.render(
   <React.StrictMode>
     <Provider store={index}>
       <ThemeProvider theme={theme}>
-        <App />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <App />
+        </LocalizationProvider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

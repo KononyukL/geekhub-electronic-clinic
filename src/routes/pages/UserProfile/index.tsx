@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, StyledTab, StyledTabs } from './styled';
 import { USER_PROFILE_CONFIG } from './config';
 import { useTranslation } from 'react-i18next';
-import { Tab } from '@mui/material';
 
 const UserProfile = () => {
   const [value, setValue] = React.useState(0);

@@ -1,10 +1,12 @@
-import React from 'react';
-import { Container, Info, StyledButton, Text, WrapButton, WrapInfo } from './steled';
+import React, { FC } from 'react';
+import { Container, Info, StyledButton, Text, WrapButton, WrapInfo } from './styled';
 import { ReactComponent as Edit } from '../../../../../assets/icons/Edit.svg';
 import { ReactComponent as Avatar } from '../../../../../assets/icons/Avatar.svg';
 import { useTranslation } from 'react-i18next';
-
-const UserName = () => {
+interface IHeaderProfile {
+  toggleEdit: () => void;
+}
+const HeaderProfile: FC<IHeaderProfile> = ({ toggleEdit }) => {
   const { t } = useTranslation();
   return (
     <Container>
@@ -18,10 +20,10 @@ const UserName = () => {
       </WrapInfo>
       <WrapButton>
         <Edit />
-        <StyledButton>{t('buttons.edit')}</StyledButton>
+        <StyledButton onClick={toggleEdit}>{t('buttons.edit')}</StyledButton>
       </WrapButton>
     </Container>
   );
 };
 
-export default UserName;
+export default HeaderProfile;
