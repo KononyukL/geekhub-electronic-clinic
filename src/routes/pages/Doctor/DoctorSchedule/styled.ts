@@ -71,6 +71,6 @@ export const Data = styled(StaticDatePicker)(() => ({
     borderRadius: '10px'
   },
   '& .css-1cafy48-MuiPickersSlideTransition-root-MuiDayCalendar-slideTransition': {
-    minHeight: '212px'
+    minHeight: '240px'
   }
 }));
