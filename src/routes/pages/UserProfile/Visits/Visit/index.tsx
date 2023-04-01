@@ -10,8 +10,18 @@ interface IVisit {
   date: string;
   time: string;
   reception: string;
+  isCompleted?: boolean;
+  onAction: () => void;
 }
-const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
+const Visit: FC<IVisit> = ({
+  name,
+  positionDoctor,
+  date,
+  time,
+  reception,
+  isCompleted,
+  onAction
+}) => {
   const { t } = useTranslation();
   return (
     <Container>
@@ -33,13 +43,10 @@ const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
         </Reception>
         <Reception>
           <Info>{t('userProfile.visits.reception')}:</Info>
-          <Info>
-            {reception}
-            {t('userProfile.visits.currency')}
-          </Info>
+          <Info>{reception}</Info>
         </Reception>
       </ReceptionInfo>
-      <Button>ppppp</Button>
+      <Button onClick={onAction}>{isCompleted ? 'Детальніше' : 'Скасувати'}</Button>
     </Container>
   );
 };

@@ -1,27 +1,28 @@
 import { Container } from './styled';
 import Visit from '../Visit';
+import React from 'react';
 
 const visit = [
   {
-    name: 'hjhjhvjh',
-    positionDoctor: 'sgsggsgs',
-    date: 'hjhjvhjhj',
-    time: 'kbbhhb',
-    reception: 'hbbhhbhb'
+    name: 'Андрущенко Ілона Макарівна',
+    positionDoctor: 'Ендокринолог',
+    date: 'Вт 21.03.2023 ',
+    time: '09:00',
+    reception: '600 грн'
   },
   {
-    name: 'hjhjhvjh',
-    positionDoctor: 'sgsggsgs',
-    date: 'hjhjvhjhj',
-    time: 'kbbhhb',
-    reception: 'hbbhhbhb'
+    name: 'Андрущенко Ілона Макарівна',
+    positionDoctor: 'Ендокринолог',
+    date: 'Вт 21.03.2023 ',
+    time: '09:00',
+    reception: '600 грн'
   },
   {
-    name: 'hjhjhvjh',
-    positionDoctor: 'sgsggsgs',
-    date: 'hjhjvhjhj',
-    time: 'kbbhhb',
-    reception: 'hbbhhbhb'
+    name: 'Андрущенко Ілона Макарівна',
+    positionDoctor: 'Ендокринолог',
+    date: 'Вт 21.03.2023 ',
+    time: '09:00',
+    reception: '600 грн'
   }
 ];
 const PlannedVisits = () => {
@@ -35,6 +36,7 @@ const PlannedVisits = () => {
           date={item.date}
           time={item.time}
           reception={item.reception}
+          onAction={() => {}}
         />
       ))}
     </Container>
