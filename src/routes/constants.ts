@@ -10,6 +10,9 @@ const ROUTES = {
   },
   DOCTORS: {
     PATH: '/doctors'
+  },
+  PROFILE: {
+    PATH: '/profile'
   }
 };
 

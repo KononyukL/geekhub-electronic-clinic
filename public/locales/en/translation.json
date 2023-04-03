@@ -7,11 +7,56 @@
     }
   },
   "buttons": {
-    "translate": "Translate"
+    "translate": "Translate",
+    "edit": "Edit",
+    "save": "Save"
   },
   "validationErrors": {
     "required": "This field is required",
     "email": "Invalid email address",
     "password": "Invalid password"
+  },
+  "userProfile": {
+    "tabs": {
+      "profile": "Profile",
+      "visits": "My visits",
+      "card": "My patient card"
+    },
+    "profile": {
+      "cardNumber": "Patient card number",
+      "data": {
+        "personalData": "Personal data",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "middleName": "Middle name",
+        "birthday": "Date of birth",
+        "email": "Email",
+        "phone": "Phone number",
+        "gender": "Gender"
+      },
+      "address":{
+        "address": "Address",
+        "city": "City",
+        "street": "Street",
+        "house": "House",
+        "apartment": "Apartment"
+      },
+      "security": {
+        "security": "Security",
+        "oldPassword": "Old password",
+        "newPassword": "New password",
+        "config": "Password confirmation"
+      }
+    },
+    "visits": {
+      "tabs": {
+        "planned": "Planned",
+        "completed": "Completed"
+      },
+      "date": "Date",
+      "time": "Time",
+      "reception": "Reception",
+      "currency": "UAH"
+    }
   }
 }
