@@ -1,56 +1,65 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { CSSObject, styled, Box, List as MUIList, ListItem as MUIListItem } from '@mui/material';
+import Button from '../../../../components/Button';
 
-export const Container = styled.div`
-  width: 100%;
-  max-width: 640px;
-  margin: 25px;
-  min-height: 532px;
-  height: 100%;
-  border-radius: 10px;
-  background-color: #ffffff;
-`;
-export const Calendar = styled.div`
-  border-radius: 10px;
-  max-width: 345px;
-  margin: 0 auto;
-`;
+export const Container = styled(Box)(({ theme }) => {
+  return {
+    width: '100%',
+    maxWidth: '640px',
+    margin: '25px',
+    minHeight: '532px',
+    height: '100%',
+    borderRadius: '10px',
+    backgroundColor: '#ffffff'
+  } as CSSObject;
+});
 
-export const FreeHours = styled.div`
-  min-width: 355px;
-  width: 100%;
-  margin-top: 40px;
-`;
+export const Calendar = styled(Box)(({ theme }) => {
+  return {
+    borderRadius: '10px',
+    maxWidth: '345px',
+    margin: '0 auto'
+  } as CSSObject;
+});
 
-export const TimeList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 26px;
-`;
+export const FreeHours = styled(Box)(({ theme }) => {
+  return {
+    minWidth: '355px',
+    width: '100%',
+    marginTop: '40px'
+  } as CSSObject;
+});
 
-export const TimeItem = styled.li`
-  list-style-type: none;
-`;
+export const List = styled(MUIList)(({ theme }) => {
+  return {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  } as CSSObject;
+});
 
-export const TimeLink = styled(NavLink)`
-  display: block;
-  width: 65px;
-  height: 45px;
-  margin: 2px;
-  padding-top: 12px;
-  text-align: center;
-  border-radius: 10px;
-  color: rgb(0, 0, 0);
-  background-color: #cfcfcf;
+export const ListItem = styled(MUIListItem)(({ theme }) => {
+  return {
+    padding: 0,
+    margin: '2px',
+    width: '64px',
+  } as CSSObject;
+});
 
-  '&:hover ' {
-    background-color: rgba(0, 0, 0, 0.47);
-  }
-`;
+export const TimeButton = styled(Button)(({ theme }) => {
+  return {
+    width: '50px',
+    height: '45px',
+    color: 'rgb(0, 0, 0)',
+    backgroundColor: '#cfcfcf',
 
-export const Data = styled(StaticDatePicker)(() => ({
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.47)'
+    }
+  } as CSSObject;
+});
+
+export const Data = styled(StaticDatePicker)(({ theme }) => ({
   '& .MuiPickersToolbar-root': {
     display: 'none'
   },
@@ -71,6 +80,6 @@ export const Data = styled(StaticDatePicker)(() => ({
     borderRadius: '10px'
   },
   '& .css-1cafy48-MuiPickersSlideTransition-root-MuiDayCalendar-slideTransition': {
-    minHeight: '240px'
+    minHeight: '260px'
   }
 }));

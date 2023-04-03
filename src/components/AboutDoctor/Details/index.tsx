@@ -1,23 +1,26 @@
 import React, { FC } from 'react';
-import { Wrapper, Block, ServiceInfo, ServiceText } from './styled';
-import { IDoctorDetails } from '../../../routes/pages/Doctors/typesAndInterfaces';
+import { Block, Container, CurrentInfo, ServiceInfo } from './styled';
+import { IDoctor } from '../../../routes/pages/Doctors/typesAndInterfaces';
+
+interface IDoctorDetails {
+  doctor: IDoctor;
+}
 
 const DoctorDetails: FC<IDoctorDetails> = ({ doctor }) => {
   return (
-    <Wrapper>
+    <Container>
       <Block>
-        <ServiceText>Стаж:</ServiceText>
+        <CurrentInfo>Стаж:</CurrentInfo>
+        <CurrentInfo>Категорія:</CurrentInfo>
+        <CurrentInfo>Прийом:</CurrentInfo>
+      </Block>
+      <Block>
         <ServiceInfo>{doctor.seniority} років</ServiceInfo>
-      </Block>
-      <Block>
-        <ServiceText>Категорія:</ServiceText>
         <ServiceInfo>{doctor.category}</ServiceInfo>
-      </Block>
-      <Block>
-        <ServiceText>Прийом:</ServiceText>
         <ServiceInfo>{doctor.price} грн</ServiceInfo>
       </Block>
-    </Wrapper>
+      <Block></Block>
+    </Container>
   );
 };
 

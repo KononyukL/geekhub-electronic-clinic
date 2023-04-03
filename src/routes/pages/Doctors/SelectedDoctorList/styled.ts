@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import { Box, CSSObject, styled } from '@mui/material';
 
-export const Container = styled.div``;
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    minHeight: '1100px',
+    height: '100%',
+    marginLeft: '25px'
+  } as CSSObject;
+});
 
-export const Wrapper = styled.main`
-  min-height: 1100px;
-  margin-left: 25px;
-`;
+

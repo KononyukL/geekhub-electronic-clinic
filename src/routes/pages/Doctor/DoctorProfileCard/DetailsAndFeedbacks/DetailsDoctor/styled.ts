@@ -1,16 +1,19 @@
-import styled from 'styled-components';
+import { Box, CSSObject, List, ListItem, styled } from '@mui/material';
 
-export const Container = styled.div``;
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    marginBottom: '30px'
+  } as CSSObject;
+});
 
-export const Wrapper = styled.div`
-  margin-bottom: 30px;
-`;
+export const Ul = styled(List)(({ theme }) => {
+  return {
+    padding: '20px'
+  } as CSSObject;
+});
 
-export const Title = styled.h4``;
-
-export const Ul = styled.ul`
-  padding: 20px;
-`;
-export const Li = styled.li`
-  padding-bottom: 5px;
-`;
+export const Li = styled(ListItem)(({ theme }) => {
+  return {
+    paddingBottom: '5px'
+  } as CSSObject;
+});

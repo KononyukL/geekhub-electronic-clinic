@@ -1,17 +1,33 @@
-import styled from 'styled-components';
+import { Box, styled, CSSObject } from '@mui/material';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 25px;
-`;
+export const Container = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex'
+  } as CSSObject;
+});
 
-export const Block = styled.div`
-  margin-right: 30px;
-`;
+export const CurrentInfo = styled(Box)(({ theme }) => {
+  return {
+    fontSize: '16px',
+    color: '#053D4C',
+    fontWeight: '400',
+    paddingBottom: '8px',
+  } as CSSObject;
+});
 
-export const ServiceText = styled.div`
-  color: #989898;
-`;
+export const ServiceInfo = styled(Box)(({ theme }) => {
+  return {
+    fontSize: '16px',
+    color: '#001C15',
+    fontWeight: '400',
+    paddingBottom: '8px',
+  } as CSSObject;
+});
 
-export const ServiceInfo = styled.div``;
+
+
+export const Block = styled(Box)(({ theme }) => {
+  return {
+    marginRight: '80px'
+  } as CSSObject;
+});

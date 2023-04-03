@@ -1,17 +1,27 @@
-import styled from "styled-components";
+import { Box, CSSObject, styled, Divider } from '@mui/material';
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-`;
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '8px'
+  } as CSSObject;
+});
 
-export const Name = styled.h2`
-  display: inline-block;
-  font-weight: 500;
-  font-size: 20px;
-`;
+export const NameDoctor = styled(Box)(({ theme }) => {
+  return {
+    display: 'inline-block',
+    fontWeight: '600',
+    fontSize: '20px'
+  } as CSSObject;
+});
 
-export const Rating = styled.span`
-  font-size: 20px;
-`;
+export const Rating = styled(Divider)(({ theme }) => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '16px',
+    color: '#001C15'
+  } as CSSObject;
+});

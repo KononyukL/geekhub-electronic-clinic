@@ -1,17 +1,15 @@
 import React, { FC, useState } from 'react';
 import {
-  Container,
   Wrapper,
   Feedbacks,
-  NameAndRating,
-  Name,
-  Rating,
+  StyledBox,
+  NameDoctor,
   Feedback,
   Data,
   PaginationWrapper,
   HorizontalLine
 } from './styled';
-import { Pagination } from '@mui/material';
+import {Box, Pagination, Typography} from '@mui/material';
 
 const feedbacks = [
   {
@@ -68,15 +66,15 @@ const FeedbacksDoctor: FC = () => {
   };
 
   return (
-    <Container>
+    <Box>
       <Wrapper>
         {feedbacks.length > 0 &&
           getCurrentDoctors().map((feedback, index) => (
             <Feedbacks key={index}>
-              <NameAndRating>
-                <Name>{feedback.name}</Name>
-                <Rating>{feedback.rating}★</Rating>
-              </NameAndRating>
+              <StyledBox>
+                <NameDoctor>{feedback.name}</NameDoctor>
+                <Typography component="span">{feedback.rating}★</Typography>
+              </StyledBox>
               <Feedback>{feedback.feedback}</Feedback>
               <Data>{feedback.data}</Data>
               {index !== getCurrentDoctors().length - 1 && <HorizontalLine />}
@@ -94,7 +92,7 @@ const FeedbacksDoctor: FC = () => {
           />
         ) : null}
       </PaginationWrapper>
-    </Container>
+    </Box>
   );
 };
 

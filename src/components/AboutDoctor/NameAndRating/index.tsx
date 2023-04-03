@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
-import { Name, Rating, Wrapper } from './styled';
-import { INameAndRating } from '../../../routes/pages/Doctors/typesAndInterfaces';
+import { NameDoctor, Rating, Wrapper } from './styled';
+import { IDoctor } from '../../../routes/pages/Doctors/typesAndInterfaces';
+
+interface INameAndRating {
+  doctor: IDoctor;
+}
 
 const NameAndRating: FC<INameAndRating> = ({ doctor }) => {
   return (
     <Wrapper>
-      <Name>
+      <NameDoctor>
         {doctor.lastName} {doctor.firsName} {doctor.fullName}
-      </Name>
+      </NameDoctor>
       <Rating>{doctor.rating} ★</Rating>
     </Wrapper>
   );

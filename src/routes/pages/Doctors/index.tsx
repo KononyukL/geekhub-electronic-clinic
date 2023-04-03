@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Container, Navigation, FindDoctor, Aside, Doctor, AllDoctors } from './styled';
+import { Wrapper, Aside, Doctor, AllDoctors } from './styled';
 import { Link } from 'react-router-dom';
 import SelectedDoctorList from './SelectedDoctorList';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { IDoctor } from './typesAndInterfaces';
+import { Box } from '@mui/material';
 
 const specialties = [
   'Терапевт',
@@ -26,11 +27,11 @@ const Doctors: FC = () => {
   };
 
   return (
-    <Container>
-      <Navigation>
+    <Box>
+      <Box sx={{ fontSize: '16px' }}>
         <Link to="/">Головна/</Link>
-        <FindDoctor>Пошук лікаря</FindDoctor>
-      </Navigation>
+        <Link to="/doctors">Пошук лікаря</Link>
+      </Box>
       <Wrapper>
         <Aside>
           <AllDoctors children={'Всі лікарі'} onClick={() => setSelectedDoctors([])} />
@@ -47,7 +48,7 @@ const Doctors: FC = () => {
           selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
         />
       </Wrapper>
-    </Container>
+    </Box>
   );
 };
 

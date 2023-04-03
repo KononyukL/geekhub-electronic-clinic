@@ -1,49 +1,46 @@
-import styled from 'styled-components';
+import { CSSObject, styled, Box } from '@mui/material';
 import Button from '../../../components/Button';
 
-export const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1420px;
-`;
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '90px 0 170px 0'
+  } as CSSObject;
+});
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 90px 0 170px 0;
-`;
+export const Aside = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    borderRadius: '10px'
+  } as CSSObject;
+});
 
-export const Navigation = styled.div`
-  font-size: 16px;
-`;
+export const Doctor = styled(Button)(({ theme }) => {
+  return {
+    width: '260px',
+    height: '60px',
+    padding: '20px',
+    borderRadius: '10px',
+    marginBottom: '10px',
+    color: '#000000',
+    background: '#f4f4f4',
+    textTransform: 'capitalize',
 
-export const FindDoctor = styled.span`
-  color: rgba(0, 0, 0, 0.4);
-`
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.24)'
+    }
+  } as CSSObject;
+});
 
-export const Aside = styled.aside`
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-`;
+export const AllDoctors = styled(Doctor)(({ theme }) => {
+  return {
+    color: '#000000',
+    background: '#bcbcbc',
 
-export const Doctor = styled(Button)`
-  width: 260px;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  color: #000000;
-  background: #f4f4f4;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.24);
-  }
-`;
-
-export const AllDoctors = styled(Doctor)`
-  color: #000000;
-  background: #bcbcbc;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-`;
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.4)'
+    }
+  };
+});

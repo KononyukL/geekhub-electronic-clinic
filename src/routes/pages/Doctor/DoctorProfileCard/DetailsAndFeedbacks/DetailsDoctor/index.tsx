@@ -1,11 +1,12 @@
 import React from 'react';
-import { Container, Wrapper, Title, Ul, Li } from './styled';
+import { Wrapper, Ul, Li } from './styled';
+import { Box, Typography } from '@mui/material';
 
 const DetailsDoctor = () => {
   return (
-    <Container>
+    <Box>
       <Wrapper>
-        <Title>Освіта</Title>
+        <Typography>Освіта</Typography>
         <Ul>
           <Li>
             НМУ ім. А. О. Богомольця Інтернатура в НМАПО ім. П. Л. Шупика, кафедра психіатрії,
@@ -15,7 +16,7 @@ const DetailsDoctor = () => {
       </Wrapper>
 
       <Wrapper>
-        <Title>Курси</Title>
+        <Typography>Курси</Typography>
         <Ul>
           <Li>ТУ «Психічні порушення у дітей і дорослих, сучасна психофармакотерапия» (2018)</Li>
           <Li>Антипсихотики другого покоління в фармакотерапії депресивних станів (2019)</Li>
@@ -37,7 +38,7 @@ const DetailsDoctor = () => {
       </Wrapper>
 
       <Wrapper>
-        <Title>Виконувані процедури</Title>
+        <Typography>Виконувані процедури</Typography>
         <Ul>
           <Li>Діагностика і диференціальна діагностика психічних розладів</Li>
           <Li>Психофармакотерапия психічних розладів</Li>
@@ -46,7 +47,7 @@ const DetailsDoctor = () => {
           <Li>Сімейне консультування</Li>
         </Ul>
       </Wrapper>
-    </Container>
+    </Box>
   );
 };
 

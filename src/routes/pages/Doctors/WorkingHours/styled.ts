@@ -1,40 +1,31 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Box, Button, CSSObject, styled } from '@mui/material';
 
-export const Container = styled.div`
-  width: 100%;
-  max-width: 455px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 20px;
-`;
+export const Container = styled(Box)(({ theme }) => {
+  return {
+    width: '100%',
+    maxWidth: '380px',
+    backgroundColor: '#ffffff',
+    padding: '12px',
+    border: '1px solid #000000'
+  } as CSSObject;
+});
 
-export const Wrapper = styled.div`
-padding-top: 5px;`
+export const Wrapper = styled(Box)(({ theme }) => {
+  return { textAlign: 'center' } as CSSObject;
+});
 
-export const TimeList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 26px;
-`;
+export const TimeButton = styled(Button)(({ theme }) => {
+  return {
+    width: '74px',
+    height: '40px',
+    padding: '10px 16px',
+    color: '#FFFFFF',
+    backgroundColor: '#053D4C',
+    borderRadius: 0,
+    margin: '6px',
 
-export const TimeItem = styled.li`
-  list-style-type: none;
-`;
-
-export const TimeLink = styled(NavLink)`
-  display: block;
-  width: 52px;
-  height: 45px;
-  margin: 2px;
-  padding-top: 12px;
-  text-align: center;
-  border-radius: 10px;
-  color: rgb(0, 0, 0);
-  background-color: #cfcfcf;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.47);
-  }
-`;
+    '&:hover': {
+      backgroundColor: '#02C898'
+    }
+  } as CSSObject;
+});

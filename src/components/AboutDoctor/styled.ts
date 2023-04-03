@@ -1,35 +1,38 @@
-import styled from 'styled-components';
+import {styled, Box, CSSObject, Avatar} from '@mui/material';
 
-export const Container = styled.div`
-  display: flex;
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  margin-bottom: 25px;
-`;
+export const Container = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+  } as CSSObject;
+});
 
-export const Doctor = styled.div`
-  display: flex;
-  max-width: 700px;
-  width: 100%;
-`;
+export const Doctor = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    maxWidth: '700px',
+    width: '100%'
+  } as CSSObject;
+});
 
-export const Box = styled.div`
-  max-width: 500px;
-  width: 100%;
-`
+export const PhotoDoctor = styled(Box)(({ theme }) => {
+  return {
+    padding: '0 16px 25px 0'
+  } as CSSObject
+})
 
-export const PhotoDoctor = styled.div`
-  padding: 0 25px 25px 0;
-`;
+export const Img = styled(Avatar)(({ theme }) => {
+  return {
+    width: '150px',
+    height: '150px',
+    borderRadius: '0',
+  } as CSSObject
+})
 
-export const Img = styled.img`
-  width: 150px;
-  border-radius: 10px;
-`;
+export const Direction = styled(Box)(({ theme }) => {
+  return {
+    fontSize: '16px',
+    paddingBottom: '12px',
+    color: '#02C898',
+  } as CSSObject
+})
 
-export const Direction = styled.div`
-  font-size: 16px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #b8b8b8;
-  color: #58b9ce;
-`;
