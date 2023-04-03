@@ -18,5 +18,11 @@ export const theme = createTheme({
       paper: '#FFFFFF',
       default: '#F5F5F5'
     }
+  },
+  typography: {
+    fontFamily: 'Open Sans',
+    h1: {
+      fontFamily: 'Montserrat'
+    }
   }
 });
