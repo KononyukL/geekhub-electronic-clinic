@@ -1,13 +1,5 @@
 import React, { FC } from 'react';
-import {
-  Container,
-  ErrorText,
-  Form,
-  HouseNumber,
-  StyledDataPicker,
-  StyledSelect,
-  WrapInput
-} from './styled';
+import { Container, ErrorText, Form, HouseNumber, StyledDataPicker, StyledSelect } from './styled';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import Button from '../../../../../components/Button';
@@ -16,6 +8,7 @@ import dayjs from 'dayjs';
 import Input from '../../../../../components/Input';
 import { Label } from '../HeaderProfile/styled';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/material';
 
 interface IFormLoginInput {
   firstName: string;
@@ -67,7 +60,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <ContainerForm title={t('userProfile.profile.data.personalData')}>
-          <WrapInput>
+          <Box>
             <Input
               label={t('userProfile.profile.data.lastName')}
               name="lastName"
@@ -80,8 +73,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.firstName?.message && <ErrorText>{errors.firstName.message}</ErrorText>}
-          </WrapInput>
-          <WrapInput>
+          </Box>
+          <Box>
             <Input
               label={t('userProfile.profile.data.firstName')}
               name="firstName"
@@ -94,9 +87,9 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.lastName?.message && <ErrorText>{errors.lastName.message}</ErrorText>}
-          </WrapInput>
+          </Box>
 
-          <WrapInput>
+          <Box>
             <Input
               label={t('userProfile.profile.data.middleName')}
               name="middleName"
@@ -109,9 +102,9 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.middleName?.message && <ErrorText>{errors.middleName.message}</ErrorText>}
-          </WrapInput>
+          </Box>
 
-          <WrapInput>
+          <Box>
             <Label>
               {t('userProfile.profile.data.birthday')}
               <Controller
@@ -132,9 +125,9 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }}
               />
             </Label>
-          </WrapInput>
+          </Box>
 
-          <WrapInput>
+          <Box>
             <Input
               label={t('userProfile.profile.data.email')}
               name="email"
@@ -149,8 +142,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.email?.message && <ErrorText>{errors.email.message}</ErrorText>}
-          </WrapInput>
-          <WrapInput>
+          </Box>
+          <Box>
             <Input
               label={t('userProfile.profile.data.phone')}
               name="phone"
@@ -161,7 +154,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.phone?.message && <ErrorText>{errors.phone.message}</ErrorText>}
-          </WrapInput>
+          </Box>
           <Label>
             {t('userProfile.profile.data.gender')}
             <Controller
@@ -189,7 +182,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
         </ContainerForm>
 
         <ContainerForm title={t('userProfile.profile.address.address')}>
-          <WrapInput>
+          <Box>
             <Label>
               {t('userProfile.profile.address.city')}
               <Controller
@@ -213,8 +206,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }}
               />
             </Label>
-          </WrapInput>
-          <WrapInput>
+          </Box>
+          <Box>
             <Input
               label={t('userProfile.profile.address.street')}
               name="street"
@@ -227,9 +220,9 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }}
             />
             {errors.street?.message && <ErrorText>{errors.street.message}</ErrorText>}
-          </WrapInput>
+          </Box>
           <HouseNumber>
-            <WrapInput>
+            <Box>
               <Input
                 label={t('userProfile.profile.address.house')}
                 name="house"
@@ -240,8 +233,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }}
               />
               {errors.house?.message && <ErrorText>{errors.house.message}</ErrorText>}
-            </WrapInput>
-            <WrapInput>
+            </Box>
+            <Box>
               <Input
                 label={t('userProfile.profile.address.apartment')}
                 name="apartment"
@@ -252,11 +245,11 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }}
               />
               {errors.apartment?.message && <ErrorText>{errors.apartment.message}</ErrorText>}
-            </WrapInput>
+            </Box>
           </HouseNumber>
         </ContainerForm>
         <ContainerForm title={t('userProfile.profile.security.security')}>
-          <WrapInput>
+          <Box>
             <Input
               label={t('userProfile.profile.security.oldPassword')}
               name="oldPassword"
@@ -275,8 +268,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }
             />
             {errors.oldPassword?.message && <ErrorText>{errors.oldPassword.message}</ErrorText>}
-          </WrapInput>
-          <WrapInput>
+          </Box>
+          <Box>
             <Input
               label={t('userProfile.profile.security.newPassword')}
               name="newPassword"
@@ -295,8 +288,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }
             />
             {errors.newPassword?.message && <ErrorText>{errors.newPassword.message}</ErrorText>}
-          </WrapInput>
-          <WrapInput>
+          </Box>
+          <Box>
             <Input
               label={t('userProfile.profile.security.config')}
               name="config"
@@ -315,7 +308,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               }
             />
             {errors.config?.message && <ErrorText>{errors.config.message}</ErrorText>}
-          </WrapInput>
+          </Box>
         </ContainerForm>
         <Button children={t('buttons.save')} type="submit" disabled={!isValid || isSubmitting} />
       </Form>

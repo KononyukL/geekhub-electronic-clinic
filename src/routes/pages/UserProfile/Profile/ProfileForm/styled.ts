@@ -19,8 +19,6 @@ export const Title = styled.h3`
 
 export const ErrorText = styled.p``;
 
-export const WrapInput = styled.div``;
-
 export const HouseNumber = styled.div`
   display: flex;
   gap: 20px;
