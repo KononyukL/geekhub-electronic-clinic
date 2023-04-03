@@ -1,18 +1,17 @@
-import {Box, CSSObject, Tabs, styled} from '@mui/material';
+import { Box, CSSObject, Tabs, styled } from '@mui/material';
 
-export const Container = styled(Box)(({theme}) => {
+export const Container = styled(Box)(({ theme }) => {
   return {
     borderRadius: '10px',
-   backgroundColor: '#ffffff',
-  } as CSSObject
-})
+    backgroundColor: '#ffffff'
+  } as CSSObject;
+});
 
-
-export const Wrapper = styled(Box)(({theme}) => {
+export const Wrapper = styled(Box)(({ theme }) => {
   return {
-    display: 'flex',
-  } as CSSObject
-})
+    display: 'flex'
+  } as CSSObject;
+});
 
 export const AboutDoctor = styled(Tabs)(({ theme }) => ({
   '& .css-1aquho2-MuiTabs-indicator': {

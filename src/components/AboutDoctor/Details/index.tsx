@@ -19,7 +19,6 @@ const DoctorDetails: FC<IDoctorDetails> = ({ doctor }) => {
         <ServiceInfo>{doctor.category}</ServiceInfo>
         <ServiceInfo>{doctor.price} грн</ServiceInfo>
       </Block>
-      <Block></Block>
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import { Box, CSSObject, styled, Typography as MUITypography } from '@mui/material';
 import {NavLink} from "react-router-dom";
 
-export const Container = styled(Box)(({ theme }) => {
+export const Container = styled(Box)(() => {
   return {
     display: 'flex',
     padding: '25px',

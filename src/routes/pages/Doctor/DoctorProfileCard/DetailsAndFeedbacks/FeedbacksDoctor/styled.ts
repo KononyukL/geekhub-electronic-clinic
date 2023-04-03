@@ -1,4 +1,4 @@
-import {Box, CSSObject, Divider, styled, Typography} from '@mui/material';
+import { Box, CSSObject, Divider, styled, Typography } from '@mui/material';
 
 export const Wrapper = styled(Box)(({ theme }) => {
   return {
@@ -24,36 +24,35 @@ export const StyledBox = styled(Box)(({ theme }) => {
 export const NameDoctor = styled(Box)(({ theme }) => {
   return {
     display: 'inline-block',
-    fontSize: '16px',
+    fontSize: '16px'
   } as CSSObject;
 });
 
 export const Feedback = styled(Typography)(({ theme }) => {
   return {
-    marginBottom: '18px',
+    marginBottom: '18px'
   } as CSSObject;
 });
 
-export const Data = styled(Box)(({theme}) => {
+export const Data = styled(Box)(({ theme }) => {
   return {
     color: '#969696',
-   textAlign: 'right',
-   marginBottom: '40px',
-  } as CSSObject
-})
+    textAlign: 'right',
+    marginBottom: '40px'
+  } as CSSObject;
+});
 
-
-export const PaginationWrapper = styled(Box)(({theme}) => {
+export const PaginationWrapper = styled(Box)(({ theme }) => {
   return {
     display: 'flex',
     justifyContent: 'center',
-  position: 'relative',
-  top: '82px',
-  } as CSSObject
-})
+    position: 'relative',
+    top: '82px'
+  } as CSSObject;
+});
 
-export const HorizontalLine = styled(Divider)(({theme}) => {
+export const HorizontalLine = styled(Divider)(({ theme }) => {
   return {
     color: '#b8b8b8'
-  } as CSSObject
-})
+  } as CSSObject;
+});

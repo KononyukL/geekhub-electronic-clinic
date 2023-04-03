@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { TTheme } from '../../../theme';
+// import { TTheme } from '../../../theme';
 import Button from '../../../components/Button';
 
 export const ContainerHome = styled.div``;
 
 export const Title = styled.h1`
-  color: ${({ theme }: { theme: TTheme }) => theme.secondary};
+  color: black;
 `;
 
 export const ContainerTitle = styled.section`

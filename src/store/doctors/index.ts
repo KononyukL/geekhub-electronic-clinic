@@ -65,7 +65,7 @@ const initialState: IAuthState = {
       firsName: 'Ілона',
       lastName: 'Андрущенко',
       fullName: 'Макаріна',
-      profession: 'Ендокринолог',
+      profession: 'Пульмонолог',
       photo: 'https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg?w=2000',
       rating: '4.7',
       category: 'Вища',

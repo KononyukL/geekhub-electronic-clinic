@@ -3,7 +3,7 @@ import { CSSObject, styled, Box } from '@mui/material';
 export const Container = styled(Box)(({ theme }) => {
   return {
     borderRadius: '10px',
-    backgroundColor: '#f4f4f4'
+    backgroundColor: theme.palette.background.paper
   } as CSSObject;
 });
 
