@@ -13,9 +13,15 @@ import {
 import { languages } from '../../../i18n';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import ROUTES from '../../constants';
 
 const Header = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onOpenProfile = () => navigate(ROUTES.PROFILE.PATH);
+
   const handleLangChange = React.useCallback(async () => {
     const currentLngIndex = languages.findIndex((item) => item === i18n.language);
     const nextIndex = currentLngIndex === languages.length - 1 ? 0 : currentLngIndex + 1;
@@ -23,6 +29,7 @@ const Header = () => {
 
     await i18n.changeLanguage(nextLng);
   }, [i18n]);
+
   return (
     <ContainerHeader>
       <ContainerContacts>
@@ -39,7 +46,7 @@ const Header = () => {
         <StyledContentContainer>
           <ContactsInfo>Logo</ContactsInfo>
           <Navigation isHeader />
-          <HeaderButton children="Open" />
+          <HeaderButton onClick={onOpenProfile}>Open</HeaderButton>
         </StyledContentContainer>
       </HeaderMain>
     </ContainerHeader>
