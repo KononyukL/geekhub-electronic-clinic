@@ -15,6 +15,7 @@ import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../constants';
+import { Button } from '@mui/material';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -39,7 +40,7 @@ const Header = () => {
             <ContactsInfo>Черкаси Чорновола 82</ContactsInfo>
             <ContactsInfo>пн-пт 8:00-18:00</ContactsInfo>
           </ContactsWrap>
-          <button onClick={handleLangChange}>{t('buttons.translate')}</button>
+          <Button onClick={handleLangChange}>{t('buttons.translate')}</Button>
         </StyledContentContainer>
       </ContainerContacts>
       <HeaderMain>
