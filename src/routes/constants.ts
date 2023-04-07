@@ -16,6 +16,9 @@ const ROUTES = {
   DOCTORS: {
     PATH: '/doctors'
   },
+  DOCTOR: {
+    PATH: '/doctor'
+  },
   PROFILE: {
     PATH: '/profile'
   }

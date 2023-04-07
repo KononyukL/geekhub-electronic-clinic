@@ -12,6 +12,7 @@ import Login from './routes/pages/Login';
 import ROUTES from './routes/constants';
 import Doctors from './routes/pages/Doctors';
 import UserProfile from './routes/pages/UserProfile';
+import Doctor from "./routes/pages/Doctor";
 import FooterLayout from './components/Layouts/FooterLayout';
 import HeaderLayout from './components/Layouts/HeaderLayout';
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
         <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
         <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
+        <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
       </Route>
     </Route>
   )

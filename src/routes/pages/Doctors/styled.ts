@@ -1,50 +1,67 @@
-import styled from 'styled-components';
-import Button from '../../../components/Button';
+import { CSSObject, styled, Box } from '@mui/material';
 
-export const Container = styled.div`
-  margin: 0 auto;
-  max-width: 1420px;
-  width: 100%;
-`;
+export const Wrapper = styled(Box)(() => {
+  return {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '60px 0 170px 0'
+  } as CSSObject;
+});
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 90px 0 170px 0;
-`;
+export const Aside = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    maxWidth: '335px',
+    width: '100%',
+    minHeight: '100px',
+    height: '100%',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: `-4px 15px 35px ${theme.palette.success.main}`,
+    '&:first-of-type': {
+     paddingTop: '24px'
+    }
+  } as CSSObject;
+});
 
-export const Navigation = styled.div`
-  font-size: 16px;
-`;
+export const WrapperButton = styled(Box)(() => {
+  return {
+    margin: '0 auto'
+  } as CSSObject;
+});
 
-export const FindDoctor = styled.span`
-  color: rgba(0, 0, 0, 0.4);
-`;
+export const ButtonDoctor = styled('button')<{ isActiveButton: boolean }>(({ theme, isActiveButton }) => {
+  return {
+    display: 'flex',
+    justifyContent: 'start',
+    alignItems: 'center',
+    cursor: 'pointer',
+    width: '288px',
+    height: '80px',
+    border: 0,
+    marginBottom: '24px',
+    borderRadius: '0px',
+    fontSize: '20px',
+    background: theme.palette.background.paper,
+    borderLeft: `10px solid ${isActiveButton ? theme.palette.primary.main : theme.palette.secondary.main}`,
+    transition: '.3s',
+    backgroundColor: isActiveButton ? theme.palette.success.dark : theme.palette.background.paper,
 
-export const Aside = styled.aside`
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-`;
+    '&:hover': {
+      backgroundColor: theme.palette.success.light,
+      borderLeft: `10px solid ${theme.palette.secondary.light}`
+    },
+    '&:active': {
+      backgroundColor: theme.palette.success.main,
+      borderLeft: `10px solid ${theme.palette.secondary.dark}`
+    },
 
-export const Doctor = styled(Button)`
-  width: 260px;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  color: #000000;
-  background: #f4f4f4;
+  } as CSSObject;
+});
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.24);
-  }
-`;
+export const Icon = styled('img')(() => {
+  return {
+    padding: '0 12px 0 24px'
+  } as CSSObject;
+});
 
-export const AllDoctors = styled(Doctor)`
-  color: #000000;
-  background: #bcbcbc;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-`;

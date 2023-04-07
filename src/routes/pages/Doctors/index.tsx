@@ -1,53 +1,66 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Container, Navigation, FindDoctor, Aside, Doctor, AllDoctors } from './styled';
-import { Link } from 'react-router-dom';
-import SelectedDoctorList from './SelectedDoctorList';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon } from './styled';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
+import { Box } from '@mui/material';
+import SelectedDoctorsList from './SelectedDoctorsList';
+import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
+import IMGAllDoctors from '../../../assets/icons/AllDoctors.svg';
+import IMGDermatologist from '../../../assets/icons/Dermatologist.svg';
+import IMGCardiologist from '../../../assets/icons/Cardiologist.svg';
+import IMGTherapist from '../../../assets/icons/Therapist.svg';
+import IMGPulmonologist from '../../../assets/icons/Pulmonologist.svg';
+import IMGGastroenterologist from '../../../assets/icons/Gastroenterologist.svg';
 import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [
-  'Терапевт',
-  'Дерматолог',
-  'Ендокринолог',
-  'Кардіолог',
-  'Гастроентеролог',
-  'Педіатр'
+  { specialty: 'Всі Лікарі', icon: IMGAllDoctors },
+  { specialty: 'Дерматолог', icon: IMGDermatologist },
+  { specialty: 'Кардіолог', icon: IMGCardiologist },
+  { specialty: 'Терапевт', icon: IMGTherapist },
+  { specialty: 'Пульмонолог', icon: IMGPulmonologist },
+  { specialty: 'Гастроентеролог', icon: IMGGastroenterologist }
 ];
 
 const Doctors: FC = () => {
   const { doctors } = useSelector((state: RootState) => state.doctors);
   const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
+  const [activeButton, setActiveButton] = useState('');
+  const [flagPagination, setFlagPagination] = useState(false);
 
   const handleFilterDoctors = (specialty: any) => {
     const filteredDoctors = doctors.filter((doctor: any) => specialty === doctor.profession);
     setSelectedDoctors(filteredDoctors);
+    setActiveButton(specialty);
   };
 
   return (
-    <Container>
-      <Navigation>
-        <Link to="/">Головна/</Link>
-        <FindDoctor>Пошук лікаря</FindDoctor>
-      </Navigation>
+    <Box>
+      <DoctorsBreadcrumbs />
       <Wrapper>
         <Aside>
-          <AllDoctors children={'Всі лікарі'} onClick={() => setSelectedDoctors([])} />
           {specialties.length > 0 &&
             specialties.map((specialty, index) => (
-              <Doctor
-                onClick={() => handleFilterDoctors(specialty)}
-                key={index}
-                children={specialty}
-              />
+              <WrapperButton key={index}>
+                <ButtonDoctor
+                  isActiveButton={activeButton === specialty.specialty}
+                  onClick={() => {
+                    handleFilterDoctors(specialty.specialty);
+                    setFlagPagination(!flagPagination);
+                  }}>
+                  <Icon src={specialty.icon} alt={specialty.specialty} />
+                  {specialty.specialty}
+                </ButtonDoctor>
+              </WrapperButton>
             ))}
         </Aside>
-        <SelectedDoctorList
+        <SelectedDoctorsList
+          flagPagination={flagPagination}
           selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
         />
       </Wrapper>
-    </Container>
+    </Box>
   );
 };
 
