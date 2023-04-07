@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { StyledForm, ErrorText } from './styled';
-import Input from '../../../components/Input';
-import SelectInput from '../../../components/SelectInput';
-import Button from '../../../components/Button';
+import {
+  Container,
+  StyledForm,
+  ErrorText,
+  StyledInput,
+  StyledWrapper,
+  Wrapper,
+  ButtonSubmit
+} from './styled';
+import { Typography } from '@mui/material';
 
 interface IFormInput {
   firstName: string;
-  lastName: string;
-  fatherName: string;
-  login: string;
+  telephone: number;
+  email: string;
   password: string;
-  gender: string;
-  birthData: string;
+  confirmPassword: string;
 }
 
-const genderOptions = [
-  { value: 'female', label: 'Female' },
-  { value: 'male', label: 'Male' },
-  { value: 'other', label: 'Other' }
-];
-
-const Registration = () => {
+const Registration: FC = () => {
   const {
     register,
     handleSubmit,
@@ -31,12 +29,10 @@ const Registration = () => {
     mode: 'onBlur',
     defaultValues: {
       firstName: '',
-      lastName: '',
-      fatherName: '',
-      login: '',
+      telephone: '',
+      email: '',
       password: '',
-      gender: '',
-      birthData: ''
+      confirmPassword: ''
     }
   });
 
@@ -47,68 +43,73 @@ const Registration = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        label="First Name"
-        name="firstName"
-        register={register}
-        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
-      />
-      {errors.firstName && <ErrorText>This field is required</ErrorText>}
-      <Input
-        label="Last Name"
-        name="lastName"
-        register={register}
-        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
-      />
-      {errors.lastName && <ErrorText>This field is required</ErrorText>}
-      <Input
-        label="Father Name"
-        name="fatherName"
-        register={register}
-        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
-      />
-      {errors.fatherName && <ErrorText>This field is required</ErrorText>}
-      <Input
-        label="Login"
-        name="login"
-        register={register}
-        registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
-      />
-      {errors.login && <ErrorText>This field is required</ErrorText>}
-      <Input
-        label="Password"
-        name="password"
-        register={register}
-        registerOptions={{
-          required: true,
-          pattern: /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,255}$/
-        }}
-      />
-      {errors.password && <ErrorText>This field is required</ErrorText>}
-      <SelectInput
-        label="Gender"
-        name="gender"
-        options={genderOptions}
-        register={register}
-        registerOptions={{
-          required: true
-        }}
-      />
-      {errors.gender && <ErrorText>This field is required</ErrorText>}
-      <Input
-        type="date"
-        max={new Date().toISOString().split('T')[0]}
-        label="Birth Data"
-        name="birthData"
-        register={register}
-        registerOptions={{
-          required: true
-        }}
-      />
-      {errors.birthData && <ErrorText>This field is required</ErrorText>}
-      <Button children="Register" type="submit" disabled={!isValid || isSubmitting} />
-    </StyledForm>
+    <Container>
+      <Wrapper>
+        <h2>IGM Реєстрація</h2>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <StyledWrapper>
+            <StyledInput
+              label="First Name"
+              name="firstName"
+              register={register}
+              registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+            />
+            {errors.firstName && <ErrorText>This field is required</ErrorText>}
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledInput
+              label="Telephone"
+              name="telephone"
+              register={register}
+              registerOptions={{ required: true, minLength: 3, maxLength: 255 }}
+            />
+            {errors.telephone && <ErrorText>This field is required</ErrorText>}
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledInput
+              label="Email"
+              name="email"
+              register={register}
+              registerOptions={{
+                required: true,
+                pattern:
+                  /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,255}$/
+              }}
+            />
+            {errors.email && <ErrorText>This field is required</ErrorText>}
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledInput
+              label="Password"
+              name="password"
+              register={register}
+              registerOptions={{
+                required: true
+              }}
+            />
+            {errors.password && <ErrorText>This field is required</ErrorText>}
+          </StyledWrapper>
+          <StyledWrapper>
+            <StyledInput
+              label="Confirm Password"
+              name="conformPassword"
+              register={register}
+              registerOptions={{
+                required: true
+              }}
+            />
+            {errors.conformPassword && <ErrorText>This field is required</ErrorText>}
+          </StyledWrapper>
+          <Typography>Ви вже маєте обліковий запис? Увійти</Typography>
+          <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
+            Створити обліковий запис
+          </ButtonSubmit>
+          <Typography>
+            Створюючи обліковий запис я погоджуюсь з Політикою конфіденційності
+          </Typography>
+        </StyledForm>
+      </Wrapper>
+    </Container>
   );
 };
 
