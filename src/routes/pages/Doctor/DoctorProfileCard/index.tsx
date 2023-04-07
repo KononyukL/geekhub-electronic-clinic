@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Container, Wrapper } from './styled';
-import AboutDoctor from '../../../../components/AboutDoctor';
-import DetailAndFeedbacks from './DetailsAndFeedbacks';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../store';
+import AboutDoctor from '../../../../components/AboutDoctor';
+import DetailAndFeedbacks from '../DetailsAndFeedbacks';
 
 const DoctorProfileCard: FC = () => {
   const { doctor } = useSelector((state: RootState) => state.doctor);

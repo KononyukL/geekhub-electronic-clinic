@@ -1,4 +1,4 @@
-import { Box, CSSObject, styled, Divider } from '@mui/material';
+import { Box, CSSObject, styled } from '@mui/material';
 
 export const Wrapper = styled(Box)(() => {
   return {
@@ -16,19 +16,20 @@ export const NameDoctor = styled(Box)(() => {
   } as CSSObject;
 });
 
-export const Rating = styled(Divider)(({ theme }) => {
+export const Rating = styled('span')(({ theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: '16px',
-    color: '#001C15'
+    color: theme.palette.text.primary
   } as CSSObject;
 });
 
 export const Img = styled('img')(() => {
   return {
     textAlign: 'center',
-    verticalAlign: 'baseline'
+    verticalAlign: 'baseline',
+    paddingLeft: '6px'
   } as CSSObject
 })

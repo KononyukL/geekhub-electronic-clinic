@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Aside, ButtonDoctor, AllDoctors, WrapperButton, Icon } from './styled';
-import SelectedDoctorList from './SelectedDoctorList';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon } from './styled';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { Box, Breadcrumbs, Link } from '@mui/material';
+import { Box } from '@mui/material';
+import SelectedDoctorsList from './SelectedDoctorsList';
+import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
 import IMGAllDoctors from '../../../assets/icons/AllDoctors.svg';
 import IMGDermatologist from '../../../assets/icons/Dermatologist.svg';
 import IMGCardiologist from '../../../assets/icons/Cardiologist.svg';
@@ -14,6 +15,7 @@ import IMGGastroenterologist from '../../../assets/icons/Gastroenterologist.svg'
 import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [
+  { specialty: 'Всі Лікарі', icon: IMGAllDoctors },
   { specialty: 'Дерматолог', icon: IMGDermatologist },
   { specialty: 'Кардіолог', icon: IMGCardiologist },
   { specialty: 'Терапевт', icon: IMGTherapist },
@@ -24,41 +26,37 @@ const specialties = [
 const Doctors: FC = () => {
   const { doctors } = useSelector((state: RootState) => state.doctors);
   const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
+  const [activeButton, setActiveButton] = useState('');
+  const [flagPagination, setFlagPagination] = useState(false);
 
   const handleFilterDoctors = (specialty: any) => {
     const filteredDoctors = doctors.filter((doctor: any) => specialty === doctor.profession);
     setSelectedDoctors(filteredDoctors);
+    setActiveButton(specialty);
   };
 
   return (
     <Box>
-      <Breadcrumbs aria-label="breadcrumb" separator="▪">
-        <Link underline="hover" color="inherit" href="/">
-          Головна
-        </Link>
-        <Link underline="hover" color="inherit" href="/doctors">
-          Спеціальності та лікарі
-        </Link>
-      </Breadcrumbs>
+      <DoctorsBreadcrumbs />
       <Wrapper>
         <Aside>
-          <WrapperButton>
-            <AllDoctors onClick={() => setSelectedDoctors([])}>
-              <Icon src={IMGAllDoctors} alt="AllDoctors" />
-              {'Всі лікарі'}
-            </AllDoctors>
-          </WrapperButton>
           {specialties.length > 0 &&
             specialties.map((specialty, index) => (
               <WrapperButton key={index}>
-                <ButtonDoctor onClick={() => handleFilterDoctors(specialty.specialty)}>
+                <ButtonDoctor
+                  isActiveButton={activeButton === specialty.specialty}
+                  onClick={() => {
+                    handleFilterDoctors(specialty.specialty);
+                    setFlagPagination(!flagPagination);
+                  }}>
                   <Icon src={specialty.icon} alt={specialty.specialty} />
                   {specialty.specialty}
                 </ButtonDoctor>
               </WrapperButton>
             ))}
         </Aside>
-        <SelectedDoctorList
+        <SelectedDoctorsList
+          flagPagination={flagPagination}
           selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
         />
       </Wrapper>

@@ -1,12 +1,12 @@
-import {styled, Box, CSSObject, Avatar} from '@mui/material';
+import { styled, Box, CSSObject, Avatar } from '@mui/material';
 
-export const Container = styled(Box)(({ theme }) => {
+export const Container = styled(Box)(() => {
   return {
-    display: 'flex',
+    display: 'flex'
   } as CSSObject;
 });
 
-export const Doctor = styled(Box)(({ theme }) => {
+export const Doctor = styled(Box)(() => {
   return {
     display: 'flex',
     maxWidth: '700px',
@@ -14,25 +14,25 @@ export const Doctor = styled(Box)(({ theme }) => {
   } as CSSObject;
 });
 
-export const PhotoDoctor = styled(Box)(({ theme }) => {
+export const PhotoDoctor = styled(Box)(() => {
   return {
     padding: '0 16px 25px 0'
-  } as CSSObject
-})
+  } as CSSObject;
+});
 
-export const Img = styled(Avatar)(({ theme }) => {
+export const Img = styled(Avatar)(() => {
   return {
     width: '150px',
     height: '150px',
-    borderRadius: '0',
-  } as CSSObject
-})
+    borderRadius: '0'
+  } as CSSObject;
+});
 
 export const Direction = styled(Box)(({ theme }) => {
   return {
     fontSize: '16px',
+    fontWeight: '500',
     paddingBottom: '12px',
-    color: '#02C898',
-  } as CSSObject
-})
-
+    color: theme.palette.primary.main
+  } as CSSObject;
+});

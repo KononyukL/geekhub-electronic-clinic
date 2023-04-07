@@ -1,24 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import moment from 'moment/moment';
 import 'moment/locale/uk';
-import { Container, ButtonSwitch, Data, Day } from './styled';
-import { IBocking } from '../typesAndInterfaces';
+import { Container, ButtonSwitch, Date, Day } from './styled';
 
-interface IBookingReception {
-  bookingReception: IBocking;
-}
-
-const Calendar: FC<IBookingReception> = ({ bookingReception }) => {
+const Calendar: FC = () => {
   const [currentDate, setCurrentDate] = useState(moment());
   const dates = [currentDate.clone()];
-
-  useEffect(() => {
-    const WorkingHours = {
-      ...bookingReception,
-      data: currentDate.format('ddd MMM Do yyyy')
-    };
-    console.log(WorkingHours);
-  }, [bookingReception]);
 
   for (let i = 1; i <= 2; i++) {
     dates.push(currentDate.clone().add(i, 'day'));
@@ -35,9 +22,9 @@ const Calendar: FC<IBookingReception> = ({ bookingReception }) => {
     <Container>
       <ButtonSwitch onClick={handlePrevPage}>❮</ButtonSwitch>
       {dates.map((date, index) => (
-        <Data onClick={() => handlerActiveData(date)} key={date.format()}>
+        <Date onClick={() => handlerActiveData(date)} key={date.format()}>
           <Day className={index === 0 ? 'active' : ''}>{date.format('dd D MMM')}</Day>
-        </Data>
+        </Date>
       ))}
       <ButtonSwitch onClick={handleNextPage}>❯</ButtonSwitch>
     </Container>

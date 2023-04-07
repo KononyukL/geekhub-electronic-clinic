@@ -5,45 +5,45 @@ import {
   StyledBox,
   NameDoctor,
   Feedback,
-  Data,
+  Date,
   PaginationWrapper,
   HorizontalLine
 } from './styled';
-import {Box, Pagination, Typography} from '@mui/material';
+import { Box, Pagination } from '@mui/material';
+import IMGStart from '../../../../../assets/icons/Star.svg';
 
 const feedbacks = [
   {
     name: 'Чорний Влад',
     rating: '5',
-    data: '23.03.2023',
-    feedback:
-      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я.ням до своєї роботи."
+    date: '23.03.2023',
+    feedback: "Я звернувся до ендокринолога з проблемами щодо мого здоров'я.ням до своєї роботи."
   },
   {
     name: 'Макс Прокопенко',
     rating: '5',
-    data: '21.02.2023',
+    date: '21.02.2023',
     feedback:
       "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоздоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
   },
   {
     name: 'Макс Прокопенко',
     rating: '5',
-    data: '21.02.2023',
+    date: '21.02.2023',
     feedback:
       "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
   },
   {
     name: 'Макс Прокопенко',
     rating: '5',
-    data: '13.01.2022',
+    date: '13.01.2022',
     feedback:
       "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був пся до ендокринолога з проблемндокринолога з прооти."
   },
   {
     name: 'Влад Чорний',
     rating: '5',
-    data: '10.02.2023',
+    date: '10.02.2023',
     feedback:
       "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
   }
@@ -68,16 +68,25 @@ const FeedbacksDoctor: FC = () => {
   return (
     <Box>
       <Wrapper>
+        <HorizontalLine />
         {feedbacks.length > 0 &&
           getCurrentDoctors().map((feedback, index) => (
             <Feedbacks key={index}>
               <StyledBox>
-                <NameDoctor>{feedback.name}</NameDoctor>
-                <Typography component="span">{feedback.rating}★</Typography>
+                <Box>
+                  <NameDoctor>{feedback.name}</NameDoctor>
+                  <Box>
+                    <img src={IMGStart} alt="Star" />
+                    <img src={IMGStart} alt="Star" />
+                    <img src={IMGStart} alt="Star" />
+                    <img src={IMGStart} alt="Star" />
+                    <img src={IMGStart} alt="Star" />
+                  </Box>
+                </Box>
+                <Date>{feedback.date}</Date>
               </StyledBox>
               <Feedback>{feedback.feedback}</Feedback>
-              <Data>{feedback.data}</Data>
-              {index !== getCurrentDoctors().length - 1 && <HorizontalLine />}
+              <HorizontalLine />
             </Feedbacks>
           ))}
       </Wrapper>

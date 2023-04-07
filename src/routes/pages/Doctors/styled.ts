@@ -1,4 +1,4 @@
-import { CSSObject, styled, Box, Button } from '@mui/material';
+import { CSSObject, styled, Box } from '@mui/material';
 
 export const Wrapper = styled(Box)(() => {
   return {
@@ -17,45 +17,51 @@ export const Aside = styled(Box)(({ theme }) => {
     height: '100%',
     flexDirection: 'column',
     backgroundColor: theme.palette.background.paper,
-    boxShadow: '-4px 15px 35px 0 #CCCCCC'
+    boxShadow: `-4px 15px 35px ${theme.palette.success.main}`,
+    '&:first-of-type': {
+     paddingTop: '24px'
+    }
   } as CSSObject;
 });
 
 export const WrapperButton = styled(Box)(() => {
   return {
-    margin: '0 auto',
+    margin: '0 auto'
   } as CSSObject;
 });
 
-export const ButtonDoctor = styled(Button)(({ theme }) => {
+export const ButtonDoctor = styled('button')<{ isActiveButton: boolean }>(({ theme, isActiveButton }) => {
   return {
-    display: "flex",
+    display: 'flex',
     justifyContent: 'start',
+    alignItems: 'center',
+    cursor: 'pointer',
     width: '288px',
     height: '80px',
+    border: 0,
     marginBottom: '24px',
     borderRadius: '0px',
     fontSize: '20px',
-    color: theme.palette.text.primary,
     background: theme.palette.background.paper,
-    textTransform: 'capitalize',
-    borderLeft: '10px solid #053D4C',
+    borderLeft: `10px solid ${isActiveButton ? theme.palette.primary.main : theme.palette.secondary.main}`,
+    transition: '.3s',
+    backgroundColor: isActiveButton ? theme.palette.success.dark : theme.palette.background.paper,
 
     '&:hover': {
-      backgroundColor: '#F4F4F4',
-      borderLeft: `10px solid ${theme.palette.primary.main}`,
-    }
+      backgroundColor: theme.palette.success.light,
+      borderLeft: `10px solid ${theme.palette.secondary.light}`
+    },
+    '&:active': {
+      backgroundColor: theme.palette.success.main,
+      borderLeft: `10px solid ${theme.palette.secondary.dark}`
+    },
+
   } as CSSObject;
 });
 
 export const Icon = styled('img')(() => {
   return {
-    padding: '0 12px 0 24px',
-  } as CSSObject
-})
-
-export const AllDoctors = styled(ButtonDoctor)(({ theme }) => {
-  return {
-    marginTop: '24px',
-  };
+    padding: '0 12px 0 24px'
+  } as CSSObject;
 });
+
