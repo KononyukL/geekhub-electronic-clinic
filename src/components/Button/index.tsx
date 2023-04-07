@@ -1,16 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Button } from './styled';
+import { ButtonProps } from '@mui/material';
 
-interface IButton extends React.ButtonHTMLAttributes<any> {
-  children: string;
-}
-
-const SubmitButton: React.FC<IButton> = ({ children, ...rest }) => {
-  return (
-    <Button {...rest}>
-      {children}
-    </Button>
-  );
+const SubmitButton: FC<ButtonProps> = ({ children, ...rest }) => {
+  return <Button {...rest}>{children}</Button>;
 };
 
 export default SubmitButton;

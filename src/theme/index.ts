@@ -4,10 +4,14 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#02C898',
+      light: '#00B484',
+      dark: '#00A070',
       contrastText: '#FFFFFF'
     },
     secondary: {
       main: '#053D4C',
+      light: '#19756A',
+      dark: '#0E3E48',
       contrastText: '#FFFFFF'
     },
     text: {
@@ -16,7 +20,18 @@ export const theme = createTheme({
     },
     background: {
       paper: '#FFFFFF',
-      default: '#F5F5F5'
+      default: '#F3F3F3'
+    },
+    success: {
+      main: '#E0E0E0',
+      light: '#EAEAEA',
+      dark: '#F3F3F3'
+    }
+  },
+  typography: {
+    fontFamily: 'Open Sans',
+    h2: {
+      fontFamily: 'Montserrat'
     }
   },
   typography: {
