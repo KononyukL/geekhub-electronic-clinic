@@ -34,7 +34,7 @@
         "phone": "Phone number",
         "gender": "Gender"
       },
-      "address":{
+      "address": {
         "address": "Address",
         "city": "City",
         "street": "Street",
@@ -57,6 +57,46 @@
       "time": "Time",
       "reception": "Reception",
       "currency": "UAH"
+    }
+  },
+  "doctors": {
+    "navigation": {
+      "home": "Home",
+      "specialtiesAndDoctors": "Specialties and doctors"
+    },
+    "specialties": {
+      "allDoctors": "All Doctors",
+      "dermatologist": "Дерматолог",
+      "cardiologist": "Кардіолог",
+      "therapist": "Терапевт",
+      "pulmonologist": "Пульмонолог",
+      "gastroenterologist": "Гастроентеролог"
+    },
+    "details": {
+      "experience": "Experience",
+      "category": "Category",
+      "reception": "Reception"
+    },
+    "moreAboutDoctor": "More about doctor",
+    "showMore": "Show more",
+    "hide": "Hide",
+    "modalDoctors": {
+      "confirm": {
+        "title": "Confirm the entry?",
+        "text": "Selected date:",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "cansel": {
+        "title": "Thank you for making an appointment!",
+        "text": "If you have additional questions, need to change the time, or cancel your appointment, please contact us by phone:",
+        "button": "Back to home"
+      }
+    }
+  },
+  "doctor": {
+    "navigation": {
+      "doctorPage": "Doctor"
     }
   }
 }

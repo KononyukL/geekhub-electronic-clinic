@@ -13,6 +13,7 @@ import ROUTES from './routes/constants';
 import Layout from './routes/Layout';
 import Doctors from './routes/pages/Doctors';
 import UserProfile from './routes/pages/UserProfile';
+import Doctor from "./routes/pages/Doctor";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
       <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
       <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
+      <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
     </Route>
   )
 );

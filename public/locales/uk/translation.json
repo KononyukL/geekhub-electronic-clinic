@@ -34,7 +34,7 @@
         "phone": "Номер телефону",
         "gender": "Стать"
       },
-      "address":{
+      "address": {
         "address": "Адреса",
         "city": "Місто",
         "street": "Вулиця",
@@ -57,6 +57,46 @@
       "time": "Час",
       "reception": "Прийом",
       "currency": "грн"
+    }
+  },
+  "doctors": {
+    "navigation": {
+      "home": "Головна",
+      "specialtiesAndDoctors": "Спеціальності та лікарі"
+    },
+    "specialties": {
+      "allDoctors": "Всі Лікарі",
+      "dermatologist": "Дерматолог",
+      "cardiologist": "Кардіолог",
+      "therapist": "Терапевт",
+      "pulmonologist": "Пульмонолог",
+      "gastroenterologist": "Гастроентеролог"
+    },
+    "details": {
+      "experience": "Стаж",
+      "category": "Категорія",
+      "reception": "Прийом"
+    },
+    "moreAboutDoctor": "Більше про лікаря",
+    "showMore": "Показати більше",
+    "hide": "Приховати",
+    "modalDoctors": {
+      "confirm": {
+        "title": "Підтвердити запис?",
+        "text": "Обрана дата:",
+        "yes": "Так",
+        "no": "Ні"
+      },
+      "cansel": {
+        "title": "Дякуємо за запис на прийом!",
+        "text": "Якщо у Вас є додаткові питання, Вам потрібно змінити час, або відмінити прийом, будь-ласка, зв’яжіться з нами за номером:",
+        "button": "Повернутись на головну"
+      }
+    }
+  },
+  "doctor": {
+    "navigation": {
+      "doctorPage": "Лікарь"
     }
   }
 }
