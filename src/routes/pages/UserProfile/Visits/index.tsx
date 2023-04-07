@@ -25,7 +25,8 @@ const Visits = () => {
           style: { display: 'none' }
         }}
         value={value}
-        onChange={handleChange}>
+        onChange={handleChange}
+      >
         {USER_VISITS_CONFIG.map((item) => (
           <StyledTab
             key={item.tabIndex}

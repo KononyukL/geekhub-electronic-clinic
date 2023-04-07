@@ -15,7 +15,8 @@ const CustomExpandIcon = () => {
         '.Mui-expanded & > .expandIconWrapper': {
           display: 'block'
         }
-      }}>
+      }}
+    >
       <div className="expandIconWrapper">
         <MinusIcon />
       </div>

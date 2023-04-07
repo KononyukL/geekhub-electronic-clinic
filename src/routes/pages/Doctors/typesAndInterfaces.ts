@@ -16,12 +16,12 @@ export interface SelectedDoctor {
 }
 
 export interface IBookingReception {
-  bookingReception: IBocking
+  bookingReception: IBocking;
 }
 
 export interface IBocking {
-  time: string,
-  status: boolean
+  time: string;
+  status: boolean;
 }
 
 export interface IDoctorAndIndex {
@@ -34,5 +34,5 @@ export interface IService {
 }
 
 export interface INameAndRating {
-  doctor: IDoctor
+  doctor: IDoctor;
 }

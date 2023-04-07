@@ -28,15 +28,15 @@ const WorkingHours: FC = () => {
   };
 
   return (
-      <Container>
-        <Calendar bookingReception={bookingReception}/>
-        <Wrapper>
-          {data.length > 0 &&
-            data.map((day, index) => (
-              <TimeButton key={index} onClick={() => handleBookingReception(day)} children={day} />
-            ))}
-        </Wrapper>
-      </Container>
+    <Container>
+      <Calendar bookingReception={bookingReception} />
+      <Wrapper>
+        {data.length > 0 &&
+          data.map((day, index) => (
+            <TimeButton key={index} onClick={() => handleBookingReception(day)} children={day} />
+          ))}
+      </Wrapper>
+    </Container>
   );
 };
 

@@ -6,11 +6,7 @@ interface IButton extends React.ButtonHTMLAttributes<any> {
 }
 
 const SubmitButton: React.FC<IButton> = ({ children, ...rest }) => {
-  return (
-    <Button {...rest}>
-      {children}
-    </Button>
-  );
+  return <Button {...rest}>{children}</Button>;
 };
 
 export default SubmitButton;

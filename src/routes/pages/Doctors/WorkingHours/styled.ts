@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Button from "../../../../components/Button";
+import Button from '../../../../components/Button';
 
 export const Container = styled.div`
   background-color: #ffffff;
@@ -22,7 +22,7 @@ export const TimeButton = styled(Button)`
   margin: 10px;
   border-radius: 10px;
   color: #000000;
-  background-color: #CFCFCF;
+  background-color: #cfcfcf;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.47);

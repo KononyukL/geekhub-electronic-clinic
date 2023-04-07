@@ -15,6 +15,4 @@ export const StyledSelect = styled.select`
   border: 1px solid #ccc;
 `;
 
-export const StyledOption = styled.option`
-
-`;
+export const StyledOption = styled.option``;
