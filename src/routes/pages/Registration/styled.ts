@@ -13,7 +13,7 @@ export const Container = styled(Box)(({ theme }) => {
 export const StyledInput = styled(Input)(() => {
   return {
     borderRadius: 0,
-    height: '52px',
+    height: '50px',
   } as CSSObject;
 });
 
