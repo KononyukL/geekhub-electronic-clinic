@@ -33,11 +33,5 @@ export const theme = createTheme({
     h2: {
       fontFamily: 'Montserrat'
     }
-  },
-  typography: {
-    fontFamily: 'Open Sans',
-    h1: {
-      fontFamily: 'Montserrat'
-    }
   }
 });
