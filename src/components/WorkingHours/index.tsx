@@ -60,7 +60,7 @@ const WorkingHours: FC<IWorkingHours> = ({ hideButton }) => {
 
   return (
     <>
-      <Calendar bookingReception={bookingReception} />
+      <Calendar />
       <Wrapper>
         {DATA.slice(0, visibleHours).map((day, index) => (
           <TimeButton
