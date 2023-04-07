@@ -4,6 +4,7 @@ import Button from '../../../components/Button';
 export const Container = styled.div`
   margin: 0 auto;
   max-width: 1420px;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`
@@ -18,7 +19,7 @@ export const Navigation = styled.div`
 
 export const FindDoctor = styled.span`
   color: rgba(0, 0, 0, 0.4);
-`
+`;
 
 export const Aside = styled.aside`
   display: flex;

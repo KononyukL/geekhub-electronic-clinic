@@ -1,6 +1,11 @@
 const ROUTES = {
   HOME: {
-    PATH: '/'
+    PATH: '/',
+    HASH_PATH: {
+      ABOUT_US: '/#about-us',
+      CONTACTS: '/#contacts',
+      QUESTIONS: '/#questions '
+    }
   },
   REGISTRATION: {
     PATH: '/registration'

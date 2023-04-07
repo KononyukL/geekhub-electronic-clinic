@@ -1,11 +1,75 @@
-import styled from 'styled-components';
+import { Box, Button as MUIButton, styled, Typography } from '@mui/material';
 
-export const Container = styled.section`
-  background: #f9f9f9;
-  padding: 30px;
-  margin-bottom: 80px;
-  border-radius: 12px;
-`;
+export const Container = styled(Box)({
+  background: 'transparent',
+  maxWidth: 1420,
+  padding: '120px 0',
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'space-between',
+  margin: '0 auto'
+});
 
-export const Title = styled.h2``;
-export const Text = styled.div``;
+export const BoxImg = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  position: 'relative',
+  paddingRight: '180px'
+});
+export const ImgOne = styled('img')({
+  objectFit: 'cover',
+  width: '100%',
+  maxWidth: 456
+});
+export const ImgTwo = styled('img')({
+  marginTop: '-10%',
+  marginLeft: '38%',
+  objectFit: 'cover',
+  width: '100%',
+  maxWidth: 456
+
+  // left: 170,
+  // top: -35
+});
+export const BoxInfo = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  maxWidth: '696px'
+});
+
+export const FirstTitle = styled(Typography)(({ theme }) => {
+  return {
+    color: theme.palette.primary.main,
+    fontWight: 600,
+    fontSize: '20px',
+    marginBottom: '8px'
+  };
+});
+
+export const LastTitle = styled(Typography)(({ theme }) => {
+  return {
+    color: theme.palette.text.primary,
+    fontWeight: 700,
+    fontSize: '32px',
+    marginBottom: '16px'
+  };
+});
+
+export const Text = styled(Typography)(({ theme }) => {
+  return {
+    color: theme.palette.text.primary,
+    marginBottom: '32px'
+  };
+});
+export const Button = styled(MUIButton)({
+  borderRadius: 0,
+  boxShadow: 'none',
+  width: 216,
+  fontSize: 16,
+  textTransform: 'none',
+  padding: '12px 0 ',
+  marginTop: 30,
+  fontWeight: 600
+});
