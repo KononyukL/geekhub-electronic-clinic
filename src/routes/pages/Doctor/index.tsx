@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Wrapper, ProfileDoctor, WrapperWorkingHours } from './styled';
+import { Wrapper, ProfileDoctor, WrapperWorkingHours, Container } from './styled';
 import DoctorProfileCard from './DoctorProfileCard';
 import DoctorBreadcrumbs from './DoctorBreadcrumbs';
-import { Box } from '@mui/material';
 import WorkingHours from '../../../components/WorkingHours';
 
 const Doctor = () => {
   const [hideButton, setHideButton] = useState(true);
 
   return (
-    <Box>
+    <Container>
       <DoctorBreadcrumbs />
       <ProfileDoctor>
         <Wrapper>
@@ -19,7 +18,7 @@ const Doctor = () => {
           </WrapperWorkingHours>
         </Wrapper>
       </ProfileDoctor>
-    </Box>
+    </Container>
   );
 };
 

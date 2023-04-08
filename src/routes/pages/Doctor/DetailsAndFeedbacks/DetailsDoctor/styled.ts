@@ -1,4 +1,4 @@
-import {Box, CSSObject, styled} from '@mui/material';
+import { Box, CSSObject, styled } from '@mui/material';
 
 export const Wrapper = styled(Box)(() => {
   return {
@@ -22,6 +22,5 @@ export const Li = styled('li')(() => {
 export const Title = styled('p')(() => {
   return {
     fontWeight: 500
-  } as CSSObject
-
-})
+  } as CSSObject;
+});

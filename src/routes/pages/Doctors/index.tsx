@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon } from './styled';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon, Container } from './styled';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { Box } from '@mui/material';
 import SelectedDoctorsList from './SelectedDoctorsList';
 import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
 import IMGAllDoctors from '../../../assets/icons/AllDoctors.svg';
@@ -36,7 +35,7 @@ const Doctors: FC = () => {
   };
 
   return (
-    <Box>
+    <Container>
       <DoctorsBreadcrumbs />
       <Wrapper>
         <Aside>
@@ -60,7 +59,7 @@ const Doctors: FC = () => {
           selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
         />
       </Wrapper>
-    </Box>
+    </Container>
   );
 };
 

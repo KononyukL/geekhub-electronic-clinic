@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-import { Tab, Tabs, tabClasses, buttonClasses } from '@mui/material';
+import { Tab, Tabs, tabClasses } from '@mui/material';
 
 export const Container = styled.div`
   display: flex;
   align-items: start;
+  max-width: 1420px;
+  width: 100%;
+  margin: 0 auto;
   gap: 22px;
 `;
 

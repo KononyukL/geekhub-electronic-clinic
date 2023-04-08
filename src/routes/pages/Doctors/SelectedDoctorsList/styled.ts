@@ -2,7 +2,7 @@ import { Box, CSSObject, styled, Pagination as MUIPagination } from '@mui/materi
 
 export const Wrapper = styled(Box)(() => {
   return {
-    minHeight: '1070px',
+    minHeight: '1130px',
     height: '100%',
     marginLeft: '25px'
   } as CSSObject;

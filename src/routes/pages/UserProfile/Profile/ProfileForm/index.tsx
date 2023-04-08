@@ -168,7 +168,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                     // renderValue={field.value || 'Choose gender'}
                     onChange={(event) => {
                       field.onChange(event);
-                    }}>
+                    }}
+                  >
                     {genderOptions.map(({ label, value }) => (
                       <MenuItem key={value} value={value}>
                         {label}
@@ -195,7 +196,8 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                       value={field.value}
                       onChange={(event) => {
                         field.onChange(event);
-                      }}>
+                      }}
+                    >
                       {genderOptions.map((option, i) => (
                         <MenuItem key={i} value={option.value}>
                           {option.label}

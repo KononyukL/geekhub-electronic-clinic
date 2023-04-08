@@ -1,15 +1,108 @@
 {
   "title": "Electronic polyclinic",
   "layout": {
+    "address": "м. Черкасси, вул. Чорновола 92",
     "navigation": {
       "home": "Home",
-      "doctors": "Specialties and doctors"
+      "doctors": "Specialties and doctors",
+      "questions": "Frequently asked questions",
+      "aboutUs": "About us",
+      "contacts": "Contact"
+    },
+    "footer": {
+      "rights": "All rights reserved",
+      "email": "write for any questions",
+      "info": {
+        "title": "Information",
+        "terms": "Terms of use",
+        "policy": "Privacy policy",
+        "agreement": "Offer agreement"
+      },
+      "patient": {
+        "title": "For the patient",
+        "address": "Address"
+      },
+      "directions": {
+        "title": "Directions",
+        "dermatology": "Dermatology",
+        "therapy": "Therapy",
+        "gastroenterology": "Gastroenterology",
+        "pulmonology": "Pulmonology",
+        "neuroscience": "Neuroscience",
+        "cardiology": "Cardiology"
+      },
+      "contactsSocial": {
+        "title": "Contacts and Social Networks"
+      }
+    }
+  },
+  "home": {
+    "title": "Polyclinic MediPlus",
+    "subTitle": "Taking care of you",
+    "firstText": "We provide the best",
+    "lastText": "Advanced medical technologies, professionalism combined with timely service delivery and an individual approach to each patient and situation - this is the philosophy of MediPlus",
+    "cardInfo": {
+      "title": {
+        "doctor": "Qualified doctors",
+        "equipment": "Modern equipment",
+        "approach": "Individual approach",
+        "cardiology": "Cardiology",
+        "pulmonology": "Pulmonology",
+        "neurology": "Neurology",
+        "therapy": "Therapy",
+        "dermatology": "Dermatology",
+        "gastroenterology": "Gastroenterology"
+      },
+      "text": {
+        "doctor": "We are constantly improving our knowledge and skills to provide the best treatment for our patients.",
+        "equipment": "We use modern equipment and technologies to diagnose and treat various diseases.",
+        "approach": "Our team does not just treat, we create an atmosphere of trust and support to make you feel comfortable."
+      }
+    },
+    "aboutUs": {
+      "aboutTeam": "ABOUT OUR TEAM",
+      "polyclinic": "Polyclinic MediPlus",
+      "text": "We are a team of experienced professionals who are always ready to help you. In our clinic, we take care of each patient, providing an individual approach and using modern equipment. We know that health is the most precious gift, and that is why we do our best to make our patients feel comfortable and protected. Feel the care and attention to your health in our clinic!"
+    },
+    "serviceProvide": {
+      "firstTitle": "WHAT WE DO",
+      "lastTitle": "The service we provide",
+      "text": "We invest our knowledge and experience to provide optimal treatment to each patient. We work to maintain your health and help you return to a full life."
+    },
+    "questions": {
+      "firstTitle": "WHAT IF?",
+      "lastTitle": "Frequently asked questions",
+      "accordion": {
+        "questions": {
+          "one": "How do you guarantee the confidentiality of my medical data?",
+          "two": "How to make an appointment with a doctor?",
+          "three": "What types of medical services do you provide?",
+          "four": "What payment methods do you accept?",
+          "five": "Як довго триває прийом у лікаря?"
+        },
+        "text": {
+          "one": "We respect the privacy of our patients and ensure the confidentiality of medical information through protective technologies and proper storage methods.",
+          "two": "You can call our clinic, use the online appointment form on the website, or visit us in person.",
+          "three": "Our clinic offers a wide range of medical services, including consultations with doctors of various specialties, laboratory tests, ultrasound diagnostics and other procedures.",
+          "four": "We accept payment in cash, by credit card and electronic funds. The payment is made at the reception after the appointment with the doctor.",
+          "five": "The duration of an appointment depends on the doctor's specialization and the purpose of the visit. Usually, an appointment lasts from 20 to 60 minutes."
+        }
+      }
+    },
+    "reviews": {
+      "firstTitle": "WHAT THEY SAY ABOUT US",
+      "lastTitle": "Feedback from our customers",
+      "textOne": "I was impressed by how friendly and attentive the staff at this clinic was. The doctor I saw listened to my complaints in detail and conducted a top-level examination. I recommend this clinic to all my friends! I will definitely come here again and again."
     }
   },
   "buttons": {
     "translate": "Translate",
     "edit": "Edit",
-    "save": "Save"
+    "save": "Save",
+    "open": "Open",
+    "myOffice": "My office",
+    "signUp": "Sign up",
+    "readMore": "Read more"
   },
   "validationErrors": {
     "required": "This field is required",
