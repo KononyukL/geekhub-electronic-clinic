@@ -27,7 +27,8 @@ const UserProfile = () => {
           style: { display: 'none' }
         }}
         value={value}
-        onChange={handleChange}>
+        onChange={handleChange}
+      >
         {USER_PROFILE_CONFIG.map((item) => (
           <StyledTab
             key={item.tabIndex}

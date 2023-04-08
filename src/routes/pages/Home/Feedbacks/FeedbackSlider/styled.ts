@@ -1,33 +1,28 @@
-import styled from 'styled-components';
 import Slider from 'react-slick';
+import { Box as MUIBox, styled, Typography } from '@mui/material';
 
-export const StyledSlider = styled(Slider)`
-  .slick-prev:before,
-  .slick-next:before {
-    color: #000000 !important;
-  }
+export const StyledSlider = styled(Slider)({
+  maxWidth: 695,
+  margin: '0 auto'
+});
+export const BoxFeedback = styled(MUIBox)({
+  background: 'transparent'
+});
 
-  .slick-list {
-    margin: 0 -12px !important;
-  }
+export const Review = styled(Typography)(({ theme }) => {
+  return {
+    color: theme.palette.primary.contrastText,
+    fontStyle: 'italic',
+    textAlign: 'center'
+  };
+});
 
-  .slick-slide > div {
-    padding: 0 12px !important;
-  }
-`;
-export const WrapFeedback = styled.div`
-  border-radius: 12px;
-  background: #f9f9f9;
-  padding: 20px;
-  min-height: 250px;
-`;
+export const Box = styled(MUIBox)({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 24,
+  marginTop: 42
+});
 
-export const FeedbackHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const UserName = styled.p``;
-export const Rating = styled.p``;
-
-export const FeedbackMain = styled.div``;
+export const BoxName = styled(MUIBox)({});
