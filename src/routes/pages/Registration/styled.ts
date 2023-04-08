@@ -1,33 +1,67 @@
-import { styled, CSSObject, Box } from '@mui/material';
+import { styled, Box, Typography } from '@mui/material';
 import Input from '../../../components/Input';
+import { Link as DOMLink } from 'react-router-dom';
 
 export const Container = styled(Box)(({ theme }) => {
   return {
-    maxWidth: '588px',
-    width: '100%',
-    margin: '0 auto',
-    boxShadow: `-4px 15px 35px 0 ${theme.palette.success.main}`
-  } as CSSObject;
+    backgroundColor: theme.palette.background.default,
+    height: '100vh'
+  };
 });
 
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    maxWidth: '588px',
+    width: '100%',
+    margin: '65px auto 0',
+    boxShadow: `-4px 15px 35px 0 ${theme.palette.success.main}`
+  };
+});
+
+export const WrapperForm = styled(Box)(({ theme }) => {
+  return {
+    padding: '56px',
+    backgroundColor: theme.palette.background.paper
+  };
+});
+
+export const StyledWrapper = styled(Box)(({ theme }) => {
+  return {
+    display: 'grid',
+    width: '100%',
+    marginTop: 16,
+    color: theme.palette.text.secondary
+  };
+});
 export const StyledInput = styled(Input)(() => {
   return {
     borderRadius: 0,
     height: '50px',
-  } as CSSObject;
+    marginTop: 12
+  };
 });
 
-export const Wrapper = styled(Box)(() => {
+export const Title = styled('h2')(() => {
   return {
-    padding: '56px'
-  } as CSSObject;
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 32,
+    fontWeight: 400,
+    marginBottom: 22
+  };
+});
+
+export const Logo = styled('img')(() => {
+  return {
+    marginRight: 16
+  };
 });
 
 export const ErrorText = styled('p')(() => {
   return {
     fontSize: '16px',
     color: 'red'
-  } as CSSObject;
+  };
 });
 
 export const StyledForm = styled('form')(() => {
@@ -35,16 +69,10 @@ export const StyledForm = styled('form')(() => {
     maxWidth: '476px',
     width: '100%',
     display: 'flex',
+    alignItems: 'start',
     flexDirection: 'column',
-    alignItems: 'center',
     margin: '0 auto'
-  } as CSSObject;
-});
-
-export const StyledWrapper = styled(Box)(() => {
-  return {
-    width: '100%',
-  } as CSSObject;
+  };
 });
 
 export const ButtonSubmit = styled('button')(({ theme }) => {
@@ -65,6 +93,50 @@ export const ButtonSubmit = styled('button')(({ theme }) => {
 
     '&:active': {
       backgroundColor: theme.palette.secondary.dark
+    },
+
+    '&:disabled': {
+      backgroundColor: theme.palette.text.secondary,
+      cursor: 'not-allowed',
+    },
+  };
+});
+
+export const TextLogin = styled(Typography)(() => {
+  return {
+    margin: '24px 0 24px'
+  };
+});
+
+export const TextConfidence = styled(Typography)(({ theme }) => {
+  return {
+    marginTop: 16,
+    color: theme.palette.text.secondary
+  };
+});
+
+export const Link = styled(DOMLink)(({ theme }) => {
+  return {
+    color: theme.palette.primary.main,
+    transition: '.3s',
+
+    '&:hover': {
+      color: theme.palette.primary.dark
     }
-  } as CSSObject;
+  };
+});
+
+export const WrapperImg = styled('div')(() => {
+  return {
+    position: 'absolute'
+  }
+})
+export const ImgSwitcher = styled('img')(() => {
+  return {
+    width: 20,
+    position: 'relative',
+    cursor: 'pointer',
+    left: '442px',
+    bottom: '36px'
+  };
 });
