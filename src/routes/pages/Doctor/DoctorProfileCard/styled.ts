@@ -13,6 +13,5 @@ export const Wrapper = styled(Box)(() => {
   return {
     maxWidth: '700px',
     width: '100%',
-    paddingBottom: '60px'
   } as CSSObject;
 });
