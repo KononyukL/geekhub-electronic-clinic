@@ -110,8 +110,15 @@
   },
   "validationErrors": {
     "required": "This field is required",
-    "email": "Invalid email address. Example: Standart@gmail.com",
-    "password": "Invalid password"
+    "email": "Incorrect email format. Example: Standart@gmail.com",
+    "password": "The password must contain Latin letters A-Z and numbers 0-9",
+    "confirmPassword": "Passwords do not match",
+    "firstName": {
+      "firstBigLatter": "The first letter must be capitalized. Numbers and special characters are not allowed.",
+      "minLength": "The minimum number of characters is 3",
+      "maxLength": "The maximum number of characters is 255"
+    },
+    "phoneNumber": "Enter a valid phone number in the format: +380XXXXXXXXX"
   },
   "userProfile": {
     "tabs": {
@@ -205,11 +212,6 @@
     "loginText": "Already have an account?",
     "login": "Sign in",
     "confidenceText": "By creating an account, I agree to",
-    "rivacyPolicy": "Privacy policy",
-    "errors": {
-      "firstName": {
-        "minAndMaxLength": "The minimum number of characters is 3, the maximum is 255"
-      }
-    }
+    "privacyPolicy": "Privacy policy"
   }
 }

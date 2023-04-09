@@ -1,9 +1,11 @@
-import { styled, Box, Typography } from '@mui/material';
+import { styled, Box } from '@mui/material';
 import Input from '../../../components/Input';
-import { Link as DOMLink } from 'react-router-dom';
 
 export const Container = styled(Box)(({ theme }) => {
   return {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: theme.palette.background.default,
     height: '100vh'
   };
@@ -11,33 +13,34 @@ export const Container = styled(Box)(({ theme }) => {
 
 export const Wrapper = styled(Box)(({ theme }) => {
   return {
-    maxWidth: '588px',
+    maxWidth: 480,
     width: '100%',
-    margin: '65px auto 0',
     boxShadow: `-4px 15px 35px 0 ${theme.palette.success.main}`
   };
 });
 
 export const WrapperForm = styled(Box)(({ theme }) => {
   return {
-    padding: '56px',
+    padding: 40,
     backgroundColor: theme.palette.background.paper
   };
 });
 
-export const StyledWrapper = styled(Box)(({ theme }) => {
+export const InputWrapper = styled(Box)(({ theme }) => {
   return {
     display: 'grid',
     width: '100%',
-    marginTop: 16,
     color: theme.palette.text.secondary
   };
 });
-export const StyledInput = styled(Input)(() => {
+
+export const StyledInput = styled(Input)(({ theme }) => {
   return {
     borderRadius: 0,
-    height: '50px',
-    marginTop: 12
+    height: 50,
+    marginTop: 12,
+    fontSize: 16,
+    border: `1px solid ${theme.palette.text.primary}`
   };
 });
 
@@ -47,7 +50,7 @@ export const Title = styled('h2')(() => {
     alignItems: 'center',
     fontSize: 32,
     fontWeight: 400,
-    marginBottom: 22
+    marginBottom: 18
   };
 });
 
@@ -57,16 +60,9 @@ export const Logo = styled('img')(() => {
   };
 });
 
-export const ErrorText = styled('p')(() => {
-  return {
-    fontSize: '16px',
-    color: 'red'
-  };
-});
-
 export const StyledForm = styled('form')(() => {
   return {
-    maxWidth: '476px',
+    maxWidth: 476,
     width: '100%',
     display: 'flex',
     alignItems: 'start',
@@ -78,14 +74,15 @@ export const StyledForm = styled('form')(() => {
 export const ButtonSubmit = styled('button')(({ theme }) => {
   return {
     width: '100%',
-    height: '54px',
+    height: 50,
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.secondary.contrastText,
     fontWeight: 600,
-    fontSize: '16px',
+    fontSize: 16,
     border: 0,
     cursor: 'pointer',
     transition: ' .3s',
+    marginTop: 24,
 
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
@@ -97,31 +94,7 @@ export const ButtonSubmit = styled('button')(({ theme }) => {
 
     '&:disabled': {
       backgroundColor: theme.palette.text.secondary,
-      cursor: 'not-allowed',
-    },
-  };
-});
-
-export const TextLogin = styled(Typography)(() => {
-  return {
-    margin: '24px 0 24px'
-  };
-});
-
-export const TextConfidence = styled(Typography)(({ theme }) => {
-  return {
-    marginTop: 16,
-    color: theme.palette.text.secondary
-  };
-});
-
-export const Link = styled(DOMLink)(({ theme }) => {
-  return {
-    color: theme.palette.primary.main,
-    transition: '.3s',
-
-    '&:hover': {
-      color: theme.palette.primary.dark
+      cursor: 'default'
     }
   };
 });
@@ -129,14 +102,15 @@ export const Link = styled(DOMLink)(({ theme }) => {
 export const WrapperImg = styled('div')(() => {
   return {
     position: 'absolute'
-  }
-})
+  };
+});
+
 export const ImgSwitcher = styled('img')(() => {
   return {
     width: 20,
     position: 'relative',
     cursor: 'pointer',
-    left: '442px',
-    bottom: '36px'
+    left: 358,
+    top: 26
   };
 });
