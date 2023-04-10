@@ -1,11 +1,24 @@
 import React from 'react';
-import { Container, Wrapper, WrapperForm, StyledForm, InputWrapper, Logo, Title, OtherInfo } from './styled';
+import {
+  Container,
+  Wrapper,
+  WrapperForm,
+  StyledForm,
+  InputWrapper,
+  Logo,
+  Title,
+  WrapperCheckbox,
+  Text
+} from 'components/FormFields/styled';
 import { useForm } from 'react-hook-form';
-import IMGLogo from '../../../assets/icons/logo.svg';
-import EmailField from '../Registration/EmailField';
-import PasswordField from '../Registration/PasswordField';
-import ErrorValidation from '../../../components/ErrorValidation';
-import { ButtonSubmit } from '../Registration/styled';
+import IMGLogo from 'assets/icons/logo.svg';
+import EmailField from 'components/FormFields/EmailField';
+import PasswordField from 'components/FormFields/PasswordField';
+import ErrorValidation from 'components/ErrorValidation';
+import { ButtonSubmit } from 'components/FormFields/styled';
+import OtherInfo from './OtherInfo';
+import { Checkbox } from '@mui/material';
+import {useTranslation} from "react-i18next";
 
 interface IFormLoginInput {
   email: string;
@@ -13,6 +26,7 @@ interface IFormLoginInput {
 }
 
 const Login = () => {
+  const {t} = useTranslation()
   const {
     register,
     handleSubmit,
@@ -38,7 +52,7 @@ const Login = () => {
         <WrapperForm>
           <Title>
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
-            Вхід
+            {t('login.login')}
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
@@ -49,13 +63,15 @@ const Login = () => {
               <PasswordField register={register} errors={errors} />
               <ErrorValidation errors={errors.password} />
             </InputWrapper>
+            <WrapperCheckbox>
+              <Checkbox color="secondary" />
+              <Text>{t('login.rememberMe')}</Text>
+            </WrapperCheckbox>
             <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
-              Увійти
+              {t('buttons.sigIn')}
             </ButtonSubmit>
           </StyledForm>
-          <OtherInfo>
-
-          </OtherInfo>
+          <OtherInfo />
         </WrapperForm>
       </Wrapper>
     </Container>

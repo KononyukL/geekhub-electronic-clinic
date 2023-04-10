@@ -106,7 +106,8 @@
     "yes": "Yes",
     "no": "No",
     "createProfile": "Create an account",
-    "button": "Back to home"
+    "button": "Back to home",
+    "sigIn": "Sign in"
   },
   "validationErrors": {
     "required": "This field is required",
@@ -213,5 +214,13 @@
     "login": "Sign in",
     "confidenceText": "By creating an account, I agree to",
     "privacyPolicy": "Privacy policy"
+  },
+  "login": {
+    "login": "Login",
+    "rememberMe": "Remember me",
+    "confidenceText": "By signing in, I confirm that I have read and agree to",
+    "privacyPolicy": "Privacy policy",
+    "forgotPassword": "Forgot password",
+    "registration": "Sign up"
   }
 }
