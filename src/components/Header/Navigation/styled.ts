@@ -1,4 +1,4 @@
-import { styled, Box as MUIBox, Link as MUILink } from '@mui/material';
+import { styled, Box as MUIBox } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export const Box = styled(MUIBox)({
@@ -11,5 +11,6 @@ export const Box = styled(MUIBox)({
 });
 export const StyledLink = styled(Link)({
   color: 'inherit',
-  fontFamily: 'inherit'
+  fontFamily: 'inherit',
+  textDecoration: 'none'
 });

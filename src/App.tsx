@@ -11,10 +11,14 @@ import Registration from './routes/pages/Registration';
 import Login from './routes/pages/Login';
 import ROUTES from './routes/constants';
 import Doctors from './routes/pages/Doctors';
-import UserProfile from './routes/pages/UserProfile';
-import Doctor from "./routes/pages/Doctor";
+import Doctor from './routes/pages/Doctor';
 import FooterLayout from './components/Layouts/FooterLayout';
 import HeaderLayout from './components/Layouts/HeaderLayout';
+import Visits from './routes/pages/UserProfile/Visits';
+import MyCard from './routes/pages/UserProfile/MyCard';
+import Profile from './routes/pages/UserProfile/Profile';
+import LayoutProfile from './components/Layouts/LayoutProfile';
+import { CssBaseline } from '@mui/material';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +26,11 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path={ROUTES.HOME.PATH} element={<HeaderLayout />}>
         <Route path={ROUTES.REGISTRATION.PATH} element={<Registration />} />
-        <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
+        <Route element={<LayoutProfile />}>
+          <Route path={'/user-profile'} element={<Profile />} />
+          <Route path={'/visits'} element={<Visits />} />
+          <Route path={'/card'} element={<MyCard />} />
+        </Route>
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
         <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
         <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
@@ -31,7 +39,12 @@ const router = createBrowserRouter(
   )
 );
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <CssBaseline />
+      <RouterProvider router={router} />;
+    </>
+  );
 }
 
 export default App;

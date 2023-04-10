@@ -1,20 +1,26 @@
-import styled from 'styled-components';
+import { Box, styled, Typography } from '@mui/material';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 40px;
-`;
+export const Container = styled(Box)(() => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    marginBottom: '40px'
+  };
+});
 
-export const TitleForm = styled.h3`
-  font-weight: 500;
-  font-size: 20px;
-`;
+export const TitleForm = styled(Typography)(() => {
+  return {
+    fontWeight: 500,
+    fontSize: 20
+  };
+});
 
-export const ContainerInput = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 1em;
-`;
+export const ContainerInput = styled(Box)(() => {
+  return {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gridColumnGap: '24px',
+    gridRowGap: '1em'
+  };
+});

@@ -1,3 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
-export const Container = styled.div``;
+import { Box, styled } from '@mui/material';
+
+export const Container = styled(Box)(() => {
+  return {};
+});

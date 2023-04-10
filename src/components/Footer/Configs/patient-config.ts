@@ -19,7 +19,7 @@ export const PATIENT_CONFIG = [
     name: 'layout.navigation.contacts'
   },
   {
-    path: ROUTES.HOME.PATH,
+    path: ROUTES.DOCTORS.PATH,
     name: 'layout.navigation.doctors'
   },
   {

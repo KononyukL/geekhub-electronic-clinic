@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Container, ErrorText, Form, HouseNumber, StyledDataPicker, StyledSelect } from './styled';
+import { Container, Form, HouseNumber, StyledDataPicker, StyledSelect } from './styled';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import Button from '../../../../../components/Button';
@@ -72,7 +72,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 maxLength: { value: 255, message: `${t('validationErrors.email')}` }
               }}
             />
-            {errors.firstName?.message && <ErrorText>{errors.firstName.message}</ErrorText>}
+            {/*{errors.firstName?.message && <ErrorText>{errors.firstName.message}</ErrorText>}*/}
           </Box>
           <Box>
             <Input
@@ -86,7 +86,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 maxLength: { value: 255, message: `${t('validationErrors.email')}` }
               }}
             />
-            {errors.lastName?.message && <ErrorText>{errors.lastName.message}</ErrorText>}
+            {/*{errors.lastName?.message && <ErrorText>{errors.lastName.message}</ErrorText>}*/}
           </Box>
 
           <Box>
@@ -101,7 +101,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 maxLength: { value: 255, message: `${t('validationErrors.email')}` }
               }}
             />
-            {errors.middleName?.message && <ErrorText>{errors.middleName.message}</ErrorText>}
+            {/*{errors.middleName?.message && <ErrorText>{errors.middleName.message}</ErrorText>}*/}
           </Box>
 
           <Box>
@@ -111,7 +111,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 name="birthday"
                 control={control}
                 defaultValue={null}
-                render={({ field, ...props }) => {
+                render={({ field }) => {
                   return (
                     <StyledDataPicker
                       disabled={!isEdit}
@@ -141,7 +141,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }
               }}
             />
-            {errors.email?.message && <ErrorText>{errors.email.message}</ErrorText>}
+            {/*{errors.email?.message && <ErrorText>{errors.email.message}</ErrorText>}*/}
           </Box>
           <Box>
             <Input
@@ -153,7 +153,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 required: `${t('validationErrors.required')}`
               }}
             />
-            {errors.phone?.message && <ErrorText>{errors.phone.message}</ErrorText>}
+            {/*{errors.phone?.message && <ErrorText>{errors.phone.message}</ErrorText>}*/}
           </Box>
           <Label>
             {t('userProfile.profile.data.gender')}
@@ -161,15 +161,14 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
               name="gender"
               control={control}
               defaultValue={null}
-              render={({ field, ...props }) => {
+              render={({ field }) => {
                 return (
                   <StyledSelect
                     value={field.value}
                     // renderValue={field.value || 'Choose gender'}
                     onChange={(event) => {
                       field.onChange(event);
-                    }}
-                  >
+                    }}>
                     {genderOptions.map(({ label, value }) => (
                       <MenuItem key={value} value={value}>
                         {label}
@@ -190,14 +189,13 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 name="city"
                 control={control}
                 defaultValue={null}
-                render={({ field, ...props }) => {
+                render={({ field }) => {
                   return (
                     <StyledSelect
                       value={field.value}
                       onChange={(event) => {
                         field.onChange(event);
-                      }}
-                    >
+                      }}>
                       {genderOptions.map((option, i) => (
                         <MenuItem key={i} value={option.value}>
                           {option.label}
@@ -221,7 +219,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 maxLength: { value: 255, message: `${t('validationErrors.email')}` }
               }}
             />
-            {errors.street?.message && <ErrorText>{errors.street.message}</ErrorText>}
+            {/*{errors.street?.message && <ErrorText>{errors.street.message}</ErrorText>}*/}
           </Box>
           <HouseNumber>
             <Box>
@@ -234,7 +232,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                   required: `${t('validationErrors.required')}`
                 }}
               />
-              {errors.house?.message && <ErrorText>{errors.house.message}</ErrorText>}
+              {/*{errors.house?.message && <ErrorText>{errors.house.message}</ErrorText>}*/}
             </Box>
             <Box>
               <Input
@@ -246,7 +244,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                   required: `${t('validationErrors.required')}`
                 }}
               />
-              {errors.apartment?.message && <ErrorText>{errors.apartment.message}</ErrorText>}
+              {/*{errors.apartment?.message && <ErrorText>{errors.apartment.message}</ErrorText>}*/}
             </Box>
           </HouseNumber>
         </ContainerForm>
@@ -269,7 +267,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }
               }
             />
-            {errors.oldPassword?.message && <ErrorText>{errors.oldPassword.message}</ErrorText>}
+            {/*{errors.oldPassword?.message && <ErrorText>{errors.oldPassword.message}</ErrorText>}*/}
           </Box>
           <Box>
             <Input
@@ -289,7 +287,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }
               }
             />
-            {errors.newPassword?.message && <ErrorText>{errors.newPassword.message}</ErrorText>}
+            {/*{errors.newPassword?.message && <ErrorText>{errors.newPassword.message}</ErrorText>}*/}
           </Box>
           <Box>
             <Input
@@ -309,7 +307,7 @@ const ProfileForm: FC<IProfileForm> = ({ isEdit }) => {
                 }
               }
             />
-            {errors.config?.message && <ErrorText>{errors.config.message}</ErrorText>}
+            {/*{errors.config?.message && <ErrorText>{errors.config.message}</ErrorText>}*/}
           </Box>
         </ContainerForm>
         <Button children={t('buttons.save')} type="submit" disabled={!isValid || isSubmitting} />

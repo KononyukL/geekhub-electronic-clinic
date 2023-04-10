@@ -1,7 +1,14 @@
 import React, { FC } from 'react';
-import { Container, ContainerInfo, DoctorsInfo, Info, Reception, ReceptionInfo } from './styled';
-import { ReactComponent as Avatar } from '../../../../../assets/icons/Avatar.svg';
-import Button from '../../../../../components/Button';
+import {
+  Container,
+  ContainerInfo,
+  DoctorsInfo,
+  Info,
+  Reception,
+  ReceptionInfo,
+  Button
+} from './styled';
+import { ReactComponent as Avatar } from 'assets/icons/Avatar.svg';
 import { useTranslation } from 'react-i18next';
 
 interface IVisit {
@@ -22,7 +29,6 @@ const Visit: FC<IVisit> = ({
   isCompleted,
   onAction
 }) => {
-  const { t } = useTranslation();
   return (
     <Container>
       <DoctorsInfo>
@@ -34,19 +40,18 @@ const Visit: FC<IVisit> = ({
       </DoctorsInfo>
       <ReceptionInfo>
         <Reception>
-          <Info>{t('userProfile.visits.date')}:</Info>
           <Info>{date}</Info>
         </Reception>
         <Reception>
-          <Info>{t('userProfile.visits.time')}:</Info>
           <Info>{time}</Info>
         </Reception>
         <Reception>
-          <Info>{t('userProfile.visits.reception')}:</Info>
           <Info>{reception}</Info>
         </Reception>
       </ReceptionInfo>
-      <Button onClick={onAction}>{isCompleted ? 'Детальніше' : 'Скасувати'}</Button>
+      <Button variant="outlined" onClick={onAction}>
+        {isCompleted ? 'Детальніше' : 'Скасувати'}
+      </Button>
     </Container>
   );
 };
