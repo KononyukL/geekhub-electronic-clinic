@@ -26,6 +26,9 @@ export const theme = createTheme({
       main: '#E0E0E0',
       light: '#EAEAEA',
       dark: '#F3F3F3'
+    },
+    error: {
+      main: '#D72A2A'
     }
   },
   typography: {

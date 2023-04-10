@@ -9,16 +9,16 @@ import {
   ButtonSubmit,
   Logo,
   Title
-} from './styled';
-import IMGLogo from '../../../assets/icons/logo.svg';
+} from '../../../components/FormFields/styled';
+import IMGLogo from 'assets/icons/logo.svg';
 import { useTranslation } from 'react-i18next';
 import FooterForm from './FooterForm';
-import NameField from './NameField';
-import PhoneNumberField from './PhoneNumberField';
-import EmailField from './EmailField';
-import PasswordField from './PasswordField';
-import ConfirmPasswordField from './ConfirmPasswordField';
+import PhoneNumberField from '../../../components/FormFields/PhoneNumberField';
+import EmailField from '../../../components/FormFields/EmailField';
+import PasswordField from '../../../components/FormFields/PasswordField';
+import ConfirmPasswordField from '../../../components/FormFields/ConfirmPasswordField';
 import ErrorValidation from '../../../components/ErrorValidation';
+import NameField from "../../../components/FormFields/NameField";
 
 interface IFormRegistrationInput {
   firstName: string;

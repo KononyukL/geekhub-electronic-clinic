@@ -1,5 +1,5 @@
 import { styled, Box } from '@mui/material';
-import Input from '../../../components/Input';
+import Input from '../Input';
 
 export const Container = styled(Box)(({ theme }) => {
   return {

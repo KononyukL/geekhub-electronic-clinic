@@ -1,8 +1,8 @@
 import { styled } from '@mui/material';
 
-export const Text = styled('p')(() => {
+export const Text = styled('p')(({theme}) => {
   return {
     fontSize: 14,
-    color: 'red'
+    color: theme.palette.error.main
   };
 });
