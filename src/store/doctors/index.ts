@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doctors } from './thunks';
+import { doctors, specializations } from './thunks';
 import { RootState } from '../index';
+import { TSpecializations } from 'api/doctors/types';
 
 interface IDoctor {
   firsName: string;
@@ -17,6 +18,7 @@ interface IDoctor {
 
 interface IAuthState {
   doctors: IDoctor[];
+  specializations: TSpecializations;
   isLoading: boolean;
   error: Error | string;
 }
@@ -115,6 +117,7 @@ const initialState: IAuthState = {
         'Валерій Володимирович є висококваліфікованим фахівцем в кардіології з колосальним досвідом роботи, член європейської асоціації кардіологів, автор численних статей, монографій і 10 патентів. Консультує і проводить лікування захворювань серцево-судинної системи і асоційованих з ними...'
     }
   ],
+  specializations: [],
   isLoading: false,
   error: ''
 };
@@ -136,12 +139,28 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(specializations.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        specializations.fulfilled,
+        (state, action: PayloadAction<TSpecializations | undefined>) => {
+          state.isLoading = false;
+          state.specializations = action.payload || [];
+        }
+      )
+      .addCase(specializations.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
 export { doctors };
 export const {} = newsSlice.actions;
 
-export const selectAuth = (state: RootState) => state.auth;
+export const selectDoctors = (state: RootState) => state.doctors;
 
 export default newsSlice.reducer;
