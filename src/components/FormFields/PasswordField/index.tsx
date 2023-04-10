@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { ImgSwitcher, WrapperImg ,StyledInput } from '../styled';
 import { useTranslation } from 'react-i18next';
-import IMGOpenPassword from '../../../../assets/icons/openPassword.svg';
-import IMGClosePassword from '../../../../assets/icons/closePassword.svg';
+import IMGOpenPassword from 'assets/icons/openPassword.svg';
+import IMGClosePassword from 'assets/icons/closePassword.svg';
 
 interface IEmailField extends React.InputHTMLAttributes<any> {
   register: UseFormRegister<FieldValues>;
