@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { ImgSwitcher, StyledInput, WrapperImg } from '../styled';
-import IMGOpenPassword from '../../../assets/icons/openPassword.svg';
-import IMGClosePassword from '../../../assets/icons/closePassword.svg';
+import IMGOpenPassword from 'assets/icons/openPassword.svg';
+import IMGClosePassword from 'assets/icons/closePassword.svg';
 import { useTranslation } from 'react-i18next';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 

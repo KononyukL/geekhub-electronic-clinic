@@ -16,9 +16,9 @@ import EmailField from 'components/FormFields/EmailField';
 import PasswordField from 'components/FormFields/PasswordField';
 import ErrorValidation from 'components/ErrorValidation';
 import { ButtonSubmit } from 'components/FormFields/styled';
-import OtherInfo from './OtherInfo';
+import FooterForm from './FooterForm';
 import { Checkbox } from '@mui/material';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 interface IFormLoginInput {
   email: string;
@@ -26,7 +26,7 @@ interface IFormLoginInput {
 }
 
 const Login = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -71,7 +71,7 @@ const Login = () => {
               {t('buttons.sigIn')}
             </ButtonSubmit>
           </StyledForm>
-          <OtherInfo />
+          <FooterForm />
         </WrapperForm>
       </Wrapper>
     </Container>

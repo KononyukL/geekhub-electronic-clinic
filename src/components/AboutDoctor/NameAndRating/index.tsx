@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { NameDoctor, Rating, Wrapper, Img } from './styled';
-import { IDoctor } from '../../../routes/pages/Doctors/typesAndInterfaces';
-import IMGStar from '../../../assets/icons/Star.svg'
+import { IDoctor } from 'routes/pages/Doctors/typesAndInterfaces';
+import IMGStar from 'assets/icons/Star.svg'
 
 interface INameAndRating {
   doctor: IDoctor;

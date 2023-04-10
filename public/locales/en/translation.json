@@ -222,5 +222,13 @@
     "privacyPolicy": "Privacy policy",
     "forgotPassword": "Forgot password",
     "registration": "Sign up"
+  },
+  "resetPassword": {
+    "resetPassword": "Reset Password",
+    "info": "If you do not find the email, check your spam folder. Please note that the temporary password is valid for 10 minutes",
+    "back": "Back to sign in",
+    "registration": "Sign up",
+    "repeat": "Repeat after",
+    "send": "Send a new password"
   }
 }
