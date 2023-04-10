@@ -1,17 +1,17 @@
 import { Box, styled, Typography } from '@mui/material';
 import { Link as DOMLink } from 'react-router-dom';
 
-export const TextConfidence = styled(Box)(({ theme }) => {
-  return {
-    marginTop: 16,
-    color: theme.palette.text.secondary
-  };
-});
-
-export const StyledBox = styled(Box)(() => {
+export const Container = styled(Box)(() => {
   return {
     textAlign: 'center',
     margin: '0 auto'
+  };
+});
+
+export const Wrapper = styled(Box)(({ theme }) => {
+  return {
+    marginTop: 16,
+    color: theme.palette.text.secondary
   };
 });
 
