@@ -8,3 +8,14 @@ export const doctors = createAsyncThunk('auth/doctors', async (_, { rejectWithVa
     rejectWithValue(e.message || 'Something went wrong');
   }
 });
+
+export const specializations = createAsyncThunk(
+  'doctors/specializations',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await doctorsApi.specializations();
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
