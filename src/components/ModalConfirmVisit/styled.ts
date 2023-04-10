@@ -5,7 +5,7 @@ export const WrapperConfirm = styled(Box)(({ theme }) => {
     textAlign: 'center',
     position: 'absolute' as 'absolute',
     top: '50%',
-    left: '50%',
+    left: '49.5%',
     transform: 'translate(-50%, -50%)',
     width: '362px',
     height: '224px',
