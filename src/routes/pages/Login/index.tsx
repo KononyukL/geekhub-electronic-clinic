@@ -1,18 +1,32 @@
 import React from 'react';
-import { StyledFormLogin } from './styled';
+import {
+  Container,
+  Wrapper,
+  WrapperForm,
+  StyledForm,
+  InputWrapper,
+  Logo,
+  Title,
+  WrapperCheckbox,
+  Text
+} from 'components/FormFields/styled';
 import { useForm } from 'react-hook-form';
-import Input from '../../../components/Input';
-import { ErrorText } from './styled';
-import { useTranslation } from 'react-i18next';
-import Button from '../../../components/Button';
+import IMGLogo from 'assets/icons/logo.svg';
+import EmailField from 'components/FormFields/EmailField';
+import PasswordField from 'components/FormFields/PasswordField';
+import ErrorValidation from 'components/ErrorValidation';
+import { ButtonSubmit } from 'components/FormFields/styled';
+import OtherInfo from './OtherInfo';
+import { Checkbox } from '@mui/material';
+import {useTranslation} from "react-i18next";
 
 interface IFormLoginInput {
-  login: string;
+  email: string;
   password: string;
 }
 
 const Login = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation()
   const {
     register,
     handleSubmit,
@@ -21,7 +35,7 @@ const Login = () => {
   } = useForm<any>({
     mode: 'onBlur',
     defaultValues: {
-      login: '',
+      email: '',
       password: ''
     }
   });
@@ -33,35 +47,34 @@ const Login = () => {
   };
 
   return (
-    <StyledFormLogin onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        label="Email"
-        name="email"
-        register={register}
-        registerOptions={{
-          required: `${t('validationErrors.required')}`,
-          pattern: {
-            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-            message: `${t('validationErrors.email')}`
-          }
-        }}
-      />
-      {errors.email?.message && <ErrorText>{errors.email.message}</ErrorText>}
-      <Input
-        label="Password"
-        name="password"
-        register={register}
-        registerOptions={{
-          required: `${t('validationErrors.required')}`,
-          pattern: {
-            value: /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{8,255}$/,
-            message: `${t('validationErrors.password')}`
-          }
-        }}
-      />
-      {errors.password?.message && <ErrorText>{errors.password.message}</ErrorText>}
-      <Button children="Register" type="submit" disabled={!isValid || isSubmitting} />
-    </StyledFormLogin>
+    <Container>
+      <Wrapper>
+        <WrapperForm>
+          <Title>
+            <Logo src={IMGLogo} alt="Logo" title="Logo" />
+            {t('login.login')}
+          </Title>
+          <StyledForm onSubmit={handleSubmit(onSubmit)}>
+            <InputWrapper>
+              <EmailField register={register} errors={errors} />
+              <ErrorValidation errors={errors.email} />
+            </InputWrapper>
+            <InputWrapper>
+              <PasswordField register={register} errors={errors} />
+              <ErrorValidation errors={errors.password} />
+            </InputWrapper>
+            <WrapperCheckbox>
+              <Checkbox color="secondary" />
+              <Text>{t('login.rememberMe')}</Text>
+            </WrapperCheckbox>
+            <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
+              {t('buttons.sigIn')}
+            </ButtonSubmit>
+          </StyledForm>
+          <OtherInfo />
+        </WrapperForm>
+      </Wrapper>
+    </Container>
   );
 };
 
