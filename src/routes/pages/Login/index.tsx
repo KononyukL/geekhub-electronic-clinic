@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledFormLogin } from './styled';
 import { useForm } from 'react-hook-form';
 import Input from '../../../components/Input';
-import { ErrorText } from '../Registration/styled';
+import { ErrorText } from './styled';
 import { useTranslation } from 'react-i18next';
 import Button from '../../../components/Button';
 
@@ -31,6 +31,7 @@ const Login = () => {
     console.log(data);
     reset();
   };
+
   return (
     <StyledFormLogin onSubmit={handleSubmit(onSubmit)}>
       <Input
