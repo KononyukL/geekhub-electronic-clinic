@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon } from './styled';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon, Container } from './styled';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
-import { Box } from '@mui/material';
+import { RootState } from 'store';
 import SelectedDoctorsList from './SelectedDoctorsList';
 import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
-import IMGAllDoctors from '../../../assets/icons/AllDoctors.svg';
-import IMGDermatologist from '../../../assets/icons/Dermatologist.svg';
-import IMGCardiologist from '../../../assets/icons/Cardiologist.svg';
-import IMGTherapist from '../../../assets/icons/Therapist.svg';
-import IMGPulmonologist from '../../../assets/icons/Pulmonologist.svg';
-import IMGGastroenterologist from '../../../assets/icons/Gastroenterologist.svg';
+import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
+import IMGDermatologist from 'assets/icons/Dermatologist.svg';
+import IMGCardiologist from 'assets/icons/Cardiologist.svg';
+import IMGTherapist from 'assets/icons/Therapist.svg';
+import IMGPulmonologist from 'assets/icons/Pulmonologist.svg';
+import IMGGastroenterologist from 'assets/icons/Gastroenterologist.svg';
 import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [
@@ -36,7 +35,7 @@ const Doctors: FC = () => {
   };
 
   return (
-    <Box>
+    <Container>
       <DoctorsBreadcrumbs />
       <Wrapper>
         <Aside>
@@ -60,7 +59,7 @@ const Doctors: FC = () => {
           selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
         />
       </Wrapper>
-    </Box>
+    </Container>
   );
 };
 

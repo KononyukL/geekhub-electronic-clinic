@@ -13,6 +13,9 @@ const ROUTES = {
   LOGIN: {
     PATH: '/login'
   },
+  RESET_PASSWORD: {
+    PATH: '/reset-password'
+  },
   DOCTORS: {
     PATH: '/doctors'
   },

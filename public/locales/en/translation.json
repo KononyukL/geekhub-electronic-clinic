@@ -102,12 +102,25 @@
     "open": "Open",
     "myOffice": "My office",
     "signUp": "Sign up",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "yes": "Yes",
+    "no": "No",
+    "createProfile": "Create an account",
+    "button": "Back to home",
+    "sigIn": "Sign in",
+    "home": "Home"
   },
   "validationErrors": {
     "required": "This field is required",
-    "email": "Invalid email address",
-    "password": "Invalid password"
+    "email": "Incorrect email format. Example: Standart@gmail.com",
+    "password": "The password must contain Latin letters A-Z and numbers 0-9",
+    "confirmPassword": "Passwords do not match",
+    "firstName": {
+      "firstBigLatter": "The first letter must be capitalized. Numbers and special characters are not allowed.",
+      "minLength": "The minimum number of characters is 3",
+      "maxLength": "The maximum number of characters is 255"
+    },
+    "phoneNumber": "Enter a valid phone number in the format: +380XXXXXXXXX"
   },
   "userProfile": {
     "tabs": {
@@ -182,8 +195,7 @@
       },
       "cansel": {
         "title": "Thank you for making an appointment!",
-        "text": "If you have additional questions, need to change the time, or cancel your appointment, please contact us by phone:",
-        "button": "Back to home"
+        "text": "If you have additional questions, need to change the time, or cancel your appointment, please contact us by phone:"
       }
     }
   },
@@ -191,5 +203,37 @@
     "navigation": {
       "doctorPage": "Doctor"
     }
+  },
+  "registration": {
+    "registration": "Registration",
+    "name": "Name",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "loginText": "Already have an account?",
+    "login": "Sign in",
+    "confidenceText": "By creating an account, I agree to",
+    "privacyPolicy": "Privacy policy",
+    "modalWindow": {
+      "thank": "Thank you for registering",
+      "text": "We have sent an email to the email address you provided. Please click on the to confirm and complete your registration. If you did not found the email, please check your spam folder"
+    }
+  },
+  "login": {
+    "login": "Login",
+    "rememberMe": "Remember me",
+    "confidenceText": "By signing in, I confirm that I have read and agree to",
+    "privacyPolicy": "Privacy policy",
+    "forgotPassword": "Forgot password",
+    "registration": "Sign up"
+  },
+  "resetPassword": {
+    "resetPassword": "Reset Password",
+    "info": "If you do not find the email, check your spam folder. Please note that the temporary password is valid for 10 minutes",
+    "back": "Back to sign in",
+    "registration": "Sign up",
+    "repeat": "Repeat after",
+    "send": "Send a new password"
   }
 }

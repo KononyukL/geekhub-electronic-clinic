@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
-import { Wrapper, ProfileDoctor, WrapperWorkingHours } from './styled';
+import React from 'react';
+import { Wrapper, ProfileDoctor, WrapperWorkingHours, Container } from './styled';
 import DoctorProfileCard from './DoctorProfileCard';
 import DoctorBreadcrumbs from './DoctorBreadcrumbs';
-import { Box } from '@mui/material';
-import WorkingHours from '../../../components/WorkingHours';
+import WorkingHours from 'components/WorkingHours';
 
 const Doctor = () => {
-  const [hideButton, setHideButton] = useState(true);
-
   return (
-    <Box>
+    <Container>
       <DoctorBreadcrumbs />
       <ProfileDoctor>
         <Wrapper>
           <DoctorProfileCard />
           <WrapperWorkingHours>
-            <WorkingHours hideButton={hideButton} />
+            <WorkingHours hideButton={true} />
           </WrapperWorkingHours>
         </Wrapper>
       </ProfileDoctor>
-    </Box>
+    </Container>
   );
 };
 

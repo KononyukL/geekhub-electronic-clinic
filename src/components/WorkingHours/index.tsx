@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Wrapper, TimeButton, SwitcherButton, Img } from './styled';
 import { useTranslation } from 'react-i18next';
-import IGMHide from '../../assets/icons/Hide.svg';
-import IGMShowMore from '../../assets/icons/ShowMore.svg';
+import IGMHide from 'assets/icons/Hide.svg';
+import IGMShowMore from 'assets/icons/ShowMore.svg';
 import ModalConfirmVisit from '../ModalConfirmVisit';
 import Calendar from './Calendar';
 
@@ -33,7 +33,6 @@ type IWorkingHours = {
 
 const WorkingHours: FC<IWorkingHours> = ({ hideButton }) => {
   const { t } = useTranslation();
-  const [bookingReception, setBookingReception] = useState<any>({});
   const [visibleHours, setVisibleHours] = useState<number>(12);
   const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
   const [bookVisit, setBookVisit] = useState<string>('');
@@ -42,9 +41,9 @@ const WorkingHours: FC<IWorkingHours> = ({ hideButton }) => {
 
   useEffect(() => {
     if (hideButton) {
-      setVisibleHours(18)
+      setVisibleHours(18);
     }
-  }, [hideButton])
+  }, [hideButton]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -1,5 +1,12 @@
 import { CSSObject, styled, Box } from '@mui/material';
 
+export const Container = styled(Box)(() => {
+  return {
+    maxWidth: '1420px',
+    margin: '0 auto'
+  } as CSSObject;
+});
+
 export const ProfileDoctor = styled(Box)(({ theme }) => {
   return {
     backgroundColor: theme.palette.background.paper,
@@ -12,7 +19,6 @@ export const Wrapper = styled(Box)(() => {
     display: 'flex',
     justifyContent: 'space-between',
     margin: '60px 0 170px',
-    minHeight: '912px'
   } as CSSObject;
 });
 

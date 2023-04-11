@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Doctor, Container, Direction, Img, PhotoDoctor } from './styled';
 import NameAndRating from './NameAndRating';
-import { IDoctor } from '../../routes/pages/Doctors/typesAndInterfaces';
+import { IDoctor } from 'routes/pages/Doctors/typesAndInterfaces';
 import Details from './Details';
 import { Box } from '@mui/material';
 

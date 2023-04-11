@@ -1,14 +1,19 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material';
 
-export const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-weight: 500;
-`;
+export const Label = styled('label')(() => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '6px',
+    fontWeight: 400
+  };
+});
 
-export const StyledInput = styled.input`
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
-`;
+export const StyledInput = styled('input')(({theme}) => {
+  return {
+    width: '100%',
+    borderRadius: '12px',
+    border: `1px solid ${theme.palette.text.primary}`,
+    padding: '10px'
+  };
+});

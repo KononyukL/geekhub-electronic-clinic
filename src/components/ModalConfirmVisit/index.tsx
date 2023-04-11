@@ -12,7 +12,7 @@ import {
   CanselButton,
   HomeButton
 } from './styled';
-import {useTranslation} from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 type IModalConfirmVisit = {
   open: boolean;
@@ -21,7 +21,7 @@ type IModalConfirmVisit = {
 };
 
 const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisit }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [thankForBook, setThankForBook] = useState(true);
 
   const postVisit = () => {
@@ -37,14 +37,16 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisi
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <WrapperConfirm>
-            <TitleConfirm id="modal-modal-title">{t('doctors.modalDoctors.confirm.title')}</TitleConfirm>
+            <TitleConfirm id="modal-modal-title">
+              {t('doctors.modalDoctors.confirm.title')}
+            </TitleConfirm>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
               {t('doctors.modalDoctors.confirm.text')}
               <Date>{bookVisit}</Date>
             </Typography>
             <WrapperButtons>
-              <ConfirmButton onClick={postVisit}>{t('doctors.modalDoctors.confirm.yes')}</ConfirmButton>
-              <CanselButton onClick={handleClose}>{t('doctors.modalDoctors.confirm.no')}</CanselButton>
+              <ConfirmButton onClick={postVisit}>{t('buttons.yes')}</ConfirmButton>
+              <CanselButton onClick={handleClose}>{t('buttons.no')}</CanselButton>
             </WrapperButtons>
           </WrapperConfirm>
         </Modal>
@@ -70,7 +72,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisi
                   handleClose();
                   postVisit();
                 }}>
-                {t('doctors.modalDoctors.cansel.button')}
+                {t('buttons.button')}
               </HomeButton>
             </WrapperButtons>
           </Wrapper>

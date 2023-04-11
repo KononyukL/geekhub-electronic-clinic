@@ -19,6 +19,7 @@ import MyCard from './routes/pages/UserProfile/MyCard';
 import Profile from './routes/pages/UserProfile/Profile';
 import LayoutProfile from './components/Layouts/LayoutProfile';
 import { CssBaseline } from '@mui/material';
+import ResetPassword from "./routes/pages/ResetPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,8 @@ const router = createBrowserRouter(
           <Route path={'/card'} element={<MyCard />} />
         </Route>
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
+        <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />
+        <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
         <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
         <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
       </Route>

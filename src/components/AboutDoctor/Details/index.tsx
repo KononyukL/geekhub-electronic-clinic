@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Block, Container, CurrentInfo, ServiceInfo, Img } from './styled';
-import { IDoctor } from '../../../routes/pages/Doctors/typesAndInterfaces';
+import { IDoctor } from 'routes/pages/Doctors/typesAndInterfaces';
 import { useTranslation } from 'react-i18next';
-import IMGExperience from '../../../assets/icons/Experience.svg';
-import IMGCategory from '../../../assets/icons/Category.svg';
-import IMGReception from '../../../assets/icons/Reception.svg';
+import IMGExperience from 'assets/icons/Experience.svg';
+import IMGCategory from 'assets/icons/Category.svg';
+import IMGReception from 'assets/icons/Reception.svg';
 
 interface IDoctorDetails {
   doctor: IDoctor;

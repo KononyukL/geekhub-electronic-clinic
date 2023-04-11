@@ -10,7 +10,7 @@ import {
   HorizontalLine
 } from './styled';
 import { Box, Pagination } from '@mui/material';
-import IMGStart from '../../../../../assets/icons/Star.svg';
+import IMGStart from 'assets/icons/Star.svg';
 
 const feedbacks = [
   {
