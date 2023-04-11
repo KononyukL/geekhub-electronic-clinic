@@ -11,7 +11,7 @@ const FooterForm = () => {
         {t('login.confidenceText')}
         <Link to="/"> {t('login.privacyPolicy')}</Link>
         <Login>
-          <Link to="/">{t('login.forgotPassword')}</Link>
+          <Link to="/reset-password">{t('login.forgotPassword')}</Link>
           <Link to="/registration">{t('login.registration')}</Link>
         </Login>
       </Wrapper>

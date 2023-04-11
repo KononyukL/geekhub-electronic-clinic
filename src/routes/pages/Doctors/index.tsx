@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { FC } from 'react';
 import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon, Container } from './styled';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import { RootState } from 'store';
 import SelectedDoctorsList from './SelectedDoctorsList';
 import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
-import IMGAllDoctors from '../../../assets/icons/AllDoctors.svg';
-import IMGDermatologist from '../../../assets/icons/Dermatologist.svg';
-import IMGCardiologist from '../../../assets/icons/Cardiologist.svg';
-import IMGTherapist from '../../../assets/icons/Therapist.svg';
-import IMGPulmonologist from '../../../assets/icons/Pulmonologist.svg';
-import IMGGastroenterologist from '../../../assets/icons/Gastroenterologist.svg';
+import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
+import IMGDermatologist from 'assets/icons/Dermatologist.svg';
+import IMGCardiologist from 'assets/icons/Cardiologist.svg';
+import IMGTherapist from 'assets/icons/Therapist.svg';
+import IMGPulmonologist from 'assets/icons/Pulmonologist.svg';
+import IMGGastroenterologist from 'assets/icons/Gastroenterologist.svg';
 import { IDoctor } from './typesAndInterfaces';
 
 const specialties = [

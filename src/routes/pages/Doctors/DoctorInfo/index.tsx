@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Container, Typography, Wrapper, AboutMoreInfo, WrapperWorkingHours } from './styled';
 import { useTranslation } from 'react-i18next';
-import AboutDoctor from '../../../../components/AboutDoctor';
+import AboutDoctor from 'components/AboutDoctor';
 import { IDoctor } from '../typesAndInterfaces';
-import WorkingHours from '../../../../components/WorkingHours';
+import WorkingHours from 'components/WorkingHours';
 
 interface IDoctorAndIndex {
   doctor: IDoctor;

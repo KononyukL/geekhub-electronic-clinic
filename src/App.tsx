@@ -15,6 +15,7 @@ import UserProfile from './routes/pages/UserProfile';
 import Doctor from "./routes/pages/Doctor";
 import FooterLayout from './components/Layouts/FooterLayout';
 import HeaderLayout from './components/Layouts/HeaderLayout';
+import ResetPassword from "./routes/pages/ResetPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,8 +23,9 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path={ROUTES.HOME.PATH} element={<HeaderLayout />}>
         <Route path={ROUTES.REGISTRATION.PATH} element={<Registration />} />
-        <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
+        <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />
+        <Route path={ROUTES.PROFILE.PATH} element={<UserProfile />} />
         <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
         <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
       </Route>
