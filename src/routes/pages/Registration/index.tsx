@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Container,
@@ -18,7 +18,8 @@ import EmailField from 'components/FormFields/EmailField';
 import PasswordField from 'components/FormFields/PasswordField';
 import ConfirmPasswordField from 'components/FormFields/ConfirmPasswordField';
 import ErrorValidation from 'components/ErrorValidation';
-import NameField from "components/FormFields/NameField";
+import NameField from 'components/FormFields/NameField';
+import ModalWindow from './ModalWindow';
 
 interface IFormRegistrationInput {
   firstName: string;
@@ -29,7 +30,6 @@ interface IFormRegistrationInput {
 }
 
 const Registration: FC = () => {
-  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -45,11 +45,16 @@ const Registration: FC = () => {
       confirmPassword: ''
     }
   });
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => setOpen(false);
 
   const onSubmit = async (data: IFormRegistrationInput) => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log(data);
     reset();
+    setOpen(!open);
   };
 
   return (
@@ -86,6 +91,7 @@ const Registration: FC = () => {
             </ButtonSubmit>
             <FooterForm />
           </StyledForm>
+          <ModalWindow open={open} handleClose={handleClose} />
         </WrapperForm>
       </Wrapper>
     </Container>

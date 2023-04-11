@@ -107,7 +107,8 @@
     "no": "No",
     "createProfile": "Create an account",
     "button": "Back to home",
-    "sigIn": "Sign in"
+    "sigIn": "Sign in",
+    "home": "Home"
   },
   "validationErrors": {
     "required": "This field is required",
@@ -213,7 +214,11 @@
     "loginText": "Already have an account?",
     "login": "Sign in",
     "confidenceText": "By creating an account, I agree to",
-    "privacyPolicy": "Privacy policy"
+    "privacyPolicy": "Privacy policy",
+    "modalWindow": {
+      "thank": "Thank you for registering",
+      "text": "We have sent an email to the email address you provided. Please click on the to confirm and complete your registration. If you did not found the email, please check your spam folder"
+    }
   },
   "login": {
     "login": "Login",
