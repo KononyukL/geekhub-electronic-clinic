@@ -12,7 +12,7 @@ const Doctor = () => {
         <Wrapper>
           <DoctorProfileCard />
           <WrapperWorkingHours>
-            <WorkingHours hideButton={true} />
+            <WorkingHours showAllHours={true} />
           </WrapperWorkingHours>
         </Wrapper>
       </ProfileDoctor>

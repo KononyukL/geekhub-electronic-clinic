@@ -48,7 +48,7 @@ const SelectedDoctorsList: FC<SelectedDoctor> = ({ selectedDoctors, flagPaginati
       <Wrapper>
         {selectedDoctors.length > 0 &&
           currentDoctors().map((doctor, index) => (
-            <DoctorInfo key={index} doctor={doctor} index={index} />
+            <DoctorInfo key={doctor.id} doctor={doctor} index={index} />
           ))}
       </Wrapper>
       <WrapperPagination>

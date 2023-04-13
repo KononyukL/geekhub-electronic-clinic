@@ -11,9 +11,11 @@ const NameAndRating: FC<INameAndRating> = ({ doctor }) => {
   return (
     <Wrapper>
       <NameDoctor>
-        {doctor.lastName} {doctor.firsName} {doctor.fullName}
+        {doctor.last_name} {doctor.first_name} {doctor.patronim_name}
       </NameDoctor>
-      <Rating>{doctor.rating} <Img src={IMGStar} alt='Star'></Img></Rating>
+      <Rating>
+        {/*{doctor.rating} */}
+        <Img src={IMGStar} alt='Star'></Img></Rating>
     </Wrapper>
   );
 };

@@ -1,37 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Aside, ButtonDoctor, WrapperButton, Icon, Container } from './styled';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Container } from './styled';
 import SelectedDoctorsList from './SelectedDoctorsList';
 import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
-import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
-import IMGDermatologist from 'assets/icons/Dermatologist.svg';
-import IMGCardiologist from 'assets/icons/Cardiologist.svg';
-import IMGTherapist from 'assets/icons/Therapist.svg';
-import IMGPulmonologist from 'assets/icons/Pulmonologist.svg';
-import IMGGastroenterologist from 'assets/icons/Gastroenterologist.svg';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { selectDoctors } from '../../../store/doctors';
+import { doctors, specializations } from '../../../store/doctors/thunks';
 import { IDoctor } from './typesAndInterfaces';
 
-const specialties = [
-  { specialty: 'Всі Лікарі', icon: IMGAllDoctors },
-  { specialty: 'Дерматолог', icon: IMGDermatologist },
-  { specialty: 'Кардіолог', icon: IMGCardiologist },
-  { specialty: 'Терапевт', icon: IMGTherapist },
-  { specialty: 'Пульмонолог', icon: IMGPulmonologist },
-  { specialty: 'Гастроентеролог', icon: IMGGastroenterologist }
-];
+
 
 const Doctors: FC = () => {
-  const { doctors } = useSelector((state: RootState) => state.doctors);
+  const dispatch = useAppDispatch();
+  const { doctors: allDoctors, specializations: selectSpecializations } =
+    useAppSelector(selectDoctors);
   const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
   const [activeButton, setActiveButton] = useState('');
   const [flagPagination, setFlagPagination] = useState(false);
 
+  useEffect(() => {
+    dispatch(doctors());
+    dispatch(specializations());
+  }, []);
+
   const handleFilterDoctors = (specialty: any) => {
-    const filteredDoctors = doctors.filter((doctor: any) => specialty === doctor.profession);
+    const filteredDoctors =
+      allDoctors &&
+      allDoctors.results?.filter((doctor: IDoctor) => specialty === doctor.specialization);
     setSelectedDoctors(filteredDoctors);
     setActiveButton(specialty);
+    console.log(selectedDoctors);
   };
 
   return (
@@ -39,24 +37,33 @@ const Doctors: FC = () => {
       <DoctorsBreadcrumbs />
       <Wrapper>
         <Aside>
-          {specialties.length > 0 &&
-            specialties.map((specialty, index) => (
-              <WrapperButton key={index}>
-                <ButtonDoctor
-                  isActiveButton={activeButton === specialty.specialty}
-                  onClick={() => {
-                    handleFilterDoctors(specialty.specialty);
-                    setFlagPagination(!flagPagination);
-                  }}>
-                  <Icon src={specialty.icon} alt={specialty.specialty} />
-                  {specialty.specialty}
-                </ButtonDoctor>
-              </WrapperButton>
+          <WrapperButton>
+            <ButtonDoctor
+              isActiveButton={activeButton === 'Всі лікарі'}
+              onClick={() => {
+                handleFilterDoctors('Всі лікарі');
+                setFlagPagination(!flagPagination);
+              }}>
+              {/*<Icon src={specialty.icon} alt={specialty.specialty} />*/}
+              Всі лікарі
+            </ButtonDoctor>
+            {selectSpecializations.map((specialty, index) => (
+              <ButtonDoctor
+                key={index}
+                isActiveButton={activeButton === specialty}
+                onClick={() => {
+                  handleFilterDoctors(specialty);
+                  setFlagPagination(!flagPagination);
+                }}>
+                {/*<Icon src={specialty.icon} alt={specialty.specialty} />*/}
+                {specialty}
+              </ButtonDoctor>
             ))}
+          </WrapperButton>
         </Aside>
         <SelectedDoctorsList
           flagPagination={flagPagination}
-          selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : doctors}
+          selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : allDoctors.results}
         />
       </Wrapper>
     </Container>

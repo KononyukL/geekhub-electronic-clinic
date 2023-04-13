@@ -6,12 +6,12 @@ import AboutDoctor from 'components/AboutDoctor';
 import DetailAndFeedbacks from '../DetailsAndFeedbacks';
 
 const DoctorProfileCard: FC = () => {
-  const { doctor } = useSelector((state: RootState) => state.doctor);
+  // const { doctor } = useSelector((state: RootState) => state.doctor);
 
   return (
     <Container>
       <Wrapper>
-        <AboutDoctor doctor={doctor} />
+        {/*<AboutDoctor doctor={doctor} />*/}
         <DetailAndFeedbacks />
       </Wrapper>
     </Container>

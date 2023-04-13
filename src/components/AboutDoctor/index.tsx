@@ -14,11 +14,11 @@ const AboutDoctor: FC<IDoctorProfileCard> = ({ doctor }) => {
     <Container>
       <Doctor>
         <PhotoDoctor>
-          <Img src={doctor.photo} alt={doctor.lastName} title={doctor.lastName}/>
+          <Img src={doctor.profile_image} alt={doctor.last_name} title={doctor.last_name} />
         </PhotoDoctor>
         <Box sx={{ maxWidth: '500px', width: '100%' }}>
           <NameAndRating doctor={doctor} />
-          <Direction>{doctor.profession}</Direction>
+          <Direction>{doctor.specialization}</Direction>
           <Details doctor={doctor} />
         </Box>
       </Doctor>
