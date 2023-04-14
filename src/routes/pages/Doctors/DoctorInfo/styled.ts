@@ -1,6 +1,6 @@
 import { Box, styled, Typography as MUITypography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { theme } from '../../../../theme';
+import { theme } from 'theme';
 
 export const Container = styled(Box)(() => {
   return {

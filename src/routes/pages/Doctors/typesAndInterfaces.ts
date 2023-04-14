@@ -10,6 +10,7 @@ export interface IDoctor {
   category: string;
   experience: string;
   info: string;
+  rating: number
 };
 
 export interface IBocking {

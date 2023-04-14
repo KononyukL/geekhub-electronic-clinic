@@ -1,5 +1,4 @@
 import { axiosInstance } from '../config';
-import { specializationsNormalizer } from './normalizer';
 
 export const doctorsApi = {
   async doctors() {
@@ -9,6 +8,6 @@ export const doctorsApi = {
 
   async specializations() {
     const result = await axiosInstance.get('specializations');
-    return specializationsNormalizer(result.data);
+    return result.data;
   }
 };

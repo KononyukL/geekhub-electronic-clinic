@@ -6,24 +6,24 @@ import IGMShowMore from 'assets/icons/ShowMore.svg';
 import ModalConfirmVisit from '../ModalConfirmVisit';
 import Calendar from './Calendar';
 import { useDispatch } from 'react-redux';
-import { workingHours } from '../../store/workingHours/thunks';
+import { workingHours } from 'store/workingHours/thunks';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
-import { useAppSelector } from '../../store/hooks';
-import { selectWorkingHours } from '../../store/workingHours';
+import { RootState } from 'store';
+import { useAppSelector } from 'store/hooks';
+import { selectWorkingHours } from 'store/workingHours';
 
-type IWorkingHours = {
+type TWorkingHours = {
   showAllHours?: boolean;
   doctorId?: number;
 };
 
-const WorkingHours: FC<IWorkingHours> = ({ showAllHours, doctorId }) => {
+const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const { workingHours: allWorkingHours } = useAppSelector(selectWorkingHours);
-  const [currentDate, setCurrentDate] = useState<string | null>(
+  const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
+  const [currentDate, setCurrentDate] = useState<string>(
     new Date().toLocaleDateString('uk-UA').split('.').reverse().join('-')
   );
-  const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
   const [visibleHours, setVisibleHours] = useState<number>(12);
   const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
@@ -47,7 +47,7 @@ const WorkingHours: FC<IWorkingHours> = ({ showAllHours, doctorId }) => {
       const freeHoursDoctor: string[] = Object.entries(allWorkingHours[1])
         .filter(([time, value]) => value === true)
         .map(([time, value]) => time);
-      setFreeHours(freeHoursDoctor)
+      setFreeHours(freeHoursDoctor);
     }
   }, [allWorkingHours]);
 
@@ -73,16 +73,17 @@ const WorkingHours: FC<IWorkingHours> = ({ showAllHours, doctorId }) => {
     <>
       <Calendar updateCurrentDate={updateCurrentDate} />
       <Wrapper>
-        {freeHours && freeHours.slice(0, visibleHours).map(time => (
-          <TimeButton
-            key={time}
-            onClick={() => {
-              handleBookingData(time);
-              handleOpen();
-            }}
-            children={time}
-          />
-        ))}
+        {freeHours &&
+          freeHours.slice(0, visibleHours).map((time) => (
+            <TimeButton
+              key={time}
+              onClick={() => {
+                handleBookingData(time);
+                handleOpen();
+              }}
+              children={time}
+            />
+          ))}
       </Wrapper>
       {!showAllHours && freeHours && freeHours.length > 12 && (
         <Wrapper>
@@ -95,7 +96,12 @@ const WorkingHours: FC<IWorkingHours> = ({ showAllHours, doctorId }) => {
           </SwitcherButton>
         </Wrapper>
       )}
-      <ModalConfirmVisit open={open} handleClose={handleClose} bookVisit={bookVisit} />
+      <ModalConfirmVisit
+        open={open}
+        handleClose={handleClose}
+        bookVisit={bookVisit}
+        currentDate={currentDate}
+      />
     </>
   );
 };

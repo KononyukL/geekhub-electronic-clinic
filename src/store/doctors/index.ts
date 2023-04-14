@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doctors, specializations } from './thunks';
 import { RootState } from '../index';
-import { TSpecializations } from 'api/doctors/types';
 
 export interface IDoctor {
   id: number;
@@ -15,17 +14,30 @@ export interface IDoctor {
   category: string;
   experience: string;
   info: string;
+  rating: number
 }
 
-export type IDoctorsApiResponse = {
+export interface ISpecialization {
+  name: string;
+  image: string;
+}
+
+export type TDoctorsApiResponse = {
   count: number;
   next: string | null;
   previous: string | null;
   results: IDoctor[];
 };
 
+export type TSpecializations = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ISpecialization[];
+};
+
 interface IAuthState {
-  doctors: IDoctorsApiResponse;
+  doctors: TDoctorsApiResponse;
   specializations: TSpecializations;
   isLoading: boolean;
   error: Error | string;
@@ -38,7 +50,12 @@ const initialState: IAuthState = {
     previous: '',
     results: []
   },
-  specializations: [],
+  specializations: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: []
+  },
   isLoading: false,
   error: ''
 };
@@ -65,13 +82,10 @@ export const newsSlice = createSlice({
       .addCase(specializations.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(
-        specializations.fulfilled,
-        (state, action: PayloadAction<TSpecializations | undefined>) => {
-          state.isLoading = false;
-          state.specializations = action.payload || [];
-        }
-      )
+      .addCase(specializations.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.specializations = action.payload;
+      })
       .addCase(specializations.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
         state.error = action.payload;

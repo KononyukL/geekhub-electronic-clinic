@@ -17,10 +17,11 @@ import { useTranslation } from 'react-i18next';
 type IModalConfirmVisit = {
   open: boolean;
   handleClose: () => void;
+  currentDate: string;
   bookVisit: string;
 };
 
-const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisit }) => {
+const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, currentDate, bookVisit }) => {
   const { t } = useTranslation();
   const [thankForBook, setThankForBook] = useState(true);
 
@@ -42,7 +43,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisi
             </TitleConfirm>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
               {t('doctors.modalDoctors.confirm.text')}
-              <Date>{bookVisit}</Date>
+              <Date>{currentDate} ,{bookVisit}</Date>
             </Typography>
             <WrapperButtons>
               <ConfirmButton onClick={postVisit}>{t('buttons.yes')}</ConfirmButton>
@@ -62,7 +63,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({ open, handleClose, bookVisi
           <Wrapper>
             <Title id="modal-modal-title">{t('doctors.modalDoctors.cansel.title')}</Title>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
-              <Date>Середа 15 квітня, {bookVisit}</Date>
+              <Date>{currentDate}, {bookVisit}</Date>
               {t('doctors.modalDoctors.cansel.text')}
               <Date>+38 (067) 20 20 773</Date>
             </Typography>

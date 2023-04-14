@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { FC } from 'react';
-import { Wrapper, Aside, ButtonDoctor, WrapperButton, Container } from './styled';
+import { Wrapper, Aside, ButtonDoctor, WrapperButton, Container, Icon } from './styled';
 import SelectedDoctorsList from './SelectedDoctorsList';
 import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { selectDoctors } from '../../../store/doctors';
-import { doctors, specializations } from '../../../store/doctors/thunks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { selectDoctors } from 'store/doctors';
+import { doctors, specializations } from 'store/doctors/thunks';
 import { IDoctor } from './typesAndInterfaces';
-
-
+import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 
 const Doctors: FC = () => {
   const dispatch = useAppDispatch();
   const { doctors: allDoctors, specializations: selectSpecializations } =
     useAppSelector(selectDoctors);
   const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
-  const [activeButton, setActiveButton] = useState('');
+  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
   const [flagPagination, setFlagPagination] = useState(false);
 
   useEffect(() => {
@@ -23,13 +22,12 @@ const Doctors: FC = () => {
     dispatch(specializations());
   }, []);
 
-  const handleFilterDoctors = (specialty: any) => {
+  const handleFilterDoctors = (specialty: any, index: number) => {
     const filteredDoctors =
       allDoctors &&
       allDoctors.results?.filter((doctor: IDoctor) => specialty === doctor.specialization);
     setSelectedDoctors(filteredDoctors);
-    setActiveButton(specialty);
-    console.log(selectedDoctors);
+    setActiveButtonIndex(index);
   };
 
   return (
@@ -38,27 +36,30 @@ const Doctors: FC = () => {
       <Wrapper>
         <Aside>
           <WrapperButton>
-            <ButtonDoctor
-              isActiveButton={activeButton === 'Всі лікарі'}
-              onClick={() => {
-                handleFilterDoctors('Всі лікарі');
-                setFlagPagination(!flagPagination);
-              }}>
-              {/*<Icon src={specialty.icon} alt={specialty.specialty} />*/}
-              Всі лікарі
-            </ButtonDoctor>
-            {selectSpecializations.map((specialty, index) => (
+            {selectSpecializations && (
               <ButtonDoctor
-                key={index}
-                isActiveButton={activeButton === specialty}
+                isActiveButton={activeButtonIndex === 0}
                 onClick={() => {
-                  handleFilterDoctors(specialty);
+                  handleFilterDoctors('Всі лікарі', 0);
                   setFlagPagination(!flagPagination);
                 }}>
-                {/*<Icon src={specialty.icon} alt={specialty.specialty} />*/}
-                {specialty}
+                <Icon src={IMGAllDoctors} alt="Всі лікарі" />
+                Всі лікарі
               </ButtonDoctor>
-            ))}
+            )}
+            {selectSpecializations &&
+              selectSpecializations.results.map((specialty, index) => (
+                <ButtonDoctor
+                  key={specialty.name}
+                  isActiveButton={activeButtonIndex === index + 1}
+                  onClick={() => {
+                    handleFilterDoctors(specialty.name, index + 1);
+                    setFlagPagination(!flagPagination);
+                  }}>
+                  <Icon src={specialty.image} alt={specialty.name} />
+                  {specialty.name}
+                </ButtonDoctor>
+              ))}
           </WrapperButton>
         </Aside>
         <SelectedDoctorsList
