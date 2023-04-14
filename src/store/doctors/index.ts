@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doctors, specializations } from './thunks';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { doctor, doctors, specializations } from './thunks';
 import { RootState } from '../index';
 
 export interface IDoctor {
@@ -14,7 +14,7 @@ export interface IDoctor {
   category: string;
   experience: string;
   info: string;
-  rating: number
+  rating: number;
 }
 
 export interface ISpecialization {
@@ -38,6 +38,7 @@ export type TSpecializations = {
 
 interface IAuthState {
   doctors: TDoctorsApiResponse;
+  doctor: IDoctor;
   specializations: TSpecializations;
   isLoading: boolean;
   error: Error | string;
@@ -49,6 +50,20 @@ const initialState: IAuthState = {
     next: '',
     previous: '',
     results: []
+  },
+  doctor: {
+    id: 0,
+    email: '',
+    profile_image: '',
+    last_name: '',
+    first_name: '',
+    patronim_name: '',
+    specialization: '',
+    price: 0,
+    category: '',
+    experience: '',
+    info: '',
+    rating: 0
   },
   specializations: {
     count: 0,
@@ -79,6 +94,20 @@ export const newsSlice = createSlice({
       });
 
     builder
+      .addCase(clearAllData, () => initialState)
+      .addCase(doctor.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(doctor.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.doctor = action.payload;
+      })
+      .addCase(doctor.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    builder
       .addCase(specializations.pending, (state) => {
         state.isLoading = true;
       })
@@ -94,8 +123,11 @@ export const newsSlice = createSlice({
 });
 
 export { doctors };
+
 export const {} = newsSlice.actions;
 
 export const selectDoctors = (state: RootState) => state.doctors;
+
+export const clearAllData = createAction('CLEAR_ALL_DATA');
 
 export default newsSlice.reducer;

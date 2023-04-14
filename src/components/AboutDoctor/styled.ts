@@ -1,38 +1,38 @@
-import { styled, Box, CSSObject, Avatar } from '@mui/material';
+import { styled, Box, Avatar } from '@mui/material';
 
 export const Container = styled(Box)(() => {
   return {
     display: 'flex'
-  } as CSSObject;
+  };
 });
 
 export const Doctor = styled(Box)(() => {
   return {
     display: 'flex',
-    maxWidth: '700px',
+    maxWidth: 700,
     width: '100%'
-  } as CSSObject;
+  };
 });
 
 export const PhotoDoctor = styled(Box)(() => {
   return {
     padding: '0 16px 25px 0'
-  } as CSSObject;
+  };
 });
 
 export const Img = styled(Avatar)(() => {
   return {
-    width: '150px',
-    height: '150px',
+    width: 150,
+    height: 150,
     borderRadius: '0'
-  } as CSSObject;
+  };
 });
 
 export const Direction = styled(Box)(({ theme }) => {
   return {
-    fontSize: '16px',
+    fontSize: 16,
     fontWeight: '500',
-    paddingBottom: '12px',
+    paddingBottom: 12,
     color: theme.palette.primary.main
-  } as CSSObject;
+  };
 });

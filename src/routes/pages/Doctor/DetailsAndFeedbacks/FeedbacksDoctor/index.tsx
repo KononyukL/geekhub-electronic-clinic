@@ -91,7 +91,7 @@ const FeedbacksDoctor: FC = () => {
           ))}
       </Wrapper>
       <PaginationWrapper>
-        {feedbacks.length >= 3 ? (
+        {feedbacks.length >= 3 && (
           <Pagination
             count={pageCount}
             page={page}
@@ -99,7 +99,7 @@ const FeedbacksDoctor: FC = () => {
             variant="outlined"
             shape="rounded"
           />
-        ) : null}
+        )}
       </PaginationWrapper>
     </Box>
   );

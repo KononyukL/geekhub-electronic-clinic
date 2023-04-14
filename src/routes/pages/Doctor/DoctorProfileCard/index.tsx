@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
-import { Container, Wrapper } from './styled';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store';
 import AboutDoctor from 'components/AboutDoctor';
 import DetailAndFeedbacks from '../DetailsAndFeedbacks';
+import { Container, Wrapper } from './styled';
+import { IDoctor } from '../../../../store/doctors';
 
-const DoctorProfileCard: FC = () => {
-  // const { doctor } = useSelector((state: RootState) => state.doctor);
+type TDoctorProfileCard = {
+  currentDoctor: IDoctor;
+};
 
+const DoctorProfileCard: FC<TDoctorProfileCard> = ({ currentDoctor }) => {
   return (
     <Container>
       <Wrapper>
-        {/*<AboutDoctor doctor={doctor} />*/}
+        <AboutDoctor doctor={currentDoctor} />
         <DetailAndFeedbacks />
       </Wrapper>
     </Container>
