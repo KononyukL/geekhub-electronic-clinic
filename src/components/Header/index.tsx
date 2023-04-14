@@ -16,7 +16,7 @@ const Header: FC<IHeader> = ({ isWhite }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const onOpenProfile = () => navigate(ROUTES.PROFILE.PATH);
+  const onOpenProfile = () => navigate(ROUTES.LOGIN.PATH);
 
   return (
     <Box>

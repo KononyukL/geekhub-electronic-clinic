@@ -30,7 +30,7 @@ const DoctorDetails: FC<IDoctorDetails> = ({ doctor }) => {
         </CurrentInfo>
       </Block>
       <Block>
-        <ServiceInfo>{doctor.seniority} років</ServiceInfo>
+        <ServiceInfo>{doctor.experience}</ServiceInfo>
         <ServiceInfo>{doctor.category}</ServiceInfo>
         <ServiceInfo>{doctor.price} {t('userProfile.visits.currency')}</ServiceInfo>
       </Block>

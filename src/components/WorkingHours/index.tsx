@@ -5,74 +5,87 @@ import IGMHide from 'assets/icons/Hide.svg';
 import IGMShowMore from 'assets/icons/ShowMore.svg';
 import ModalConfirmVisit from '../ModalConfirmVisit';
 import Calendar from './Calendar';
+import { useDispatch } from 'react-redux';
+import { workingHours } from 'store/workingHours/thunks';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { RootState } from 'store';
+import { useAppSelector } from 'store/hooks';
+import { selectWorkingHours } from 'store/workingHours';
 
-const DATA = [
-  '09:00',
-  '09:30',
-  '10:00',
-  '11:00',
-  '—',
-  '12:00',
-  '13:00',
-  '13:30',
-  '—',
-  '15:00',
-  '15:30',
-  '16:00',
-  '16:00',
-  '16:00',
-  '16:00',
-  '16:00',
-  '16:00',
-  '16:00'
-];
-
-type IWorkingHours = {
-  hideButton?: boolean;
+type TWorkingHours = {
+  showAllHours?: boolean;
+  doctorId?: number;
 };
 
-const WorkingHours: FC<IWorkingHours> = ({ hideButton }) => {
-  const { t } = useTranslation();
-  const [visibleHours, setVisibleHours] = useState<number>(12);
+const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
+  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
+  const { workingHours: allWorkingHours } = useAppSelector(selectWorkingHours);
   const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
+  const [currentDate, setCurrentDate] = useState<string>(
+    new Date().toLocaleDateString('uk-UA').split('.').reverse().join('-')
+  );
+  const [visibleHours, setVisibleHours] = useState<number>(12);
+  const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
-
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    if (hideButton) {
+    if (doctorId && currentDate) {
+      dispatch(workingHours({ doctor_id: doctorId, date: currentDate }));
+    }
+  }, [doctorId, currentDate, dispatch]);
+
+  useEffect(() => {
+    if (showAllHours) {
       setVisibleHours(18);
     }
-  }, [hideButton]);
+  }, [showAllHours]);
+
+  useEffect(() => {
+    if (allWorkingHours && allWorkingHours.length > 0) {
+      const freeHoursDoctor: string[] = Object.entries(allWorkingHours[1])
+        .filter(([time, value]) => value === true)
+        .map(([time, value]) => time);
+      setFreeHours(freeHoursDoctor);
+    }
+  }, [allWorkingHours]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleSwitcherFreeHours = () => {
-    setButtonSwitcher((prevState) => !prevState);
     visibleHours === 12 ? setVisibleHours(18) : setVisibleHours(12);
+    setButtonSwitcher((prevState) => !prevState);
   };
 
-  const handleBookingData = (day: any) => {
-    setBookVisit(day);
+  const updateCurrentDate = (date: string) => {
+    setCurrentDate(date);
+    // console.log('Обрана дата та id лікаря: ', currentDate, doctorId);
+  };
+
+  const handleBookingData = (time: string) => {
+    setBookVisit(time);
+    // console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
   };
 
   return (
     <>
-      <Calendar />
+      <Calendar updateCurrentDate={updateCurrentDate} />
       <Wrapper>
-        {DATA.slice(0, visibleHours).map((day, index) => (
-          <TimeButton
-            key={index}
-            onClick={() => {
-              handleBookingData(day);
-              handleOpen();
-            }}
-            children={day}
-          />
-        ))}
+        {freeHours &&
+          freeHours.slice(0, visibleHours).map((time) => (
+            <TimeButton
+              key={time}
+              onClick={() => {
+                handleBookingData(time);
+                handleOpen();
+              }}
+              children={time}
+            />
+          ))}
       </Wrapper>
-      {!hideButton && DATA.length > 12 && (
+      {!showAllHours && freeHours && freeHours.length > 12 && (
         <Wrapper>
           <SwitcherButton onClick={handleSwitcherFreeHours}>
             {buttonSwitcher ? t('doctors.showMore') : t('doctors.hide')}
@@ -83,7 +96,12 @@ const WorkingHours: FC<IWorkingHours> = ({ hideButton }) => {
           </SwitcherButton>
         </Wrapper>
       )}
-      <ModalConfirmVisit open={open} handleClose={handleClose} bookVisit={bookVisit} />
+      <ModalConfirmVisit
+        open={open}
+        handleClose={handleClose}
+        bookVisit={bookVisit}
+        currentDate={currentDate}
+      />
     </>
   );
 };

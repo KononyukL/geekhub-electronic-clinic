@@ -1,20 +1,29 @@
 export interface IDoctor {
-  firsName: string;
-  lastName: string;
-  fullName: string;
-  profession: string;
-  photo: string;
-  rating: string;
+  id: number;
+  email: string;
+  profile_image: string;
+  last_name: string;
+  first_name: string;
+  patronim_name: string;
+  specialization: string;
+  price: number;
   category: string;
-  seniority: string;
-  price: string;
-  information: string;
-}
+  experience: string;
+  info: string;
+  rating: number
+};
 
 export interface IBocking {
   time: string;
   status: boolean;
 }
+
+export type IDoctorsApiResponse = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: IDoctor[];
+};
 
 
 

@@ -17,11 +17,11 @@ const DoctorInfo: FC<IDoctorAndIndex> = ({ doctor }) => {
     <Container>
       <Wrapper>
         <AboutDoctor doctor={doctor} />
-        <Typography>{doctor.information.slice(0, 220)}...</Typography>
+        <Typography>{doctor.info.slice(0, 220)}...</Typography>
         <AboutMoreInfo to="/doctor">{t('doctors.moreAboutDoctor')}</AboutMoreInfo>
       </Wrapper>
       <WrapperWorkingHours>
-        <WorkingHours />
+        <WorkingHours doctorId={doctor.id}/>
       </WrapperWorkingHours>
     </Container>
   );
