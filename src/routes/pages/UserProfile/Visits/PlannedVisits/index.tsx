@@ -1,45 +1,37 @@
-import { Container } from './styled';
 import Visit from '../Visit';
-import React from 'react';
+import React, { useState } from 'react';
+import { visitPlanned } from './mockData';
+import { ModalProfile } from 'components/Modal';
+import { useTranslation } from 'react-i18next';
+import { Box, BoxInfo, Button } from './styled';
 
-const visit = [
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  },
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  },
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  }
-];
 const PlannedVisits = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const { t } = useTranslation();
+
+  const handleClick = () => {
+    setOpenModal(!openModal);
+  };
   return (
-    <Container>
-      {visit.map((item, i) => (
-        <Visit
-          key={i}
-          name={item.name}
-          positionDoctor={item.positionDoctor}
-          date={item.date}
-          time={item.time}
-          reception={item.reception}
-          onAction={() => {}}
-        />
+    <>
+      {visitPlanned.map((item, i) => (
+        <Box key={i}>
+          <BoxInfo>
+            <Visit
+              name={item.name}
+              positionDoctor={item.positionDoctor}
+              date={item.date}
+              time={item.time}
+              reception={item.reception}
+            />
+            <Button variant="outlined" onClick={handleClick}>
+              {t('buttons.cancel')}
+            </Button>
+            <ModalProfile open={openModal} setOpen={setOpenModal} />
+          </BoxInfo>
+        </Box>
       ))}
-    </Container>
+    </>
   );
 };
 

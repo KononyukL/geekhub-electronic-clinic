@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { doctorsApi } from '../../api';
 
-export const doctors = createAsyncThunk('auth/doctors', async (_, { rejectWithValue }) => {
+export const doctors = createAsyncThunk('auth/doctors', async (data, { rejectWithValue }) => {
   try {
     return await doctorsApi.doctors({});
   } catch (e: any) {

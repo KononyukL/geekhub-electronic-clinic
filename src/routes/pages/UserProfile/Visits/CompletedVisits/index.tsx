@@ -1,43 +1,33 @@
 import React from 'react';
-import { Container } from './styled';
+import { Container, Accordion, AccordionSummary } from './styled';
 import Visit from '../Visit';
-const visit = [
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  },
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  },
-  {
-    name: 'Андрущенко Ілона Макарівна',
-    positionDoctor: 'Ендокринолог',
-    date: 'Вт 21.03.2023 ',
-    time: '09:00',
-    reception: '600 грн'
-  }
-];
+import { visitCompleted } from './mockData';
+import { AccordionDetails, Box } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Conclusion from 'components/view/profile/Conclusion';
+
 const CompletedVisits = () => {
   return (
     <Container>
-      {visit.map((item, i) => (
-        <Visit
-          key={i}
-          name={item.name}
-          positionDoctor={item.positionDoctor}
-          date={item.date}
-          time={item.time}
-          reception={item.reception}
-          onAction={() => {}}
-          isCompleted
-        />
+      {visitCompleted.map((item, i) => (
+        <Box>
+          <Accordion sx={{ padding: '0 24px' }}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Visit
+                key={i}
+                name={item.name}
+                positionDoctor={item.positionDoctor}
+                date={item.date}
+                time={item.time}
+                reception={item.reception}
+                isCompleted
+              />
+            </AccordionSummary>
+            <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
+              <Conclusion />
+            </AccordionDetails>
+          </Accordion>
+        </Box>
       ))}
     </Container>
   );

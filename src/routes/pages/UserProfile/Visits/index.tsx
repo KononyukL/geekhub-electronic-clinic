@@ -1,12 +1,22 @@
-import React from 'react';
-import { Box, BoxInfo, Container, Info, Select, StyledTab, StyledTabs } from './styled';
+import React, { useEffect } from 'react';
+import { Box, Container, Select, StyledTab, StyledTabs } from './styled';
 import { useTranslation } from 'react-i18next';
 import { USER_VISITS_CONFIG } from './config';
-import { theme } from '../../../../theme';
+import { theme } from 'theme';
+import { specializations } from 'store/doctors/thunks';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { selectDoctors } from 'store/doctors';
+import MenuItem from '@mui/material/MenuItem';
 
 const Visits = () => {
   const [value, setValue] = React.useState(0);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const { specializations: selectSpecializations } = useAppSelector(selectDoctors);
+
+  useEffect(() => {
+    dispatch(specializations());
+  }, []);
   function a11yProps(index: number) {
     return {
       'aria-controls': `simple-tabpanel-${index}`

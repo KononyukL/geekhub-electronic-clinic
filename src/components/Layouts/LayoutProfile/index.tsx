@@ -25,15 +25,15 @@ const Layout = () => {
             to={'/user-profile'}
             className={({ isActive }) => (isActive ? 'active' : '')}>
             <Profile />
-            Profile
+            {t('userProfile.link.profile')}
           </LinkProfile>
           <LinkProfile to={'/visits'} className={({ isActive }) => (isActive ? 'active' : '')}>
             <Visit />
-            Visit
+            {t('userProfile.link.visits')}
           </LinkProfile>
           <LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>
             <PatientCard />
-            Card
+            {t('userProfile.link.card')}
           </LinkProfile>
           <Button startIcon={<SingOut />}>Вихід</Button>
         </BoxLink>

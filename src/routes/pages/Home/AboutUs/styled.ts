@@ -66,7 +66,7 @@ export const Text = styled(Typography)(({ theme }) => {
 export const Button = styled(MUIButton)({
   borderRadius: 0,
   boxShadow: 'none',
-  width: 216,
+  width: 200,
   fontSize: 16,
   textTransform: 'none',
   padding: '12px 0 ',

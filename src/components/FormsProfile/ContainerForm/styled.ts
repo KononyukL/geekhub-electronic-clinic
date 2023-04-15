@@ -11,7 +11,7 @@ export const Container = styled(Box)(() => {
 
 export const TitleForm = styled(Typography)(() => {
   return {
-    fontWeight: 500,
+    fontWeight: 600,
     fontSize: 20
   };
 });

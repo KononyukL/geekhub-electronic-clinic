@@ -6,7 +6,6 @@ export const BoxLayout = styled(MUIBox)(({ theme }) => {
     maxWidth: '1420px',
     margin: '0 auto',
     width: '100%',
-    height: '100vh',
     backgroundColor: theme.palette.background.default
   };
 });

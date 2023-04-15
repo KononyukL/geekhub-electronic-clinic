@@ -23,7 +23,13 @@ const ROUTES = {
     PATH: '/doctor'
   },
   PROFILE: {
-    PATH: '/profile'
+    PATH: '/user-profile'
+  },
+  VISITS: {
+    PATH: '/visits'
+  },
+  CARD: {
+    PATH: '/card'
   }
 };
 

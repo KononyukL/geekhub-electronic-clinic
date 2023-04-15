@@ -33,14 +33,16 @@ export const BoxSmall = styled(MUIBox)(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderTop: `1px solid ${theme.palette.secondary.contrastText}`
+    borderTop: `1px solid ${theme.palette.secondary.contrastText}`,
+    padding: '20px 0 10px'
   };
 });
 
 export const LinkInfo = styled(Link)(({ theme }) => {
   return {
     color: theme.palette.secondary.contrastText,
-    paddingBottom: 16
+    paddingBottom: 16,
+    textDecoration: 'none'
   };
 });
 export const ContactsSocialBox = styled(MUIBox)({

@@ -72,7 +72,7 @@ export const ConfirmButton = styled('button')(({ theme }) => {
     },
     '&:active': {
       backgroundColor: theme.palette.secondary.dark
-    },
+    }
   } as CSSObject;
 });
 
@@ -87,7 +87,7 @@ export const CanselButton = styled(ConfirmButton)(({ theme }) => {
     },
     '&:active': {
       backgroundColor: theme.palette.success.main
-    },
+    }
   } as CSSObject;
 });
 
@@ -97,11 +97,10 @@ export const HomeButton = styled(ConfirmButton)(() => {
     height: '50px'
   } as CSSObject;
 });
-
 export const Modal = styled(MUIModal)(() => {
   return {
     '& .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop': {
       backgroundColor: '#021D24E5'
     }
-  } as CSSObject;
+  };
 });

@@ -1,18 +1,19 @@
-import React, { useCallback, useState } from 'react';
-import { Container } from './styled';
+import React from 'react';
+import { BoxInfo, Container } from './styled';
 import HeaderProfile from './HeaderProfile';
-import ProfileForm from './ProfileForm';
+
+import PersonalData from './PersonalData';
+import Security from './Security';
 
 const Profile = () => {
-  const [isEdit, setIsEdit] = useState(false);
-
-  const toggleEdit = useCallback(() => setIsEdit((val) => !val), []);
   return (
     <Container>
-      <HeaderProfile toggleEdit={toggleEdit} />
-      <ProfileForm isEdit={isEdit} />
+      <HeaderProfile />
+      <BoxInfo>
+        <PersonalData />
+        <Security />
+      </BoxInfo>
     </Container>
   );
 };
-
 export default Profile;

@@ -108,7 +108,8 @@
     "createProfile": "Create an account",
     "button": "Back to home",
     "sigIn": "Sign in",
-    "home": "Home"
+    "home": "Home",
+    "cancel": "Cancel"
   },
   "validationErrors": {
     "required": "This field is required",
@@ -123,10 +124,10 @@
     "phoneNumber": "Enter a valid phone number in the format: +380XXXXXXXXX"
   },
   "userProfile": {
-    "tabs": {
+    "link": {
       "profile": "Profile",
       "visits": "My visits",
-      "card": "My patient card"
+      "card": "Patient card"
     },
     "profile": {
       "cardNumber": "Patient card number",
@@ -138,7 +139,10 @@
         "birthday": "Date of birth",
         "email": "Email",
         "phone": "Phone number",
-        "gender": "Gender"
+        "gender": "Gender",
+        "female": "Female",
+        "male": "Male",
+        "other": "Other"
       },
       "address": {
         "address": "Address",
@@ -149,6 +153,7 @@
       },
       "security": {
         "security": "Security",
+        "password": "Password",
         "oldPassword": "Old password",
         "newPassword": "New password",
         "config": "Password confirmation"
@@ -162,7 +167,16 @@
       "date": "Date",
       "time": "Time",
       "reception": "Reception",
-      "currency": "UAH"
+      "currency": "UAH",
+      "conclusion": "Conclusion",
+      "history": "Medical history:",
+      "status": "Objective status:",
+      "diagnosis": "Diagnosis:",
+      "examination": "Examination:",
+      "recommendations": "Recommendations:",
+      "download": "Download",
+      "modalTitle": "Cancel an appointment with a doctor?",
+      "modalText": "Please note that the appointment can be canceled only until 8 a.m. on the day of the visit"
     }
   },
   "doctors": {

@@ -3,7 +3,7 @@ import { Wrapper, TimeButton, SwitcherButton, Img } from './styled';
 import { useTranslation } from 'react-i18next';
 import IGMHide from 'assets/icons/Hide.svg';
 import IGMShowMore from 'assets/icons/ShowMore.svg';
-import ModalConfirmVisit from '../ModalConfirmVisit';
+import { ModalConfirmVisit } from 'components/Modal';
 import Calendar from './Calendar';
 
 const DATA = [

@@ -1,5 +1,5 @@
 import { Box, Modal as MUIModal, styled, Typography } from '@mui/material';
-import { WrapperConfirm } from 'components/ModalConfirmVisit/styled';
+import { WrapperConfirm } from 'components/Modal/ModalConfirmVisit/styled';
 import { Link } from 'react-router-dom';
 
 export const Modal = styled(MUIModal)(() => {
