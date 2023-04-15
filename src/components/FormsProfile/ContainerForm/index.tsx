@@ -3,7 +3,7 @@ import { Container, ContainerInput, TitleForm } from './styled';
 
 interface IContainerForm {
   children: ReactNode;
-  title: string;
+  title?: string;
 }
 const ContainerForm: React.FC<IContainerForm> = ({ children, title }) => {
   return (

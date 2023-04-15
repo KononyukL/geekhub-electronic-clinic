@@ -29,8 +29,7 @@ const Header: FC<IHeader> = ({ isWhite }) => {
             <MUILink
               sx={{ color: isWhite ? 'secondary.contrastText' : 'text.primary' }}
               href="tel:+380670000000"
-              underline="none"
-            >
+              underline="none">
               +38 (067) 20 20 773
             </MUILink>
           </ContactsBox>

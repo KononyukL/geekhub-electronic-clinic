@@ -1,40 +1,46 @@
-import styled from 'styled-components';
-import Button from '../../../../../components/Button';
+import { Box, styled, Typography } from '@mui/material';
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-`;
+export const Container = styled(Box)(({ theme }) => {
+  return {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    backgroundColor: theme.palette.background.paper,
+    padding: 24
+  };
+});
 
-export const WrapInfo = styled.div`
-  display: flex;
-  gap: 24px;
-`;
+export const WrapInfo = styled(Box)(() => {
+  return {
+    display: 'flex',
+    gap: '24px'
+  };
+});
 
-export const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
-export const Text = styled.p``;
+export const Info = styled(Box)(() => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4px'
+  };
+});
+export const Text = styled(Typography)(() => {
+  return {};
+});
 
-export const WrapButton = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-export const StyledButton = styled(Button)`
-  width: 100px;
-  padding: 2px;
-  font-weight: 500;
-  font-size: 16px;
-  border-radius: 12px;
-`;
+export const WrapButton = styled(Box)(() => {
+  return {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px'
+  };
+});
 
-export const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-weight: 500;
-`;
+export const Label = styled(Typography)(() => {
+  return {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '6px',
+    fontWeight: 500
+  };
+});

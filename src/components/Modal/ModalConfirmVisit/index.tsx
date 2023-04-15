@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Typography, Container } from '@mui/material';
 import {
-  Modal,
   WrapperConfirm,
   Wrapper,
   Date,
@@ -12,6 +11,8 @@ import {
   CanselButton,
   HomeButton
 } from './styled';
+
+import { Modal } from './styled';
 import { useTranslation } from 'react-i18next';
 
 type IModalConfirmVisit = {
