@@ -1,19 +1,19 @@
-import { Box, CSSObject, Tabs, styled } from '@mui/material';
+import { Box, Tabs, styled } from '@mui/material';
 
 export const Container = styled(Box)(({ theme }) => {
   return {
-    maxWidth: '700px',
+    maxWidth: 700,
     width: '100%',
-    borderRadius: '10px',
+    borderRadius: 10,
     backgroundColor: theme.palette.primary.contrastText,
-    marginTop: '20px'
-  } as CSSObject;
+    marginTop: 20
+  };
 });
 
-export const Wrapper = styled(Box)(( ) => {
+export const Wrapper = styled(Box)(() => {
   return {
     display: 'flex'
-  } as CSSObject;
+  };
 });
 
 export const AboutDoctor = styled(Tabs)(({ theme }) => ({
@@ -24,9 +24,9 @@ export const AboutDoctor = styled(Tabs)(({ theme }) => ({
   '& .css-1c98ryv-MuiButtonBase-root-MuiTab-root': {
     color: theme.palette.text.primary,
     fontWeight: 600,
-    width: '150px',
+    width: 150
   },
   '& .css-kqu0uj-MuiTabs-indicator': {
-    height: '4px'
+    height: 4
   }
 }));

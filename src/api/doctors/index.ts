@@ -1,14 +1,18 @@
 import { axiosInstance } from '../config';
-import { specializationsNormalizer } from './normalizer';
 
 export const doctorsApi = {
-  async doctors({}) {
-    const result = await axiosInstance.post(``, {});
+  async doctors() {
+    const result = await axiosInstance.get('doctors');
+    return result.data;
+  },
+
+  async doctor({ doctorId }: { doctorId: string }) {
+    const result = await axiosInstance.get(`doctors/doctor-${doctorId}`);
     return result.data;
   },
 
   async specializations() {
     const result = await axiosInstance.get('specializations');
-    return specializationsNormalizer(result.data);
+    return result.data;
   }
 };

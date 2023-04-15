@@ -1,13 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { doctorsApi } from '../../api';
 
-export const doctors = createAsyncThunk('auth/doctors', async (data, { rejectWithValue }) => {
+interface IDoctor {
+  doctorId: string
+}
+
+export const doctors = createAsyncThunk('doctors', async (_, { rejectWithValue }) => {
   try {
-    return await doctorsApi.doctors({});
+    return await doctorsApi.doctors();
   } catch (e: any) {
     rejectWithValue(e.message || 'Something went wrong');
   }
 });
+
+export const doctor = createAsyncThunk(
+  'doctor',
+  async ({ doctorId }: IDoctor, { rejectWithValue }) => {
+    try {
+      return await doctorsApi.doctor({ doctorId });
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
 
 export const specializations = createAsyncThunk(
   'doctors/specializations',

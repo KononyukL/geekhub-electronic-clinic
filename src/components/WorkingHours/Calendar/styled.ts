@@ -1,14 +1,14 @@
-import { Box, CSSObject, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 export const Container = styled(Box)(() => {
   return {
     display: 'flex',
     justifyContent: 'space-between',
-    maxWidth: '322px',
+    maxWidth: 530,
     width: '100%',
-    marginBottom: '8px',
+    marginBottom: 8,
     margin: '0 auto'
-  } as CSSObject;
+  };
 });
 
 export const ButtonSwitch = styled(Box)(({ theme }) => {
@@ -16,16 +16,16 @@ export const ButtonSwitch = styled(Box)(({ theme }) => {
     backgroundColor: 'none',
     color: 'black',
     cursor: 'pointer',
-    padding: '10px',
+    padding: 10,
     transition: '.3s',
 
     '&:hover': {
       backgroundColor: theme.palette.success.dark
     }
-  } as CSSObject;
+  };
 });
 
-export const Date = styled(Box)(({ theme }) => {
+export const DateStyle = styled(Box)(({ theme }) => {
   return {
     display: 'flex',
     alignItems: 'center',
@@ -35,18 +35,22 @@ export const Date = styled(Box)(({ theme }) => {
     '&:hover': {
       cursor: 'pointer'
     }
-  } as CSSObject;
+  };
 });
 
 export const Day = styled(Box)(({ theme }) => {
   return {
-    width: '72px',
-    fontSize: '16px',
-    fontWeight: '400',
+    width: 87,
+    fontSize: 16,
+    fontWeight: 400,
+    transition: '.3s',
 
+    '&:hover': {
+      color: theme.palette.text.primary,
+    },
     '&.active': {
       color: theme.palette.text.primary,
       fontWeight: '500'
     }
-  } as CSSObject;
+  };
 });
