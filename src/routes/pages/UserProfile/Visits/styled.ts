@@ -1,5 +1,5 @@
 import { Box as MUIBox, styled, Tab, Tabs, Typography, Select as MUISelect } from '@mui/material';
-import { theme } from '../../../../theme';
+import { theme } from 'theme';
 
 export const Container = styled(MUIBox)(() => {
   return {
@@ -52,5 +52,12 @@ export const Box = styled(MUIBox)(() => {
 export const Select = styled(MUISelect)(() => {
   return {
     flex: '0 1 200px'
+  };
+});
+
+export const VisitsContainer = styled(MUIBox)(({ theme }) => {
+  return {
+    marginBottom: 20,
+    background: theme.palette.background.paper
   };
 });

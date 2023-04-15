@@ -1,20 +1,34 @@
 import Visit from '../Visit';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { visitPlanned } from './mockData';
 import { ModalProfile } from 'components/Modal';
 import { useTranslation } from 'react-i18next';
 import { Box, BoxInfo, Button } from './styled';
+import { usePagination } from 'hooks/usePagination';
+import { Pagination } from 'components';
+import { VISITS_PER_PAGE } from '../index';
+import { VisitsContainer } from '../styled';
 
 const PlannedVisits = () => {
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
 
+  const { page, pageCount, handleChangePage, resetPagination } = usePagination({
+    itemsCount: visitPlanned.length
+  });
+
+  const currentVisit = visitPlanned.slice((page - 1) * VISITS_PER_PAGE, page * VISITS_PER_PAGE);
+
+  useEffect(() => {
+    resetPagination();
+  }, []);
+
   const handleClick = () => {
     setOpenModal(!openModal);
   };
   return (
-    <>
-      {visitPlanned.map((item, i) => (
+    <VisitsContainer>
+      {currentVisit.map((item, i) => (
         <Box key={i}>
           <BoxInfo>
             <Visit
@@ -31,7 +45,18 @@ const PlannedVisits = () => {
           </BoxInfo>
         </Box>
       ))}
-    </>
+      {visitPlanned.length >= VISITS_PER_PAGE && (
+        <Pagination
+          sx={{ padding: '28px' }}
+          count={pageCount}
+          page={page}
+          color={'secondary'}
+          onChange={handleChangePage}
+          variant="outlined"
+          shape="rounded"
+        />
+      )}
+    </VisitsContainer>
   );
 };
 
