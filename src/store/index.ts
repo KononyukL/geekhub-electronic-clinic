@@ -1,14 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import auth from './auth';
 import doctors from './doctors';
-import doctor from './doctor';
 import workingHours from './workingHours';
 
 export const index = configureStore({
   reducer: {
     auth,
     doctors,
-    doctor,
     workingHours,
   }
 });

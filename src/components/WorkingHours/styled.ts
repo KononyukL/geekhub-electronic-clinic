@@ -1,25 +1,25 @@
-import { Box, CSSObject, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 export const Wrapper = styled(Box)(() => {
   return {
-    maxWidth: '602px',
+    maxWidth: 602,
     width: '100%',
     textAlign: 'center',
     margin: '0 auto'
-  } as CSSObject;
+  };
 });
 
 export const TimeButton = styled('button')(({ theme }) => {
   return {
-    width: '74px',
-    height: '40px',
+    width: 74,
+    height: 40,
     padding: '10px 16px',
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.secondary.main,
     borderRadius: 0,
-    margin: '6px',
+    margin: 6,
     border: 0,
-    cursor: "pointer",
+    cursor: 'pointer',
     transition: '.3s',
 
     '&:hover': {
@@ -28,27 +28,27 @@ export const TimeButton = styled('button')(({ theme }) => {
     '&:active': {
       backgroundColor: theme.palette.secondary.dark
     }
-  } as CSSObject;
+  };
 });
 
 export const SwitcherButton = styled('button')(({ theme }) => {
   return {
     backgroundColor: theme.palette.background.paper,
-    border: '0',
+    border: 0,
     cursor: 'pointer',
     color: theme.palette.text.secondary,
     margin: '20px 0 20px 0',
-    fontSize: '14px',
+    fontSize: 14,
 
     '&:hover': {
       color: theme.palette.text.primary
     }
-  } as CSSObject;
+  };
 });
 
 export const Img = styled('img')(() => {
   return {
-    textAlign: "center",
+    textAlign: 'center',
     verticalAlign: 'text-top'
-  } as CSSObject
-})
+  };
+});

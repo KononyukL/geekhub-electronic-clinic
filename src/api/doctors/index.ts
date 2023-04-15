@@ -6,6 +6,11 @@ export const doctorsApi = {
     return result.data;
   },
 
+  async doctor({ doctorId }: { doctorId: string }) {
+    const result = await axiosInstance.get(`doctors/doctor-${doctorId}`);
+    return result.data;
+  },
+
   async specializations() {
     const result = await axiosInstance.get('specializations');
     return result.data;

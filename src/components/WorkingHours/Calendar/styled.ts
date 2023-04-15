@@ -4,11 +4,11 @@ export const Container = styled(Box)(() => {
   return {
     display: 'flex',
     justifyContent: 'space-between',
-    maxWidth: 353,
+    maxWidth: 530,
     width: '100%',
     marginBottom: 8,
     margin: '0 auto'
-  }
+  };
 });
 
 export const ButtonSwitch = styled(Box)(({ theme }) => {
@@ -22,7 +22,7 @@ export const ButtonSwitch = styled(Box)(({ theme }) => {
     '&:hover': {
       backgroundColor: theme.palette.success.dark
     }
-  }
+  };
 });
 
 export const DateStyle = styled(Box)(({ theme }) => {
@@ -35,7 +35,7 @@ export const DateStyle = styled(Box)(({ theme }) => {
     '&:hover': {
       cursor: 'pointer'
     }
-  }
+  };
 });
 
 export const Day = styled(Box)(({ theme }) => {
@@ -47,7 +47,10 @@ export const Day = styled(Box)(({ theme }) => {
 
     '&:hover': {
       color: theme.palette.text.primary,
+    },
+    '&.active': {
+      color: theme.palette.text.primary,
       fontWeight: '500'
     }
-  }
+  };
 });

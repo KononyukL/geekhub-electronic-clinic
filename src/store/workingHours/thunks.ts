@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { workingHoursApi } from '../../api';
 
-interface WorkingHoursArgs {
-  doctor_id: number;
+interface IWorkingHoursArgs {
+  doctor_id: string;
   date: string;
 }
 
 export const workingHours = createAsyncThunk(
   'available-slots/{doctor_id}/{date}',
-  async ({ doctor_id, date }: WorkingHoursArgs, { rejectWithValue }) => {
+  async ({ doctor_id, date }: IWorkingHoursArgs, { rejectWithValue }) => {
     try {
       return await workingHoursApi.workingHours({ doctor_id, date });
     } catch (e: any) {

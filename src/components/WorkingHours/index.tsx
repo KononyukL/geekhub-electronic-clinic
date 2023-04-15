@@ -1,23 +1,23 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Wrapper, TimeButton, SwitcherButton, Img } from './styled';
-import { useTranslation } from 'react-i18next';
-import IGMHide from 'assets/icons/Hide.svg';
-import IGMShowMore from 'assets/icons/ShowMore.svg';
-import ModalConfirmVisit from '../ModalConfirmVisit';
-import Calendar from './Calendar';
-import { useDispatch } from 'react-redux';
-import { workingHours } from 'store/workingHours/thunks';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { useAppSelector } from 'store/hooks';
+import { workingHours } from 'store/workingHours/thunks';
 import { selectWorkingHours } from 'store/workingHours';
+import ModalConfirmVisit from '../ModalConfirmVisit';
+import IGMShowMore from 'assets/icons/ShowMore.svg';
+import { useAppSelector } from 'store/hooks';
+import IGMHide from 'assets/icons/Hide.svg';
+import { useDispatch } from 'react-redux';
+import Calendar from './Calendar';
+import { RootState } from 'store';
 
 type TWorkingHours = {
   showAllHours?: boolean;
-  doctorId?: number;
+  doctorId?: string;
+  max_date?: number;
 };
 
-const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
+const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const { workingHours: allWorkingHours } = useAppSelector(selectWorkingHours);
   const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
@@ -28,7 +28,6 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
   const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (doctorId && currentDate) {
@@ -71,7 +70,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
 
   return (
     <>
-      <Calendar updateCurrentDate={updateCurrentDate} />
+      <Calendar max_date={max_date} updateCurrentDate={updateCurrentDate} />
       <Wrapper>
         {freeHours &&
           freeHours.slice(0, visibleHours).map((time) => (
@@ -88,7 +87,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
       {!showAllHours && freeHours && freeHours.length > 12 && (
         <Wrapper>
           <SwitcherButton onClick={handleSwitcherFreeHours}>
-            {buttonSwitcher ? t('doctors.showMore') : t('doctors.hide')}
+            {buttonSwitcher ? 'Показати більше' : 'Приховати'}
             <Img
               src={buttonSwitcher ? IGMShowMore : IGMHide}
               alt={buttonSwitcher ? IGMShowMore : IGMHide}
