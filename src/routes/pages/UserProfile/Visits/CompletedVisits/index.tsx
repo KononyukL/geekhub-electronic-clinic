@@ -1,24 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Accordion, AccordionSummary } from './styled';
 import Visit from '../Visit';
 import { visitCompleted } from './mockData';
 import { AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Conclusion from 'components/view/profile/Conclusion';
-import { usePagination } from 'hooks/usePagination';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
+import { IVisitsComponent } from '../types';
 
-const CompletedVisits = () => {
-  const { page, pageCount, handleChangePage, resetPagination } = usePagination({
-    itemsCount: visitCompleted.length
-  });
-
+const CompletedVisits: FC<IVisitsComponent> = ({
+  page,
+  pageCount,
+  handleChangePage,
+  onSetItemsCount
+}) => {
   const currentVisit = visitCompleted.slice((page - 1) * VISITS_PER_PAGE, page * VISITS_PER_PAGE);
 
   useEffect(() => {
-    resetPagination();
+    onSetItemsCount(visitCompleted.length);
   }, []);
 
   return (

@@ -44,7 +44,8 @@ export const usePagination = ({
   }, [clearPagination]);
 
   useEffect(() => {
-    setSearchParams({ page: `${page}` });
+    searchParams.set('page', `${page}`);
+    setSearchParams(searchParams);
   }, [page]);
 
   const pageCount = Math.ceil(itemsCount / itemsPerPage);

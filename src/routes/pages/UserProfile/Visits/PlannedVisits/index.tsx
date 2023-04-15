@@ -1,26 +1,27 @@
 import Visit from '../Visit';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { visitPlanned } from './mockData';
 import { ModalProfile } from 'components/Modal';
 import { useTranslation } from 'react-i18next';
 import { Box, BoxInfo, Button } from './styled';
-import { usePagination } from 'hooks/usePagination';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
+import { IVisitsComponent } from '../types';
 
-const PlannedVisits = () => {
+const PlannedVisits: FC<IVisitsComponent> = ({
+  pageCount,
+  page,
+  onSetItemsCount,
+  handleChangePage
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
-
-  const { page, pageCount, handleChangePage, resetPagination } = usePagination({
-    itemsCount: visitPlanned.length
-  });
 
   const currentVisit = visitPlanned.slice((page - 1) * VISITS_PER_PAGE, page * VISITS_PER_PAGE);
 
   useEffect(() => {
-    resetPagination();
+    onSetItemsCount(visitPlanned.length);
   }, []);
 
   const handleClick = () => {
