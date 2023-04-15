@@ -46,12 +46,14 @@ const Visits = () => {
             />
           ))}
         </StyledTabs>
-        <BoxInfo>
-          <Info sx={{ minWidth: '104px' }}>{t('userProfile.visits.date')}:</Info>
-          <Info>{t('userProfile.visits.time')}:</Info>
-          <Info>{t('userProfile.visits.reception')}:</Info>
-        </BoxInfo>
-        <Select></Select>
+        <Select>
+          <MenuItem value="all">{'Всі лікарі'}</MenuItem>
+          {selectSpecializations.map((el, i) => (
+            <MenuItem key={i} value={el}>
+              {el}
+            </MenuItem>
+          ))}
+        </Select>
       </Box>
       <Component />
     </Container>
