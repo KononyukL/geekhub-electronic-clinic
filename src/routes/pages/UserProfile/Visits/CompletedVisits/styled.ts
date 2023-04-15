@@ -1,15 +1,9 @@
 import {
-  Box,
   styled,
   Accordion as MUIAccordion,
   AccordionSummary as MUIAccordionSummary
 } from '@mui/material';
 
-export const Container = styled(Box)(() => {
-  return {
-    marginBottom: 20
-  };
-});
 export const Accordion = styled(MUIAccordion)(() => {
   return {
     '&.MuiAccordion-root': {

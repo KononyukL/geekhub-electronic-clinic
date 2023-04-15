@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { USER_VISITS_CONFIG } from './config';
 import { theme } from 'theme';
 import { specializations } from 'store/doctors/thunks';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import MenuItem from '@mui/material/MenuItem';
+
+export const VISITS_PER_PAGE = 6;
 
 const Visits = () => {
   const [value, setValue] = React.useState(0);
@@ -17,6 +19,7 @@ const Visits = () => {
   useEffect(() => {
     dispatch(specializations());
   }, []);
+
   function a11yProps(index: number) {
     return {
       'aria-controls': `simple-tabpanel-${index}`
@@ -46,11 +49,11 @@ const Visits = () => {
             />
           ))}
         </StyledTabs>
-        <Select>
+        <Select defaultValue="all">
           <MenuItem value="all">{'Всі лікарі'}</MenuItem>
-          {selectSpecializations.map((el, i) => (
-            <MenuItem key={i} value={el}>
-              {el}
+          {selectSpecializations.results.map((el, i) => (
+            <MenuItem key={i} value={el.name}>
+              {el.name}
             </MenuItem>
           ))}
         </Select>
