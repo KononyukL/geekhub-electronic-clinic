@@ -42,7 +42,6 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
           name="email"
           register={register}
           registerOptions={{
-            required: "Це поле є обов'язковим",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               message: 'Невірний формат пошти. Приклад: Standart@gmail.com '
@@ -59,7 +58,6 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="password"
             placeholder="Поточний пароль"
             registerOptions={{
-              required: `Це поле є обов'язковим`,
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`
@@ -75,7 +73,6 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="newPassword"
             placeholder="Новий пароль"
             registerOptions={{
-              required: `Це поле є обов'язковим`,
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`
@@ -91,7 +88,6 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="confirmPassword"
             placeholder="Підтвердження паролю"
             registerOptions={{
-              required: `Це поле є обов'язковим`,
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`

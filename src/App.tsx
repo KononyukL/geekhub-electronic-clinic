@@ -15,7 +15,6 @@ import Doctor from './routes/pages/Doctor';
 import FooterLayout from './components/Layouts/FooterLayout';
 import HeaderLayout from './components/Layouts/HeaderLayout';
 import Visits from './routes/pages/UserProfile/Visits';
-import MyCard from './routes/pages/UserProfile/MyCard';
 import Profile from './routes/pages/UserProfile/Profile';
 import LayoutProfile from './components/Layouts/LayoutProfile';
 import { CssBaseline } from '@mui/material';
@@ -30,7 +29,7 @@ const router = createBrowserRouter(
         <Route element={<LayoutProfile />}>
           <Route path={ROUTES.PROFILE.PATH} element={<Profile />} />
           <Route path={ROUTES.VISITS.PATH} element={<Visits />} />
-          <Route path={ROUTES.CARD.PATH} element={<MyCard />} />
+          {/*<Route path={ROUTES.CARD.PATH} element={<MyCard />} />*/}
         </Route>
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
         <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />

@@ -9,6 +9,7 @@ import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
 import { IVisitsComponent } from '../types';
+import { conclusion } from 'components/view/profile/Conclusion/mockData';
 
 const CompletedVisits: FC<IVisitsComponent> = ({
   page,
@@ -39,7 +40,7 @@ const CompletedVisits: FC<IVisitsComponent> = ({
               />
             </AccordionSummary>
             <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
-              <Conclusion />
+              <Conclusion data={conclusion} />
             </AccordionDetails>
           </Accordion>
         </Box>
