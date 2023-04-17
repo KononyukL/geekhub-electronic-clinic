@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   Container,
   Wrapper,
@@ -10,23 +10,24 @@ import {
   WrapperCheckbox,
   Text
 } from 'components/FormFields/styled';
-import { useForm } from 'react-hook-form';
-import IMGLogo from 'assets/icons/logo.svg';
-import EmailField from 'components/FormFields/EmailField';
-import PasswordField from 'components/FormFields/PasswordField';
-import ErrorValidation from 'components/ErrorValidation';
 import { ButtonSubmit } from 'components/FormFields/styled';
-import FooterForm from './FooterForm';
+import { StyledInput } from 'components/FormFields/styled';
+import IMGLogo from 'assets/icons/logo.svg';
+import { useForm } from 'react-hook-form';
 import { Checkbox } from '@mui/material';
-import { useTranslation } from 'react-i18next';
+import FooterForm from './FooterForm';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
+import { RootState } from 'store';
+import { selectAuth } from 'store/auth';
+import { login } from 'store/auth/thunks';
 
 interface IFormLoginInput {
   email: string;
   password: string;
 }
 
-const Login = () => {
-  const { t } = useTranslation();
+const Login: FC = () => {
   const {
     register,
     handleSubmit,
@@ -39,10 +40,13 @@ const Login = () => {
       password: ''
     }
   });
+  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
+  const { login: currenLogin } = useAppSelector(selectAuth);
 
   const onSubmit = async (data: IFormLoginInput) => {
+    dispatch(login({ email: data.email, password: data.password }));
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+    console.log(currenLogin);
     reset();
   };
 
@@ -52,23 +56,39 @@ const Login = () => {
         <WrapperForm>
           <Title>
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
-            {t('login.login')}
+            Вхід
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
-              <EmailField register={register} errors={errors} />
-              <ErrorValidation errors={errors.email} />
+              <StyledInput
+                style={errors.email && { border: '1px solid red' }}
+                placeholder="Електронна адреса"
+                name="email"
+                register={register}
+                registerOptions={{
+                  required: true
+                }}
+              />
             </InputWrapper>
             <InputWrapper>
-              <PasswordField register={register} errors={errors} />
-              <ErrorValidation errors={errors.password} />
+              <StyledInput
+                style={errors.password && { border: '1px solid red' }}
+                placeholder="Пароль"
+                name="password"
+                register={register}
+                registerOptions={{
+                  required: true,
+                  minLength: 6
+                }}
+              />
+              {/*  Якщо повернеться не 202, то вивести помилку, що мило або пароль невірні */}
             </InputWrapper>
             <WrapperCheckbox>
               <Checkbox color="secondary" />
-              <Text>{t('login.rememberMe')}</Text>
+              <Text>Запам'ятати мене</Text>
             </WrapperCheckbox>
             <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
-              {t('buttons.sigIn')}
+              Увійти
             </ButtonSubmit>
           </StyledForm>
           <FooterForm />

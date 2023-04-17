@@ -6,7 +6,7 @@ import DoctorBreadcrumbs from './DoctorBreadcrumbs';
 import DoctorProfileCard from './DoctorProfileCard';
 import WorkingHours from 'components/WorkingHours';
 import { doctor } from 'store/doctors/thunks';
-import {clearAllData, selectDoctors} from 'store/doctors';
+import { clearAllData, selectDoctors } from 'store/doctors';
 import { useParams } from 'react-router-dom';
 import { RootState } from 'store';
 
@@ -16,16 +16,16 @@ const Doctor = () => {
   const { doctorId } = useParams();
 
   useEffect(() => {
-    dispatch(clearAllData())
+    dispatch(clearAllData());
     dispatch(doctor({ doctorId: doctorId as string }));
   }, [doctorId, dispatch]);
 
   return (
     <Container>
-      <DoctorBreadcrumbs currentDoctor={currentDoctor}/>
+      <DoctorBreadcrumbs currentDoctor={currentDoctor} />
       <ProfileDoctor>
         <Wrapper>
-          <DoctorProfileCard currentDoctor={currentDoctor}/>
+          <DoctorProfileCard currentDoctor={currentDoctor} />
           <WrapperWorkingHours>
             <WorkingHours max_date={3} doctorId={doctorId} showAllHours={true} />
           </WrapperWorkingHours>
