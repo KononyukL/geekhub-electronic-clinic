@@ -5,7 +5,6 @@ import { ReactComponent as Square } from 'assets/icons/square.svg';
 import { useTranslation } from 'react-i18next';
 import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button, LinkProfile } from './styled';
 import { ReactComponent as Profile } from 'assets/icons/profile.svg';
-import { ReactComponent as PatientCard } from 'assets/icons/patient-card.svg';
 import { ReactComponent as Visit } from 'assets/icons/visits.svg';
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
 
@@ -31,10 +30,10 @@ const Layout = () => {
             <Visit />
             {t('userProfile.link.visits')}
           </LinkProfile>
-          <LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>
-            <PatientCard />
-            {t('userProfile.link.card')}
-          </LinkProfile>
+          {/*<LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>*/}
+          {/*  <PatientCard />*/}
+          {/*  {t('userProfile.link.card')}*/}
+          {/*</LinkProfile>*/}
           <Button startIcon={<SingOut />}>Вихід</Button>
         </BoxLink>
         <BoxOutlet>
