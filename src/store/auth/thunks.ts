@@ -9,7 +9,7 @@ export const login = createAsyncThunk(
     try {
       const data = await authApi.login({ email, password });
       localStorage.setItem(TOKEN, data.token);
-      //JSON.stringify({ token: data.token, id: data.id, is_doctor: data.is_doctor })
+      console.log(data);
       return data;
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
