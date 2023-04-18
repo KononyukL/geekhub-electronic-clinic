@@ -8,7 +8,7 @@ import { Box, Typography, Link as MUILink } from '@mui/material';
 import Translation from '../Translation';
 import { ReactComponent as LogoBlack } from 'assets/icons/logo-black.svg';
 import { ReactComponent as LogoWhite } from 'assets/icons/logo-white.svg';
-import { TOKEN } from 'config';
+import { getAuthData } from 'config/helpers';
 
 interface IHeader {
   isWhite?: boolean;
@@ -17,7 +17,7 @@ const Header: FC<IHeader> = ({ isWhite }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const token = localStorage.getItem(TOKEN);
+  const { token } = getAuthData();
 
   const openProfile = () => {
     navigate(ROUTES.PROFILE_USER.PATH);
