@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Box, Container, Select, StyledTab, StyledTabs } from './styled';
-import { useTranslation } from 'react-i18next';
+import { Container, Select } from './styled';
 import { USER_VISITS_CONFIG } from './config';
-import { theme } from 'theme';
 import { specializations } from 'store/doctors/thunks';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
@@ -10,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useSearchParams } from 'react-router-dom';
 import { usePagination } from 'hooks/usePagination';
 import { SelectChangeEvent } from '@mui/material';
+import ProfileTabs from 'components/view/profile/ProfileTabs';
 
 export const VISITS_PER_PAGE = 6;
 
@@ -35,7 +34,6 @@ const Visits = () => {
     setItemsCount(count);
   }, []);
 
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { specializations: selectSpecializations } = useAppSelector(selectDoctors);
 
@@ -62,17 +60,11 @@ const Visits = () => {
 
   return (
     <Container>
-      <Box>
-        <StyledTabs
-          TabIndicatorProps={{
-            style: { border: `3px solid ${theme.palette.primary.main}` }
-          }}
-          value={tab}
-          onChange={handleTabChange}>
-          {USER_VISITS_CONFIG.map((item) => (
-            <StyledTab key={item.tabIndex} label={t(item.tabName)} className={undefined} />
-          ))}
-        </StyledTabs>
+      <ProfileTabs
+        sx={{ padding: '24px' }}
+        value={tab}
+        onChange={handleTabChange}
+        tabsList={USER_VISITS_CONFIG}>
         <Select defaultValue="all" onChange={handleSelectChange}>
           <MenuItem value="all">{'Всі лікарі'}</MenuItem>
           {selectSpecializations.results.map((el, i) => (
@@ -81,7 +73,7 @@ const Visits = () => {
             </MenuItem>
           ))}
         </Select>
-      </Box>
+      </ProfileTabs>
       <Component
         onSetItemsCount={onSetItemsCount}
         page={page}

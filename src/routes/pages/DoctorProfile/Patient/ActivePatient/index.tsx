@@ -5,6 +5,8 @@ import PatientCard from '../PatientCard';
 import { IPatientComponent } from '../../types';
 import { Pagination } from 'components';
 import { PATIENT_PER_PAGE } from '../index';
+import { useNavigate } from 'react-router-dom';
+import ROUTES from 'routes/constants';
 
 const ActivePatient: FC<IPatientComponent> = ({
   pageCount,
@@ -12,10 +14,15 @@ const ActivePatient: FC<IPatientComponent> = ({
   onSetItemsCount,
   handleChangePage
 }) => {
+  const navigate = useNavigate();
   const currentPatient = PatientActive.slice(
     (page - 1) * PATIENT_PER_PAGE,
     page * PATIENT_PER_PAGE
   );
+
+  const openCard = (id: number) => () => {
+    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${id}`);
+  };
 
   useEffect(() => {
     onSetItemsCount(PatientActive.length);
@@ -31,7 +38,7 @@ const ActivePatient: FC<IPatientComponent> = ({
             time={patient.time}
             reception={patient.reception}
           />
-          <Button variant="contained" color="secondary">
+          <Button onClick={openCard(patient.id)} variant="contained" color="secondary">
             До картки
           </Button>
         </BoxInfo>

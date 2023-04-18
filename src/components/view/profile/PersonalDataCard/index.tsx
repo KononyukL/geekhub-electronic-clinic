@@ -1,50 +1,48 @@
 import React from 'react';
 import { BoxInfo, Container, Data, Title } from './styled';
-import { useTranslation } from 'react-i18next';
 import { dataProfile } from 'routes/pages/UserProfile/Profile/mockData';
 
 const PersonalDataCard = () => {
-  const { t } = useTranslation();
   return (
     <Container>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.lastName')}:</Title>
+        <Title>Прізвище:</Title>
         <Data>{dataProfile.lastName}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.phone')}:</Title>
+        <Title>Телефон:</Title>
         <Data>{dataProfile.phone}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.firstName')}:</Title>
+        <Title>Ім’я:</Title>
         <Data>{dataProfile.firstName}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.city')}:</Title>
+        <Title>Місто:</Title>
         <Data>{dataProfile.city}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.middleName')}:</Title>
+        <Title>По-батькові:</Title>
         <Data>{dataProfile.middleName}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.street')}:</Title>
+        <Title>Вулиця:</Title>
         <Data>{dataProfile.street}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.birthday')}:</Title>
+        <Title>Дата народження:</Title>
         <Data>{dataProfile.birthday}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.house')}:</Title>
+        <Title>Будинок:</Title>
         <Data>{dataProfile.house}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.gender')}:</Title>
+        <Title>Стать:</Title>
         <Data>{dataProfile.gender}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.apartment')}:</Title>
+        <Title>Квартира:</Title>
         <Data>{dataProfile.apartment}</Data>
       </BoxInfo>
     </Container>

@@ -32,7 +32,8 @@ const ROUTES = {
     PATH: '/doctor-profile'
   },
   PATIENTS_DOCTOR: {
-    PATH: '/patients-doctor'
+    PATH: '/patients-doctor',
+    SUB_PATH: '/patients-doctor/:id'
   },
   CARD: {
     PATH: '/card'
