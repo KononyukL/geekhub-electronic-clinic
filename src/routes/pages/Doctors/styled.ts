@@ -1,10 +1,10 @@
-import { CSSObject, styled, Box } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 export const Container = styled(Box)(() => {
   return {
-    maxWidth: '1420px',
+    maxWidth: 1420,
     margin: '0 auto'
-  } as CSSObject;
+  };
 });
 
 export const Wrapper = styled(Box)(() => {
@@ -12,29 +12,29 @@ export const Wrapper = styled(Box)(() => {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '60px 0 170px 0'
-  } as CSSObject;
+  };
 });
 
 export const Aside = styled(Box)(({ theme }) => {
   return {
     display: 'flex',
-    maxWidth: '335px',
+    maxWidth: 335,
     width: '100%',
-    minHeight: '100px',
+    minHeight: 100,
     height: '100%',
     flexDirection: 'column',
     backgroundColor: theme.palette.background.paper,
     boxShadow: `-4px 15px 35px ${theme.palette.success.main}`,
     '&:first-of-type': {
-      paddingTop: '24px'
+      paddingTop: 24
     }
-  } as CSSObject;
+  };
 });
 
 export const WrapperButton = styled(Box)(() => {
   return {
     margin: '0 auto'
-  } as CSSObject;
+  };
 });
 
 export const ButtonDoctor = styled('button')<{ isActiveButton: boolean }>(
@@ -44,12 +44,12 @@ export const ButtonDoctor = styled('button')<{ isActiveButton: boolean }>(
       justifyContent: 'start',
       alignItems: 'center',
       cursor: 'pointer',
-      width: '288px',
-      height: '80px',
+      width: 288,
+      height: 80,
       border: 0,
-      marginBottom: '24px',
-      borderRadius: '0px',
-      fontSize: '20px',
+      marginBottom: 24,
+      borderRadius: 0,
+      fontSize: 20,
       background: theme.palette.background.paper,
       borderLeft: `10px solid ${
         isActiveButton ? theme.palette.primary.main : theme.palette.secondary.main
@@ -65,12 +65,12 @@ export const ButtonDoctor = styled('button')<{ isActiveButton: boolean }>(
         backgroundColor: theme.palette.success.main,
         borderLeft: `10px solid ${theme.palette.secondary.dark}`
       }
-    } as CSSObject;
+    };
   }
 );
 
 export const Icon = styled('img')(() => {
   return {
     padding: '0 12px 0 24px'
-  } as CSSObject;
+  };
 });

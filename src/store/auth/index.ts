@@ -3,13 +3,13 @@ import { login } from './thunks';
 import { RootState } from '../index';
 
 interface IAuthState {
-  user: Record<string, unknown>;
+  login: Record<string, unknown>;
   isLoading: boolean;
   error: Error | string;
 }
 
 const initialState: IAuthState = {
-  user: {},
+  login: {},
   isLoading: false,
   error: ''
 };
@@ -25,7 +25,7 @@ export const newsSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.login = action.payload;
       })
       .addCase(login.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
@@ -35,6 +35,7 @@ export const newsSlice = createSlice({
 });
 
 export { login };
+
 export const {} = newsSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

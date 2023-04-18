@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Breadcrumbs as MUIBreadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from '@mui/material';
 import { IDoctor } from 'store/doctors';
 
 type TDoctorBreadcrumbs = {
@@ -15,9 +15,9 @@ const DoctorBreadcrumbs: FC<TDoctorBreadcrumbs> = ({ currentDoctor }) => {
       <Link underline="hover" color="inherit" href="/doctors">
         Спеціальності та лікарі
       </Link>
-      <Link underline="hover" color="inherit" href="/doctor">
+      <Typography color="inherit">
         {currentDoctor.last_name} {currentDoctor.first_name} {currentDoctor.patronim_name}
-      </Link>
+      </Typography>
     </MUIBreadcrumbs>
   );
 };

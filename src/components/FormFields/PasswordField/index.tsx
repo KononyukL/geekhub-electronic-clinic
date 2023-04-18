@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import IMGOpenPassword from 'assets/icons/openPassword.svg';
 import IMGClosePassword from 'assets/icons/closePassword.svg';
 
-interface IEmailField extends React.InputHTMLAttributes<any> {
+interface IPasswordField extends React.InputHTMLAttributes<any> {
   register: UseFormRegister<FieldValues>;
   errors: any;
 }
 
-const EmailField: FC<IEmailField> = ({ register, errors }) => {
+const PasswordField: FC<IPasswordField> = ({ register, errors }) => {
   const { t } = useTranslation();
   const [iconPassword, setIconPassword] = useState(true);
   const handleSwitchIconPassword = () => setIconPassword(!iconPassword);
@@ -26,7 +26,7 @@ const EmailField: FC<IEmailField> = ({ register, errors }) => {
         registerOptions={{
           required: `${t('validationErrors.required')}`,
           pattern: {
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
             message: `${t('validationErrors.password')}`
           }
         }}
@@ -42,4 +42,4 @@ const EmailField: FC<IEmailField> = ({ register, errors }) => {
   );
 };
 
-export default EmailField;
+export default PasswordField;

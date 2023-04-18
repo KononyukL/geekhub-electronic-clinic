@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumbs as MUIBreadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from '@mui/material';
 
 const DoctorsBreadcrumbs = () => {
   return (
@@ -7,9 +7,7 @@ const DoctorsBreadcrumbs = () => {
       <Link underline="hover" color="inherit" href="/">
         Головна
       </Link>
-      <Link underline="hover" color="inherit" href="/doctors">
-        Спеціальності та лікарі
-      </Link>
+      <Typography color="inherit">Спеціальності та лікарі</Typography>
     </MUIBreadcrumbs>
   );
 };
