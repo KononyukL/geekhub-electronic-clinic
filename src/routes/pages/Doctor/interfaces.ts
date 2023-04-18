@@ -10,20 +10,12 @@ export interface IDoctor {
   category: string;
   experience: string;
   info: string;
-  rating: number
-};
-
-export interface IBocking {
-  time: string;
-  status: boolean;
+  education: string,
+  courses: string,
+  procedures_performed: string,
+  rating: number;
 }
 
-export type IDoctorsApiResponse = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: IDoctor[];
-};
-
-
-
+export interface IDoctorProps {
+  currentDoctor: IDoctor
+}

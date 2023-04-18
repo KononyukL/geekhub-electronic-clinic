@@ -131,3 +131,11 @@ export const Text = styled('span')(() => {
     marginLeft: 6
   };
 });
+
+export const Error = styled('div')(({theme}) => {
+  return {
+    color: theme.palette.error.main,
+    fontSize: 14,
+    marginTop: 6
+  }
+})

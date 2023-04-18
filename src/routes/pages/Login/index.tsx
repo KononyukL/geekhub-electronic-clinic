@@ -10,22 +10,21 @@ import {
   WrapperCheckbox,
   Text
 } from 'components/FormFields/styled';
-import { ButtonSubmit } from 'components/FormFields/styled';
-import { StyledInput } from 'components/FormFields/styled';
-import IMGLogo from 'assets/icons/logo.svg';
-import { useForm } from 'react-hook-form';
-import { Checkbox } from '@mui/material';
-import FooterForm from './FooterForm';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { ButtonSubmit } from 'components/FormFields/styled';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { selectAuth } from 'store/auth';
+import { IFormLoginInput } from './interfaces';
+import IMGLogo from 'assets/icons/logo.svg';
+import { Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { login } from 'store/auth/thunks';
-
-interface IFormLoginInput {
-  email: string;
-  password: string;
-}
+import { Checkbox } from '@mui/material';
+import { selectAuth } from 'store/auth';
+import FooterForm from './FooterForm';
+import Password from './Password';
+import { RootState } from 'store';
+import { TOKEN } from 'config';
+import Email from './Email';
 
 const Login: FC = () => {
   const {
@@ -42,13 +41,16 @@ const Login: FC = () => {
   });
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
+  const token = localStorage.getItem(TOKEN);
 
   const onSubmit = async (data: IFormLoginInput) => {
     dispatch(login({ email: data.email, password: data.password }));
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(currenLogin);
     reset();
   };
+
+  if (token && token.length) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container>
@@ -60,28 +62,10 @@ const Login: FC = () => {
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
-              <StyledInput
-                style={errors.email && { border: '1px solid red' }}
-                placeholder="Електронна адреса"
-                name="email"
-                register={register}
-                registerOptions={{
-                  required: true
-                }}
-              />
+              <Email register={register} errors={errors} />
             </InputWrapper>
             <InputWrapper>
-              <StyledInput
-                style={errors.password && { border: '1px solid red' }}
-                placeholder="Пароль"
-                name="password"
-                register={register}
-                registerOptions={{
-                  required: true,
-                  minLength: 6
-                }}
-              />
-              {/*  Якщо повернеться не 202, то вивести помилку, що мило або пароль невірні */}
+              <Password register={register} errors={errors} currenLogin={currenLogin} />
             </InputWrapper>
             <WrapperCheckbox>
               <Checkbox color="secondary" />
