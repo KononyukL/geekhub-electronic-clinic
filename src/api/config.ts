@@ -1,6 +1,11 @@
 import axios from 'axios';
-import { CONFIG_APP } from 'config/base';
+import { TOKEN, CONFIG_APP } from 'config';
+
+const token = localStorage.getItem(TOKEN);
 
 export const axiosInstance = axios.create({
-  baseURL: CONFIG_APP.BASE_URL
+  baseURL: CONFIG_APP.BASE_URL,
+  headers: {
+    Authorization: token ? `Token ${token}` : ''
+  }
 });
