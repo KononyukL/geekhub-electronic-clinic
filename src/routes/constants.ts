@@ -22,15 +22,20 @@ const ROUTES = {
   DOCTOR: {
     PATH: '/doctors/:doctorId'
   },
-  PROFILE: {
+  PROFILE_USER: {
     PATH: '/user-profile'
   },
   VISITS: {
     PATH: '/visits'
   },
+  PROFILE_DOCTOR: {
+    PATH: '/doctor-profile'
+  },
+  PATIENTS_DOCTOR: {
+    PATH: '/patients-doctor'
+  },
   CARD: {
     PATH: '/card'
   }
 };
-
 export default ROUTES;

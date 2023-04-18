@@ -3,7 +3,7 @@ import { BoxInfo, Container } from './styled';
 import HeaderProfile from './HeaderProfile';
 
 import PersonalData from './PersonalData';
-import Security from './Security';
+import Security from 'components/view/profile/Security';
 
 const Profile = () => {
   return (
@@ -11,7 +11,7 @@ const Profile = () => {
       <HeaderProfile />
       <BoxInfo>
         <PersonalData />
-        <Security />
+        <Security sx={{ paddingBottom: 0 }} />
       </BoxInfo>
     </Container>
   );

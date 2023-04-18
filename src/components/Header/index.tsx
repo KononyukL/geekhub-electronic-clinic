@@ -3,11 +3,12 @@ import Navigation from './Navigation';
 import { BoxContacts, BoxMain, Button, ContactsBox, ContainerContent } from './styled';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
-import ROUTES from '../../routes/constants';
+import ROUTES from 'routes/constants';
 import { Box, Typography, Link as MUILink } from '@mui/material';
 import Translation from '../Translation';
 import { ReactComponent as LogoBlack } from 'assets/icons/logo-black.svg';
 import { ReactComponent as LogoWhite } from 'assets/icons/logo-white.svg';
+import { TOKEN } from 'config';
 
 interface IHeader {
   isWhite?: boolean;
@@ -16,7 +17,12 @@ const Header: FC<IHeader> = ({ isWhite }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const onOpenProfile = () => navigate(ROUTES.LOGIN.PATH);
+  const token = localStorage.getItem(TOKEN);
+
+  const openProfile = () => {
+    navigate(ROUTES.PROFILE_USER.PATH);
+  };
+  const onLogin = () => navigate(ROUTES.LOGIN.PATH);
 
   return (
     <Box>
@@ -40,8 +46,8 @@ const Header: FC<IHeader> = ({ isWhite }) => {
         <ContainerContent>
           <Link to={ROUTES.HOME.PATH}>{isWhite ? <LogoWhite /> : <LogoBlack />}</Link>
           <Navigation isWhite={isWhite} />
-          <Button color="secondary" variant="contained" onClick={onOpenProfile}>
-            {t('buttons.open')}
+          <Button color="secondary" variant="contained" onClick={token ? openProfile : onLogin}>
+            {token ? 'Мій кабінет' : 'Увійти'}
           </Button>
         </ContainerContent>
       </BoxMain>

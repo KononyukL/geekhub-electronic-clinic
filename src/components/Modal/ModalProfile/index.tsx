@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Box, BoxButton, Button, Text, Title } from './styled';
-import { useTranslation } from 'react-i18next';
 import { Modal } from '@mui/material';
 
 interface IModalProfile {
@@ -10,22 +9,24 @@ interface IModalProfile {
 }
 
 const ModalProfile: FC<IModalProfile> = ({ open, setOpen, onClick }) => {
-  const { t } = useTranslation();
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal sx={{ backgroundColor: 'transparent' }} hideBackdrop open={open} onClose={handleClose}>
       <Box>
-        <Title>{t('userProfile.visits.modalTitle')}</Title>
-        <Text>{t('userProfile.visits.modalText')}</Text>
+        <Title>Скасувати прийом до лікаря?</Title>
+        <Text>
+          Зверніть увагу, що прийом можна скасувати тільки до 8 години ранку, того дня коли
+          назначено візит
+        </Text>
         <BoxButton>
           <Button variant="outlined" color="secondary" onClick={onClick}>
-            Yes
+            Так
           </Button>
           <Button variant="contained" color="secondary" onClick={handleClose}>
-            No
+            Ні
           </Button>
         </BoxButton>
       </Box>

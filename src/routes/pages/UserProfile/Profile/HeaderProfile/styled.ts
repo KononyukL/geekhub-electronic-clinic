@@ -27,20 +27,3 @@ export const Info = styled(Box)(() => {
 export const Text = styled(Typography)(() => {
   return {};
 });
-
-export const WrapButton = styled(Box)(() => {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px'
-  };
-});
-
-export const Label = styled(Typography)(() => {
-  return {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '6px',
-    fontWeight: 500
-  };
-});

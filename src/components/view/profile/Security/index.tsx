@@ -1,10 +1,21 @@
-import React, { useCallback, useState } from 'react';
-import { BoxData, BoxSecurity, BoxTitle, ButtonEdit, Data, Title, TitleData } from '../styled';
+import React, { FC, useCallback, useState } from 'react';
+import {
+  BoxData,
+  BoxSecurity,
+  BoxTitle,
+  ButtonEdit,
+  Data,
+  Title,
+  TitleData
+} from 'routes/pages/UserProfile/Profile/styled';
 import { Edit } from '@mui/icons-material';
-import { dataProfile } from '../mockData';
+import { dataProfile } from 'routes/pages/UserProfile/Profile/mockData';
 import PasswordForm from 'components/FormsProfile/PasswordForm';
-
-const Security = () => {
+import { SxProps } from '@mui/system/styleFunctionSx';
+interface ISecurity {
+  sx?: SxProps;
+}
+const Security: FC<ISecurity> = ({ sx }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const onEdit = () => {
@@ -16,7 +27,7 @@ const Security = () => {
   }, []);
 
   return (
-    <BoxData sx={{ paddingBottom: 0 }}>
+    <BoxData sx={sx}>
       <BoxTitle>
         <Title>Безпека</Title>
         {!isEdit && (

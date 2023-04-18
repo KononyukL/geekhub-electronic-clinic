@@ -73,7 +73,7 @@ const Visits = () => {
             <StyledTab key={item.tabIndex} label={t(item.tabName)} className={undefined} />
           ))}
         </StyledTabs>
-        <Select defaultValue={specialist} onChange={handleSelectChange}>
+        <Select defaultValue="all" onChange={handleSelectChange}>
           <MenuItem value="all">{'Всі лікарі'}</MenuItem>
           {selectSpecializations.results.map((el, i) => (
             <MenuItem key={i} value={el.name}>
