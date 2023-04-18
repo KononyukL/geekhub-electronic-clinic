@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import {
   Container,
   ContainerInfo,
@@ -11,15 +11,16 @@ import {
 import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { theme } from 'theme';
 
-interface IVisit {
+interface IPatientCard {
   name: string;
-  positionDoctor: string;
+  phone: string;
   date: string;
   time: string;
   reception: string;
   isCompleted?: boolean;
+  children?: ReactNode;
 }
-const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
+const PatientCard: FC<IPatientCard> = ({ name, phone, date, time, reception, children }) => {
   return (
     <Container>
       <BoxInfo>
@@ -27,7 +28,7 @@ const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
           <UserAvatar />
           <ContainerInfo>
             <Info sx={{ fontWeight: 600 }}>{name}</Info>
-            <Info sx={{ color: theme.palette.primary.main }}>{positionDoctor}</Info>
+            <Info sx={{ color: theme.palette.text.primary }}>{phone}</Info>
           </ContainerInfo>
         </DoctorsInfo>
         <ReceptionInfo>
@@ -44,9 +45,10 @@ const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
             <Info>{reception}</Info>
           </Reception>
         </ReceptionInfo>
+        {children}
       </BoxInfo>
     </Container>
   );
 };
 
-export default Visit;
+export default PatientCard;

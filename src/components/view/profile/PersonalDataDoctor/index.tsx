@@ -1,10 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { BoxData, BoxTitle, ButtonEdit, Title } from '../styled';
-import PersonalDataCard from 'components/view/profile/PersonalDataCard';
+import {
+  BoxData,
+  BoxTitle,
+  ButtonEdit,
+  Title
+} from 'routes/pages/DoctorProfile/ProfileDoctor/styled';
 import { Edit } from '@mui/icons-material';
-import ProfileFormUser from 'components/FormsProfile/ProfileFormUser';
+import ProfileFormDoctor from '../../../FormsProfile/ProfileFormDoctor';
+import DataCardDoctor from '../DataCardDoctor';
 
-const PersonalData = () => {
+const PersonalDataDoctor = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const onEdit = () => {
@@ -25,9 +30,9 @@ const PersonalData = () => {
           </ButtonEdit>
         </BoxTitle>
       )}
-      {isEdit ? <ProfileFormUser closeEdit={closeEdit} /> : <PersonalDataCard />}
+      {isEdit ? <ProfileFormDoctor closeEdit={closeEdit} /> : <DataCardDoctor />}
     </BoxData>
   );
 };
 
-export default PersonalData;
+export default PersonalDataDoctor;

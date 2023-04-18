@@ -22,7 +22,7 @@ interface IFormLoginInput {
 interface IProfileForm {
   closeEdit: () => void;
 }
-const ProfileForm: FC<IProfileForm> = ({ closeEdit }) => {
+const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
   const { t } = useTranslation();
   const {
     register,
@@ -137,4 +137,4 @@ const ProfileForm: FC<IProfileForm> = ({ closeEdit }) => {
   );
 };
 
-export default ProfileForm;
+export default ProfileFormUser;

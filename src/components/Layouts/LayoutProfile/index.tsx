@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Breadcrumbs, Link as MUILink, Typography } from '@mui/material';
 import { ReactComponent as Square } from 'assets/icons/square.svg';
 import { useTranslation } from 'react-i18next';
-import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button, LinkProfile } from './styled';
-import { ReactComponent as Profile } from 'assets/icons/profile.svg';
-import { ReactComponent as Visit } from 'assets/icons/visits.svg';
+import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button } from './styled';
+
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
 
-const Layout = () => {
+interface ILayoutProfile {
+  children: ReactNode;
+}
+const LayoutProfile: FC<ILayoutProfile> = ({ children }) => {
   const { t } = useTranslation();
   return (
     <BoxLayout>
@@ -20,20 +22,7 @@ const Layout = () => {
       </Breadcrumbs>
       <BoxInfo>
         <BoxLink>
-          <LinkProfile
-            to={'/user-profile'}
-            className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Profile />
-            {t('userProfile.link.profile')}
-          </LinkProfile>
-          <LinkProfile to={'/visits'} className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Visit />
-            {t('userProfile.link.visits')}
-          </LinkProfile>
-          {/*<LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>*/}
-          {/*  <PatientCard />*/}
-          {/*  {t('userProfile.link.card')}*/}
-          {/*</LinkProfile>*/}
+          {children}
           <Button startIcon={<SingOut />}>Вихід</Button>
         </BoxLink>
         <BoxOutlet>
@@ -44,4 +33,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default LayoutProfile;

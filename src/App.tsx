@@ -16,9 +16,12 @@ import FooterLayout from './components/Layouts/FooterLayout';
 import HeaderLayout from './components/Layouts/HeaderLayout';
 import Visits from './routes/pages/UserProfile/Visits';
 import Profile from './routes/pages/UserProfile/Profile';
-import LayoutProfile from './components/Layouts/LayoutProfile';
 import { CssBaseline } from '@mui/material';
 import ResetPassword from './routes/pages/ResetPassword';
+import LayoutUserProfile from './components/Layouts/LayoutProfile/LayoutUserProfile';
+import LayoutDoctorProfile from './components/Layouts/LayoutProfile/LayoutDoctorProfile';
+import ProfileDoctor from './routes/pages/DoctorProfile/ProfileDoctor';
+import Patient from './routes/pages/DoctorProfile/Patient';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,10 +29,14 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path={ROUTES.HOME.PATH} element={<HeaderLayout />}>
         <Route path={ROUTES.REGISTRATION.PATH} element={<Registration />} />
-        <Route element={<LayoutProfile />}>
-          <Route path={ROUTES.PROFILE.PATH} element={<Profile />} />
+        <Route element={<LayoutUserProfile />}>
+          <Route path={ROUTES.PROFILE_USER.PATH} element={<Profile />} />
           <Route path={ROUTES.VISITS.PATH} element={<Visits />} />
           {/*<Route path={ROUTES.CARD.PATH} element={<MyCard />} />*/}
+        </Route>
+        <Route element={<LayoutDoctorProfile />}>
+          <Route path={ROUTES.PROFILE_DOCTOR.PATH} element={<ProfileDoctor />} />
+          <Route path={ROUTES.PATIENTS_DOCTOR.PATH} element={<Patient />} />
         </Route>
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
         <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />
