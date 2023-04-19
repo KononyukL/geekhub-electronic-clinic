@@ -21,6 +21,9 @@ import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { RootState } from 'store';
 import { selectAuth } from 'store/auth';
 import { login } from 'store/auth/thunks';
+import { Navigate } from 'react-router-dom';
+import { getAuthData } from 'config/helpers';
+import ROUTES from '../../constants';
 
 interface IFormLoginInput {
   email: string;
@@ -49,6 +52,12 @@ const Login: FC = () => {
     console.log(currenLogin);
     reset();
   };
+
+  const { token } = getAuthData();
+
+  if (token) {
+    return <Navigate to={ROUTES.HOME.PATH} />;
+  }
 
   return (
     <Container>
