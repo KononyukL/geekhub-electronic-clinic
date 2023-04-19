@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from 'api';
 import { AUTH_DATA } from 'config';
-import { axiosInstance } from 'api/config';
 import { NavigateFunction } from 'react-router-dom';
 import ROUTES from 'routes/constants';
 
@@ -16,13 +15,6 @@ export const login = createAsyncThunk(
     try {
       const data = await authApi.login({ email, password });
       localStorage.setItem(AUTH_DATA, JSON.stringify(data));
-
-      if (data.token) {
-        axiosInstance.interceptors.request.use((config) => {
-          config.headers.Authorization = `Token ${data.token}`;
-          return config;
-        });
-      }
 
       return data;
     } catch (e: any) {
