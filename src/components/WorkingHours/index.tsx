@@ -60,12 +60,14 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
 
   const updateCurrentDate = (date: string) => {
     setCurrentDate(date);
+
     // console.log('Обрана дата та id лікаря: ', currentDate, doctorId);
   };
 
   const handleBookingData = (time: string) => {
     setBookVisit(time);
-    // console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
+
+    console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
   };
 
   return (
@@ -100,6 +102,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
         handleClose={handleClose}
         bookVisit={bookVisit}
         currentDate={currentDate}
+        doctor_id={doctorId}
       />
     </>
   );
