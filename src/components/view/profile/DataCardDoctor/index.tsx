@@ -1,29 +1,32 @@
 import React from 'react';
 import { BoxInfo, Container, Data, Title } from './styled';
-import { dataProfileDoctor } from './mockData';
+import { useAppSelector } from 'store/hooks';
+import { selectProfile } from 'store/profile';
 
 const PersonalDataCard = () => {
+  const { profile } = useAppSelector(selectProfile);
+
   return (
     <Container>
       <BoxInfo>
         <Title>Прізвище:</Title>
-        <Data>{dataProfileDoctor.lastName}</Data>
+        <Data>{profile?.last_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
         <Title>Ім’я:</Title>
-        <Data>{dataProfileDoctor.firstName}</Data>
+        <Data>{profile?.first_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
         <Title>По-батькові:</Title>
-        <Data>{dataProfileDoctor.middleName}</Data>
+        <Data>{profile?.patronim_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
         <Title>Дата народження:</Title>
-        <Data>{dataProfileDoctor.birthday}</Data>
+        <Data>{profile?.birth_date || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
         <Title>Телефон:</Title>
-        <Data>{dataProfileDoctor.phone}</Data>
+        <Data>{profile?.phone_num || '-'}</Data>
       </BoxInfo>
     </Container>
   );

@@ -5,8 +5,8 @@ import { ReactComponent as Square } from 'assets/icons/square.svg';
 import { useTranslation } from 'react-i18next';
 import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button } from './styled';
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
-import { AUTH_DATA } from 'config';
-import ROUTES from 'routes/constants';
+import { useAppDispatch } from 'store/hooks';
+import { logout } from 'store/auth';
 
 interface ILayoutProfile {
   children: ReactNode;
@@ -15,10 +15,10 @@ interface ILayoutProfile {
 const LayoutProfile: FC<ILayoutProfile> = ({ children }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onLogout = () => {
-    localStorage.removeItem(AUTH_DATA);
-    navigate(ROUTES.HOME.PATH);
+    dispatch(logout(navigate));
   };
 
   return (

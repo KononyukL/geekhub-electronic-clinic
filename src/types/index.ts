@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface IPatientComponent {
+export interface IPaginationComponent {
   pageCount: number;
   page: number;
   handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;

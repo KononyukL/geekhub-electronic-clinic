@@ -1,5 +1,6 @@
 export const PatientActive = [
   {
+    id: 1,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -7,6 +8,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 2,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -14,6 +16,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 3,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -21,6 +24,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 4,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -28,6 +32,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 5,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -35,6 +40,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 6,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -42,6 +48,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 7,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -49,6 +56,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 8,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',
@@ -56,6 +64,7 @@ export const PatientActive = [
     reception: '600 грн'
   },
   {
+    id: 9,
     name: 'Андрущенко Ілона Макарівна',
     phone: '+38 (099) 133 27 13',
     date: 'Вт 21.03.2023 ',

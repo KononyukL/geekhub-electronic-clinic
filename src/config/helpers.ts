@@ -1,6 +1,12 @@
 import { AUTH_DATA } from './constants';
 
-export const getAuthData = () => {
+interface IGetAuthDataResult {
+  token?: string;
+  id?: number;
+  is_doctor?: boolean;
+}
+
+export const getAuthData = (): IGetAuthDataResult => {
   try {
     const data = localStorage.getItem(AUTH_DATA);
 
@@ -11,5 +17,6 @@ export const getAuthData = () => {
     return {};
   } catch (e) {
     console.error(e);
+    return {};
   }
 };

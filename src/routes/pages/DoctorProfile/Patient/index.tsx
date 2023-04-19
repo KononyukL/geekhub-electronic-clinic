@@ -1,17 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { Box, Container, StyledTab, StyledTabs } from './styled';
-import { theme } from 'theme';
+import { Container } from './styled';
 import { useSearchParams } from 'react-router-dom';
 import { usePagination } from 'hooks/usePagination';
 import { PATIENT_CONFIG } from './config';
-import { useTranslation } from 'react-i18next';
+import ProfileTabs from 'components/view/profile/ProfileTabs';
 
 export const PATIENT_PER_PAGE = 6;
 
 const Patient = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [itemsCount, setItemsCount] = useState(0);
-  const { t } = useTranslation();
 
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');
@@ -37,18 +35,12 @@ const Patient = () => {
 
   return (
     <Container>
-      <Box>
-        <StyledTabs
-          TabIndicatorProps={{
-            style: { border: `3px solid ${theme.palette.primary.main}` }
-          }}
-          value={tab}
-          onChange={handleTabChange}>
-          {PATIENT_CONFIG.map((item) => (
-            <StyledTab key={item.tabIndex} label={t(item.tabName)} className={undefined} />
-          ))}
-        </StyledTabs>
-      </Box>
+      <ProfileTabs
+        sx={{ padding: '24px' }}
+        value={tab}
+        onChange={handleTabChange}
+        tabsList={PATIENT_CONFIG}
+      />
       <Component
         onSetItemsCount={onSetItemsCount}
         page={page}

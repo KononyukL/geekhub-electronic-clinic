@@ -3,12 +3,12 @@ import CompletedVisits from './CompletedVisits';
 
 export const USER_VISITS_CONFIG = [
   {
-    tabName: 'userProfile.visits.tabs.planned',
+    tabName: 'Заплановані',
     tabIndex: 0,
     component: PlannedVisits
   },
   {
-    tabName: 'userProfile.visits.tabs.completed',
+    tabName: 'Завершені',
     tabIndex: 1,
     component: CompletedVisits
   }

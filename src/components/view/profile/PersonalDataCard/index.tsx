@@ -1,51 +1,52 @@
 import React from 'react';
 import { BoxInfo, Container, Data, Title } from './styled';
-import { useTranslation } from 'react-i18next';
-import { dataProfile } from 'routes/pages/UserProfile/Profile/mockData';
+import { useAppSelector } from 'store/hooks';
+import { selectProfile } from 'store/profile';
 
 const PersonalDataCard = () => {
-  const { t } = useTranslation();
+  const { profile } = useAppSelector(selectProfile);
+
   return (
     <Container>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.lastName')}:</Title>
-        <Data>{dataProfile.lastName}</Data>
+        <Title>Прізвище:</Title>
+        <Data>{profile?.last_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.phone')}:</Title>
-        <Data>{dataProfile.phone}</Data>
+        <Title>Телефон:</Title>
+        <Data>{profile?.phone_num || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.firstName')}:</Title>
-        <Data>{dataProfile.firstName}</Data>
+        <Title>Ім’я:</Title>
+        <Data>{profile?.first_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.city')}:</Title>
-        <Data>{dataProfile.city}</Data>
+        <Title>Місто:</Title>
+        <Data>{profile?.address_city || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.middleName')}:</Title>
-        <Data>{dataProfile.middleName}</Data>
+        <Title>По-батькові:</Title>
+        <Data>{profile?.patronim_name || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.street')}:</Title>
-        <Data>{dataProfile.street}</Data>
+        <Title>Вулиця:</Title>
+        <Data>{profile?.address_street || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.birthday')}:</Title>
-        <Data>{dataProfile.birthday}</Data>
+        <Title>Дата народження:</Title>
+        <Data>{profile?.birth_date || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.house')}:</Title>
-        <Data>{dataProfile.house}</Data>
+        <Title>Будинок:</Title>
+        <Data>{profile?.address_house || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.data.gender')}:</Title>
-        <Data>{dataProfile.gender}</Data>
+        <Title>Стать:</Title>
+        <Data>{profile?.sex || '-'}</Data>
       </BoxInfo>
       <BoxInfo>
-        <Title>{t('userProfile.profile.address.apartment')}:</Title>
-        <Data>{dataProfile.apartment}</Data>
+        <Title>Квартира:</Title>
+        <Data>{profile?.address_appartment || '-'}</Data>
       </BoxInfo>
     </Container>
   );

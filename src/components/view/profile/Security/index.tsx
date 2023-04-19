@@ -9,13 +9,13 @@ import {
   TitleData
 } from 'routes/pages/UserProfile/Profile/styled';
 import { Edit } from '@mui/icons-material';
-import { dataProfile } from 'routes/pages/UserProfile/Profile/mockData';
 import PasswordForm from 'components/FormsProfile/PasswordForm';
 import { SxProps } from '@mui/system/styleFunctionSx';
 interface ISecurity {
   sx?: SxProps;
+  email?: string;
 }
-const Security: FC<ISecurity> = ({ sx }) => {
+const Security: FC<ISecurity> = ({ sx, email }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const onEdit = () => {
@@ -43,10 +43,10 @@ const Security: FC<ISecurity> = ({ sx }) => {
         <>
           <BoxSecurity sx={{ marginBottom: '12px' }}>
             <TitleData>Електронна пошта:</TitleData>
-            <Data>{dataProfile.email}</Data>
+            <Data>{email}</Data>
           </BoxSecurity>
           <BoxSecurity>
-            <TitleData>Електронна пошта:</TitleData>
+            <TitleData>Пароль:</TitleData>
             <Data>********</Data>
           </BoxSecurity>{' '}
         </>

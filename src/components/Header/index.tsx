@@ -17,9 +17,14 @@ const Header: FC<IHeader> = ({ isWhite }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { token } = getAuthData();
+  const { token, is_doctor } = getAuthData();
 
   const openProfile = () => {
+    if (is_doctor) {
+      navigate(ROUTES.PROFILE_DOCTOR.PATH);
+      return;
+    }
+
     navigate(ROUTES.PROFILE_USER.PATH);
   };
   const onLogin = () => navigate(ROUTES.LOGIN.PATH);

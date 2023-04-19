@@ -8,10 +8,10 @@ import Conclusion from 'components/view/profile/Conclusion';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
-import { IVisitsComponent } from '../types';
 import { conclusion } from 'components/view/profile/Conclusion/mockData';
+import { IPaginationComponent } from 'types';
 
-const CompletedVisits: FC<IVisitsComponent> = ({
+const CompletedVisits: FC<IPaginationComponent> = ({
   page,
   pageCount,
   handleChangePage,
