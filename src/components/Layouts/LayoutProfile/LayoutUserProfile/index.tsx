@@ -4,7 +4,15 @@ import LayoutProfile from '../index';
 import { ReactComponent as Profile } from 'assets/icons/profile.svg';
 import { ReactComponent as Visit } from 'assets/icons/visits.svg';
 import ROUTES from 'routes/constants';
+import { Navigate } from 'react-router-dom';
+import { getAuthData } from 'config/helpers';
 const LayoutUserProfile = () => {
+  const { token, is_doctor } = getAuthData();
+
+  if (!token || is_doctor) {
+    return <Navigate to={ROUTES.HOME.PATH} />;
+  }
+
   return (
     <LayoutProfile>
       <LinkProfile
