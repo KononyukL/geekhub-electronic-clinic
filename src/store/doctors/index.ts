@@ -1,21 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doctor, doctors, specializations } from './thunks';
 import { RootState } from '../index';
-
-export interface IDoctor {
-  id: number;
-  email: string;
-  profile_image: string;
-  last_name: string;
-  first_name: string;
-  patronim_name: string;
-  specialization: string;
-  price: number;
-  category: string;
-  experience: string;
-  info: string;
-  rating: number;
-}
+import { IDoctor } from '../../routes/pages/Doctor/interfaces';
 
 export interface ISpecialization {
   name: string;
@@ -63,6 +49,9 @@ const initialState: IAuthState = {
     category: '',
     experience: '',
     info: '',
+    education: '',
+    courses: '',
+    procedures_performed: '',
     rating: 0
   },
   specializations: {

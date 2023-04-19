@@ -2,18 +2,14 @@ import React, { FC } from 'react';
 import AboutDoctor from 'components/AboutDoctor';
 import DetailAndFeedbacks from '../DetailsAndFeedbacks';
 import { Container, Wrapper } from './styled';
-import { IDoctor } from '../../../../store/doctors';
+import { IDoctorProps } from '../interfaces';
 
-type TDoctorProfileCard = {
-  currentDoctor: IDoctor;
-};
-
-const DoctorProfileCard: FC<TDoctorProfileCard> = ({ currentDoctor }) => {
+const DoctorProfileCard: FC<IDoctorProps> = ({ currentDoctor }) => {
   return (
     <Container>
       <Wrapper>
-        <AboutDoctor doctor={currentDoctor} />
-        <DetailAndFeedbacks />
+        <AboutDoctor currentDoctor={currentDoctor} />
+        <DetailAndFeedbacks currentDoctor={currentDoctor} />
       </Wrapper>
     </Container>
   );

@@ -1,19 +1,14 @@
 import React, { FC } from 'react';
 import { Box } from '@mui/material';
-import { IDoctor } from '../typesAndInterfaces';
 import { Wrapper } from './styled';
 import DoctorInfo from '../DoctorInfo';
 import { Pagination } from 'components';
 import { usePagination } from 'hooks/usePagination';
-
-interface SelectedDoctor {
-  selectedDoctors: IDoctor[];
-  flagPagination: boolean;
-}
+import { ISelectedDoctor } from '../interfaces';
 
 const ITEMS_PER_PAGE = 3;
 
-const SelectedDoctorsList: FC<SelectedDoctor> = ({ selectedDoctors, flagPagination }) => {
+const SelectedDoctorsList: FC<ISelectedDoctor> = ({ selectedDoctors, flagPagination }) => {
   const { page, pageCount, handleChangePage } = usePagination({
     clearPagination: flagPagination,
     itemsCount: selectedDoctors.length,
@@ -28,7 +23,7 @@ const SelectedDoctorsList: FC<SelectedDoctor> = ({ selectedDoctors, flagPaginati
       <Wrapper>
         {selectedDoctors.length > 0 &&
           currentDoctors().map((doctor, index) => (
-            <DoctorInfo key={doctor.id} doctor={doctor} index={index} />
+            <DoctorInfo key={doctor.id} currentDoctor={doctor} index={index} />
           ))}
       </Wrapper>
       {selectedDoctors.length >= 3 && (

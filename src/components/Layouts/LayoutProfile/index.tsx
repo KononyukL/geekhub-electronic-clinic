@@ -4,7 +4,6 @@ import { Breadcrumbs, Link as MUILink, Typography } from '@mui/material';
 import { ReactComponent as Square } from 'assets/icons/square.svg';
 import { useTranslation } from 'react-i18next';
 import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button } from './styled';
-
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
 import { useAppDispatch } from 'store/hooks';
 import { logout } from 'store/auth';
@@ -12,6 +11,7 @@ import { logout } from 'store/auth';
 interface ILayoutProfile {
   children: ReactNode;
 }
+
 const LayoutProfile: FC<ILayoutProfile> = ({ children }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();

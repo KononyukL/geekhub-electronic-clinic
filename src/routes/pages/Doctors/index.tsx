@@ -6,23 +6,23 @@ import DoctorsBreadcrumbs from './DoctorsBreadcrumbs';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
-import { IDoctor } from './typesAndInterfaces';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
+import { IDoctor } from '../Doctor/interfaces';
 
 const Doctors: FC = () => {
   const dispatch = useAppDispatch();
   const { doctors: allDoctors, specializations: selectSpecializations } =
     useAppSelector(selectDoctors);
   const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
-  const [activeButtonIndex, setActiveButtonIndex] = useState(0);
-  const [flagPagination, setFlagPagination] = useState(false);
+  const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
+  const [flagPagination, setFlagPagination] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(doctors());
     dispatch(specializations());
   }, []);
 
-  const handleFilterDoctors = (specialty: any, index: number) => {
+  const handleFilterDoctors = (specialty: string, index: number) => {
     const filteredDoctors =
       allDoctors &&
       allDoctors.results?.filter((doctor: IDoctor) => specialty === doctor.specialization);

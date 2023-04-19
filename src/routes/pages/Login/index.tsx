@@ -6,24 +6,22 @@ import {
   StyledForm,
   InputWrapper,
   Logo,
-  Title,
-  WrapperCheckbox,
-  Text
+  Title
 } from 'components/FormFields/styled';
-import { ButtonSubmit } from 'components/FormFields/styled';
-import { StyledInput } from 'components/FormFields/styled';
-import IMGLogo from 'assets/icons/logo.svg';
-import { useForm } from 'react-hook-form';
-import { Checkbox } from '@mui/material';
-import FooterForm from './FooterForm';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { ButtonSubmit } from 'components/FormFields/styled';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { selectAuth } from 'store/auth';
-import { login } from 'store/auth/thunks';
-import { Navigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
+import IMGLogo from 'assets/icons/logo.svg';
+import { Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { login } from 'store/auth/thunks';
+import { selectAuth } from 'store/auth';
+import FooterForm from './FooterForm';
 import ROUTES from '../../constants';
+import Password from './Password';
+import { RootState } from 'store';
+import Email from './Email';
 
 interface IFormLoginInput {
   email: string;
@@ -34,23 +32,20 @@ const Login: FC = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid, isSubmitting }
   } = useForm<any>({
     mode: 'onBlur',
     defaultValues: {
-      email: '',
-      password: ''
+      email: localStorage.getItem('rememberEmail') || null,
+      password: localStorage.getItem('rememberPassword') || null
     }
   });
+
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
 
   const onSubmit = async (data: IFormLoginInput) => {
     dispatch(login({ email: data.email, password: data.password }));
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(currenLogin);
-    reset();
   };
 
   const { token } = getAuthData();
@@ -69,33 +64,11 @@ const Login: FC = () => {
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
-              <StyledInput
-                style={errors.email && { border: '1px solid red' }}
-                placeholder="Електронна адреса"
-                name="email"
-                register={register}
-                registerOptions={{
-                  required: true
-                }}
-              />
+              <Email register={register} errors={errors} />
             </InputWrapper>
             <InputWrapper>
-              <StyledInput
-                style={errors.password && { border: '1px solid red' }}
-                placeholder="Пароль"
-                name="password"
-                register={register}
-                registerOptions={{
-                  required: true,
-                  minLength: 6
-                }}
-              />
-              {/*  Якщо повернеться не 202, то вивести помилку, що мило або пароль невірні */}
+              <Password register={register} errors={errors} currenLogin={currenLogin} />
             </InputWrapper>
-            <WrapperCheckbox>
-              <Checkbox color="secondary" />
-              <Text>Запам'ятати мене</Text>
-            </WrapperCheckbox>
             <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
               Увійти
             </ButtonSubmit>

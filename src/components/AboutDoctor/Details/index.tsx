@@ -1,35 +1,31 @@
 import React, { FC } from 'react';
 import { Block, Container, CurrentInfo, ServiceInfo, Img } from './styled';
-import { IDoctor } from 'routes/pages/Doctors/typesAndInterfaces';
 import IMGExperience from 'assets/icons/Experience.svg';
 import IMGReception from 'assets/icons/Reception.svg';
 import IMGCategory from 'assets/icons/Category.svg';
+import { IDoctorProps } from 'routes/pages/Doctor/interfaces';
 
-interface IDoctorDetails {
-  doctor: IDoctor;
-}
-
-const DoctorDetails: FC<IDoctorDetails> = ({ doctor }) => {
+const DoctorDetails: FC<IDoctorProps> = ({ currentDoctor }) => {
   return (
     <Container>
       <Block>
         <CurrentInfo>
-          <Img src={IMGExperience} alt="Experience" title="Experience"></Img>
+          <Img src={IMGExperience} alt="Experience" title="Experience" />
           Стаж:
         </CurrentInfo>
         <CurrentInfo>
-          <Img src={IMGCategory} alt="Category" title="Category"></Img>
+          <Img src={IMGCategory} alt="Category" title="Category" />
           Категорія:
         </CurrentInfo>
         <CurrentInfo>
-          <Img src={IMGReception} alt="Reception" title="Reception"></Img>
+          <Img src={IMGReception} alt="Price" title="Price" />
           Прийом:
         </CurrentInfo>
       </Block>
       <Block>
-        <ServiceInfo>{doctor.experience}</ServiceInfo>
-        <ServiceInfo>{doctor.category}</ServiceInfo>
-        <ServiceInfo>{doctor.price} грн</ServiceInfo>
+        <ServiceInfo>{currentDoctor.experience}</ServiceInfo>
+        <ServiceInfo>{currentDoctor.category}</ServiceInfo>
+        <ServiceInfo>{currentDoctor.price} грн</ServiceInfo>
       </Block>
     </Container>
   );

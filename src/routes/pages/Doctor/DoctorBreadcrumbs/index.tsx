@@ -1,12 +1,8 @@
 import React, { FC } from 'react';
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from '@mui/material';
-import { IDoctor } from 'store/doctors';
+import { IDoctorProps } from '../interfaces';
 
-type TDoctorBreadcrumbs = {
-  currentDoctor: IDoctor;
-};
-
-const DoctorBreadcrumbs: FC<TDoctorBreadcrumbs> = ({ currentDoctor }) => {
+const DoctorBreadcrumbs: FC<IDoctorProps> = ({ currentDoctor }) => {
   return (
     <MUIBreadcrumbs aria-label="breadcrumb" separator="▪">
       <Link underline="hover" color="inherit" href="/">

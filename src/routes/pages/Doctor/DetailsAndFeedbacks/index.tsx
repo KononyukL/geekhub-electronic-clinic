@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import DetailsDoctor from './DetailsDoctor';
 import FeedbacksDoctor from './FeedbacksDoctor';
 import { AboutDoctor, Container, Wrapper } from './styled';
+import { IDoctorProps } from '../interfaces';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -37,7 +38,7 @@ function a11yProps(index: number) {
   };
 }
 
-const DetailAndFeedbacks: FC = () => {
+const DetailAndFeedbacks: FC<IDoctorProps> = ({ currentDoctor }) => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -67,7 +68,7 @@ const DetailAndFeedbacks: FC = () => {
         </AboutDoctor>
       </Wrapper>
       <TabPanel value={value} index={0}>
-        <DetailsDoctor />
+        <DetailsDoctor currentDoctor={currentDoctor} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <FeedbacksDoctor />

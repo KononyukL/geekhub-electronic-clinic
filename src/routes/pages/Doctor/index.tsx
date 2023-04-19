@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {FC, useEffect} from 'react';
 import { Wrapper, ProfileDoctor, WrapperWorkingHours, Container } from './styled';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
@@ -10,7 +10,7 @@ import { clearAllData, selectDoctors } from 'store/doctors';
 import { useParams } from 'react-router-dom';
 import { RootState } from 'store';
 
-const Doctor = () => {
+const Doctor: FC = () => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const { doctor: currentDoctor } = useAppSelector(selectDoctors);
   const { doctorId } = useParams();
