@@ -10,27 +10,31 @@ import {
   WrapperCheckbox,
   Text
 } from 'components/FormFields/styled';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { ButtonSubmit } from 'components/FormFields/styled';
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { IFormLoginInput } from './interfaces';
 import IMGLogo from 'assets/icons/logo.svg';
-import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { login } from 'store/auth/thunks';
 import { Checkbox } from '@mui/material';
-import { selectAuth } from 'store/auth';
 import FooterForm from './FooterForm';
-import Password from './Password';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { RootState } from 'store';
-import { TOKEN } from 'config';
+import { selectAuth } from 'store/auth';
+import { login } from 'store/auth/thunks';
+import { Navigate } from 'react-router-dom';
+import { getAuthData } from 'config/helpers';
+import ROUTES from '../../constants';
 import Email from './Email';
+import Password from './Password';
+
+interface IFormLoginInput {
+  email: string;
+  password: string;
+}
 
 const Login: FC = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid, isSubmitting }
   } = useForm<any>({
     mode: 'onBlur',
@@ -41,15 +45,15 @@ const Login: FC = () => {
   });
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
-  const token = localStorage.getItem(TOKEN);
 
   const onSubmit = async (data: IFormLoginInput) => {
     dispatch(login({ email: data.email, password: data.password }));
-    reset();
   };
 
-  if (token && token.length) {
-    return <Navigate to="/" />;
+  const { token } = getAuthData();
+
+  if (token) {
+    return <Navigate to={ROUTES.HOME.PATH} />;
   }
 
   return (

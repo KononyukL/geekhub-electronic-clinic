@@ -1,15 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authApi } from 'api';
-import { IFormLoginInput } from 'routes/pages/Login/interfaces';
-import { TOKEN } from 'config';
+import { authApi } from '../../api';
+import { AUTH_DATA } from '../../config';
+
+interface IAuthLogin {
+  email: string;
+  password: string;
+}
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ email, password }: IFormLoginInput, { rejectWithValue }) => {
+  async ({ email, password }: IAuthLogin, { rejectWithValue }) => {
     try {
       const data = await authApi.login({ email, password });
-      localStorage.setItem(TOKEN, data.token);
-      console.log(data);
+      localStorage.setItem(AUTH_DATA, JSON.stringify(data));
+
       return data;
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');

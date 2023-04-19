@@ -5,7 +5,7 @@ import { ReactComponent as Square } from 'assets/icons/square.svg';
 import { useTranslation } from 'react-i18next';
 import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button } from './styled';
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
-import { TOKEN } from 'config';
+import { AUTH_DATA } from 'config';
 import ROUTES from 'routes/constants';
 
 interface ILayoutProfile {
@@ -17,7 +17,7 @@ const LayoutProfile: FC<ILayoutProfile> = ({ children }) => {
   const navigate = useNavigate();
 
   const onLogout = () => {
-    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(AUTH_DATA);
     navigate(ROUTES.HOME.PATH);
   };
 
