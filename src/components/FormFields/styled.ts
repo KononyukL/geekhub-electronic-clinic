@@ -115,16 +115,7 @@ export const ImgSwitcher = styled('img')(() => {
   };
 });
 
-export const WrapperCheckbox = styled(Box)(({ theme }) => {
-  return {
-    color: theme.palette.text.primary,
-    paddingTop: 24,
 
-    '& .css-1ifdg01-MuiButtonBase-root-MuiCheckbox-root': {
-      padding: 0
-    }
-  };
-});
 
 export const Text = styled('span')(() => {
   return {
