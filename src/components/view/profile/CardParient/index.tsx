@@ -5,17 +5,18 @@ import DataCardPatient from './DataCardPatient';
 import ProfileTabs from '../ProfileTabs';
 import { PATIENT_CARD_CONFIG } from './config';
 import { useSearchParams } from 'react-router-dom';
-import { usePagination } from '../../../../hooks/usePagination';
 import { Box, SelectChangeEvent } from '@mui/material';
-import { Select } from '../../../../routes/pages/UserProfile/Visits/styled';
+import { Select } from 'routes/pages/UserProfile/Visits/styled';
 import MenuItem from '@mui/material/MenuItem';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { selectDoctors } from '../../../../store/doctors';
-import { specializations } from '../../../../store/doctors/thunks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { selectDoctors } from 'store/doctors';
+import { specializations } from 'store/doctors/thunks';
+import { usePagination } from 'hooks/usePagination';
 
+export const CARD_PER_PAGE = 6;
 const CardPatient = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [itemsCount, setItemsCount] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');
@@ -28,13 +29,13 @@ const CardPatient = () => {
   const dispatch = useAppDispatch();
   const { specializations: selectSpecializations } = useAppSelector(selectDoctors);
 
-  useEffect(() => {
-    dispatch(specializations());
-  }, []);
-
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
     itemsCount
   });
+
+  useEffect(() => {
+    dispatch(specializations());
+  }, []);
 
   const onSetItemsCount = useCallback((count: number) => {
     setItemsCount(count);
@@ -53,7 +54,9 @@ const CardPatient = () => {
     setSearchParams(searchParams);
     resetPagination();
   };
+
   const Component = PATIENT_CARD_CONFIG[tab].component;
+
   return (
     <Container>
       <PatientInfo>
@@ -71,20 +74,22 @@ const CardPatient = () => {
       <Box>
         <DataCardPatient />
         <ProfileTabs value={tab} onChange={handleTabChange} tabsList={PATIENT_CARD_CONFIG}>
-          <Select defaultValue="all" onChange={handleSelectChange}>
-            <MenuItem value="all">{'Всі лікарі'}</MenuItem>
-            {selectSpecializations.results.map((el, i) => (
-              <MenuItem key={i} value={el.name}>
-                {el.name}
-              </MenuItem>
-            ))}
-          </Select>
+          {tab === 0 && (
+            <Select value={specialist} onChange={handleSelectChange}>
+              <MenuItem value="all">{'Всі лікарі'}</MenuItem>
+              {selectSpecializations.results.map((el, i) => (
+                <MenuItem key={i} value={el.name}>
+                  {el.name}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
         </ProfileTabs>
         <Component
-        // onSetItemsCount={onSetItemsCount}
-        // page={page}
-        // pageCount={pageCount}
-        // handleChangePage={handleChangePage}
+          onSetItemsCount={onSetItemsCount}
+          page={page}
+          pageCount={pageCount}
+          handleChangePage={handleChangePage}
         />
       </Box>
     </Container>

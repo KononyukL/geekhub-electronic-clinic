@@ -2,13 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { BoxInfo, Button, Container } from './styled';
 import { PatientActive } from './mockData';
 import PatientCard from '../PatientCard';
-import { IPatientComponent } from '../../types';
 import { Pagination } from 'components';
 import { PATIENT_PER_PAGE } from '../index';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from 'routes/constants';
+import { IPaginationComponent } from 'types';
 
-const ActivePatient: FC<IPatientComponent> = ({
+const ActivePatient: FC<IPaginationComponent> = ({
   pageCount,
   page,
   onSetItemsCount,

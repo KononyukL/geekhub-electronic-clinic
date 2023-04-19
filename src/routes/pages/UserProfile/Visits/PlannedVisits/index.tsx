@@ -7,9 +7,9 @@ import { Box, BoxInfo, Button } from './styled';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
-import { IVisitsComponent } from '../types';
+import { IPaginationComponent } from 'types';
 
-const PlannedVisits: FC<IVisitsComponent> = ({
+const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
   page,
   onSetItemsCount,

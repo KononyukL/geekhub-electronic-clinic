@@ -2,14 +2,14 @@ import React, { FC, useEffect } from 'react';
 import { BoxInfo, Container } from '../ActivePatient/styled';
 import { PatientActive } from '../ActivePatient/mockData';
 import PatientCard from '../PatientCard';
-import { IPatientComponent } from '../../types';
 import { PATIENT_PER_PAGE } from '../index';
 import { Pagination } from 'components';
 import { ReactComponent as Cross } from 'assets/icons/cross.svg';
 import { ReactComponent as Tick } from 'assets/icons/tick.svg';
 import { Box, IconButton } from '@mui/material';
+import { IPaginationComponent } from 'types';
 
-const QueriesPatient: FC<IPatientComponent> = ({
+const QueriesPatient: FC<IPaginationComponent> = ({
   pageCount,
   page,
   onSetItemsCount,

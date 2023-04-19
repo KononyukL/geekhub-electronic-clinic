@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authApi } from '../../api';
-import { AUTH_DATA } from '../../config';
+import { authApi } from 'api';
+import { TOKEN } from 'config';
 
 interface IAuthLogin {
   email: string;
@@ -12,7 +12,7 @@ export const login = createAsyncThunk(
   async ({ email, password }: IAuthLogin, { rejectWithValue }) => {
     try {
       const data = await authApi.login({ email, password });
-      localStorage.setItem(AUTH_DATA, JSON.stringify(data));
+      localStorage.setItem(TOKEN, JSON.stringify(data));
 
       return data;
     } catch (e: any) {
