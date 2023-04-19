@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import {
   Container,
   Wrapper,
@@ -10,21 +10,21 @@ import {
   WrapperCheckbox,
   Text
 } from 'components/FormFields/styled';
-import { ButtonSubmit } from 'components/FormFields/styled';
-import IMGLogo from 'assets/icons/logo.svg';
-import { useForm } from 'react-hook-form';
-import { Checkbox } from '@mui/material';
-import FooterForm from './FooterForm';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { ButtonSubmit } from 'components/FormFields/styled';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { selectAuth } from 'store/auth';
-import { login } from 'store/auth/thunks';
-import { Navigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
+import IMGLogo from 'assets/icons/logo.svg';
+import { Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { login } from 'store/auth/thunks';
+import { Checkbox } from '@mui/material';
+import { selectAuth } from 'store/auth';
+import FooterForm from './FooterForm';
 import ROUTES from '../../constants';
-import Email from './Email';
 import Password from './Password';
+import { RootState } from 'store';
+import Email from './Email';
 
 interface IFormLoginInput {
   email: string;
@@ -39,15 +39,38 @@ const Login: FC = () => {
   } = useForm<any>({
     mode: 'onBlur',
     defaultValues: {
-      email: '',
-      password: ''
+      email: localStorage.getItem('rememberEmail') || null,
+      password: localStorage.getItem('rememberPassword') || null
     }
   });
+  const [rememberUser, setRememberUser] = useState<boolean>(false);
+
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
 
-  const onSubmit = async (data: IFormLoginInput) => {
+  useEffect(() => {
+    const rememberEmail = localStorage.getItem('rememberEmail');
+    const rememberPassword = localStorage.getItem('rememberPassword');
+
+    if (rememberEmail && rememberPassword) {
+      setRememberUser(true);
+    }
+  }, [register]);
+
+  const onSubmit = async (data: IFormLoginInput, rememberUser: boolean) => {
     dispatch(login({ email: data.email, password: data.password }));
+
+    if (rememberUser) {
+      localStorage.setItem('rememberEmail', data.email);
+      localStorage.setItem('rememberPassword', data.password);
+    } else {
+      localStorage.removeItem('rememberEmail');
+      localStorage.removeItem('rememberPassword');
+    }
+  };
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRememberUser(event.target.checked);
   };
 
   const { token } = getAuthData();
@@ -64,7 +87,7 @@ const Login: FC = () => {
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
             Вхід
           </Title>
-          <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <StyledForm onSubmit={handleSubmit((data) => onSubmit(data, rememberUser))}>
             <InputWrapper>
               <Email register={register} errors={errors} />
             </InputWrapper>
@@ -72,7 +95,7 @@ const Login: FC = () => {
               <Password register={register} errors={errors} currenLogin={currenLogin} />
             </InputWrapper>
             <WrapperCheckbox>
-              <Checkbox color="secondary" />
+              <Checkbox color="secondary" checked={rememberUser} onChange={handleCheckboxChange} />
               <Text>Запам'ятати мене</Text>
             </WrapperCheckbox>
             <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>

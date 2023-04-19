@@ -11,7 +11,8 @@ interface IPhoneNumberField extends React.InputHTMLAttributes<any> {
 }
 
 const Password: FC<IPhoneNumberField> = ({ register, errors, currenLogin }) => {
-  const [iconPassword, setIconPassword] = useState(true);
+  const [iconPassword, setIconPassword] = useState(false);
+
   const handleSwitchIconPassword = () => setIconPassword(!iconPassword);
 
   return (
