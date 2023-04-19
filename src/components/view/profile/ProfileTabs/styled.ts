@@ -5,7 +5,6 @@ export const StyledBox = styled(MUIBox)(() => {
   return {
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    // padding: '24px',
     columnGap: '50px'
   };
 });
