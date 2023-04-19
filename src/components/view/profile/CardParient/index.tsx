@@ -77,7 +77,7 @@ const CardPatient = () => {
           {tab === 0 && (
             <Select value={specialist} onChange={handleSelectChange}>
               <MenuItem value="all">{'Всі лікарі'}</MenuItem>
-              {selectSpecializations.results.map((el, i) => (
+              {selectSpecializations?.results?.map((el, i) => (
                 <MenuItem key={i} value={el.name}>
                   {el.name}
                 </MenuItem>
