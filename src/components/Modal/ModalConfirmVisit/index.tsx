@@ -16,7 +16,7 @@ import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { newAppointment } from 'store/appointments';
 import { useNavigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'store/hooks';
 import ROUTES from 'routes/constants';
 import { RootState } from 'store';
 import { Modal } from './styled';
@@ -36,7 +36,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
   bookVisit,
   doctor_id
 }) => {
-  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
+  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
   const [thankForBook, setThankForBook] = useState(true);
 
   const { token } = getAuthData();

@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { newAppointment } from './thunks';
 import { RootState } from '../index';
 
-interface IAuthState {
+interface IAppointmentState {
   login: Record<string, unknown>;
   isLoading: boolean;
   error: Error | string;
 }
 
-const initialState: IAuthState = {
+const initialState: IAppointmentState = {
   login: {},
   isLoading: false,
   error: ''

@@ -22,7 +22,7 @@ export type TSpecializations = {
   results: ISpecialization[];
 };
 
-interface IAuthState {
+interface IDoctorsState {
   doctors: TDoctorsApiResponse;
   doctor: IDoctor;
   specializations: TSpecializations;
@@ -30,7 +30,7 @@ interface IAuthState {
   error: Error | string;
 }
 
-const initialState: IAuthState = {
+const initialState: IDoctorsState = {
   doctors: {
     count: 0,
     next: '',
