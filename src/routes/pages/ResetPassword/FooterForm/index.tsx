@@ -1,18 +1,18 @@
 import React from 'react';
 import { Container, Link, Login, Wrapper } from './styled';
-import { useTranslation } from 'react-i18next';
 import { Typography } from '@mui/material';
 
 const FooterForm = () => {
-  const { t } = useTranslation();
-
   return (
     <Container>
       <Wrapper>
-        <Typography>{t('resetPassword.info')}</Typography>
+        <Typography>
+          Якщо ви не знаходите листа, перевірте папку “спам”. Зверніть увагу, тимчасовий пароль діє
+          протягом 10 хвилин
+        </Typography>
         <Login>
-          <Link to="/login"> {t('resetPassword.back')}</Link>
-          <Link to="/registration"> {t('resetPassword.registration')}</Link>
+          <Link to="/login"> Відновлення пароль</Link>
+          <Link to="/registration"> Зареєструватися</Link>
         </Login>
       </Wrapper>
     </Container>

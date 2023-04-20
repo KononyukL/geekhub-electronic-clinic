@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link, Login, Container, Wrapper } from './styled';
-import { useTranslation } from 'react-i18next';
 
 const FooterForm = () => {
-  const { t } = useTranslation();
 
   return (
     <Container>
       <Wrapper>
-        {t('login.confidenceText')}
-        <Link to="/"> {t('login.privacyPolicy')}</Link>
+        Виконуючи вхід, я підтверджую, що ознайомився та погоджуюсь з
+        <Link to="/"> Політикою конфіденційності</Link>
         <Login>
-          <Link to="/reset-password">{t('login.forgotPassword')}</Link>
-          <Link to="/registration">{t('login.registration')}</Link>
+          <Link to="/reset-password">Забули пароль</Link>
+          <Link to="/registration">Реєстрація</Link>
         </Login>
       </Wrapper>
     </Container>

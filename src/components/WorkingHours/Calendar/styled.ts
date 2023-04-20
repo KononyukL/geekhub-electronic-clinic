@@ -40,8 +40,8 @@ export const DateStyle = styled(Box)(({ theme }) => {
 
 export const Day = styled(Box)(({ theme }) => {
   return {
-    width: 87,
-    fontSize: 16,
+    width: 88,
+    fontSize: 14,
     fontWeight: 400,
     transition: '.3s',
 

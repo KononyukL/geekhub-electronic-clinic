@@ -3,13 +3,15 @@ import auth from './auth';
 import doctors from './doctors';
 import workingHours from './workingHours';
 import profile from './profile';
+import appointments from './appointments';
 
 export const index = configureStore({
   reducer: {
     auth,
     doctors,
     workingHours,
-    profile
+    profile,
+    appointments
   }
 });
 

@@ -3,6 +3,7 @@ import { styled, Box } from '@mui/material';
 export const Container = styled(Box)(() => {
   return {
     maxWidth: 1420,
+    width: '100%',
     margin: '0 auto'
   };
 });

@@ -52,3 +52,10 @@ export const Img = styled('img')(() => {
     verticalAlign: 'text-top'
   };
 });
+
+export const Text = styled(Box)(({theme}) => {
+  return {
+    color: theme.palette.text.secondary,
+    paddingTop: 20,
+  }
+})

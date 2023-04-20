@@ -1,36 +1,29 @@
 import React, { FC } from 'react';
-import { FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form';
+import { IInputFormField } from '../interfaces';
 import { StyledInput } from '../styled';
-import { useTranslation } from 'react-i18next';
 
-interface INameField extends React.InputHTMLAttributes<any> {
-  register: UseFormRegister<FieldValues>;
-  errors: any;
-}
-
-const NameField: FC<INameField> = ({ register, errors }) => {
-  const { t } = useTranslation();
-
+const NameField: FC<IInputFormField> = ({ register, errors }) => {
   return (
     <StyledInput
       style={errors.firstName && { border: '1px solid red' }}
-      placeholder={t('registration.name')}
+      placeholder="Ім'я"
       name="firstName"
       register={register}
       registerOptions={
         {
-          required: `${t('validationErrors.required')}`,
+          required: "Це поле є обов'язковим",
           pattern: {
             value: /^[A-ZА-ЯҐЄІЇ][a-zA-ZА-Яа-яҐєії]*$/,
-            message: `${t('validationErrors.firstName.firstBigLatter')}`
+            message: 'Перша буква має бути великою. Цифри та спеціальні символи не допускаються'
           },
           minLength: {
             value: 3,
-            message: `${t('validationErrors.firstName.minLength')}`
+            message: 'Мінімальна кількість символів - 3'
           },
           maxLength: {
             value: 255,
-            message: `${t('validationErrors.firstName.maxLength')}`
+            message: 'Максимальна кількість символів - 255'
           }
         } as RegisterOptions
       }
