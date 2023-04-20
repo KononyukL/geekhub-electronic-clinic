@@ -31,7 +31,6 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
-
   }
 });
 
