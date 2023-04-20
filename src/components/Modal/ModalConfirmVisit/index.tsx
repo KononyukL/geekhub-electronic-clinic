@@ -57,7 +57,6 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
       navigate(ROUTES.LOGIN.PATH);
     }
     dispatch(newAppointment({ doctor_id: doctor_id, date: currentDate, time: bookVisit }));
-    navigate(ROUTES.HOME.PATH);
   };
 
   return (

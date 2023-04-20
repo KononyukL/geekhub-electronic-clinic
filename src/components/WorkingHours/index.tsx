@@ -3,10 +3,10 @@ import { Wrapper, TimeButton, SwitcherButton, Img } from './styled';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { workingHours } from 'store/workingHours/thunks';
 import { selectWorkingHours } from 'store/workingHours';
+import { ModalConfirmVisit } from 'components/Modal';
+import IGMShowMore from 'assets/icons/ShowMore.svg';
 import { useAppSelector } from 'store/hooks';
 import IGMHide from 'assets/icons/Hide.svg';
-import IGMShowMore from 'assets/icons/ShowMore.svg';
-import { ModalConfirmVisit } from 'components/Modal';
 import { useDispatch } from 'react-redux';
 import Calendar from './Calendar';
 import { RootState } from 'store';
@@ -33,7 +33,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
     if (doctorId && currentDate) {
       dispatch(workingHours({ doctor_id: doctorId, date: currentDate }));
     }
-  }, [doctorId, currentDate, dispatch]);
+  }, [currentDate, dispatch]);
 
   useEffect(() => {
     if (showAllHours) {
@@ -61,12 +61,10 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
   const updateCurrentDate = (date: string) => {
     setCurrentDate(date);
 
-    // console.log('Обрана дата та id лікаря: ', currentDate, doctorId);
   };
 
   const handleBookingData = (time: string) => {
     setBookVisit(time);
-
     console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
   };
 
