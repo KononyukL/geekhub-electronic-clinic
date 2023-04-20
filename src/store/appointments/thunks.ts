@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { appointmentsApi } from '../../api';
 
 interface INewAppointment {
-  doctor_id: string | undefined,
+  doctor_id: string | undefined | number,
   date: string,
   time: string
 }

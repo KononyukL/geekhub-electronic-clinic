@@ -13,7 +13,6 @@ import IMGLogo from 'assets/icons/logo.svg';
 import ErrorValidation from 'components/ErrorValidation';
 import FooterForm from './FooterForm';
 import EmailField from 'components/FormFields/EmailField';
-import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
 interface IResetPassword {
@@ -21,7 +20,6 @@ interface IResetPassword {
 }
 
 const ResetPassword: FC = () => {
-  const { t } = useTranslation();
   const [counter, setCounter] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | undefined>(undefined);
@@ -69,7 +67,7 @@ const ResetPassword: FC = () => {
         <WrapperForm>
           <Title>
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
-            {t('resetPassword.resetPassword')}
+            Відновлення пароль
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
@@ -77,7 +75,7 @@ const ResetPassword: FC = () => {
               <ErrorValidation errors={errors.email} />
             </InputWrapper>
             <ButtonSubmit type="submit" disabled={isDisabled || !isValid || isSubmitting}>
-              {isDisabled ? `${t('resetPassword.repeat')} ${counter}` : t('resetPassword.send')}
+              {isDisabled ? `Повторити через ${counter}` : 'Відправити новий пароль'}
             </ButtonSubmit>
             <FooterForm />
           </StyledForm>

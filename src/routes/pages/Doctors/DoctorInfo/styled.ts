@@ -30,7 +30,6 @@ export const Wrapper = styled(Box)(() => {
 
 export const Typography = styled(MUITypography)(() => {
   return {
-    // width: 608,
     fontSize: 16,
     color: theme.palette.text.primary,
     marginBottom: 10

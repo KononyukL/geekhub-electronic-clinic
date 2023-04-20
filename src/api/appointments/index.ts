@@ -1,7 +1,7 @@
 import { axiosInstance } from '../config';
 
 interface INewAppointment {
-  doctor_id: string | undefined,
+  doctor_id: string | undefined | number,
   date: string,
   time: string
 }

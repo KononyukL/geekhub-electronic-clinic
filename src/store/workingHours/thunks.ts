@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { workingHoursApi } from '../../api';
 
 interface IWorkingHoursArgs {
-  doctor_id: string | undefined;
+  doctor_id: string | undefined | number;
   date: string;
 }
 

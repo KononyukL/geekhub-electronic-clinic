@@ -1,27 +1,19 @@
 import React, { FC } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { StyledInput } from '../styled';
-import { useTranslation } from 'react-i18next';
+import { IInputFormField } from '../interfaces';
 
-interface IEmailField extends React.InputHTMLAttributes<any> {
-  register: UseFormRegister<FieldValues>;
-  errors: any;
-}
-
-const EmailField: FC<IEmailField> = ({ register, errors }) => {
-  const { t } = useTranslation();
-
+const EmailField: FC<IInputFormField> = ({ register, errors }) => {
   return (
     <StyledInput
       style={errors.email && { border: '1px solid red' }}
-      placeholder={t('registration.email')}
+      placeholder="Електронна адреса"
       name="email"
       register={register}
       registerOptions={{
-        required: `${t('validationErrors.required')}`,
+        required: "Це поле є обов'язковим",
         pattern: {
           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-          message: `${t('validationErrors.email')}`
+          message: 'Невірний формат пошти. Приклад: Standart@gmail.com'
         }
       }}
     />

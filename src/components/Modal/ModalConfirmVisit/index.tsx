@@ -12,22 +12,21 @@ import {
   HomeButton
 } from './styled';
 
-import { Modal } from './styled';
-import { useTranslation } from 'react-i18next';
-import { newAppointment } from 'store/appointments';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { RootState } from 'store';
-import { useDispatch } from 'react-redux';
+import { newAppointment } from 'store/appointments';
 import { useNavigate } from 'react-router-dom';
-import ROUTES from 'routes/constants';
 import { getAuthData } from 'config/helpers';
+import { useDispatch } from 'react-redux';
+import ROUTES from 'routes/constants';
+import { RootState } from 'store';
+import { Modal } from './styled';
 
 type IModalConfirmVisit = {
   open: boolean;
   handleClose: () => void;
   currentDate: string;
   bookVisit: string;
-  doctor_id: string | undefined;
+  doctor_id: string | undefined | number;
 };
 
 const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
@@ -38,7 +37,6 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
   doctor_id
 }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
-  const { t } = useTranslation();
   const [thankForBook, setThankForBook] = useState(true);
 
   const { token } = getAuthData();
@@ -68,11 +66,9 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <WrapperConfirm>
-            <TitleConfirm id="modal-modal-title">
-              {t('doctors.modalDoctors.confirm.title')}
-            </TitleConfirm>
+            <TitleConfirm id="modal-modal-title">Підтвердити запис?</TitleConfirm>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
-              {t('doctors.modalDoctors.confirm.text')}
+              Обрана дата:
               <Date>
                 {currentDate} ,{bookVisit}
               </Date>
@@ -83,28 +79,25 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
                   postVisit();
                   handleBookingVisit();
                 }}>
-                {t('buttons.yes')}
+                Так
               </ConfirmButton>
-              <CanselButton onClick={handleClose}>{t('buttons.no')}</CanselButton>
+              <CanselButton onClick={handleClose}>Ні</CanselButton>
             </WrapperButtons>
           </WrapperConfirm>
         </Modal>
       ) : (
         <Modal
           open={open}
-          onClose={() => {
-            handleClose();
-            postVisit();
-          }}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Wrapper>
-            <Title id="modal-modal-title">{t('doctors.modalDoctors.cansel.title')}</Title>
+            <Title id="modal-modal-title">Дякуємо за запис на прийом!</Title>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
               <Date>
                 {currentDate}, {bookVisit}
               </Date>
-              {t('doctors.modalDoctors.cansel.text')}
+              Якщо у Вас є додаткові питання, Вам потрібно змінити час, або відмінити прийом,
+              будь-ласка, зв’яжіться з нами за номером:
               <Date>+38 (067) 20 20 773</Date>
             </Typography>
             <WrapperButtons>
@@ -114,7 +107,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
                   handleClose();
                   postVisit();
                 }}>
-                {t('buttons.button')}
+                Повернутись на головну
               </HomeButton>
             </WrapperButtons>
           </Wrapper>
