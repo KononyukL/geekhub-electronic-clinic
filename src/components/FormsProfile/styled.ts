@@ -4,7 +4,8 @@ import {
   outlinedInputClasses,
   Select,
   styled,
-  Button as MUIButton
+  Button as MUIButton,
+  TextField
 } from '@mui/material';
 import Input from '../Input';
 
@@ -56,3 +57,21 @@ export const Button = styled(MUIButton)(() => {
     padding: '14px 0'
   };
 });
+
+export const StyledTextField = styled(TextField)`
+  width: 100%;
+
+  .${inputBaseClasses.input} {
+    font-size: 16px;
+  }
+
+  .${outlinedInputClasses.notchedOutline} {
+    border: 1px solid black !important;
+    border-radius: 0;
+  }
+
+  .${outlinedInputClasses.root} {
+    border-radius: 0;
+    padding: 6px;
+  }
+`;

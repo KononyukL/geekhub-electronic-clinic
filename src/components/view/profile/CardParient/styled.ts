@@ -11,9 +11,10 @@ export const Container = styled(Box)(({ theme }) => {
   };
 });
 
-export const PatientInfo = styled(Box)(() => {
+export const PatientInfo = styled(Box)(({ theme }) => {
   return {
-    paddingBottom: '24px'
+    paddingBottom: '24px',
+    borderBottom: `1px solid ${theme.palette.background.default}`
   };
 });
 export const BoxInfo = styled(Box)(() => {

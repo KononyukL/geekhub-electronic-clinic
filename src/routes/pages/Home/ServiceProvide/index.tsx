@@ -1,6 +1,5 @@
 import React from 'react';
 import { BoxCard, BoxInfo, Container, FirstTitle, LastTitle, Text } from './styled';
-import { useTranslation } from 'react-i18next';
 import { ReactComponent as Cardiology } from 'assets/icons/cardiology.svg';
 import { ReactComponent as Pulmonology } from 'assets/icons/pulmonology.svg';
 import { ReactComponent as Neurology } from 'assets/icons/neurology.svg';
@@ -10,44 +9,47 @@ import { ReactComponent as Gastroenterology } from 'assets/icons/gastroenterolog
 import CardInfo from '../CardInfo';
 
 const ServiceProvide = () => {
-  const { t } = useTranslation();
   return (
     <Container>
       <BoxInfo>
-        <FirstTitle>{t('home.serviceProvide.firstTitle')}</FirstTitle>
-        <LastTitle>{t('home.serviceProvide.lastTitle')}</LastTitle>
-        <Text>{t('home.serviceProvide.text')}</Text>
+        <FirstTitle>ЧИМ МИ ЗАЙМАЄМОСЬ</FirstTitle>
+        <LastTitle>Сервіс що ми надаємо</LastTitle>
+        <Text>
+          Ми вкладаємо свої знання і досвід, щоб забезпечити оптимальне лікування кожному пацієнту.
+          Ми працюємо, щоб підтримати Ваше здоров'я та допомогти Вам повернутися до повноцінного
+          життя.
+        </Text>
       </BoxInfo>
       <BoxCard>
         <CardInfo
           image={<Cardiology />}
-          title={t('home.cardInfo.title.cardiology')}
-          text={t('home.cardInfo.text.doctor')}
+          title="Кардіологія"
+          text="Ми постійно вдосконалюємо свої знання та навички, щоб забезпечити найкраще лікування для наших пацієнтів."
         />
         <CardInfo
           image={<Pulmonology />}
-          title={t('home.cardInfo.title.pulmonology')}
-          text={t('home.cardInfo.text.equipment')}
+          title="Пульмонологія"
+          text="Ми використовуємо сучасне обладнання та технології для діагностики та лікування різноманітних захворювань"
         />
         <CardInfo
           image={<Neurology />}
-          title={t('home.cardInfo.title.neurology')}
-          text={t('home.cardInfo.text.approach')}
+          title="Нейрологія"
+          text="Наша команда не просто лікує, ми створюємо атмосферу довіри та підтримки, щоб Ви відчували себе комфортно."
         />
         <CardInfo
           image={<Therapy />}
-          title={t('home.cardInfo.title.therapy')}
-          text={t('home.cardInfo.text.doctor')}
+          title="Терапія"
+          text="Ми постійно вдосконалюємо свої знання та навички, щоб забезпечити найкраще лікування для наших пацієнтів"
         />
         <CardInfo
           image={<Dermatology />}
-          title={t('home.cardInfo.title.dermatology')}
-          text={t('home.cardInfo.text.equipment')}
+          title="Дерматологія"
+          text="Ми використовуємо сучасне обладнання та технології для діагностики та лікування різноманітних захворювань"
         />
         <CardInfo
           image={<Gastroenterology />}
-          title={t('home.cardInfo.title.gastroenterology')}
-          text={t('home.cardInfo.text.approach')}
+          title="Гастроентерологія"
+          text="Наша команда не просто лікує, ми створюємо атмосферу довіри та підтримки, щоб Ви відчували себе комфортно."
         />
       </BoxCard>
     </Container>

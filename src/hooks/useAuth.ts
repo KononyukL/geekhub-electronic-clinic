@@ -3,6 +3,7 @@ import { axiosInstance } from 'api/config';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_DATA } from 'config';
 import ROUTES from 'routes/constants';
+import { toast } from 'react-toastify';
 
 export const useAuth = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const useAuth = () => {
       if (statusCode === 401) {
         localStorage.removeItem(AUTH_DATA);
         navigate(ROUTES.HOME.PATH);
-        console.error(error.message);
+        toast.error(error.message || 'Something went wrong', { toastId: '401' });
       }
 
       return Promise.reject(error);

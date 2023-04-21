@@ -1,15 +1,17 @@
 import React, { FC, useEffect } from 'react';
 import { Accordion, AccordionSummary } from './styled';
 import Visit from '../Visit';
-import { visitCompleted } from './mockData';
 import { AccordionDetails, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Conclusion from 'components/view/profile/Conclusion';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
-import { conclusion } from 'components/view/profile/Conclusion/mockData';
 import { IPaginationComponent } from 'types';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getFinishedVisits, selectVisits } from 'store/visits';
+import { useSearchParams } from 'react-router-dom';
+import { parseDate } from 'config/helpers';
 
 const CompletedVisits: FC<IPaginationComponent> = ({
   page,
@@ -17,35 +19,48 @@ const CompletedVisits: FC<IPaginationComponent> = ({
   handleChangePage,
   onSetItemsCount
 }) => {
-  const currentVisit = visitCompleted.slice((page - 1) * VISITS_PER_PAGE, page * VISITS_PER_PAGE);
+  const [searchParams] = useSearchParams();
+
+  const dispatch = useAppDispatch();
+  const { finishedVisits } = useAppSelector(selectVisits);
 
   useEffect(() => {
-    onSetItemsCount(visitCompleted.length);
-  }, []);
+    if (finishedVisits) {
+      onSetItemsCount(finishedVisits.count);
+    }
+  }, [finishedVisits]);
+
+  useEffect(() => {
+    dispatch(
+      getFinishedVisits({
+        page: searchParams.get('page') || 1
+      })
+    );
+  }, [searchParams]);
 
   return (
     <VisitsContainer>
-      {currentVisit.map((item, i) => (
+      {finishedVisits?.results?.map((item, i) => (
         <Box key={i}>
           <Accordion sx={{ padding: '0 24px' }}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Visit
                 key={i}
-                name={item.name}
-                positionDoctor={item.positionDoctor}
-                date={item.date}
+                name={item.doctor}
+                positionDoctor={item.specialization}
+                date={parseDate(item.date, 'DD.MM.YYYY')}
                 time={item.time}
-                reception={item.reception}
+                reception={'-'}
                 isCompleted
               />
             </AccordionSummary>
             <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
-              <Conclusion data={conclusion} />
+              <Conclusion data={item} />
             </AccordionDetails>
           </Accordion>
         </Box>
       ))}
-      {visitCompleted.length >= VISITS_PER_PAGE && (
+      {finishedVisits && finishedVisits.count >= VISITS_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}
           count={pageCount}

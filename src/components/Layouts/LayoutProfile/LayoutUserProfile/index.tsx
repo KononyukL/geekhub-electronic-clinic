@@ -3,9 +3,11 @@ import { LinkProfile } from '../styled';
 import LayoutProfile from '../index';
 import { ReactComponent as Profile } from 'assets/icons/profile.svg';
 import { ReactComponent as Visit } from 'assets/icons/visits.svg';
+import { ReactComponent as Card } from 'assets/icons/patient-card.svg';
 import ROUTES from 'routes/constants';
 import { Navigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
+
 const LayoutUserProfile = () => {
   const { token, is_doctor } = getAuthData();
 
@@ -25,10 +27,10 @@ const LayoutUserProfile = () => {
         <Visit />
         Мої візити
       </LinkProfile>
-      {/*<LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>*/}
-      {/*  <PatientCard />*/}
-      {/*  {t('userProfile.link.card')}*/}
-      {/*</LinkProfile>*/}
+      <LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>
+        <Card />
+        Картка пацієнта
+      </LinkProfile>
     </LayoutProfile>
   );
 };

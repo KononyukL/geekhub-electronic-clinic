@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { StyledSlider, BoxFeedback, Review, Box, BoxName } from './styled';
 import { feedbacks } from './mockData';
-import { useTranslation } from 'react-i18next';
 import { Avatar, IconButton, Rating, Typography } from '@mui/material';
 import { theme } from 'theme';
 import Slider from 'react-slick';
@@ -19,7 +18,6 @@ const settings = {
 };
 
 const FeedbackSlider = () => {
-  const { t } = useTranslation();
   const ref = useRef<Slider | null>(null);
 
   const onNext = (): void => {
@@ -37,7 +35,7 @@ const FeedbackSlider = () => {
       <StyledSlider ref={ref} {...settings}>
         {feedbacks.map((feedback) => (
           <BoxFeedback key={feedback.id}>
-            <Review>{t(feedback.feedback)}</Review>
+            <Review>{feedback.feedback}</Review>
             <Box>
               <Avatar alt="Remy Sharp" src={feedback.img} />
 

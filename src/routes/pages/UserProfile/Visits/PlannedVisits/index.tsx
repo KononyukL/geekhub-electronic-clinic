@@ -1,13 +1,15 @@
 import Visit from '../Visit';
-import React, { FC, useEffect, useState } from 'react';
-import { visitPlanned } from './mockData';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { ModalProfile } from 'components/Modal';
-import { useTranslation } from 'react-i18next';
 import { Box, BoxInfo, Button } from './styled';
 import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
 import { IPaginationComponent } from 'types';
+import { useSearchParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
+import { IDeleteVisit } from 'api/visits/types';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -16,37 +18,70 @@ const PlannedVisits: FC<IPaginationComponent> = ({
   handleChangePage
 }) => {
   const [openModal, setOpenModal] = useState(false);
-  const { t } = useTranslation();
 
-  const currentVisit = visitPlanned.slice((page - 1) * VISITS_PER_PAGE, page * VISITS_PER_PAGE);
+  const [searchParams] = useSearchParams();
+
+  const dispatch = useAppDispatch();
+  const { plannedVisits } = useAppSelector(selectVisits);
 
   useEffect(() => {
-    onSetItemsCount(visitPlanned.length);
-  }, []);
+    if (plannedVisits) {
+      onSetItemsCount(plannedVisits.count);
+    }
+  }, [plannedVisits]);
+
+  useEffect(() => {
+    dispatch(
+      getPlannedVisits({
+        page: searchParams.get('page') || 1
+      })
+    );
+  }, [searchParams]);
 
   const handleClick = () => {
     setOpenModal(!openModal);
   };
+
+  const deleteVisit = useCallback(
+    (date: IDeleteVisit) => async () => {
+      const { type } = await dispatch(deleteVisits(date));
+      setOpenModal(false);
+
+      if (type.includes('fulfilled')) {
+        dispatch(
+          getPlannedVisits({
+            page: searchParams.get('page') || 1
+          })
+        );
+      }
+    },
+    [searchParams]
+  );
+
   return (
     <VisitsContainer>
-      {currentVisit.map((item, i) => (
+      {plannedVisits?.results?.map((item, i) => (
         <Box key={i}>
           <BoxInfo>
             <Visit
-              name={item.name}
-              positionDoctor={item.positionDoctor}
+              name={item.doctor}
+              positionDoctor={item.specialization}
               date={item.date}
               time={item.time}
-              reception={item.reception}
+              reception={'-'}
             />
             <Button variant="outlined" onClick={handleClick}>
-              {t('buttons.cancel')}
+              Скасувати
             </Button>
-            <ModalProfile open={openModal} setOpen={setOpenModal} />
+            <ModalProfile
+              open={openModal}
+              setOpen={setOpenModal}
+              deleteVisit={deleteVisit({ date: item.date, time: item.time })}
+            />
           </BoxInfo>
         </Box>
       ))}
-      {visitPlanned.length >= VISITS_PER_PAGE && (
+      {plannedVisits && plannedVisits.count > VISITS_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}
           count={pageCount}

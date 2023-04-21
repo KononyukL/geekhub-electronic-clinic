@@ -5,10 +5,10 @@ import { Modal } from '@mui/material';
 interface IModalProfile {
   open: boolean;
   setOpen: (props: boolean) => void;
-  onClick?: () => void;
+  deleteVisit: () => void;
 }
 
-const ModalProfile: FC<IModalProfile> = ({ open, setOpen, onClick }) => {
+const ModalProfile: FC<IModalProfile> = ({ open, setOpen, deleteVisit }) => {
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,7 +22,7 @@ const ModalProfile: FC<IModalProfile> = ({ open, setOpen, onClick }) => {
           назначено візит
         </Text>
         <BoxButton>
-          <Button variant="outlined" color="secondary" onClick={onClick}>
+          <Button variant="outlined" color="secondary" onClick={deleteVisit}>
             Так
           </Button>
           <Button variant="contained" color="secondary" onClick={handleClose}>

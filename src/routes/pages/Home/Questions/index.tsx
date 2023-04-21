@@ -9,59 +9,73 @@ import {
   TypographyQuestion,
   TypographyText
 } from './styled';
-import { useTranslation } from 'react-i18next';
 import { AccordionSummary, AccordionDetails } from '@mui/material';
 import CustomExpandIcon from './CustomExpandIcon';
 
 const Questions = () => {
-  const { t } = useTranslation();
   return (
     <Container id="questions">
       <BoxTitle>
-        <FirstTitle>{t('home.questions.firstTitle')}</FirstTitle>
-        <LastTitle>{t('home.questions.lastTitle')}</LastTitle>
+        <FirstTitle>А ЩО ЯКЩО?</FirstTitle>
+        <LastTitle>Поширені запитання</LastTitle>
       </BoxTitle>
       <BoxAccordion>
         <Accordion>
           <AccordionSummary expandIcon={<CustomExpandIcon />}>
             <TypographyQuestion variant="h3">
-              {t('home.questions.accordion.questions.one')}
+              Як ви гарантуєте конфіденційність моїх медичних даних?
             </TypographyQuestion>
           </AccordionSummary>
           <AccordionDetails>
-            <TypographyText paragraph>{t('home.questions.accordion.text.one')}</TypographyText>
+            <TypographyText paragraph>
+              Ми поважаємо приватність наших пацієнтів та забезпечуємо конфіденційність медичної
+              інформації за допомогою захисних технологій та правильних методів зберігання.
+            </TypographyText>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary expandIcon={<CustomExpandIcon />}>
-            <TypographyQuestion>{t('home.questions.accordion.questions.two')}</TypographyQuestion>
+            <TypographyQuestion>Як записатися на прийом до лікаря?</TypographyQuestion>
           </AccordionSummary>
           <AccordionDetails>
-            <TypographyText paragraph>{t('home.questions.accordion.text.two')}</TypographyText>
+            <TypographyText paragraph>
+              Ви можете зателефонувати в нашу клініку, скористатися онлайн-формою запису на сайті
+              або завітати до нас особисто.
+            </TypographyText>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary expandIcon={<CustomExpandIcon />}>
-            <TypographyQuestion>{t('home.questions.accordion.questions.three')}</TypographyQuestion>
+            <TypographyQuestion>Які види медичних послуг ви надаєте?</TypographyQuestion>
           </AccordionSummary>
           <AccordionDetails>
-            <TypographyText paragraph>{t('home.questions.accordion.text.three')}</TypographyText>
+            <TypographyText paragraph>
+              Наша клініка пропонує широкий спектр медичних послуг, включаючи консультації лікарів
+              різних спеціальностей, лабораторні дослідження, ультразвукові діагностики та інші
+              процедури.{' '}
+            </TypographyText>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary expandIcon={<CustomExpandIcon />}>
-            <TypographyQuestion> {t('home.questions.accordion.questions.four')}</TypographyQuestion>
+            <TypographyQuestion>Які методи оплати ви приймаєте?</TypographyQuestion>
           </AccordionSummary>
           <AccordionDetails>
-            <TypographyText paragraph>{t('home.questions.accordion.text.four')}</TypographyText>
+            <TypographyText paragraph>
+              Ми приймаємо оплату готівкою, банківською картою та електронними коштами. Розрахунок
+              проводиться на ресепшені після прийому у лікаря.
+            </TypographyText>
           </AccordionDetails>
         </Accordion>
         <Accordion>
           <AccordionSummary expandIcon={<CustomExpandIcon />}>
-            <TypographyQuestion> {t('home.questions.accordion.questions.five')}</TypographyQuestion>
+            <TypographyQuestion>Як довго триває прийом у лікаря?</TypographyQuestion>
           </AccordionSummary>
           <AccordionDetails>
-            <TypographyText paragraph>{t('home.questions.accordion.text.five')}</TypographyText>
+            <TypographyText paragraph>
+              Тривалість прийому залежить від спеціалізації лікаря та мети візиту. Зазвичай прийом
+              триває від 20 до 60 хвилин.
+            </TypographyText>
           </AccordionDetails>
         </Accordion>
       </BoxAccordion>

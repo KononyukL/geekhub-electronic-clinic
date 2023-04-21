@@ -23,6 +23,7 @@ import LayoutDoctorProfile from './components/Layouts/LayoutProfile/LayoutDoctor
 import ProfileDoctor from './routes/pages/DoctorProfile/ProfileDoctor';
 import Patient from './routes/pages/DoctorProfile/Patient';
 import CardPatient from './components/view/profile/CardParient';
+import MyCard from 'routes/pages/UserProfile/MyCard';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
         <Route element={<LayoutUserProfile />}>
           <Route path={ROUTES.PROFILE_USER.PATH} element={<Profile />} />
           <Route path={ROUTES.VISITS.PATH} element={<Visits />} />
-          {/*<Route path={ROUTES.CARD.PATH} element={<MyCard />} />*/}
+          <Route path={ROUTES.CARD.PATH} element={<MyCard />} />
         </Route>
         <Route element={<LayoutDoctorProfile />}>
           <Route path={ROUTES.PROFILE_DOCTOR.PATH} element={<ProfileDoctor />} />

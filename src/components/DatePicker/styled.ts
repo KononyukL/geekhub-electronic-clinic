@@ -4,8 +4,9 @@ import { DatePicker } from '@mui/x-date-pickers';
 export const StyledDatePicker = styled(DatePicker)`
   width: 100%;
   .${inputBaseClasses.input} {
-    padding: 13px;
     font-size: 16px;
+    line-height: 20px;
+    padding: 13px;
   }
 
   .${inputLabelClasses.root} {

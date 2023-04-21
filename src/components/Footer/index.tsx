@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Box,
   BoxFooter,
@@ -22,36 +21,35 @@ import { ReactComponent as Twitter } from 'assets/icons/twitter.svg';
 import { ReactComponent as Facebook } from 'assets/icons/facebook.svg';
 
 const Footer = () => {
-  const { t } = useTranslation();
   return (
     <BoxFooter id="contacts">
       <Box>
         <BoxInfo>
-          <TypographyTitle variant="h3">{t('layout.footer.info.title')}</TypographyTitle>
+          <TypographyTitle variant="h3">Інформація</TypographyTitle>
           {INFO_CONFIG.map((info) => (
             <LinkInfo key={info.name} to={info.path}>
-              {t(info.name)}
+              {info.name}
             </LinkInfo>
           ))}
         </BoxInfo>
         <BoxInfo>
-          <TypographyTitle variant="h3">{t('layout.footer.patient.title')}</TypographyTitle>
+          <TypographyTitle variant="h3">Пацієнту</TypographyTitle>
           {PATIENT_CONFIG.map((info) => (
             <LinkInfo key={info.name} to={info.path}>
-              {t(info.name)}
+              {info.name}
             </LinkInfo>
           ))}
         </BoxInfo>
         <BoxInfo>
-          <TypographyTitle variant="h3">{t('layout.footer.directions.title')}</TypographyTitle>
+          <TypographyTitle variant="h3">Направлення</TypographyTitle>
           {DIRECTIONS_CONFIG.map((direct) => (
             <LinkInfo key={direct.name} to={direct.path}>
-              {t(direct.name)}
+              {direct.name}
             </LinkInfo>
           ))}
         </BoxInfo>
         <BoxInfo>
-          <TypographyTitle variant="h3">{t('layout.footer.contactsSocial.title')}</TypographyTitle>
+          <TypographyTitle variant="h3">Контакти та Соціальні мережі</TypographyTitle>
           <ContactsSocialBox>
             <Phone />
             <TextBox>
@@ -81,7 +79,7 @@ const Footer = () => {
                 MediPlus@gmail.com
               </Typography>
               <Typography sx={{ margin: 0, fontSize: 14 }} paragraph>
-                {t('layout.footer.email')}
+                пиши по будь-яким питанням
               </Typography>
             </TextBox>
           </ContactsSocialBox>
@@ -99,7 +97,7 @@ const Footer = () => {
         </BoxInfo>
       </Box>
       <BoxSmall>
-        <Typography paragraph>“Mediplus” 2023 {t('layout.footer.rights')}</Typography>
+        <Typography paragraph>“Mediplus” 2023 Всі права захищені</Typography>
       </BoxSmall>
     </BoxFooter>
   );

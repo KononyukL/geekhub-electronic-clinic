@@ -8,26 +8,26 @@ interface IDirectionsConfig {
 export const DIRECTIONS_CONFIG = [
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.dermatology'
+    name: 'Дерматологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.therapy'
+    name: 'Терапія'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.gastroenterology'
+    name: 'Гастроентерологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.pulmonology'
+    name: 'Пульманологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.neuroscience'
+    name: 'Нейрологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.footer.directions.cardiology'
+    name: 'Кардіологія'
   }
 ] as IDirectionsConfig[];

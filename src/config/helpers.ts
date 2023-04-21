@@ -1,4 +1,5 @@
 import { AUTH_DATA } from './constants';
+import dayjs from 'dayjs';
 
 interface IGetAuthDataResult {
   token?: string;
@@ -19,4 +20,20 @@ export const getAuthData = (): IGetAuthDataResult => {
     console.error(e);
     return {};
   }
+};
+
+export function removeEmptyFields(data: Record<string, any>) {
+  Object.keys(data).forEach((key) => {
+    if (data[key] === '' || data[key] === null) {
+      delete data[key];
+    }
+  });
+}
+
+export const parseDate = (date: string | Date, format: string): string => {
+  if (!dayjs(date).isValid()) {
+    return date as string;
+  }
+
+  return dayjs(date).format(format);
 };

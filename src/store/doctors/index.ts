@@ -1,7 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { doctor, doctors, specializations } from './thunks';
 import { RootState } from '../index';
-import { IDoctor } from '../../routes/pages/Doctor/interfaces';
+import { IDoctor } from 'routes/pages/Doctor/interfaces';
 
 export interface ISpecialization {
   name: string;
@@ -111,7 +111,7 @@ export const newsSlice = createSlice({
   }
 });
 
-export { doctors };
+export { doctors, doctor, specializations };
 
 export const {} = newsSlice.actions;
 

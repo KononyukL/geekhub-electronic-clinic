@@ -12,11 +12,9 @@ import {
 } from './styled';
 import TeamOne from 'assets/icons/team-one.png';
 import TeamTwo from 'assets/icons/team-two.png';
-import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 
 const AboutUs = () => {
-  const { t } = useTranslation();
   return (
     <Container id="about-us">
       <BoxImg sx={{ width: '50%' }}>
@@ -28,11 +26,17 @@ const AboutUs = () => {
         </Box>
       </BoxImg>
       <BoxInfo>
-        <FirstTitle variant="h2">{t('home.aboutUs.aboutTeam')}</FirstTitle>
-        <LastTitle variant="h2">{t('home.aboutUs.polyclinic')}</LastTitle>
-        <Text paragraph>{t('home.aboutUs.text')}</Text>
+        <FirstTitle variant="h2">ПРО НАШУ КОМАНДУ</FirstTitle>
+        <LastTitle variant="h2">Поліклініка MediPlus</LastTitle>
+        <Text paragraph>
+          Ми - команда досвідчених фахівців, які завжди готові вам допомогти. У нашій клініці ми
+          дбаємо про кожного пацієнта, надаючи індивідуальний підхід і використовуючи сучасне
+          обладнання. Ми знаємо, що здоров'я - це найдорожчий дарунок, і саме тому робимо все
+          можливе, щоб наші пацієнти почували себе комфортно і захищено. Відчуйте заботу та увагу до
+          свого здоров'я в нашій клініці!
+        </Text>
         <Button variant="contained" color="primary">
-          {t('buttons.readMore')}
+          Детальніше
         </Button>
       </BoxInfo>
     </Container>
