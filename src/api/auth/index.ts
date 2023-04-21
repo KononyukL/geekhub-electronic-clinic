@@ -26,7 +26,7 @@ export const authApi = {
     password
   }: IFormRegistrationInput) {
     const result = await axiosInstance.post(
-      'accounts/register-user',
+      'accounts/register-user/',
       {
         email,
         first_name,

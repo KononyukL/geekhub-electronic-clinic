@@ -22,7 +22,6 @@ import IMGLogo from 'assets/icons/logo.svg';
 import { registration } from 'store/auth';
 import ModalWindow from './ModalWindow';
 import FooterForm from './FooterForm';
-import axios from 'axios';
 
 interface IFormRegistrationInput {
   firstName: string;
@@ -64,22 +63,6 @@ const Registration: FC = () => {
         password: data.password
       })
     );
-
-    // axios
-    //   .post('https://dimastepaniuk.pythonanywhere.com/api/accounts/register-user/', {
-    //     email: data.email,
-    //     first_name: data.firstName,
-    //     last_name: data.lastName,
-    //     phone_num: data.phoneNumber,
-    //     password: data.password
-    //   })
-    //   .then((response) => {
-    //     // handle successful response
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     // handle error response
-    //   });
 
     setOpen(!open);
   };
