@@ -1,10 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Container, ButtonSwitch, DateStyle, Day } from './styled';
-
-type TCalendar = {
-  updateCurrentDate: any;
-  max_date?: number;
-};
+import { TCalendar } from '../types';
 
 const MAX_DATES = 2;
 

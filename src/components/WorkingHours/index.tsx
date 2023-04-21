@@ -8,14 +8,10 @@ import IGMShowMore from 'assets/icons/ShowMore.svg';
 import { useAppSelector } from 'store/hooks';
 import IGMHide from 'assets/icons/Hide.svg';
 import { useDispatch } from 'react-redux';
+import { AUTH_DATA } from '../../config';
+import { TWorkingHours } from './types';
 import Calendar from './Calendar';
 import { RootState } from 'store';
-
-type TWorkingHours = {
-  showAllHours?: boolean;
-  doctorId?: string | number;
-  max_date?: number;
-};
 
 const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -28,6 +24,13 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
   const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
+  const [isDoctor, setIsDoctor] = useState();
+
+  useEffect(() => {
+    const authDataString: any = localStorage.getItem(AUTH_DATA);
+    const isDoctorOrUser = JSON.parse(authDataString).is_doctor;
+    setIsDoctor(isDoctorOrUser);
+  }, [isDoctor]);
 
   useEffect(() => {
     if (doctorId && currentDate) {
@@ -69,7 +72,6 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
 
   const handleBookingData = (time: string) => {
     setBookVisit(time);
-    console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
   };
 
   return (
@@ -81,8 +83,10 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
             <TimeButton
               key={time}
               onClick={() => {
-                handleBookingData(time);
-                handleOpen();
+                if (!isDoctor) {
+                  handleBookingData(time);
+                  handleOpen();
+                }
               }}
               children={time}
             />

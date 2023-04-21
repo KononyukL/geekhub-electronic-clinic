@@ -10,6 +10,7 @@ import {
 } from 'components/FormFields/styled';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { ButtonSubmit } from 'components/FormFields/styled';
+import { IFormLoginInput } from './interfaces';
 import { getAuthData } from 'config/helpers';
 import IMGLogo from 'assets/icons/logo.svg';
 import { Navigate } from 'react-router-dom';
@@ -20,11 +21,6 @@ import FooterForm from './FooterForm';
 import ROUTES from '../../constants';
 import Password from './Password';
 import Email from './Email';
-
-interface IFormLoginInput {
-  email: string;
-  password: string;
-}
 
 const Login: FC = () => {
   const {

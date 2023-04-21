@@ -37,6 +37,9 @@ const ROUTES = {
   },
   CARD: {
     PATH: '/card'
+  },
+  ERROR: {
+    PATH: '*'
   }
 };
 export default ROUTES;

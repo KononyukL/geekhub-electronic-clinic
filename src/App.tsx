@@ -24,6 +24,7 @@ import ProfileDoctor from './routes/pages/DoctorProfile/ProfileDoctor';
 import Patient from './routes/pages/DoctorProfile/Patient';
 import CardPatient from './components/view/profile/CardParient';
 import MyCard from 'routes/pages/UserProfile/MyCard';
+import Error from 'routes/pages/Error'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
         <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />
         <Route path={ROUTES.DOCTORS.PATH} element={<Doctors />} />
         <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
+        <Route path={ROUTES.ERROR.PATH} element={<Error />} />
       </Route>
     </Route>
   )

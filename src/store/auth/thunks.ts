@@ -1,25 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authApi } from 'api';
 import { AUTH_DATA } from 'config';
-import { NavigateFunction } from 'react-router-dom';
 import ROUTES from 'routes/constants';
-
-interface IAuthLogin {
-  email: string;
-  password: string;
-}
-
-interface IFormRegistrationInput {
-  email: string;
-  first_name: string;
-  last_name: string;
-  phone_num: string | number;
-  password: string;
-}
+import { IFormRegistrationInput } from 'routes/pages/Registration/interfaces';
+import { IResetPasswordInput } from 'routes/pages/ResetPassword/interfaces';
+import { IFormLoginInput } from 'routes/pages/Login/interfaces';
+import { NavigateFunction } from 'react-router-dom';
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ email, password }: IAuthLogin, { rejectWithValue }) => {
+  async ({ email, password }: IFormLoginInput, { rejectWithValue }) => {
     try {
       const data = await authApi.login({ email, password });
       localStorage.setItem(AUTH_DATA, JSON.stringify(data));
@@ -59,6 +49,17 @@ export const registration = createAsyncThunk(
         phone_num,
         password
       });
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({ email }: IResetPasswordInput, { rejectWithValue }) => {
+    try {
+      return await authApi.resetPassword({ email });
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }

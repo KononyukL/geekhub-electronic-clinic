@@ -9,20 +9,21 @@ import {
   Wrapper,
   WrapperForm
 } from 'components/FormFields/styled';
-import IMGLogo from 'assets/icons/logo.svg';
-import ErrorValidation from 'components/ErrorValidation';
-import FooterForm from './FooterForm';
 import EmailField from 'components/FormFields/EmailField';
+import ErrorValidation from 'components/ErrorValidation';
+import IMGLogo from 'assets/icons/logo.svg';
 import { useForm } from 'react-hook-form';
-
-interface IResetPassword {
-  email: string;
-}
+import FooterForm from './FooterForm';
+import { IResetPasswordInput } from './interfaces';
+import { useAppDispatch } from 'store/hooks';
+import { resetPassword } from 'store/auth/thunks';
 
 const ResetPassword: FC = () => {
-  const [counter, setCounter] = useState(0);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const [counter, setCounter] = useState<number>(0);
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | undefined>(undefined);
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -50,9 +51,8 @@ const ResetPassword: FC = () => {
     return () => clearInterval(timerInterval);
   }, [isDisabled]);
 
-  const onSubmit = async (data: IResetPassword) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+  const onSubmit = async (data: IResetPasswordInput) => {
+    dispatch(resetPassword({ email: data.email }));
     reset();
 
     setIsDisabled(true);
@@ -67,7 +67,7 @@ const ResetPassword: FC = () => {
         <WrapperForm>
           <Title>
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
-            Відновлення пароль
+            Відновлення паролю
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
