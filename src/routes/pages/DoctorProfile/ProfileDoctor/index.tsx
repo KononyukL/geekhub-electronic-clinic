@@ -37,7 +37,7 @@ const ProfileDoctor = () => {
       </Box>
       <BoxInfo>
         <DataCardDoctor />
-        <Security email={profile?.email || '-'} sx={{ paddingBottom: '24px' }} />
+        <Security sx={{ paddingBottom: '24px' }} />
         <AdditionalInformationDoctor profile={profile} />
       </BoxInfo>
     </Container>
