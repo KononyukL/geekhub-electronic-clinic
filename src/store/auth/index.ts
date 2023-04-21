@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { login, logout } from './thunks';
+import { login, logout, registration } from './thunks';
 import { RootState } from '../index';
 
 interface IAuthState {
   login: Record<string, unknown>;
+  registration: any,
   isLoading: boolean;
   error: Error | string;
 }
 
 const initialState: IAuthState = {
   login: {},
+  registration: {},
   isLoading: false,
   error: ''
 };
@@ -44,10 +46,23 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(registration.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(registration.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.registration = action.payload;
+      })
+      .addCase(registration.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { login, logout };
+export { login, logout, registration };
 
 export const {} = newsSlice.actions;
 

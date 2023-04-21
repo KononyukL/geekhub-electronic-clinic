@@ -10,7 +10,6 @@ import {
 } from 'components/FormFields/styled';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { ButtonSubmit } from 'components/FormFields/styled';
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { getAuthData } from 'config/helpers';
 import IMGLogo from 'assets/icons/logo.svg';
 import { Navigate } from 'react-router-dom';
@@ -20,7 +19,6 @@ import { selectAuth } from 'store/auth';
 import FooterForm from './FooterForm';
 import ROUTES from '../../constants';
 import Password from './Password';
-import { RootState } from 'store';
 import Email from './Email';
 
 interface IFormLoginInput {
@@ -41,7 +39,7 @@ const Login: FC = () => {
     }
   });
 
-  const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
 
   const onSubmit = async (data: IFormLoginInput) => {

@@ -14,7 +14,7 @@ const ConfirmPasswordField: FC<IInputFormField> = ({ register, errors, getValues
       <StyledInput
         style={errors.confirmPassword && { border: '1px solid red' }}
         placeholder="Пароль"
-        type={iconConfirmPassword ? 'text' : 'confirmPassword'}
+        type={iconConfirmPassword ? 'text' : 'password'}
         name="confirmPassword"
         register={register}
         registerOptions={{

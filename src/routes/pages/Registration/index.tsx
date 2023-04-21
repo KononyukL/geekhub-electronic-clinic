@@ -10,49 +10,60 @@ import {
   Logo,
   Title
 } from 'components/FormFields/styled';
-import IMGLogo from 'assets/icons/logo.svg';
-import FooterForm from './FooterForm';
-import PhoneNumberField from 'components/FormFields/PhoneNumberField';
-import EmailField from 'components/FormFields/EmailField';
-import PasswordField from 'components/FormFields/PasswordField';
 import ConfirmPasswordField from 'components/FormFields/ConfirmPasswordField';
+import PhoneNumberField from 'components/FormFields/PhoneNumberField';
+import PasswordField from 'components/FormFields/PasswordField';
+import LastNameField from 'components/FormFields/LastNameField';
+import EmailField from 'components/FormFields/EmailField';
 import ErrorValidation from 'components/ErrorValidation';
 import NameField from 'components/FormFields/NameField';
+import { useAppDispatch } from 'store/hooks';
+import IMGLogo from 'assets/icons/logo.svg';
+import { registration } from 'store/auth';
 import ModalWindow from './ModalWindow';
+import FooterForm from './FooterForm';
 
 interface IFormRegistrationInput {
   firstName: string;
-  phoneNumber: number;
+  lastName: string;
+  phoneNumber: number | string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 const Registration: FC = () => {
   const {
     register,
     handleSubmit,
-    reset,
     getValues,
     formState: { errors, isValid, isSubmitting }
   } = useForm<any>({
     mode: 'onBlur',
     defaultValues: {
       firstName: '',
+      lastName: '',
       phoneNumber: '+38',
       email: '',
       password: '',
       confirmPassword: ''
     }
   });
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const handleClose = () => setOpen(false);
 
   const onSubmit = async (data: IFormRegistrationInput) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
-    reset();
+    dispatch(
+      registration({
+        email: data.email,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_num: data.phoneNumber,
+        password: data.password
+      })
+    );
+
     setOpen(!open);
   };
 
@@ -67,6 +78,10 @@ const Registration: FC = () => {
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
               <NameField register={register} errors={errors} />
+              <ErrorValidation errors={errors.firstName} />
+            </InputWrapper>
+            <InputWrapper>
+              <LastNameField register={register} errors={errors} />
               <ErrorValidation errors={errors.firstName} />
             </InputWrapper>
             <InputWrapper>
