@@ -3,6 +3,7 @@ import auth from './auth';
 import doctors from './doctors';
 import workingHours from './workingHours';
 import profile from './profile';
+import appointments from './appointments';
 import visits from './visits';
 
 export const index = configureStore({
@@ -11,6 +12,7 @@ export const index = configureStore({
     doctors,
     workingHours,
     profile,
+    appointments,
     visits
   }
 });

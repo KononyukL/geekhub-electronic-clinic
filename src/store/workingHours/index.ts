@@ -3,7 +3,11 @@ import { workingHours } from './thunks';
 import { RootState } from '../index';
 
 interface IWorkingHoursState {
-  workingHours: any;
+  workingHours: {
+    date: string;
+    doctor_id: number | string;
+    time: Record<string, boolean>;
+  }[];
   isLoading: boolean;
   error: string | null;
 }
@@ -25,7 +29,17 @@ export const newsSlice = createSlice({
       })
       .addCase(workingHours.fulfilled, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
-        state.workingHours = action.payload;
+
+        const newTime = action.payload;
+        const oldDoctorIndex = state.workingHours.findIndex(
+          (item: any) => item.doctor_id === newTime.doctor_id
+        );
+
+        if (oldDoctorIndex !== -1) {
+          state.workingHours[oldDoctorIndex] = newTime;
+        } else {
+          state.workingHours.push(newTime);
+        }
       })
       .addCase(workingHours.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;

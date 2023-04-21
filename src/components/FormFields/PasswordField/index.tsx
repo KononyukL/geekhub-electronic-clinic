@@ -1,33 +1,26 @@
 import React, { FC, useState } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
-import { ImgSwitcher, WrapperImg ,StyledInput } from '../styled';
-import { useTranslation } from 'react-i18next';
-import IMGOpenPassword from 'assets/icons/openPassword.svg';
+import { ImgSwitcher, WrapperImg, StyledInput } from '../styled';
 import IMGClosePassword from 'assets/icons/closePassword.svg';
+import IMGOpenPassword from 'assets/icons/openPassword.svg';
+import { IInputFormField } from '../interfaces';
 
-interface IPasswordField extends React.InputHTMLAttributes<any> {
-  register: UseFormRegister<FieldValues>;
-  errors: any;
-}
-
-const PasswordField: FC<IPasswordField> = ({ register, errors }) => {
-  const { t } = useTranslation();
-  const [iconPassword, setIconPassword] = useState(true);
+const PasswordField: FC<IInputFormField> = ({ register, errors }) => {
+  const [iconPassword, setIconPassword] = useState(false);
   const handleSwitchIconPassword = () => setIconPassword(!iconPassword);
 
   return (
     <>
       <StyledInput
         style={errors.password && { border: '1px solid red' }}
-        placeholder={t('registration.password')}
+        placeholder="Пароль"
         name="password"
         type={iconPassword ? 'text' : 'password'}
         register={register}
         registerOptions={{
-          required: `${t('validationErrors.required')}`,
+          required: "Це поле є обов'язковим",
           pattern: {
             value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
-            message: `${t('validationErrors.password')}`
+            message: 'Пароль має містити латинскі літери A-Z та цифри 0-9'
           }
         }}
       />

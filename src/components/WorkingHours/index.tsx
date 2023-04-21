@@ -1,19 +1,19 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Wrapper, TimeButton, SwitcherButton, Img } from './styled';
+import { Wrapper, TimeButton, SwitcherButton, Img, Text } from './styled';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import { workingHours } from 'store/workingHours/thunks';
 import { selectWorkingHours } from 'store/workingHours';
+import { ModalConfirmVisit } from 'components/Modal';
+import IGMShowMore from 'assets/icons/ShowMore.svg';
 import { useAppSelector } from 'store/hooks';
 import IGMHide from 'assets/icons/Hide.svg';
-import IGMShowMore from 'assets/icons/ShowMore.svg';
-import { ModalConfirmVisit } from 'components/Modal';
 import { useDispatch } from 'react-redux';
 import Calendar from './Calendar';
 import { RootState } from 'store';
 
 type TWorkingHours = {
   showAllHours?: boolean;
-  doctorId?: string;
+  doctorId?: string | number;
   max_date?: number;
 };
 
@@ -27,13 +27,13 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
   const [visibleHours, setVisibleHours] = useState<number>(12);
   const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (doctorId && currentDate) {
       dispatch(workingHours({ doctor_id: doctorId, date: currentDate }));
     }
-  }, [doctorId, currentDate, dispatch]);
+  }, [currentDate, dispatch]);
 
   useEffect(() => {
     if (showAllHours) {
@@ -43,10 +43,15 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
 
   useEffect(() => {
     if (allWorkingHours && allWorkingHours.length > 0) {
-      const freeHoursDoctor: string[] = Object.entries(allWorkingHours[1])
-        .filter(([time, value]) => value === true)
-        .map(([time, value]) => time);
-      setFreeHours(freeHoursDoctor);
+      const currentDoctor: any = allWorkingHours.find(
+        (doctor) => doctor.doctor_id === parseInt(doctorId as string)
+      );
+      if (currentDoctor?.time) {
+        const findFreeHours = Object.entries(currentDoctor.time)
+          .filter(([key, value]) => value === true)
+          .map(([key, value]) => key);
+        setFreeHours(findFreeHours);
+      }
     }
   }, [allWorkingHours]);
 
@@ -60,19 +65,18 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
 
   const updateCurrentDate = (date: string) => {
     setCurrentDate(date);
-    // console.log('Обрана дата та id лікаря: ', currentDate, doctorId);
   };
 
   const handleBookingData = (time: string) => {
     setBookVisit(time);
-    // console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
+    console.log(currentDate, time, doctorId); // Дата, Час, Ід лікаря
   };
 
   return (
     <>
       <Calendar max_date={max_date} updateCurrentDate={updateCurrentDate} />
       <Wrapper>
-        {freeHours &&
+        {freeHours && freeHours?.length > 0 ? (
           freeHours.slice(0, visibleHours).map((time) => (
             <TimeButton
               key={time}
@@ -82,7 +86,10 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
               }}
               children={time}
             />
-          ))}
+          ))
+        ) : (
+          <Text>На цю дату немає доступних слотів для запису</Text>
+        )}
       </Wrapper>
       {!showAllHours && freeHours && freeHours.length > 12 && (
         <Wrapper>
@@ -100,6 +107,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
         handleClose={handleClose}
         bookVisit={bookVisit}
         currentDate={currentDate}
+        doctor_id={doctorId}
       />
     </>
   );

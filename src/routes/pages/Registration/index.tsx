@@ -11,7 +11,6 @@ import {
   Title
 } from 'components/FormFields/styled';
 import IMGLogo from 'assets/icons/logo.svg';
-import { useTranslation } from 'react-i18next';
 import FooterForm from './FooterForm';
 import PhoneNumberField from 'components/FormFields/PhoneNumberField';
 import EmailField from 'components/FormFields/EmailField';
@@ -34,6 +33,7 @@ const Registration: FC = () => {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors, isValid, isSubmitting }
   } = useForm<any>({
     mode: 'onBlur',
@@ -45,7 +45,6 @@ const Registration: FC = () => {
       confirmPassword: ''
     }
   });
-  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const handleClose = () => setOpen(false);
@@ -63,7 +62,7 @@ const Registration: FC = () => {
         <WrapperForm>
           <Title>
             <Logo src={IMGLogo} alt="Logo" title="Logo" />
-            {t('registration.registration')}
+            Реєстрація
           </Title>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <InputWrapper>
@@ -83,11 +82,11 @@ const Registration: FC = () => {
               <ErrorValidation errors={errors.password} />
             </InputWrapper>
             <InputWrapper>
-              <ConfirmPasswordField register={register} errors={errors} />
+              <ConfirmPasswordField register={register} errors={errors} getValues={getValues} />
               <ErrorValidation errors={errors.confirmPassword} />
             </InputWrapper>
             <ButtonSubmit type="submit" disabled={!isValid || isSubmitting}>
-              {t('buttons.createProfile')}
+              Створити обліковий запис
             </ButtonSubmit>
             <FooterForm />
           </StyledForm>
