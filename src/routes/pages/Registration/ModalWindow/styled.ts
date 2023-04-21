@@ -44,10 +44,11 @@ export const WrapperButtons = styled(Box)(() => {
 export const HomeButton = styled(Link)(({ theme }) => {
   return {
     backgroundColor: theme.palette.secondary.main,
-    padding: '14px 158px',
+    padding: '14px 68px',
     fontSize: 16,
     color: theme.palette.primary.contrastText,
     transition: '.3s',
+    textDecoration: 'none',
 
     '&:hover': {
       backgroundColor: theme.palette.secondary.light

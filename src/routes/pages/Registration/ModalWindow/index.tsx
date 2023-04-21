@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { HomeButton, Modal, Title, Wrapper, WrapperButtons } from './styled';
 import { Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import IMGDone from 'assets/icons/done.svg';
 
 type IModalWindow = {
@@ -10,25 +9,24 @@ type IModalWindow = {
 };
 
 const ModalWindow: FC<IModalWindow> = ({ open, handleClose }) => {
-  const { t } = useTranslation();
-
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       <Wrapper>
         <Title id="modal-modal-title">
           <img src={IMGDone} alt="Done" />
-          {t('registration.modalWindow.thank')}
+          Дякуємо за реєстрацію
         </Title>
         <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '16px' }}>
-          {t('registration.modalWindow.text')}
+          Ми відправили лист на електронну пошту, що Ви вказали. Будь-ласка, перейдіть за
+          посиланням, що прийшло у листі, для підтвердження та завершення реєстрації. Якщо Ви не
+          знайшли листа, перевірте папку “Спам”
         </Typography>
         <WrapperButtons>
           <HomeButton to="/" onClick={handleClose}>
-            {t('buttons.home')}
+            На головну
           </HomeButton>
         </WrapperButtons>
       </Wrapper>

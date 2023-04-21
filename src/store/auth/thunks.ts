@@ -9,6 +9,14 @@ interface IAuthLogin {
   password: string;
 }
 
+interface IFormRegistrationInput {
+  email: string;
+  first_name: string;
+  last_name: string;
+  phone_num: string | number;
+  password: string;
+}
+
 export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }: IAuthLogin, { rejectWithValue }) => {
@@ -31,6 +39,26 @@ export const logout = createAsyncThunk(
       localStorage.removeItem(AUTH_DATA);
       navigate(ROUTES.HOME.PATH);
       return {};
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
+export const registration = createAsyncThunk(
+  'auth/registration',
+  async (
+    { email, first_name, last_name, phone_num, password }: IFormRegistrationInput,
+    { rejectWithValue }
+  ) => {
+    try {
+      return await authApi.registration({
+        email,
+        first_name,
+        last_name,
+        phone_num,
+        password
+      });
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }
