@@ -1,15 +1,13 @@
 import React from 'react';
 import { BoxInfo, Container, ContainerFeedback, FirstTitle, LastTitle } from './styled';
 import FeedbackSlider from './FeedbackSlider';
-import { useTranslation } from 'react-i18next';
 
 const Feedbacks = () => {
-  const { t } = useTranslation();
   return (
     <Container>
       <BoxInfo>
-        <FirstTitle>{t('home.reviews.firstTitle')}</FirstTitle>
-        <LastTitle>{t('home.reviews.lastTitle')}</LastTitle>
+        <FirstTitle>ЩО КАЖУТЬ ПРО НАС</FirstTitle>
+        <LastTitle>Відгуки наших клієнтів</LastTitle>
       </BoxInfo>
       <ContainerFeedback>
         <FeedbackSlider />

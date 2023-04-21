@@ -18,7 +18,6 @@ export const BoxLink = styled(MUIBox)(({ theme }) => {
     backgroundColor: theme.palette.background.paper,
     padding: '24px',
     zIndex: 2,
-    maxHeight: 300,
     boxShadow:
       '-5px -5px 100px rgba(193, 193, 193, 0.1), -58px 248px 102px rgba(204, 204, 204, 0.01), -33px 139px 86px rgba(204, 204, 204, 0.05), -14px 62px 64px rgba(204, 204, 204, 0.09), -4px 15px 35px rgba(204, 204, 204, 0.1), 0px 0px 0px rgba(204, 204, 204, 0.1)'
   };
@@ -26,6 +25,7 @@ export const BoxLink = styled(MUIBox)(({ theme }) => {
 export const BoxInfo = styled(MUIBox)(() => {
   return {
     display: 'flex',
+    alignItems: 'flex-start',
     gap: 24
   };
 });

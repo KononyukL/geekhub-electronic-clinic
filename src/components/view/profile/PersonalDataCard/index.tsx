@@ -48,6 +48,10 @@ const PersonalDataCard = () => {
         <Title>Квартира:</Title>
         <Data>{profile?.address_appartment || '-'}</Data>
       </BoxInfo>
+      <BoxInfo>
+        <Title>Електронна пошта:</Title>
+        <Data>{profile?.email || '-'}</Data>
+      </BoxInfo>
     </Container>
   );
 };

@@ -8,22 +8,22 @@ interface INavigationConfig {
 export const NAVIGATION_CONFIG = [
   {
     path: ROUTES.HOME.PATH,
-    name: 'layout.navigation.home'
+    name: 'Головна'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.navigation.doctors'
+    name: 'Спеціальності та лікарі'
   },
   {
     path: ROUTES.HOME.HASH_PATH.QUESTIONS,
-    name: 'layout.navigation.questions'
+    name: 'Поширені запитання'
   },
   {
     path: ROUTES.HOME.HASH_PATH.ABOUT_US,
-    name: 'layout.navigation.aboutUs'
+    name: 'Про нас'
   },
   {
     path: ROUTES.HOME.HASH_PATH.CONTACTS,
-    name: 'layout.navigation.contacts'
+    name: 'Контакти'
   }
 ] as INavigationConfig[];

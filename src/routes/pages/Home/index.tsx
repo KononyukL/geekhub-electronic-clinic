@@ -11,8 +11,6 @@ import {
   StyleBox,
   SliderBox
 } from './styled';
-
-import { useTranslation } from 'react-i18next';
 import AboutUs from './AboutUs';
 import Feedbacks from './Feedbacks';
 import Questions from './Questions';
@@ -27,7 +25,6 @@ import { ReactComponent as ApproachIcon } from 'assets/icons/approach-icon.svg';
 import ServiceProvide from './ServiceProvide';
 
 const Home = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const onOpenDoctors = () => navigate(ROUTES.DOCTORS.PATH);
@@ -39,19 +36,20 @@ const Home = () => {
           <Header isWhite />
           <BoxTitle>
             <TypographyWhite paragraph sx={{ fontSize: 24, fontWeight: 600, paddingBottom: '8px' }}>
-              {t('home.firstText')}
+              Ми надаємо найкраще
             </TypographyWhite>
             <TypographyWhite variant="h2" sx={{ fontSize: 40 }}>
-              {t('home.title')}
+              Поліклініка MediPlus
             </TypographyWhite>
             <TypographyMain variant="h2" sx={{ fontSize: 40, paddingBottom: '16px' }}>
-              {t('home.subTitle')}
+              З турботою про тебе
             </TypographyMain>
             <TypographyWhite paragraph sx={{ fontSize: 20, maxWidth: 460 }}>
-              {t('home.lastText')}
+              Передові медичні технології, професіоналізм у поєднанні з своєчасністю надання послуг
+              та індивідуальний підхід до кожного пацієнта та ситуації – це філософія MediPlus
             </TypographyWhite>
             <Button onClick={onOpenDoctors} variant="contained" color="primary">
-              {t('buttons.signUp')}
+              Записатися
             </Button>
           </BoxTitle>
         </StyleBox>
@@ -60,18 +58,18 @@ const Home = () => {
         <BoxCard>
           <CardInfo
             image={<DoctorIcon />}
-            title={t('home.cardInfo.title.doctor')}
-            text={t('home.cardInfo.text.doctor')}
+            title="Кваліфіковані лікарі"
+            text="Ми постійно вдосконалюємо свої знання та навички, щоб забезпечити найкраще лікування для наших пацієнтів."
           />
           <CardInfo
             image={<EquipmentIcon />}
-            title={t('home.cardInfo.title.equipment')}
-            text={t('home.cardInfo.text.equipment')}
+            title="Сучасне обладнання"
+            text="Ми використовуємо сучасне обладнання та технології для діагностики та лікування різноманітних захворювань"
           />
           <CardInfo
             image={<ApproachIcon />}
-            title={t('home.cardInfo.title.approach')}
-            text={t('home.cardInfo.text.approach')}
+            title="Індивідуальний підхід"
+            text="Наша команда не просто лікує, ми створюємо атмосферу довіри та підтримки, щоб Ви відчували себе комфортно."
           />
         </BoxCard>
         <AboutUs />

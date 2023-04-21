@@ -27,3 +27,8 @@ export const Info = styled(Box)(() => {
 export const Text = styled(Typography)(() => {
   return {};
 });
+export const Span = styled('span')(() => {
+  return {
+    fontWeight: 600
+  };
+});

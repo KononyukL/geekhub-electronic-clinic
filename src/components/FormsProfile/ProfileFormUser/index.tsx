@@ -1,24 +1,26 @@
 import React, { FC } from 'react';
-import { Container, Form, HouseNumber, InputProfile, StyledSelect, Button } from '../styled';
+import {
+  Container,
+  Form,
+  HouseNumber,
+  InputProfile,
+  StyledSelect,
+  Button,
+  StyledTextField
+} from '../styled';
 import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import ContainerForm from '../ContainerForm';
 import MenuItem from '@mui/material/MenuItem';
-import { Box } from '@mui/material';
-import { city, genderOptions } from 'routes/pages/UserProfile/Profile/mockData';
+import { Autocomplete, Box, createFilterOptions } from '@mui/material';
+import { genderOptions, oblastCenters } from 'routes/pages/UserProfile/Profile/mockData';
 import DatePicker from '../../DatePicker';
+import ErrorValidation from 'components/ErrorValidation';
+import { removeEmptyFields } from 'config/helpers';
+import { useAppDispatch } from 'store/hooks';
+import { IEditProfileFormData } from 'api/profile/types';
+import { editProfile } from 'store/profile';
 
-interface IFormLoginInput {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-  birthday: string;
-  email: string;
-  phone: number;
-  street: string;
-  house: number;
-  apartment: number;
-}
 interface IProfileForm {
   closeEdit: () => void;
 }
@@ -29,38 +31,50 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting }
+    formState: { isSubmitting, errors }
   } = useForm<any>({
     mode: 'onBlur'
   });
 
-  const onSubmit = async (data: IFormLoginInput) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async (data: IEditProfileFormData) => {
+    if (data.sex === 'gender') {
+      data.sex = '';
+    }
+    removeEmptyFields(data);
+    dispatch(editProfile(data));
     closeEdit();
     reset();
   };
+
+  const filterCity = createFilterOptions<string>();
+
   return (
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Box>
           <ContainerForm title={'Персональні дані'}>
             <Box>
-              <InputProfile placeholder="Ваше прізвище " name="lastName" register={register} />
+              <InputProfile placeholder="Ваше прізвище " name="last_name" register={register} />
             </Box>
             <Box>
-              <InputProfile placeholder="Ваше ім’я " name="firstName" register={register} />
+              <InputProfile placeholder="Ваше ім’я " name="first_name" register={register} />
             </Box>
 
             <Box>
-              <InputProfile placeholder="По-батькові" name="middleName" register={register} />
+              <InputProfile placeholder="По-батькові" name="patronim_name" register={register} />
             </Box>
             <DatePicker control={control} />
             <Box>
-              <InputProfile placeholder="+380 (___) __-__-___ " name="phone" register={register} />
+              <InputProfile
+                placeholder="+380 (___) __-__-___ "
+                name="phone_num"
+                register={register}
+              />
             </Box>
             <Controller
-              name="gender"
+              name="sex"
               control={control}
               defaultValue="gender"
               render={({ field }) => {
@@ -83,44 +97,71 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
                 );
               }}
             />
+            <Box sx={{ width: '330px' }}>
+              <InputProfile
+                style={errors.email && { border: '1px solid red' }}
+                placeholder="Електронна пошта"
+                name="email"
+                register={register}
+                registerOptions={{
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: 'Невірний формат пошти. Приклад: Standart@gmail.com '
+                  }
+                }}
+              />
+              <ErrorValidation errors={errors.email} />
+            </Box>
           </ContainerForm>
 
           <ContainerForm title="Адреса">
             <Box>
               <Controller
-                name="city"
+                name="address_city"
                 control={control}
-                defaultValue="city"
+                //@ts-ignore
                 render={({ field }) => {
                   return (
-                    <StyledSelect
+                    <Autocomplete
                       value={field.value}
-                      defaultValue="city"
-                      onChange={(event) => {
-                        field.onChange(event);
-                      }}>
-                      <MenuItem disabled value="city">
-                        Оберіть ваше місто
-                      </MenuItem>
-                      {city.map((option, i) => (
-                        <MenuItem key={i} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </StyledSelect>
+                      onChange={(event, newValue) => {
+                        field.onChange(newValue);
+                      }}
+                      filterOptions={(options, params) => {
+                        const filtered = filterCity(options, params);
+                        const { inputValue } = params;
+                        const isExisting = options.some((option) => inputValue === option.title);
+                        if (inputValue !== '' && !isExisting) {
+                          filtered.push(inputValue);
+                        }
+                        return filtered;
+                      }}
+                      selectOnFocus
+                      clearOnBlur
+                      handleHomeEndKeys
+                      clearIcon
+                      options={oblastCenters}
+                      getOptionLabel={(option) => option}
+                      renderOption={(props, option) => <li {...props}>{option}</li>}
+                      sx={{ width: '100%' }}
+                      renderInput={(params) => {
+                        //@ts-ignore
+                        return <StyledTextField {...params} placeholder="Оберіть ваше місто" />;
+                      }}
+                    />
                   );
                 }}
               />
             </Box>
             <Box>
-              <InputProfile placeholder="Вулиця" name="street" register={register} />
+              <InputProfile placeholder="Вулиця" name="address_street" register={register} />
             </Box>
             <HouseNumber>
               <Box>
-                <InputProfile placeholder="Будинок" name="house" register={register} />
+                <InputProfile placeholder="Будинок" name="address_house" register={register} />
               </Box>
               <Box>
-                <InputProfile placeholder="Корпус" name="apartment" register={register} />
+                <InputProfile placeholder="Корпус" name="address_appartment" register={register} />
               </Box>
             </HouseNumber>
           </ContainerForm>

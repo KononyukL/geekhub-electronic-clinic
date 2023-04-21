@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { BoxInfo, Container, Info, Name, NumberCard, PatientInfo, Text, TextSpan } from './styled';
 import DataCardPatient from './DataCardPatient';
@@ -12,12 +12,12 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { specializations } from 'store/doctors/thunks';
 import { usePagination } from 'hooks/usePagination';
+import { getAuthData } from 'config/helpers';
 
 export const CARD_PER_PAGE = 6;
 const CardPatient = () => {
   const [itemsCount, setItemsCount] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');
     return pageParam ? parseInt(pageParam) : 0;
@@ -28,6 +28,7 @@ const CardPatient = () => {
   });
   const dispatch = useAppDispatch();
   const { specializations: selectSpecializations } = useAppSelector(selectDoctors);
+  const { is_doctor } = getAuthData();
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
     itemsCount
@@ -55,7 +56,17 @@ const CardPatient = () => {
     resetPagination();
   };
 
-  const Component = PATIENT_CARD_CONFIG[tab].component;
+  const CurrentCardConfig = useMemo(
+    () =>
+      PATIENT_CARD_CONFIG.filter((item) => {
+        if (is_doctor || item.tabName !== 'Заключення') {
+          return item;
+        }
+      }),
+    [is_doctor]
+  );
+
+  const Component = CurrentCardConfig[tab].component;
 
   return (
     <Container>
@@ -73,7 +84,7 @@ const CardPatient = () => {
       </PatientInfo>
       <Box>
         <DataCardPatient />
-        <ProfileTabs value={tab} onChange={handleTabChange} tabsList={PATIENT_CARD_CONFIG}>
+        <ProfileTabs value={tab} onChange={handleTabChange} tabsList={CurrentCardConfig}>
           {tab === 0 && (
             <Select value={specialist} onChange={handleSelectChange}>
               <MenuItem value="all">{'Всі лікарі'}</MenuItem>

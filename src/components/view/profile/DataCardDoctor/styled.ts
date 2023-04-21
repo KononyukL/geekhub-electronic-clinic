@@ -4,7 +4,8 @@ export const Container = styled(Box)(() => {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
+    gap: '12px',
+    paddingBottom: '24px'
   };
 });
 export const BoxInfo = styled(Box)(() => {

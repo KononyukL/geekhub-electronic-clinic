@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BoxInfo, Container, Li, TextInfo, Title, TitleUl, Ul } from './styled';
-import { doctorInfo } from './mockData';
+import { IDoctor } from 'routes/pages/Doctor/interfaces';
 
-const AdditionalInformationDoctor = () => {
+interface IAdditionalInformationDoctor {
+  profile: IDoctor;
+}
+const AdditionalInformationDoctor: FC<IAdditionalInformationDoctor> = ({ profile }) => {
   return (
     <Container>
       <Title>Додаткова інформація</Title>
@@ -14,25 +17,19 @@ const AdditionalInformationDoctor = () => {
       <BoxInfo>
         <TitleUl>Освіта:</TitleUl>
         <Ul>
-          {doctorInfo.education.map((education, i) => (
-            <Li key={i}>{education}</Li>
-          ))}
+          <Li>{profile?.education}</Li>
         </Ul>
       </BoxInfo>
       <BoxInfo sx={{ padding: ' 32px 0' }}>
         <TitleUl>Курси:</TitleUl>
         <Ul>
-          {doctorInfo.courses.map((courses, i) => (
-            <Li key={i}>{courses}</Li>
-          ))}
+          <Li>{profile?.courses}</Li>
         </Ul>
       </BoxInfo>
       <BoxInfo>
         <TitleUl>Виконувані процедури:</TitleUl>
         <Ul>
-          {doctorInfo.procedures.map((procedures, i) => (
-            <Li key={i}>{procedures}</Li>
-          ))}
+          <Li>{profile?.procedures_performed}</Li>
         </Ul>
       </BoxInfo>
     </Container>

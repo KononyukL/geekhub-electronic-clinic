@@ -13,9 +13,8 @@ import PasswordForm from 'components/FormsProfile/PasswordForm';
 import { SxProps } from '@mui/system/styleFunctionSx';
 interface ISecurity {
   sx?: SxProps;
-  email?: string;
 }
-const Security: FC<ISecurity> = ({ sx, email }) => {
+const Security: FC<ISecurity> = ({ sx }) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const onEdit = () => {
@@ -41,10 +40,6 @@ const Security: FC<ISecurity> = ({ sx, email }) => {
         <PasswordForm closeEdit={closeEdit} />
       ) : (
         <>
-          <BoxSecurity sx={{ marginBottom: '12px' }}>
-            <TitleData>Електронна пошта:</TitleData>
-            <Data>{email}</Data>
-          </BoxSecurity>
           <BoxSecurity>
             <TitleData>Пароль:</TitleData>
             <Data>********</Data>

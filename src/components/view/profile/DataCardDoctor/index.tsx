@@ -28,6 +28,10 @@ const PersonalDataCard = () => {
         <Title>Телефон:</Title>
         <Data>{profile?.phone_num || '-'}</Data>
       </BoxInfo>
+      <BoxInfo>
+        <Title>Електронна пошта:</Title>
+        <Data>{profile?.email || '-'}</Data>
+      </BoxInfo>
     </Container>
   );
 };

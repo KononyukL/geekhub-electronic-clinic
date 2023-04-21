@@ -6,14 +6,14 @@ interface IInfoConfig {
 export const INFO_CONFIG = [
   {
     path: '/',
-    name: 'layout.footer.info.terms'
+    name: 'Умови користування'
   },
   {
     path: '/',
-    name: 'layout.footer.info.policy'
+    name: 'Політика конфіденційності'
   },
   {
     path: '/',
-    name: 'layout.footer.info.agreement'
+    name: 'Договір оферти'
   }
 ] as IInfoConfig[];

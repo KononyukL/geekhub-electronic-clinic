@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getProfile } from './thunks';
+import { editPassword, editProfile, getProfile } from './thunks';
 import { RootState } from '../index';
 import { IProfile } from 'api/profile/types';
 
@@ -32,10 +32,34 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(editPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editPassword.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(editPassword.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(editProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editProfile.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(editProfile.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { getProfile };
+export { getProfile, editPassword, editProfile };
 
 export const {} = newsSlice.actions;
 

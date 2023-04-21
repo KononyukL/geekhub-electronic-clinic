@@ -29,7 +29,7 @@ const Profile = () => {
       />
       <BoxInfo>
         <PersonalData />
-        <Security email={profile?.email || '-'} sx={{ paddingBottom: 0 }} />
+        <Security sx={{ paddingBottom: 0 }} />
       </BoxInfo>
     </Container>
   );

@@ -8,22 +8,22 @@ interface IPatientConfig {
 export const PATIENT_CONFIG = [
   {
     path: ROUTES.HOME.HASH_PATH.ABOUT_US,
-    name: 'layout.navigation.aboutUs'
+    name: 'Про нас'
   },
   {
     path: ROUTES.HOME.HASH_PATH.QUESTIONS,
-    name: 'layout.navigation.questions'
+    name: 'Поширені запитання'
   },
   {
     path: ROUTES.HOME.HASH_PATH.CONTACTS,
-    name: 'layout.navigation.contacts'
+    name: 'Контакти'
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'layout.navigation.doctors'
+    name: 'Спеціальності та лікарі'
   },
   {
     path: ROUTES.HOME.PATH,
-    name: 'layout.footer.patient.address'
+    name: 'Адреса'
   }
 ] as IPatientConfig[];
