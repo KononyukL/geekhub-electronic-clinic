@@ -1,10 +1,11 @@
 import React from 'react';
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from '@mui/material';
+import ROUTES from "../../../constants";
 
 const DoctorsBreadcrumbs = () => {
   return (
     <MUIBreadcrumbs aria-label="breadcrumb" separator="▪">
-      <Link underline="hover" color="inherit" href="/">
+      <Link underline="hover" color="inherit" href={ROUTES.HOME.PATH}>
         Головна
       </Link>
       <Typography color="inherit">Спеціальності та лікарі</Typography>
