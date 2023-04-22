@@ -1,13 +1,7 @@
 import { axiosInstance } from '../config';
 import { IFormLoginInput } from 'routes/pages/Login/interfaces';
-
-interface IFormRegistrationInput {
-  email: string;
-  first_name: string;
-  last_name: string;
-  phone_num: string | number;
-  password: string;
-}
+import { IFormRegistrationInput } from 'routes/pages/Registration/interfaces';
+import { IResetPasswordInput } from 'routes/pages/ResetPassword/interfaces';
 
 export const authApi = {
   async login({ email, password }: IFormLoginInput) {
@@ -36,6 +30,10 @@ export const authApi = {
       },
       { method: 'POST' }
     );
+    return result.data;
+  },
+  async resetPassword({ email }: IResetPasswordInput) {
+    const result = await axiosInstance.post('accounts/password-reset/', { email });
     return result.data;
   }
 };
