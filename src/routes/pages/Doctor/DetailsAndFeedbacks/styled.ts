@@ -2,8 +2,6 @@ import { Box, Tabs, styled } from '@mui/material';
 
 export const Container = styled(Box)(({ theme }) => {
   return {
-    maxWidth: 700,
-    width: '100%',
     borderRadius: 10,
     backgroundColor: theme.palette.primary.contrastText,
     marginTop: 20

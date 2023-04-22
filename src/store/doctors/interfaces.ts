@@ -1,0 +1,23 @@
+import { TDoctorsApiResponse, TFeedbacks, TSpecializations } from './types';
+import { IDoctor } from 'routes/pages/Doctor/interfaces';
+
+export interface ISpecialization {
+  name: string;
+  image: string;
+}
+
+export interface IFeedback {
+  patient_lastname: string;
+  patient_firstname: string;
+  review_rating: string;
+  review_text: string;
+}
+
+export interface IDoctorsState {
+  doctors: TDoctorsApiResponse;
+  doctor: IDoctor;
+  specializations: TSpecializations;
+  feedbacks: TFeedbacks;
+  isLoading: boolean;
+  error: Error | string;
+}

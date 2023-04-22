@@ -38,6 +38,9 @@ const ROUTES = {
   CARD: {
     PATH: '/card'
   },
+  FEEDBACK: {
+    PATH: '/feedback'
+  },
   ERROR: {
     PATH: '*'
   }

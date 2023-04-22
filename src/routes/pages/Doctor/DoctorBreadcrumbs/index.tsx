@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Breadcrumbs as MUIBreadcrumbs, Link, Typography } from '@mui/material';
 import { IDoctorProps } from '../interfaces';
-import ROUTES from "../../../constants";
+import ROUTES from '../../../constants';
 
 const DoctorBreadcrumbs: FC<IDoctorProps> = ({ currentDoctor }) => {
   return (
-    <MUIBreadcrumbs aria-label="breadcrumb" separator="▪">
+    <MUIBreadcrumbs sx={{ margin: '44px 0' }} aria-label="breadcrumb" separator="▪">
       <Link underline="hover" color="inherit" href={ROUTES.HOME.PATH}>
         Головна
       </Link>
