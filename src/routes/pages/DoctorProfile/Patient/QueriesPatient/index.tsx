@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { BoxInfo, Container } from '../ActivePatient/styled';
 import { PatientActive } from '../ActivePatient/mockData';
-import PatientCard from '../PatientCard';
+import PatientInfo from '../PatientInfo';
 import { PATIENT_PER_PAGE } from '../index';
 import { Pagination } from 'components';
 import { ReactComponent as Cross } from 'assets/icons/cross.svg';
@@ -27,7 +27,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
     <Container>
       {currentPatient.map((patient, i) => (
         <BoxInfo key={i}>
-          <PatientCard
+          <PatientInfo
             name={patient.name}
             phone={patient.phone}
             date={patient.date}

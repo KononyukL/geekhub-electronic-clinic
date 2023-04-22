@@ -5,6 +5,7 @@ import workingHours from './workingHours';
 import profile from './profile';
 import appointments from './appointments';
 import visits from './visits';
+import cardPatient from './cardPatient';
 import notification from './notification';
 
 export const index = configureStore({
@@ -15,6 +16,7 @@ export const index = configureStore({
     profile,
     appointments,
     visits,
+    cardPatient,
     notification
   }
 });

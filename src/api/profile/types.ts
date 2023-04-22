@@ -4,6 +4,7 @@ export interface IGetProfileData {
 
 export interface IProfile {
   first_name: string;
+  card_id: string;
   last_name: string;
   patronim_name: string;
   birth_date: string;
@@ -39,4 +40,9 @@ export interface IEditProfileFormData {
   address_street?: string;
   address_house?: string;
   address_appartment?: string;
+}
+
+export interface IEditProfileData {
+  formData: IEditProfileFormData;
+  id: string | number;
 }

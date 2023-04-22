@@ -22,7 +22,7 @@ import { Pagination } from 'components/index';
 import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getFinishedVisits, selectVisits } from 'store/visits';
-import { parseDate } from 'config/helpers';
+import { getAuthData, parseDate } from 'config/helpers';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -34,6 +34,7 @@ const MedicalHistory: FC<IPaginationComponent> = ({
 
   const dispatch = useAppDispatch();
   const { finishedVisits } = useAppSelector(selectVisits);
+  const { is_doctor } = getAuthData();
 
   useEffect(() => {
     if (finishedVisits) {
@@ -42,11 +43,13 @@ const MedicalHistory: FC<IPaginationComponent> = ({
   }, [finishedVisits]);
 
   useEffect(() => {
-    dispatch(
-      getFinishedVisits({
-        page: searchParams.get('page') || 1
-      })
-    );
+    if (!is_doctor) {
+      dispatch(
+        getFinishedVisits({
+          page: searchParams.get('page') || 1
+        })
+      );
+    }
   }, [searchParams]);
 
   return (

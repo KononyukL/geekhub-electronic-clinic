@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { BoxInfo, Container, Info, Name, NumberCard, PatientInfo, Text, TextSpan } from './styled';
 import DataCardPatient from './DataCardPatient';
@@ -13,21 +13,32 @@ import { selectDoctors } from 'store/doctors';
 import { specializations } from 'store/doctors/thunks';
 import { usePagination } from 'hooks/usePagination';
 import { getAuthData } from 'config/helpers';
+import { getCard, selectCardPatient } from 'store/cardPatient';
 
 export const CARD_PER_PAGE = 6;
-const CardPatient = () => {
+
+interface ICardPatient {
+  userId: string | number;
+  cardId: string | number;
+}
+
+const CardPatient: FC<ICardPatient> = ({ userId, cardId }) => {
   const [itemsCount, setItemsCount] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');
     return pageParam ? parseInt(pageParam) : 0;
   });
+
   const [specialist, setSpecialist] = React.useState(() => {
     const pageParam = searchParams.get('specialist');
     return pageParam || 'all';
   });
+
   const dispatch = useAppDispatch();
   const { specializations: selectSpecializations } = useAppSelector(selectDoctors);
+  const { cardPatient } = useAppSelector(selectCardPatient);
+
   const { is_doctor } = getAuthData();
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
@@ -37,6 +48,12 @@ const CardPatient = () => {
   useEffect(() => {
     dispatch(specializations());
   }, []);
+
+  useEffect(() => {
+    if (cardId) {
+      dispatch(getCard(cardId));
+    }
+  }, [cardId]);
 
   const onSetItemsCount = useCallback((count: number) => {
     setItemsCount(count);
@@ -74,16 +91,16 @@ const CardPatient = () => {
         <BoxInfo>
           <UserAvatar />
           <Info>
-            <Name>Стерненко Ілона Макарівна</Name>
-            <Text>+38 (099) 133 27 13</Text>
+            <Name>{cardPatient?.patient || '-'}</Name>
+            <Text>{cardPatient?.phone_num || '-'}</Text>
             <NumberCard>
-              Номер картки пацієнта:<TextSpan> 654665 </TextSpan>
+              Картка №: <TextSpan>{cardPatient?.card_id || '-'}</TextSpan>
             </NumberCard>
           </Info>
         </BoxInfo>
       </PatientInfo>
       <Box>
-        <DataCardPatient />
+        <DataCardPatient cardPatient={cardPatient} />
         <ProfileTabs value={tab} onChange={handleTabChange} tabsList={CurrentCardConfig}>
           {tab === 0 && (
             <Select value={specialist} onChange={handleSelectChange}>
