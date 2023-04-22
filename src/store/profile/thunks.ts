@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { profileApi } from 'api';
-import { IEditPasswordData, IEditProfileFormData, IGetProfileData } from 'api/profile/types';
+import { IEditPasswordData, IEditProfileData, IGetProfileData } from 'api/profile/types';
 import { toast } from 'react-toastify';
 
 export const getProfile = createAsyncThunk(
@@ -28,7 +28,7 @@ export const editPassword = createAsyncThunk(
 );
 export const editProfile = createAsyncThunk(
   'edit-profile',
-  async (data: IEditProfileFormData, { rejectWithValue }) => {
+  async (data: IEditProfileData, { rejectWithValue }) => {
     try {
       await profileApi.editProfile(data);
       toast.success('Ваші дані успішно змінені');

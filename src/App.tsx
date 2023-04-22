@@ -22,8 +22,8 @@ import LayoutUserProfile from './components/Layouts/LayoutProfile/LayoutUserProf
 import LayoutDoctorProfile from './components/Layouts/LayoutProfile/LayoutDoctorProfile';
 import ProfileDoctor from './routes/pages/DoctorProfile/ProfileDoctor';
 import Patient from './routes/pages/DoctorProfile/Patient';
-import CardPatient from './components/view/profile/CardParient';
 import MyCard from 'routes/pages/UserProfile/MyCard';
+import PatientCard from 'routes/pages/DoctorProfile/Patient/PatientCard';
 import Error from 'routes/pages/Error'
 
 const router = createBrowserRouter(
@@ -40,7 +40,7 @@ const router = createBrowserRouter(
         <Route element={<LayoutDoctorProfile />}>
           <Route path={ROUTES.PROFILE_DOCTOR.PATH} element={<ProfileDoctor />} />
           <Route path={ROUTES.PATIENTS_DOCTOR.PATH} element={<Patient />} />
-          <Route path={ROUTES.PATIENTS_DOCTOR.SUB_PATH} element={<CardPatient />} />
+          <Route path={ROUTES.PATIENTS_DOCTOR.SUB_PATH} element={<PatientCard />} />
         </Route>
         <Route path={ROUTES.LOGIN.PATH} element={<Login />} />
         <Route path={ROUTES.RESET_PASSWORD.PATH} element={<ResetPassword />} />
