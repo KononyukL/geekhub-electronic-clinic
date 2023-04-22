@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 import { Wrapper, ProfileDoctor, WrapperWorkingHours, Container } from './styled';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';

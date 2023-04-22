@@ -70,7 +70,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
               Обрана дата:
               <Date>
-                {currentDate} ,{bookVisit}
+                {currentDate} о {bookVisit}
               </Date>
             </Typography>
             <WrapperButtons>

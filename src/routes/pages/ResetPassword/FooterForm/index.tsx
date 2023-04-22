@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Container, Link, Login, Wrapper } from './styled';
 import { Typography } from '@mui/material';
 
-const FooterForm = () => {
+const FooterForm: FC = () => {
   return (
     <Container>
       <Wrapper>
@@ -11,7 +11,7 @@ const FooterForm = () => {
           протягом 10 хвилин
         </Typography>
         <Login>
-          <Link to="/login"> Відновлення пароль</Link>
+          <Link to="/login"> Назад до входу</Link>
           <Link to="/registration"> Зареєструватися</Link>
         </Login>
       </Wrapper>
