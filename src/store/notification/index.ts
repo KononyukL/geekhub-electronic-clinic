@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { allNotification } from './thunks';
+import { allNotification, statusNotification } from './thunks';
 import { RootState } from '../index';
 
 type IAllNotification = {
@@ -7,7 +7,7 @@ type IAllNotification = {
   title: string;
   text: string;
   is_read: boolean;
-}
+};
 
 type TAllNotification = {
   count: number;
@@ -16,8 +16,16 @@ type TAllNotification = {
   results: IAllNotification[];
 };
 
+export type TStatusNotification = {
+  id: number;
+  title: string;
+  text: string;
+  is_read: boolean;
+};
+
 interface INotification {
   allNotification: TAllNotification;
+  statusNotification: TStatusNotification;
   isLoading: boolean;
   error: Error | string;
 }
@@ -28,6 +36,12 @@ const initialState: INotification = {
     next: '',
     previous: '',
     results: []
+  },
+  statusNotification: {
+    id: 0,
+    title: '',
+    text: '',
+    is_read: true
   },
   isLoading: false,
   error: ''
@@ -50,10 +64,23 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(statusNotification.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(statusNotification.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.allNotification = action.payload;
+      })
+      .addCase(statusNotification.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { allNotification };
+export { allNotification, statusNotification };
 
 export const {} = newsSlice.actions;
 
