@@ -8,10 +8,10 @@ import IGMShowMore from 'assets/icons/ShowMore.svg';
 import { useAppSelector } from 'store/hooks';
 import IGMHide from 'assets/icons/Hide.svg';
 import { useDispatch } from 'react-redux';
-import { AUTH_DATA } from '../../config';
 import { TWorkingHours } from './types';
 import Calendar from './Calendar';
 import { RootState } from 'store';
+import {getAuthData} from "../../config/helpers";
 
 const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
@@ -24,12 +24,11 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
   const [freeHours, setFreeHours] = useState<string[]>();
   const [bookVisit, setBookVisit] = useState<string>('');
   const [open, setOpen] = useState<boolean>(false);
-  const [isDoctor, setIsDoctor] = useState();
+  const [isDoctor, setIsDoctor] = useState<boolean>();
 
   useEffect(() => {
-    const authDataString: any = localStorage.getItem(AUTH_DATA);
-    const isDoctorOrUser = JSON.parse(authDataString).is_doctor;
-    setIsDoctor(isDoctorOrUser);
+    const { is_doctor } = getAuthData()
+    setIsDoctor(is_doctor);
   }, [isDoctor]);
 
   useEffect(() => {
