@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { BoxInfo, Button, Container } from './styled';
 import { PatientActive } from './mockData';
-import PatientCard from '../PatientCard';
+import PatientInfo from '../PatientInfo';
 import { Pagination } from 'components';
 import { PATIENT_PER_PAGE } from '../index';
 import { useNavigate } from 'react-router-dom';
@@ -20,25 +20,26 @@ const ActivePatient: FC<IPaginationComponent> = ({
     page * PATIENT_PER_PAGE
   );
 
-  const openCard = (id: number) => () => {
-    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${id}`);
+  const openCard = (id: number, cardId: number) => () => {
+    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${id}/${cardId}`);
   };
 
   useEffect(() => {
     onSetItemsCount(PatientActive.length);
   }, []);
+
   return (
     <Container>
       {currentPatient.map((patient, i) => (
         <BoxInfo key={i}>
-          <PatientCard
+          <PatientInfo
             name={patient.name}
             phone={patient.phone}
             date={patient.date}
             time={patient.time}
             reception={patient.reception}
           />
-          <Button onClick={openCard(patient.id)} variant="contained" color="secondary">
+          <Button onClick={openCard(patient.id, patient.id)} variant="contained" color="secondary">
             До картки
           </Button>
         </BoxInfo>

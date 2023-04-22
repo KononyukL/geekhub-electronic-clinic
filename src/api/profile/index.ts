@@ -1,5 +1,5 @@
 import { axiosInstance } from 'api/config';
-import { IEditPasswordData, IEditProfileFormData, IGetProfileData } from 'api/profile/types';
+import { IEditPasswordData, IEditProfileData, IGetProfileData } from 'api/profile/types';
 
 export const profileApi = {
   async getProfile({ id }: IGetProfileData) {
@@ -13,8 +13,8 @@ export const profileApi = {
     });
     return result.data;
   },
-  async editProfile(formData: IEditProfileFormData) {
-    const result = await axiosInstance.patch(`accounts/user/my-account/edit`, formData);
+  async editProfile({ id, formData }: IEditProfileData) {
+    const result = await axiosInstance.patch(`accounts/user-${id}/my-account/edit`, formData);
     return result.data;
   }
 };

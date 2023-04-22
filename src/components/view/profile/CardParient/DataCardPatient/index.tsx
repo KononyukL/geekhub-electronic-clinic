@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BoxDataPatient, Container, DataText, DataTitle } from './styled';
-import { dataCardPatient } from '../mockData';
+import { ICardPatient } from 'api/card-patient/types';
 
-const DataCardPatient = () => {
+interface IDataCardPatient {
+  cardPatient: ICardPatient | null;
+}
+const DataCardPatient: FC<IDataCardPatient> = ({ cardPatient }) => {
   return (
     <Container>
       <BoxDataPatient>
         <DataTitle>Дата реєстрації:</DataTitle>
-        <DataText>{dataCardPatient.registration}</DataText>
+        <DataText>{cardPatient?.register_date || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Номер телефону:</DataTitle>
-        <DataText>{dataCardPatient.phone}</DataText>
+        <DataText>{cardPatient?.phone_num || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Дата народження:</DataTitle>
-        <DataText>{dataCardPatient.birthday}</DataText>
+        <DataText>{cardPatient?.birth_date || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Електронна пошта:</DataTitle>
-        <DataText>{dataCardPatient.email}</DataText>
+        <DataText>{cardPatient?.email || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Группа крові:</DataTitle>
-        <DataText>{dataCardPatient.bloodType}</DataText>
+        <DataText>{cardPatient?.blood_group || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Адреса:</DataTitle>
-        <DataText>{dataCardPatient.address}</DataText>
+        <DataText>{cardPatient?.address || '-'}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Стать:</DataTitle>
-        <DataText>{dataCardPatient.gender}</DataText>
+        <DataText>{cardPatient?.sex || '-'}</DataText>
       </BoxDataPatient>
     </Container>
   );

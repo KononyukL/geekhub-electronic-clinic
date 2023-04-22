@@ -33,7 +33,7 @@ const ROUTES = {
   },
   PATIENTS_DOCTOR: {
     PATH: '/patients-doctor',
-    SUB_PATH: '/patients-doctor/:id'
+    SUB_PATH: '/patients-doctor/:userId/:cardId/'
   },
   CARD: {
     PATH: '/card'

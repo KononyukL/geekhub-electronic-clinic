@@ -13,9 +13,9 @@ export const dataProfile = {
 };
 
 export const genderOptions = [
-  { value: 'female', label: 'Жінка' },
-  { value: 'male', label: 'Чоловік' },
-  { value: 'other', label: 'Інше' }
+  { value: 'Жіноча', label: 'Жіноча' },
+  { value: 'Чоловіча', label: 'Чоловіча' },
+  { value: 'Інше', label: 'Інше' }
 ];
 
 export const city = [

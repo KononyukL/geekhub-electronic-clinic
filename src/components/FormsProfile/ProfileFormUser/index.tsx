@@ -16,10 +16,10 @@ import { Autocomplete, Box, createFilterOptions } from '@mui/material';
 import { genderOptions, oblastCenters } from 'routes/pages/UserProfile/Profile/mockData';
 import DatePicker from '../../DatePicker';
 import ErrorValidation from 'components/ErrorValidation';
-import { removeEmptyFields } from 'config/helpers';
+import { getAuthData, removeEmptyFields } from 'config/helpers';
 import { useAppDispatch } from 'store/hooks';
 import { IEditProfileFormData } from 'api/profile/types';
-import { editProfile } from 'store/profile';
+import { editProfile, getProfile } from 'store/profile';
 
 interface IProfileForm {
   closeEdit: () => void;
@@ -37,13 +37,19 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
   });
 
   const dispatch = useAppDispatch();
+  const { id } = getAuthData();
 
   const onSubmit = async (data: IEditProfileFormData) => {
     if (data.sex === 'gender') {
       data.sex = '';
     }
     removeEmptyFields(data);
-    dispatch(editProfile(data));
+    if (id) {
+      const { type } = await dispatch(editProfile({ id, formData: data }));
+      if (type.includes('fulfilled')) {
+        dispatch(getProfile({ id }));
+      }
+    }
     closeEdit();
     reset();
   };
@@ -139,7 +145,7 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
                       selectOnFocus
                       clearOnBlur
                       handleHomeEndKeys
-                      clearIcon
+                      disableClearable
                       options={oblastCenters}
                       getOptionLabel={(option) => option}
                       renderOption={(props, option) => <li {...props}>{option}</li>}
