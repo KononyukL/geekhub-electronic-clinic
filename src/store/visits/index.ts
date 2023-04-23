@@ -1,11 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { deleteVisits, getFinishedVisits, getPlannedVisits } from './thunks';
+import {
+  confirmVisits,
+  deleteVisits,
+  getFinishedVisits,
+  getPlannedVisits,
+  getUnconfirmedVisits
+} from './thunks';
 import { RootState } from '../index';
 import { IVisits } from 'api/visits/types';
 
 interface IVisitState {
   finishedVisits: IVisits | null;
   plannedVisits: IVisits | null;
+  unconfirmedVisits: IVisits | null;
   isLoading: boolean;
   error: Error | string;
 }
@@ -13,6 +20,7 @@ interface IVisitState {
 const initialState: IVisitState = {
   finishedVisits: null,
   plannedVisits: null,
+  unconfirmedVisits: null,
   isLoading: false,
   error: ''
 };
@@ -49,6 +57,19 @@ export const newsSlice = createSlice({
       });
 
     builder
+      .addCase(getUnconfirmedVisits.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUnconfirmedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.unconfirmedVisits = action.payload;
+      })
+      .addCase(getUnconfirmedVisits.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    builder
       .addCase(deleteVisits.pending, (state) => {
         state.isLoading = true;
       })
@@ -59,10 +80,22 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(confirmVisits.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(confirmVisits.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(confirmVisits.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { getFinishedVisits, getPlannedVisits, deleteVisits };
+export { getFinishedVisits, getPlannedVisits, getUnconfirmedVisits, deleteVisits, confirmVisits };
 
 export const {} = newsSlice.actions;
 

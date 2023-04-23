@@ -9,7 +9,6 @@ import { IPaginationComponent } from 'types';
 import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
-import { IDeleteVisit } from 'api/visits/types';
 import { parseDate } from 'config/helpers';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
@@ -44,8 +43,8 @@ const PlannedVisits: FC<IPaginationComponent> = ({
   };
 
   const deleteVisit = useCallback(
-    (date: IDeleteVisit) => async () => {
-      const { payload } = await dispatch(deleteVisits(date));
+    (id: string | number) => async () => {
+      const { payload } = await dispatch(deleteVisits(id));
       setOpenModal(false);
 
       if (payload) {
@@ -77,7 +76,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
             <ModalProfile
               open={openModal}
               setOpen={setOpenModal}
-              deleteVisit={deleteVisit({ date: item.date, time: item.time })}
+              deleteVisit={deleteVisit(item.id)}
             />
           </BoxInfo>
         </Box>

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { visitsApi } from 'api';
-import { IDeleteVisit, IVisitFilter } from 'api/visits/types';
+import { IVisitFilter } from 'api/visits/types';
 import { toast } from 'react-toastify';
 
 export const getFinishedVisits = createAsyncThunk(
@@ -25,12 +25,35 @@ export const getPlannedVisits = createAsyncThunk(
   }
 );
 
+export const getUnconfirmedVisits = createAsyncThunk(
+  'unconfirmed-visits',
+  async (filter: IVisitFilter, { rejectWithValue }) => {
+    try {
+      return await visitsApi.getUnconfirmedVisits(filter);
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
 export const deleteVisits = createAsyncThunk(
   'delete-visits',
-  async ({ date, time }: IDeleteVisit, { rejectWithValue }) => {
+  async (id: string | number, { rejectWithValue }) => {
     try {
-      await visitsApi.deleteVisit({ date, time });
+      await visitsApi.deleteVisit(id);
       toast.success('Запис скасовано');
+      return true;
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+export const confirmVisits = createAsyncThunk(
+  'confirm-visits',
+  async (id: string | number, { rejectWithValue }) => {
+    try {
+      await visitsApi.confirmVisit(id);
+      toast.success('Запис підтверджено');
       return true;
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');

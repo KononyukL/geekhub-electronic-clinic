@@ -26,8 +26,3 @@ export interface IVisits {
   previous: string | null;
   results: IVisit[];
 }
-
-export interface IDeleteVisit {
-  date: string;
-  time: string;
-}
