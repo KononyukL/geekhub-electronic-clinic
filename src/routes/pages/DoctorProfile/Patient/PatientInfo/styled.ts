@@ -1,21 +1,21 @@
 import { Box as MUIBox, styled, Typography, Button as MUIButton } from '@mui/material';
 
 export const Container = styled(MUIBox)(() => {
-  return {};
-});
-export const BoxInfo = styled(MUIBox)(() => {
   return {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    columnGap: '50px'
+    columnGap: '50px',
+    width: '100%'
   };
 });
-export const DoctorsInfo = styled(MUIBox)(() => {
+
+export const StyledPatientInfo = styled(MUIBox)(() => {
   return {
     display: 'flex',
     gap: '16px',
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: '1 1 50%'
   };
 });
 export const ContainerInfo = styled(MUIBox)(() => {
@@ -32,10 +32,8 @@ export const Info = styled(Typography)(() => {
 export const ReceptionInfo = styled(MUIBox)(() => {
   return {
     display: 'flex',
-    // display: 'grid',
-    // gridTemplateColumns: '130px 60px 80px',
     columnGap: '16px',
-    flex: '1 1 auto'
+    flex: '1 1 50%'
   };
 });
 export const Reception = styled(MUIBox)(() => {

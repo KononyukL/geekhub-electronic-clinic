@@ -8,7 +8,6 @@ import {
   Button,
   StyledTextField
 } from '../styled';
-import { useTranslation } from 'react-i18next';
 import { Controller, useForm } from 'react-hook-form';
 import ContainerForm from '../ContainerForm';
 import MenuItem from '@mui/material/MenuItem';
@@ -25,7 +24,6 @@ interface IProfileForm {
   closeEdit: () => void;
 }
 const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
-  const { t } = useTranslation();
   const {
     register,
     control,
@@ -37,17 +35,18 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
   });
 
   const dispatch = useAppDispatch();
-  const { id } = getAuthData();
+  const { user_id } = getAuthData();
 
   const onSubmit = async (data: IEditProfileFormData) => {
     if (data.sex === 'gender') {
       data.sex = '';
     }
     removeEmptyFields(data);
-    if (id) {
-      const { type } = await dispatch(editProfile({ id, formData: data }));
-      if (type.includes('fulfilled')) {
-        dispatch(getProfile({ id }));
+    if (user_id) {
+      const { payload } = await dispatch(editProfile({ id: user_id, formData: data }));
+
+      if (payload) {
+        dispatch(getProfile({ id: user_id }));
       }
     }
     closeEdit();
@@ -172,13 +171,9 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
             </HouseNumber>
           </ContainerForm>
         </Box>
-        <Button
-          variant="contained"
-          color="secondary"
-          children={t('buttons.save')}
-          type="submit"
-          disabled={isSubmitting}
-        />
+        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>
+          Зберегти
+        </Button>
       </Form>
     </Container>
   );

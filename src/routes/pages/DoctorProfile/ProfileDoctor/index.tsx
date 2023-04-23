@@ -12,14 +12,14 @@ import { getProfile } from 'store/profile';
 
 const ProfileDoctor = () => {
   const dispatch = useAppDispatch();
-  const { id } = getAuthData();
+  const { id, user_id } = getAuthData();
 
   const { doctor: profile } = useAppSelector(selectDoctors);
 
   useEffect(() => {
-    if (id) {
+    if (id && user_id) {
       dispatch(doctor({ doctorId: `${id}` }));
-      dispatch(getProfile({ id }));
+      dispatch(getProfile({ id: user_id }));
     }
   }, [id]);
   return (

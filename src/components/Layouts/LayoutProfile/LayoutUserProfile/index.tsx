@@ -11,15 +11,15 @@ import { useAppDispatch } from 'store/hooks';
 import { getProfile } from 'store/profile';
 
 const LayoutUserProfile = () => {
-  const { token, is_doctor, id } = getAuthData();
+  const { token, is_doctor, user_id } = getAuthData();
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (id && !is_doctor) {
-      dispatch(getProfile({ id }));
+    if (user_id && !is_doctor) {
+      dispatch(getProfile({ id: user_id }));
     }
-  }, [id]);
+  }, [user_id]);
 
   if (!token || is_doctor) {
     return <Navigate to={ROUTES.HOME.PATH} />;
