@@ -1,5 +1,5 @@
 import { axiosInstance } from 'api/config';
-import { IDeleteVisit, IVisitFilter } from 'api/visits/types';
+import { IVisitFilter } from 'api/visits/types';
 
 export const visitsApi = {
   async getFinishedVisits(filter: IVisitFilter) {
@@ -14,8 +14,18 @@ export const visitsApi = {
     });
     return result.data;
   },
-  async deleteVisit({ date, time }: IDeleteVisit) {
-    const result = await axiosInstance.delete(`cancel-appoitment/${date}/${time}`);
+  async deleteVisit(id: string | number) {
+    const result = await axiosInstance.delete(`cancel-appoitment/${id}`);
+    return result.data;
+  },
+  async confirmVisit(id: string | number) {
+    const result = await axiosInstance.patch(`confirm-appointment/${id}`, {});
+    return result.data;
+  },
+  async getUnconfirmedVisits(filter: IVisitFilter) {
+    const result = await axiosInstance.get(`unconfirmed-appointments`, {
+      params: filter
+    });
     return result.data;
   }
 };

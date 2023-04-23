@@ -1,5 +1,8 @@
 import { Box, Button, styled, TextareaAutosize, Typography } from '@mui/material';
 
+export const Form = styled('form')(() => {
+  return {};
+});
 export const BoxConclusion = styled(Box)(() => {
   return {
     width: '700px'

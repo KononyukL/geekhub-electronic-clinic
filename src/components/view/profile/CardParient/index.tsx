@@ -18,11 +18,10 @@ import { getCard, selectCardPatient } from 'store/cardPatient';
 export const CARD_PER_PAGE = 6;
 
 interface ICardPatient {
-  userId: string | number;
   cardId: string | number;
 }
 
-const CardPatient: FC<ICardPatient> = ({ userId, cardId }) => {
+const CardPatient: FC<ICardPatient> = ({ cardId }) => {
   const [itemsCount, setItemsCount] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [tab, setTab] = React.useState(() => {

@@ -24,12 +24,12 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
   } = useForm<any>({
     mode: 'onBlur'
   });
-  const { id } = getAuthData();
+  const { user_id } = getAuthData();
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: IEditPasswordFormData) => {
-    if (id) {
-      dispatch(editPassword({ formData: data, id }));
+    if (user_id) {
+      dispatch(editPassword({ formData: data, id: user_id }));
       closeEdit();
       reset();
     }

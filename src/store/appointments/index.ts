@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { newAppointment } from './thunks';
+import { finishAppointment, newAppointment } from './thunks';
 import { RootState } from '../index';
 
 interface IAppointmentState {
@@ -31,10 +31,22 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(finishAppointment.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(finishAppointment.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(finishAppointment.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { newAppointment };
+export { newAppointment, finishAppointment };
 
 export const {} = newsSlice.actions;
 
