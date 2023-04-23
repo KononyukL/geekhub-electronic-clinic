@@ -29,10 +29,9 @@ export const deleteVisits = createAsyncThunk(
   'delete-visits',
   async ({ date, time }: IDeleteVisit, { rejectWithValue }) => {
     try {
-      const data = await visitsApi.deleteVisit({ date, time });
+      await visitsApi.deleteVisit({ date, time });
       toast.success('Запис скасовано');
-
-      return data;
+      return true;
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }

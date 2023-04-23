@@ -4,9 +4,12 @@ import { PatientActive } from './mockData';
 import PatientInfo from '../PatientInfo';
 import { Pagination } from 'components';
 import { PATIENT_PER_PAGE } from '../index';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ROUTES from 'routes/constants';
 import { IPaginationComponent } from 'types';
+import { getPlannedVisits, selectVisits } from 'store/visits';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { parseDate } from 'config/helpers';
 
 const ActivePatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -15,13 +18,20 @@ const ActivePatient: FC<IPaginationComponent> = ({
   handleChangePage
 }) => {
   const navigate = useNavigate();
-  const currentPatient = PatientActive.slice(
-    (page - 1) * PATIENT_PER_PAGE,
-    page * PATIENT_PER_PAGE
-  );
+  const [searchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const { plannedVisits } = useAppSelector(selectVisits);
 
-  const openCard = (id: number, cardId: number) => () => {
-    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${id}/${cardId}`);
+  useEffect(() => {
+    dispatch(
+      getPlannedVisits({
+        page: searchParams.get('page') || 1
+      })
+    );
+  }, [searchParams]);
+
+  const openCard = (cardId: string, appointmentId: number) => () => {
+    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${cardId}/${appointmentId}`);
   };
 
   useEffect(() => {
@@ -30,21 +40,24 @@ const ActivePatient: FC<IPaginationComponent> = ({
 
   return (
     <Container>
-      {currentPatient.map((patient, i) => (
+      {plannedVisits?.results?.map((patient, i) => (
         <BoxInfo key={i}>
           <PatientInfo
-            name={patient.name}
-            phone={patient.phone}
-            date={patient.date}
+            name={patient.patient}
+            phone={patient.phone_num}
+            date={parseDate(patient.date, 'DD.MM.YYYY')}
             time={patient.time}
-            reception={patient.reception}
+            reception={patient.price}
           />
-          <Button onClick={openCard(patient.id, patient.id)} variant="contained" color="secondary">
+          <Button
+            onClick={openCard(patient.card_id, patient.id)}
+            variant="contained"
+            color="secondary">
             До картки
           </Button>
         </BoxInfo>
       ))}
-      {PatientActive.length >= PATIENT_PER_PAGE && (
+      {plannedVisits && plannedVisits.count > PATIENT_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}
           count={pageCount}

@@ -10,6 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { IDeleteVisit } from 'api/visits/types';
+import { parseDate } from 'config/helpers';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -44,10 +45,10 @@ const PlannedVisits: FC<IPaginationComponent> = ({
 
   const deleteVisit = useCallback(
     (date: IDeleteVisit) => async () => {
-      const { type } = await dispatch(deleteVisits(date));
+      const { payload } = await dispatch(deleteVisits(date));
       setOpenModal(false);
 
-      if (type.includes('fulfilled')) {
+      if (payload) {
         dispatch(
           getPlannedVisits({
             page: searchParams.get('page') || 1
@@ -66,9 +67,9 @@ const PlannedVisits: FC<IPaginationComponent> = ({
             <Visit
               name={item.doctor}
               positionDoctor={item.specialization}
-              date={item.date}
+              date={parseDate(item.date, 'DD.MM.YYYY')}
               time={item.time}
-              reception={'-'}
+              reception={item.price}
             />
             <Button variant="outlined" onClick={handleClick}>
               Скасувати

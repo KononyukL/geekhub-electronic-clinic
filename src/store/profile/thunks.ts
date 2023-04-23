@@ -32,6 +32,8 @@ export const editProfile = createAsyncThunk(
     try {
       await profileApi.editProfile(data);
       toast.success('Ваші дані успішно змінені');
+
+      return true;
     } catch (e: any) {
       toast.error(e.message || 'Something went wrong');
       rejectWithValue(e.message || 'Something went wrong');

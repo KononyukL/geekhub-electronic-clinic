@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 interface IGetAuthDataResult {
   token?: string;
   id?: number;
+  user_id?: number;
   is_doctor?: boolean;
 }
 
