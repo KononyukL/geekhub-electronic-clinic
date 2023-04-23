@@ -19,7 +19,7 @@ export const Wrapper = styled(Box)(() => {
   return {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '60px 0 170px'
+    marginBottom: 170
   };
 });
 

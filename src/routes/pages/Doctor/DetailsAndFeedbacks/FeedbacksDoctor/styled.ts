@@ -1,4 +1,4 @@
-import { Box, Divider, styled } from '@mui/material';
+import { Box, Divider, styled, Rating as MUIRating } from '@mui/material';
 
 export const Wrapper = styled(Box)(() => {
   return {
@@ -87,5 +87,11 @@ export const PaginationWrapper = styled(Box)(({ theme }) => {
     '& ul li:first-of-type button': {
       border: 'none'
     }
+  };
+});
+
+export const Rating = styled(MUIRating)(({ theme }) => {
+  return {
+    color: theme.palette.primary.main
   };
 });

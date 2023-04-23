@@ -1,64 +1,41 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Wrapper,
   Feedbacks,
   StyledBox,
   NameDoctor,
   Feedback,
-  Date,
   PaginationWrapper,
-  HorizontalLine
+  HorizontalLine,
+  Rating
 } from './styled';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { feedbacks } from 'store/doctors/thunks';
 import { Box, Pagination } from '@mui/material';
-import IMGStart from 'assets/icons/Star.svg';
+import { selectDoctors } from 'store/doctors';
 
-const feedbacks = [
-  {
-    name: 'Чорний Влад',
-    rating: '5',
-    date: '23.03.2023',
-    feedback: "Я звернувся до ендокринолога з проблемами щодо мого здоров'я.ням до своєї роботи."
-  },
-  {
-    name: 'Макс Прокопенко',
-    rating: '5',
-    date: '21.02.2023',
-    feedback:
-      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоздоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
-  },
-  {
-    name: 'Макс Прокопенко',
-    rating: '5',
-    date: '21.02.2023',
-    feedback:
-      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
-  },
-  {
-    name: 'Макс Прокопенко',
-    rating: '5',
-    date: '13.01.2022',
-    feedback:
-      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був пся до ендокринолога з проблемндокринолога з прооти."
-  },
-  {
-    name: 'Влад Чорний',
-    rating: '5',
-    date: '10.02.2023',
-    feedback:
-      "Я звернувся до ендокринолога з проблемами щодо мого здоров'я. Я був приємно здивований його професіоналізмом та відповідальним ставленням до своєї роботи."
-  }
-];
+interface IFeedbacksDoctor {
+  doctorId: number;
+}
 
-const FeedbacksDoctor: FC = () => {
+const FeedbacksDoctor: FC<IFeedbacksDoctor> = ({ doctorId }) => {
   const [page, setPage] = useState<number>(1);
+  const dispatch = useAppDispatch();
+  const { feedbacks: currentFeedbacks } = useAppSelector(selectDoctors);
+
+  useEffect(() => {
+    dispatch(feedbacks({ doctorId: doctorId }));
+  }, [dispatch]);
 
   const itemsPerPage = 3;
   const pageCount = Math.ceil(feedbacks.length / itemsPerPage);
 
   const getCurrentDoctors = () => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return feedbacks.slice(startIndex, endIndex);
+    if (currentFeedbacks && currentFeedbacks.results?.length) {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return currentFeedbacks.results.slice(startIndex, endIndex);
+    }
   };
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -69,29 +46,30 @@ const FeedbacksDoctor: FC = () => {
     <Box>
       <Wrapper>
         <HorizontalLine />
-        {feedbacks.length > 0 &&
-          getCurrentDoctors().map((feedback, index) => (
+        {currentFeedbacks.results.length > 0 &&
+          getCurrentDoctors()?.map((feedback, index) => (
             <Feedbacks key={index}>
               <StyledBox>
                 <Box>
-                  <NameDoctor>{feedback.name}</NameDoctor>
+                  <NameDoctor>
+                    {feedback.patient_lastname} {feedback.patient_firstname}
+                  </NameDoctor>
                   <Box>
-                    <img src={IMGStart} alt="Star" />
-                    <img src={IMGStart} alt="Star" />
-                    <img src={IMGStart} alt="Star" />
-                    <img src={IMGStart} alt="Star" />
-                    <img src={IMGStart} alt="Star" />
+                    <Rating
+                      readOnly
+                      name="size-medium"
+                      defaultValue={parseInt(feedback.review_rating)}
+                    />
                   </Box>
                 </Box>
-                <Date>{feedback.date}</Date>
               </StyledBox>
-              <Feedback>{feedback.feedback}</Feedback>
+              <Feedback>{feedback.review_text}</Feedback>
               <HorizontalLine />
             </Feedbacks>
           ))}
       </Wrapper>
       <PaginationWrapper>
-        {feedbacks.length >= 3 && (
+        {currentFeedbacks && currentFeedbacks.results.length >= 3 && (
           <Pagination
             count={pageCount}
             page={page}

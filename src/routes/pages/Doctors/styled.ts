@@ -12,7 +12,7 @@ export const Wrapper = styled(Box)(() => {
   return {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '60px 0 170px 0'
+    marginBottom: 170
   };
 });
 

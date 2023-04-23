@@ -71,7 +71,7 @@ const DetailAndFeedbacks: FC<IDoctorProps> = ({ currentDoctor }) => {
         <DetailsDoctor currentDoctor={currentDoctor} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <FeedbacksDoctor />
+        <FeedbacksDoctor doctorId={currentDoctor.id}/>
       </TabPanel>
     </Container>
   );

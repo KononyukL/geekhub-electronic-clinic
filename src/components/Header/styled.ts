@@ -43,3 +43,8 @@ export const Button = styled(MUIButton)(() => {
     fontWeight: 500
   };
 });
+
+export const Wrapper = styled(Box)(() => {
+  return {
+  }
+})

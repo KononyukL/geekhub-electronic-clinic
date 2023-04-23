@@ -6,6 +6,7 @@ import profile from './profile';
 import appointments from './appointments';
 import visits from './visits';
 import cardPatient from './cardPatient';
+import notification from './notification';
 
 export const index = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const index = configureStore({
     profile,
     appointments,
     visits,
-    cardPatient
+    cardPatient,
+    notification
   }
 });
 

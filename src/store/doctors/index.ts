@@ -1,68 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doctor, doctors, specializations } from './thunks';
+import { doctor, doctors, specializations, feedbacks } from './thunks';
 import { RootState } from '../index';
-import { IDoctor } from 'routes/pages/Doctor/interfaces';
-
-export interface ISpecialization {
-  name: string;
-  image: string;
-}
-
-export type TDoctorsApiResponse = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: IDoctor[];
-};
-
-export type TSpecializations = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: ISpecialization[];
-};
-
-interface IDoctorsState {
-  doctors: TDoctorsApiResponse;
-  doctor: IDoctor;
-  specializations: TSpecializations;
-  isLoading: boolean;
-  error: Error | string;
-}
-
-const initialState: IDoctorsState = {
-  doctors: {
-    count: 0,
-    next: '',
-    previous: '',
-    results: []
-  },
-  doctor: {
-    id: 0,
-    email: '',
-    profile_image: '',
-    last_name: '',
-    first_name: '',
-    patronim_name: '',
-    specialization: '',
-    price: 0,
-    category: '',
-    experience: '',
-    info: '',
-    education: '',
-    courses: '',
-    procedures_performed: '',
-    rating: 0
-  },
-  specializations: {
-    count: 0,
-    next: '',
-    previous: '',
-    results: []
-  },
-  isLoading: false,
-  error: ''
-};
+import { initialState } from './initialState';
 
 export const newsSlice = createSlice({
   name: 'doctors',
@@ -108,10 +47,23 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(feedbacks.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(feedbacks.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.feedbacks = action.payload;
+      })
+      .addCase(feedbacks.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { doctors, doctor, specializations };
+export { doctors, doctor, specializations, feedbacks };
 
 export const {} = newsSlice.actions;
 

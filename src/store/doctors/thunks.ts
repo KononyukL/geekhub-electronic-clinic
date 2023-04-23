@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { doctorsApi } from '../../api';
 
 interface IDoctor {
-  doctorId: string
+  doctorId: string | number
 }
 
 export const doctors = createAsyncThunk('doctors', async (_, { rejectWithValue }) => {
@@ -29,6 +29,17 @@ export const specializations = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       return await doctorsApi.specializations();
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
+export const feedbacks = createAsyncThunk(
+  'doctors/doctor-${doctorId}/reviews',
+  async ({ doctorId }: IDoctor, { rejectWithValue }) => {
+    try {
+      return await doctorsApi.feedbacks({ doctorId });
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }

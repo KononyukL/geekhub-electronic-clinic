@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-
+import { Link as MUILink } from 'react-router-dom';
 export const Wrapper = styled(Box)(() => {
   return {
     display: 'flex',
@@ -31,5 +31,17 @@ export const Img = styled('img')(() => {
     textAlign: 'center',
     verticalAlign: 'baseline',
     paddingLeft: 6
+  };
+});
+
+export const Link = styled(MUILink)(({ theme }) => {
+  return {
+    color: theme.palette.text.primary,
+    textDecoration: 'none',
+    transition: '.3s',
+
+    '&:hover': {
+      color: theme.palette.secondary.light
+    }
   };
 });
