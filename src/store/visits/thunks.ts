@@ -36,6 +36,17 @@ export const getUnconfirmedVisits = createAsyncThunk(
   }
 );
 
+export const getPatientFinishedVisits = createAsyncThunk(
+  'patient-finished-visits',
+  async (id: string | number, { rejectWithValue }) => {
+    try {
+      return await visitsApi.getPatientFinishedVisit(id);
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
 export const deleteVisits = createAsyncThunk(
   'delete-visits',
   async (id: string | number, { rejectWithValue }) => {

@@ -30,8 +30,8 @@ const ActivePatient: FC<IPaginationComponent> = ({
     );
   }, [searchParams]);
 
-  const openCard = (cardId: string, appointmentId: number) => () => {
-    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${cardId}/${appointmentId}`);
+  const openCard = (cardId: string, appointmentId: number, patientId: number) => () => {
+    navigate(`${ROUTES.PATIENTS_DOCTOR.PATH}/${cardId}/${appointmentId}/${patientId}`);
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const ActivePatient: FC<IPaginationComponent> = ({
             reception={patient.price}
           />
           <Button
-            onClick={openCard(patient.card_id, patient.id)}
+            onClick={openCard(patient.card_id, patient.id, patient.patient_id)}
             variant="contained"
             color="secondary">
             До картки

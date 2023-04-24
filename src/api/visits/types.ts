@@ -9,6 +9,7 @@ export interface IVisit {
   price: string;
   phone_num: string;
   patient: string;
+  patient_id: number;
   card_id: string;
   doctor: string;
   specialization: string;

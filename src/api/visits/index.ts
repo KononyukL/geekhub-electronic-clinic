@@ -14,6 +14,10 @@ export const visitsApi = {
     });
     return result.data;
   },
+  async getPatientFinishedVisit(id: string | number) {
+    const result = await axiosInstance.get(`patient-finished/${id}`);
+    return result.data;
+  },
   async deleteVisit(id: string | number) {
     const result = await axiosInstance.delete(`cancel-appoitment/${id}`);
     return result.data;

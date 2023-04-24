@@ -3,14 +3,16 @@ import {
   confirmVisits,
   deleteVisits,
   getFinishedVisits,
+  getPatientFinishedVisits,
   getPlannedVisits,
   getUnconfirmedVisits
 } from './thunks';
 import { RootState } from '../index';
-import { IVisits } from 'api/visits/types';
+import { IVisit, IVisits } from 'api/visits/types';
 
 interface IVisitState {
   finishedVisits: IVisits | null;
+  patientFinishedVisits: IVisit[] | null;
   plannedVisits: IVisits | null;
   unconfirmedVisits: IVisits | null;
   isLoading: boolean;
@@ -20,6 +22,7 @@ interface IVisitState {
 const initialState: IVisitState = {
   finishedVisits: null,
   plannedVisits: null,
+  patientFinishedVisits: null,
   unconfirmedVisits: null,
   isLoading: false,
   error: ''
@@ -52,6 +55,19 @@ export const newsSlice = createSlice({
         state.plannedVisits = action.payload;
       })
       .addCase(getPlannedVisits.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(getPatientFinishedVisits.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPatientFinishedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.patientFinishedVisits = action.payload;
+      })
+      .addCase(getPatientFinishedVisits.rejected, (state, action: PayloadAction<any>) => {
         state.isLoading = false;
         state.error = action.payload;
       });

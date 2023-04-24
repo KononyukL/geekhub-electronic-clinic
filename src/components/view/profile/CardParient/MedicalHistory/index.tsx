@@ -19,10 +19,11 @@ import {
 import { IPaginationComponent } from 'types';
 import { CARD_PER_PAGE } from 'components/view/profile/CardParient/index';
 import { Pagination } from 'components/index';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getFinishedVisits, selectVisits } from 'store/visits';
 import { getAuthData, parseDate } from 'config/helpers';
+import { getPatientFinishedVisits } from 'store/visits/thunks';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -33,8 +34,9 @@ const MedicalHistory: FC<IPaginationComponent> = ({
   const [searchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
-  const { finishedVisits } = useAppSelector(selectVisits);
+  const { finishedVisits, patientFinishedVisits } = useAppSelector(selectVisits);
   const { is_doctor } = getAuthData();
+  const { userId } = useParams();
 
   useEffect(() => {
     if (finishedVisits) {
@@ -49,12 +51,16 @@ const MedicalHistory: FC<IPaginationComponent> = ({
           page: searchParams.get('page') || 1
         })
       );
+    } else if (userId) {
+      dispatch(getPatientFinishedVisits(userId));
     }
-  }, [searchParams]);
+  }, [searchParams, is_doctor, userId]);
+
+  const currentVisits = is_doctor ? patientFinishedVisits : finishedVisits?.results;
 
   return (
     <Container>
-      {finishedVisits?.results?.map((item, i) => (
+      {currentVisits?.map((item, i) => (
         <StyledAccordion key={i} sx={{}}>
           <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
             <BoxAvatar>
