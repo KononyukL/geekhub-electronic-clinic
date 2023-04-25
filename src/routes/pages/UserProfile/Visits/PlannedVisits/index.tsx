@@ -10,6 +10,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
+import NoRecords from 'components/view/profile/ NoRecords';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -60,27 +61,33 @@ const PlannedVisits: FC<IPaginationComponent> = ({
 
   return (
     <VisitsContainer>
-      {plannedVisits?.results?.map((item, i) => (
-        <Box key={i}>
-          <BoxInfo>
-            <Visit
-              name={item.doctor}
-              positionDoctor={item.specialization}
-              date={parseDate(item.date, 'DD.MM.YYYY')}
-              time={item.time}
-              reception={item.price}
-            />
-            <Button variant="outlined" onClick={handleClick}>
-              Скасувати
-            </Button>
-            <ModalProfile
-              open={openModal}
-              setOpen={setOpenModal}
-              deleteVisit={deleteVisit(item.id)}
-            />
-          </BoxInfo>
-        </Box>
-      ))}
+      {plannedVisits &&
+        (plannedVisits.results.length ? (
+          plannedVisits?.results?.map((item, i) => (
+            <Box key={i}>
+              <BoxInfo>
+                <Visit
+                  name={item.doctor}
+                  positionDoctor={item.specialization}
+                  date={parseDate(item.date, 'DD.MM.YYYY')}
+                  time={item.time}
+                  reception={item.price}
+                />
+                <Button variant="outlined" onClick={handleClick}>
+                  Скасувати
+                </Button>
+                <ModalProfile
+                  open={openModal}
+                  setOpen={setOpenModal}
+                  deleteVisit={deleteVisit(item.id)}
+                />
+              </BoxInfo>
+            </Box>
+          ))
+        ) : (
+          <NoRecords paddingSize={24} />
+        ))}
+
       {plannedVisits && plannedVisits.count > VISITS_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}

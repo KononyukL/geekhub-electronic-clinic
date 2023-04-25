@@ -1,4 +1,4 @@
-import { Box as MUIBox, styled, Tab, Tabs, Typography, Select as MUISelect } from '@mui/material';
+import { Box as MUIBox, styled, Typography, Select as MUISelect } from '@mui/material';
 import { theme } from 'theme';
 
 export const Container = styled(MUIBox)(() => {
@@ -9,22 +9,6 @@ export const Container = styled(MUIBox)(() => {
   };
 });
 
-export const StyledTabs = styled(Tabs)(() => {
-  return {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flex: '1 0 35%'
-  };
-});
-
-export const StyledTab = styled(Tab)(({ theme }) => {
-  return {
-    textTransform: 'none',
-    color: theme.palette.text.primary,
-    fontWeight: 600,
-    minWidth: '160px'
-  };
-});
 export const Info = styled(Typography)(() => {
   return {};
 });
@@ -57,7 +41,7 @@ export const Select = styled(MUISelect)(() => {
 
 export const VisitsContainer = styled(MUIBox)(({ theme }) => {
   return {
-    marginBottom: 20,
+    marginBottom: 50,
     background: theme.palette.background.paper
   };
 });

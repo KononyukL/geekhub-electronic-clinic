@@ -17,6 +17,7 @@ const Profile = () => {
         name={`${profile?.last_name || ''} ${profile?.first_name || ''} ${
           profile?.patronim_name || ''
         } `}
+        phone={profile?.phone_num || ''}
       />
       <BoxInfo>
         <PersonalData />

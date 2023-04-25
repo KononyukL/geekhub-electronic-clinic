@@ -24,6 +24,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getFinishedVisits, selectVisits } from 'store/visits';
 import { getAuthData, parseDate } from 'config/helpers';
 import { getPatientFinishedVisits } from 'store/visits/thunks';
+import NoRecords from 'components/view/profile/ NoRecords';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -60,30 +61,35 @@ const MedicalHistory: FC<IPaginationComponent> = ({
 
   return (
     <Container>
-      {currentVisits?.map((item, i) => (
-        <StyledAccordion key={i} sx={{}}>
-          <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <BoxAvatar>
-              <Avatar />
-              <DoctorInfo>
-                <NameDoctor>{item.doctor}</NameDoctor>
-                <Specialization>{item.specialization}</Specialization>
-              </DoctorInfo>
-            </BoxAvatar>
-            <BoxData>
-              <Date>
-                Дата: <Span>{parseDate(item.date, 'DD.MM.YYYY')}</Span>
-              </Date>
-              <Diagnosis>
-                Діагноз: <Span>{item.diagnosis || '-'}</Span>
-              </Diagnosis>
-            </BoxData>
-          </StyledAccordionSummary>
-          <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
-            <Conclusion data={item} />
-          </AccordionDetails>
-        </StyledAccordion>
-      ))}
+      {currentVisits &&
+        (currentVisits.length ? (
+          currentVisits?.map((item, i) => (
+            <StyledAccordion key={i} sx={{}}>
+              <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <BoxAvatar>
+                  <Avatar />
+                  <DoctorInfo>
+                    <NameDoctor>{item.doctor}</NameDoctor>
+                    <Specialization>{item.specialization}</Specialization>
+                  </DoctorInfo>
+                </BoxAvatar>
+                <BoxData>
+                  <Date>
+                    Дата: <Span>{parseDate(item.date, 'DD.MM.YYYY')}</Span>
+                  </Date>
+                  <Diagnosis>
+                    Діагноз: <Span>{item.diagnosis || '-'}</Span>
+                  </Diagnosis>
+                </BoxData>
+              </StyledAccordionSummary>
+              <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
+                <Conclusion data={item} />
+              </AccordionDetails>
+            </StyledAccordion>
+          ))
+        ) : (
+          <NoRecords />
+        ))}
       {finishedVisits && finishedVisits.count >= CARD_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}

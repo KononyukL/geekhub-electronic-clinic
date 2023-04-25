@@ -6,7 +6,7 @@ export const Container = styled(Box)(({ theme }) => {
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     backgroundColor: theme.palette.background.paper,
-    padding: 24
+    padding: '24px 24px 0'
   };
 });
 

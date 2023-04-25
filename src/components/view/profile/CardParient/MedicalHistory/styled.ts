@@ -19,7 +19,7 @@ export const DoctorInfo = styled(Box)(() => {
 });
 export const Container = styled(Box)(() => {
   return {
-    paddingTop: '24px'
+    paddingTop: '24px '
   };
 });
 export const NameDoctor = styled(Typography)(() => {
