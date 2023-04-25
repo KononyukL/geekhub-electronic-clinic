@@ -1,11 +1,10 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { BoxInfo, Container, Info, Name, NumberCard, PatientInfo, Text, TextSpan } from './styled';
 import DataCardPatient from './DataCardPatient';
 import ProfileTabs from '../ProfileTabs';
 import { PATIENT_CARD_CONFIG } from './config';
 import { useSearchParams } from 'react-router-dom';
-import { Box, SelectChangeEvent } from '@mui/material';
+import { Avatar, Box, SelectChangeEvent } from '@mui/material';
 import { Select } from 'routes/pages/UserProfile/Visits/styled';
 import MenuItem from '@mui/material/MenuItem';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -14,6 +13,7 @@ import { specializations } from 'store/doctors/thunks';
 import { usePagination } from 'hooks/usePagination';
 import { getAuthData } from 'config/helpers';
 import { getCard, selectCardPatient } from 'store/cardPatient';
+import { theme } from 'theme';
 
 export const CARD_PER_PAGE = 6;
 
@@ -88,7 +88,17 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
     <Container>
       <PatientInfo>
         <BoxInfo>
-          <UserAvatar />
+          <Avatar
+            sx={{
+              backgroundColor: theme.palette.background.default,
+              width: '80px',
+              height: '80px',
+              color: theme.palette.text.secondary,
+              fontSize: '30px'
+            }}
+            variant="square">
+            {cardPatient?.patient[0]}
+          </Avatar>
           <Info>
             <Name>{cardPatient?.patient || '-'}</Name>
             <Text>{cardPatient?.phone_num || '-'}</Text>

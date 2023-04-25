@@ -10,6 +10,7 @@ import { IPaginationComponent } from 'types';
 import { getPlannedVisits, selectVisits } from 'store/visits';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { parseDate } from 'config/helpers';
+import NoRecords from 'components/view/profile/ NoRecords';
 
 const ActivePatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -40,23 +41,29 @@ const ActivePatient: FC<IPaginationComponent> = ({
 
   return (
     <Container>
-      {plannedVisits?.results?.map((patient, i) => (
-        <BoxInfo key={i}>
-          <PatientInfo
-            name={patient.patient}
-            phone={patient.phone_num}
-            date={parseDate(patient.date, 'DD.MM.YYYY')}
-            time={patient.time}
-            reception={patient.price}
-          />
-          <Button
-            onClick={openCard(patient.card_id, patient.id, patient.patient_id)}
-            variant="contained"
-            color="secondary">
-            До картки
-          </Button>
-        </BoxInfo>
-      ))}
+      {plannedVisits &&
+        (plannedVisits.results.length ? (
+          plannedVisits.results.map((patient, i) => (
+            <BoxInfo key={i}>
+              <PatientInfo
+                name={patient.patient}
+                phone={patient.phone_num}
+                date={parseDate(patient.date, 'DD.MM.YYYY')}
+                time={patient.time}
+                reception={patient.price}
+              />
+              <Button
+                onClick={openCard(patient.card_id, patient.id, patient.patient_id)}
+                disabled={!patient.card_id}
+                variant="contained"
+                color="secondary">
+                До картки
+              </Button>
+            </BoxInfo>
+          ))
+        ) : (
+          <NoRecords />
+        ))}
       {plannedVisits && plannedVisits.count > PATIENT_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}

@@ -7,11 +7,12 @@ import { ReactComponent as Card } from 'assets/icons/patient-card.svg';
 import ROUTES from 'routes/constants';
 import { Navigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
-import { useAppDispatch } from 'store/hooks';
-import { getProfile } from 'store/profile';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getProfile, selectProfile } from 'store/profile';
 
 const LayoutUserProfile = () => {
   const { token, is_doctor, user_id } = getAuthData();
+  const { profile } = useAppSelector(selectProfile);
 
   const dispatch = useAppDispatch();
 
@@ -37,10 +38,12 @@ const LayoutUserProfile = () => {
         <Visit />
         Мої візити
       </LinkProfile>
-      <LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>
-        <Card />
-        Картка пацієнта
-      </LinkProfile>
+      {profile && profile.card_id && (
+        <LinkProfile to={'/card'} className={({ isActive }) => (isActive ? 'active' : '')}>
+          <Card />
+          Картка пацієнта
+        </LinkProfile>
+      )}
     </LayoutProfile>
   );
 };
