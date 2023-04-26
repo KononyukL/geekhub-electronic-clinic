@@ -7,8 +7,8 @@ import {
   ReceptionInfo,
   StyledPatientInfo
 } from './styled';
-import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { theme } from 'theme';
+import Avatar from 'components/Avatar';
 
 interface IPatientInfo {
   name: string;
@@ -24,7 +24,7 @@ const PatientInfo: FC<IPatientInfo> = ({ name, phone, date, time, reception, chi
   return (
     <Container>
       <StyledPatientInfo>
-        <UserAvatar />
+        <Avatar>{name[0]}</Avatar>
         <ContainerInfo>
           <Info sx={{ fontWeight: 600 }}>{name}</Info>
           <Info sx={{ color: theme.palette.text.primary }}>{phone}</Info>

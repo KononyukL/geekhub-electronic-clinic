@@ -11,9 +11,9 @@ export const Box = styled(MUIBox)(() => {
   return {
     display: 'flex',
     justifyContent: 'space-between',
-    maxWidth: 1420,
+    maxWidth: 1480,
     margin: '0px auto',
-    padding: '100px 0 42px'
+    padding: '100px 30px 42px'
   };
 });
 

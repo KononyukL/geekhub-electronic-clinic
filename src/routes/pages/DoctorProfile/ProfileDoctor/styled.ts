@@ -4,7 +4,7 @@ export const Container = styled(MUIBox)(({ theme }) => {
   return {
     flex: '1 1 70%',
     backgroundColor: theme.palette.background.paper,
-    marginBottom: '50px'
+    marginBottom: '200px'
   };
 });
 export const Box = styled(MUIBox)(() => {

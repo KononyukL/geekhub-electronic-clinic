@@ -9,7 +9,6 @@ import { AccordionDetails, Box } from '@mui/material';
 import Conclusion from 'components/view/profile/Conclusion';
 
 import { theme } from 'theme';
-import { ReactComponent as Avatar } from 'assets/icons/user-avatar.svg';
 import { PATIENT_PER_PAGE } from 'routes/pages/DoctorProfile/Patient/index';
 import { Pagination } from 'components';
 import { IPaginationComponent } from 'types';
@@ -17,6 +16,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getFinishedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
+import NoRecords from 'components/view/profile/ NoRecords';
+import Avatar from 'components/Avatar';
 
 const HistoryPatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -45,34 +46,40 @@ const HistoryPatient: FC<IPaginationComponent> = ({
 
   return (
     <Container>
-      {finishedVisits?.results?.map((visit, i) => (
-        <Box key={i}>
-          <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <PatientInfo>
-                <Avatar />
-                <BoxInfo>
-                  <Info sx={{ fontWeight: 600 }}>{visit?.patient || '-'}</Info>
-                  <Info>{visit?.phone_num || '-'}</Info>
-                </BoxInfo>
-              </PatientInfo>
-              <ReceptionInfo>
-                <Reception>
-                  <Info sx={{ color: theme.palette.text.secondary }}>Дата:</Info>
-                  <Info>{parseDate(visit.date, 'DD.MM.YYYY')}</Info>
-                </Reception>
-                <Reception>
-                  <Info sx={{ color: theme.palette.text.secondary }}>Діагноз:</Info>
-                  <Info>{visit?.diagnosis || '-'}</Info>
-                </Reception>
-              </ReceptionInfo>
-            </AccordionSummary>
-            <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
-              <Conclusion data={visit} />
-            </AccordionDetails>
-          </Accordion>
-        </Box>
-      ))}
+      {finishedVisits &&
+        (finishedVisits.results.length ? (
+          finishedVisits?.results?.map((visit, i) => (
+            <Box key={i}>
+              <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <PatientInfo>
+                    <Avatar>{visit.patient[0]}</Avatar>
+                    <BoxInfo>
+                      <Info sx={{ fontWeight: 600 }}>{visit?.patient || '-'}</Info>
+                      <Info>{visit?.phone_num || '-'}</Info>
+                    </BoxInfo>
+                  </PatientInfo>
+                  <ReceptionInfo>
+                    <Reception>
+                      <Info sx={{ color: theme.palette.text.secondary }}>Дата:</Info>
+                      <Info>{parseDate(visit.date, 'DD.MM.YYYY')}</Info>
+                    </Reception>
+                    <Reception>
+                      <Info sx={{ color: theme.palette.text.secondary }}>Діагноз:</Info>
+                      <Info>{visit?.diagnosis || '-'}</Info>
+                    </Reception>
+                  </ReceptionInfo>
+                </AccordionSummary>
+                <AccordionDetails sx={{ '&.MuiAccordionDetails-root': { padding: 0 } }}>
+                  <Conclusion data={visit} />
+                </AccordionDetails>
+              </Accordion>
+            </Box>
+          ))
+        ) : (
+          <NoRecords />
+        ))}
+
       {finishedVisits && finishedVisits.count > PATIENT_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}

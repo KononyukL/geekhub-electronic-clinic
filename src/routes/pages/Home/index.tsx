@@ -14,8 +14,8 @@ import {
 import AboutUs from './AboutUs';
 import Feedbacks from './Feedbacks';
 import Questions from './Questions';
-import Header from '../../../components/Header';
-import Main from 'assets/icons/main.svg';
+import Header from 'components/Header';
+import Main from 'assets/icons/main.png';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../../constants';
 import CardInfo from './CardInfo';
@@ -23,11 +23,15 @@ import { ReactComponent as DoctorIcon } from 'assets/icons/doctor-icon.svg';
 import { ReactComponent as EquipmentIcon } from 'assets/icons/equipment-icon.svg';
 import { ReactComponent as ApproachIcon } from 'assets/icons/approach-icon.svg';
 import ServiceProvide from './ServiceProvide';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const onOpenDoctors = () => navigate(ROUTES.DOCTORS.PATH);
+
+  useScrollToTop();
+
   return (
     <>
       <Box>

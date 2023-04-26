@@ -2,8 +2,8 @@ import { Box, Button as MUIButton, styled, Typography } from '@mui/material';
 
 export const Container = styled(Box)({
   background: 'transparent',
-  maxWidth: 1420,
-  padding: '120px 0',
+  maxWidth: 1480,
+  padding: '120px 30px',
   display: 'flex',
   width: '100%',
   justifyContent: 'space-between',

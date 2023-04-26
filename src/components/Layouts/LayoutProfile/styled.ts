@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 export const BoxLayout = styled(MUIBox)(({ theme }) => {
   return {
-    maxWidth: '1420px',
+    maxWidth: '1480px',
     margin: '0 auto',
     width: '100%',
+    padding: '0 30px',
     backgroundColor: theme.palette.background.default
   };
 });

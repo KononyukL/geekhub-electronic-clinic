@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Container, Info, Span, Text, WrapInfo } from './styled';
-import { Avatar } from '@mui/material';
+import { Container, Info, Span, WrapInfo } from './styled';
+import { Typography } from '@mui/material';
 import { theme } from 'theme';
+import Avatar from 'components/Avatar';
 interface IHeaderProfile {
   name: string;
   cardId: string;
@@ -11,23 +12,19 @@ const HeaderProfile: FC<IHeaderProfile> = ({ name, cardId, phone }) => {
   return (
     <Container>
       <WrapInfo>
-        <Avatar
-          sx={{
-            backgroundColor: theme.palette.background.default,
-            width: '80px',
-            height: '80px',
-            color: theme.palette.text.secondary,
-            fontSize: '30px'
-          }}
-          variant="square">
-          {name[0]}
-        </Avatar>
+        <Avatar>{name[0]}</Avatar>
         <Info>
-          <Text sx={{ fontWeight: 600, fontSize: '20px' }}>{name}</Text>
-          <Text>{phone}</Text>
-          <Text sx={{ display: 'flex', gap: '8px' }}>
-            Картка №: <Span> {cardId} </Span>
-          </Text>
+          <Typography sx={{ fontWeight: 600, fontSize: '20px' }}>{name}</Typography>
+          <Typography>{phone}</Typography>
+          {name && cardId ? (
+            <Typography sx={{ display: 'flex', gap: '8px' }}>
+              Картка №: <Span> {cardId} </Span>
+            </Typography>
+          ) : (
+            <Typography sx={{ fontSize: 12, color: theme.palette.error.main }}>
+              Карта пацієнта не створена зверніться будь ласка до адміністратора
+            </Typography>
+          )}
         </Info>
       </WrapInfo>
     </Container>

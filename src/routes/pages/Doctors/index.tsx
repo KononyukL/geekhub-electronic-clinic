@@ -8,6 +8,7 @@ import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { IDoctor } from '../Doctor/interfaces';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctors: FC = () => {
   const dispatch = useAppDispatch();
@@ -29,6 +30,8 @@ const Doctors: FC = () => {
     setSelectedDoctors(filteredDoctors);
     setActiveButtonIndex(index);
   };
+
+  useScrollToTop();
 
   return (
     <Container>

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Container, ContainerInfo, DoctorsInfo, Info, Reception, ReceptionInfo } from './styled';
-import { ReactComponent as UserAvatar } from 'assets/icons/user-avatar.svg';
 import { theme } from 'theme';
+import Avatar from 'components/Avatar';
 
 interface IVisit {
   name: string;
@@ -15,7 +15,7 @@ const Visit: FC<IVisit> = ({ name, positionDoctor, date, time, reception }) => {
   return (
     <Container>
       <DoctorsInfo>
-        <UserAvatar />
+        <Avatar>{name[0]}</Avatar>
         <ContainerInfo>
           <Info sx={{ fontWeight: 600 }}>{name}</Info>
           <Info sx={{ color: theme.palette.primary.main }}>{positionDoctor}</Info>
