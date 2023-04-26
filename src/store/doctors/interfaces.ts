@@ -11,6 +11,7 @@ export interface IFeedback {
   patient_firstname: string;
   review_rating: string;
   review_text: string;
+  created_at: string;
 }
 
 export interface IDoctorsState {

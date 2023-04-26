@@ -34,7 +34,7 @@ const Header: FC<IHeader> = ({ isWhite }) => {
           <Link to={ROUTES.HOME.PATH}>{isWhite ? <LogoWhite /> : <LogoBlack />}</Link>
           <Navigation isWhite={isWhite} />
           <Wrapper>
-            {token && <Notification />}
+            {!is_doctor && token && <Notification />}
             <Button color="secondary" variant="contained" onClick={token ? openProfile : onLogin}>
               {token ? 'Мій кабінет' : 'Увійти'}
             </Button>

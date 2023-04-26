@@ -1,15 +1,15 @@
 import { Box, Divider, styled, Rating as MUIRating } from '@mui/material';
 
-export const Wrapper = styled(Box)(() => {
-  return {
-    minHeight: 740,
-    height: '100%'
-  };
-});
+// export const Wrapper = styled(Box)(() => {
+//   return {
+//     minHeight: 740,
+//     height: '100%'
+//   };
+// });
 
 export const Feedbacks = styled(Box)(() => {
   return {
-    paddingTop: 36
+    paddingTop: 8
   };
 });
 
@@ -33,13 +33,6 @@ export const NameDoctor = styled('h2')(({ theme }) => {
 export const Feedback = styled('p')(() => {
   return {
     marginBottom: 70
-  };
-});
-
-export const Date = styled(Box)(({ theme }) => {
-  return {
-    fontSize: 16,
-    color: theme.palette.text.secondary
   };
 });
 
@@ -93,5 +86,13 @@ export const PaginationWrapper = styled(Box)(({ theme }) => {
 export const Rating = styled(MUIRating)(({ theme }) => {
   return {
     color: theme.palette.primary.main
+  };
+});
+
+export const Date = styled(Box)(({ theme }) => {
+  return {
+    paddingTop: 17,
+    fontSize: 16,
+    color: theme.palette.text.secondary
   };
 });

@@ -39,7 +39,7 @@ const ROUTES = {
     PATH: '/card'
   },
   FEEDBACK: {
-    PATH: '/feedback/:doctorId'
+    PATH: '/feedback/:doctorId/:appointment'
   },
   ERROR: {
     PATH: '*'

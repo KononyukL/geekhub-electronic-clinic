@@ -51,10 +51,11 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
   };
 
   const handleBookingVisit = () => {
-    if (!token) {
+    if (token) {
+      dispatch(newAppointment({ doctor_id: doctor_id, date: currentDate, time: bookVisit }));
+    } else {
       navigate(ROUTES.LOGIN.PATH);
     }
-    dispatch(newAppointment({ doctor_id: doctor_id, date: currentDate, time: bookVisit }));
   };
 
   return (

@@ -11,19 +11,28 @@ import {
   Doctor,
   Rating
 } from './styled';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { doctor, selectDoctors } from 'store/doctors';
+import { createFeedback, doctor, selectDoctors } from 'store/doctors';
+import { getAuthData } from 'config/helpers';
+import ROUTES from '../../constants';
 
 const Feedback: FC = () => {
   const [rating, setRating] = useState<number>(0);
   const [feedbackText, setFeedBackText] = useState<string>('');
-  const { doctorId } = useParams();
+  const { doctorId, appointment } = useParams();
   const dispatch = useAppDispatch();
   const { doctor: currentDoctor } = useAppSelector(selectDoctors);
+  const { token } = getAuthData();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(doctor({ doctorId: doctorId as string }));
+    if (!token) {
+      navigate(ROUTES.LOGIN.PATH);
+    }
+    if (currentDoctor) {
+      dispatch(doctor({ doctorId: doctorId as string }));
+    }
   }, [doctorId, dispatch]);
 
   const onChangeText = (text: string) => {
@@ -37,10 +46,16 @@ const Feedback: FC = () => {
   };
 
   const onSubmit = async () => {
-    console.log({
-      title: rating,
-      text: feedbackText
-    });
+    dispatch(
+      createFeedback({
+        id: appointment,
+        review_rating: rating,
+        review_text: feedbackText,
+        created_at: new Date().toISOString()
+      })
+    );
+
+    navigate(ROUTES.HOME.PATH);
   };
 
   return (

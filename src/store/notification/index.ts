@@ -3,6 +3,7 @@ import { allNotification, statusNotification } from './thunks';
 import { RootState } from '../index';
 
 type IAllNotification = {
+  appointment: number,
   id: number;
   title: string;
   text: string;
