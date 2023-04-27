@@ -7,7 +7,7 @@ interface IFeedback {
 }
 
 export const doctorsApi = {
-  async doctors({ page }: any) {
+  async doctors(page: number) {
     const result = await axiosInstance.get(`doctors?page=${page}`);
     return result.data;
   },
@@ -22,7 +22,7 @@ export const doctorsApi = {
     return result.data;
   },
 
-  async feedbacks({ doctorId, page }: { doctorId: string | number; page: number }) {
+  async feedbacks({ doctorId, page }: { doctorId: string | number; page: string | number }) {
     const result = await axiosInstance.get(`doctors/doctor-${doctorId}/reviews?page=${page}`);
     return result.data;
   },

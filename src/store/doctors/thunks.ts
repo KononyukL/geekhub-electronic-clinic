@@ -13,16 +13,13 @@ interface IFeedback {
   created_at: string;
 }
 
-export const doctors = createAsyncThunk(
-  'doctors',
-  async ({ page }: any, { rejectWithValue }) => {
-    try {
-      return await doctorsApi.doctors({ page });
-    } catch (e: any) {
-      rejectWithValue(e.message || 'Something went wrong');
-    }
+export const doctors = createAsyncThunk('doctors', async (page: number, { rejectWithValue }) => {
+  try {
+    return await doctorsApi.doctors(page);
+  } catch (e: any) {
+    rejectWithValue(e.message || 'Something went wrong');
   }
-);
+});
 
 export const doctor = createAsyncThunk(
   'doctor',
@@ -48,7 +45,7 @@ export const specializations = createAsyncThunk(
 
 export const feedbacks = createAsyncThunk(
   'doctors/doctor-${doctorId}/reviews',
-  async ({ doctorId, page }: { doctorId: string | number; page: any }, { rejectWithValue }) => {
+  async ({ doctorId, page }: { doctorId: string | number; page: string | number }, { rejectWithValue }) => {
     try {
       return await doctorsApi.feedbacks({ doctorId, page });
     } catch (e: any) {
