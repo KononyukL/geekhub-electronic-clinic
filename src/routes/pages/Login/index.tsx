@@ -21,6 +21,7 @@ import FooterForm from './FooterForm';
 import ROUTES from '../../constants';
 import Password from './Password';
 import Email from './Email';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Login: FC = () => {
   const {
@@ -34,7 +35,7 @@ const Login: FC = () => {
       password: localStorage.getItem('rememberPassword') || null
     }
   });
-
+  useScrollToTop();
   const dispatch = useAppDispatch();
   const { login: currenLogin } = useAppSelector(selectAuth);
 

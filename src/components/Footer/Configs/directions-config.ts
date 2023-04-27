@@ -24,7 +24,7 @@ export const DIRECTIONS_CONFIG = [
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'Нейрологія'
+    name: 'Неврологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,

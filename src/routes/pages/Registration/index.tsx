@@ -22,6 +22,7 @@ import IMGLogo from 'assets/icons/logo.svg';
 import { registration } from 'store/auth';
 import ModalWindow from './ModalWindow';
 import FooterForm from './FooterForm';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 interface IFormRegistrationInput {
   firstName: string;
@@ -50,7 +51,7 @@ const Registration: FC = () => {
   });
   const [open, setOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-
+  useScrollToTop();
   const handleClose = () => setOpen(false);
 
   const onSubmit = async (data: IFormRegistrationInput) => {
