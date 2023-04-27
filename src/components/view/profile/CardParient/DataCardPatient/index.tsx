@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { BoxDataPatient, Container, DataText, DataTitle } from './styled';
 import { ICardPatient } from 'api/card-patient/types';
+import { parseDate } from 'config/helpers';
 
 interface IDataCardPatient {
   cardPatient: ICardPatient | null;
@@ -10,7 +11,7 @@ const DataCardPatient: FC<IDataCardPatient> = ({ cardPatient }) => {
     <Container>
       <BoxDataPatient>
         <DataTitle>Дата реєстрації:</DataTitle>
-        <DataText>{cardPatient?.register_date || '-'}</DataText>
+        <DataText>{parseDate(cardPatient?.register_date || '-', 'DD.MM.YYYY')}</DataText>
       </BoxDataPatient>
       <BoxDataPatient>
         <DataTitle>Номер телефону:</DataTitle>
