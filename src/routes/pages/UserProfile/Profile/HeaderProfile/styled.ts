@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, styled } from '@mui/material';
 
 export const Container = styled(Box)(({ theme }) => {
   return {
@@ -24,9 +24,7 @@ export const Info = styled(Box)(() => {
     gap: '4px'
   };
 });
-export const Text = styled(Typography)(() => {
-  return {};
-});
+
 export const Span = styled('span')(() => {
   return {
     fontWeight: 600

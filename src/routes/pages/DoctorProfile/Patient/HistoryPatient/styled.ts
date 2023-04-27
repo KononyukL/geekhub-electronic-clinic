@@ -4,7 +4,7 @@ export const Container = styled(Box)(({ theme }) => {
   return {
     padding: '0 24px ',
     background: theme.palette.background.paper,
-    marginBottom: '50px'
+    marginBottom: '200px'
   };
 });
 

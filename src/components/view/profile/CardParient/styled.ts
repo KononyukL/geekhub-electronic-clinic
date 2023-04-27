@@ -5,9 +5,9 @@ export const Container = styled(Box)(({ theme }) => {
     display: 'flex',
     flexDirection: 'column',
     flex: '1 1 70%',
-    padding: '24px',
+    padding: '24px 24px 0',
     background: theme.palette.background.paper,
-    marginBottom: '50px'
+    marginBottom: '200px'
   };
 });
 

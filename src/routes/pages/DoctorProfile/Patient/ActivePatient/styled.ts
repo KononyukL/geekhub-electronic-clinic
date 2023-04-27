@@ -8,7 +8,7 @@ export const Container = styled(MUIBox)(() => {
     flexDirection: 'column',
     background: theme.palette.background.paper,
     padding: ' 0 24px',
-    marginBottom: '50px'
+    marginBottom: '200px'
   };
 });
 

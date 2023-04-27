@@ -24,7 +24,6 @@
     "i18next": "^22.4.12",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
-    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
@@ -35,7 +34,6 @@
     "react-slick": "^0.29.0",
     "react-toastify": "^9.1.2",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.9",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

@@ -2,9 +2,9 @@ import { Box, styled, Typography, Accordion as MUIAccordion } from '@mui/materia
 
 export const Container = styled(Box)({
   background: 'transparent',
-  maxWidth: 1420,
+  maxWidth: 1480,
   margin: '0 auto',
-  padding: '120px 0'
+  padding: '120px 30px'
 });
 
 export const BoxTitle = styled(Box)({

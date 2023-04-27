@@ -6,12 +6,12 @@ import {
 } from '@mui/material';
 
 export const BoxTitle = styled(MUIBox)({
-  maxWidth: 1420,
+  maxWidth: 1480,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   margin: '0 auto 80px',
-  padding: '124px 0px 254px'
+  padding: '124px 30px 254px'
 });
 
 export const Box = styled(MUIBox)({
@@ -53,13 +53,14 @@ export const Button = styled(MUIButton)({
 
 export const BoxCard = styled(MUIBox)({
   position: 'relative',
-  maxWidth: 1420,
+  maxWidth: 1480,
   display: 'flex',
   justifyContent: 'space-between',
   margin: '0px auto',
   gap: 24,
   backgroundColor: 'transparent',
-  marginTop: '-100px'
+  marginTop: '-100px',
+  padding: '0 30px'
 });
 
 export const MainBox = styled(MUIBox)(({ theme }) => {
