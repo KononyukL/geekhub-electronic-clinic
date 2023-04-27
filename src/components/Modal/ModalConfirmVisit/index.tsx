@@ -100,6 +100,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
               Якщо у Вас є додаткові питання, Вам потрібно змінити час, або відмінити прийом,
               будь-ласка, зв’яжіться з нами за номером:
               <Date>+38 (067) 20 20 773</Date>
+              <Typography>Очікуйте підтвердження від лікаря.</Typography>
             </Typography>
             <WrapperButtons>
               <HomeButton

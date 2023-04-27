@@ -53,7 +53,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
                     positionDoctor={item.specialization}
                     date={parseDate(item.date, 'DD.MM.YYYY')}
                     time={item.time}
-                    reception={'-'}
+                    reception={item.price}
                     isCompleted
                   />
                 </AccordionSummary>

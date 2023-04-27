@@ -55,21 +55,22 @@ const Notification = () => {
       {showNotifications && (
         <Box sx={{ position: 'absolute' }}>
           <ModalMessage>
-            {currentAllNotification && currentAllNotification.results
-              .filter((notification) => notification.is_read === false)
-              .map((notification) => (
-                <Wrapper key={notification.id}>
-                  <Title>{notification.text}</Title>
-                  <LinkButton
-                    to={`/feedback/${notification.id}/${notification.appointment}`}
-                    onClick={() => {
-                      handleLinkToFeedback(notification)
-                      setShowNotifications(!showNotifications)
-                    }}>
-                    {notification.title}
-                  </LinkButton>
-                </Wrapper>
-              ))}
+            {currentAllNotification &&
+              currentAllNotification.results
+                .filter((notification) => notification.is_read === false)
+                .map((notification) => (
+                  <Wrapper key={notification.id}>
+                    <Title>{notification.text}</Title>
+                    <LinkButton
+                      to={`/feedback/${notification.doctor_id}/${notification.appointment}`}
+                      onClick={() => {
+                        handleLinkToFeedback(notification);
+                        setShowNotifications(!showNotifications);
+                      }}>
+                      {notification.title}
+                    </LinkButton>
+                  </Wrapper>
+                ))}
           </ModalMessage>
         </Box>
       )}

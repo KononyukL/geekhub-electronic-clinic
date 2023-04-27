@@ -19,11 +19,12 @@ export const BoxMain = styled(Box)({
 });
 
 export const ContainerContent = styled(Box)({
-  maxWidth: 1420,
+  maxWidth: 1480,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  margin: '0 auto'
+  margin: '0 auto',
+  padding: '0 30px'
 });
 
 export const ContactsBox = styled(Box)({
@@ -45,6 +46,5 @@ export const Button = styled(MUIButton)(() => {
 });
 
 export const Wrapper = styled(Box)(() => {
-  return {
-  }
-})
+  return {};
+});

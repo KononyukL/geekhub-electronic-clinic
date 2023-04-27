@@ -2,7 +2,6 @@ import React, { FC, useEffect } from 'react';
 import { AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Conclusion from '../../Conclusion';
-import { ReactComponent as Avatar } from 'assets/icons/user-avatar.svg';
 import {
   BoxAvatar,
   BoxData,
@@ -25,6 +24,7 @@ import { getFinishedVisits, selectVisits } from 'store/visits';
 import { getAuthData, parseDate } from 'config/helpers';
 import { getPatientFinishedVisits } from 'store/visits/thunks';
 import NoRecords from 'components/view/profile/ NoRecords';
+import Avatar from 'components/Avatar';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -67,7 +67,7 @@ const MedicalHistory: FC<IPaginationComponent> = ({
             <StyledAccordion key={i} sx={{}}>
               <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <BoxAvatar>
-                  <Avatar />
+                  <Avatar>{item.doctor[0]}</Avatar>
                   <DoctorInfo>
                     <NameDoctor>{item.doctor}</NameDoctor>
                     <Specialization>{item.specialization}</Specialization>

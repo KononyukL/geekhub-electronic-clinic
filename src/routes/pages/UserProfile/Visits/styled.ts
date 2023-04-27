@@ -35,13 +35,14 @@ export const Box = styled(MUIBox)(() => {
 });
 export const Select = styled(MUISelect)(() => {
   return {
-    flex: '0 1 200px'
+    flex: '0 1 200px',
+    borderRadius: 0
   };
 });
 
 export const VisitsContainer = styled(MUIBox)(({ theme }) => {
   return {
-    marginBottom: 50,
+    marginBottom: 200,
     background: theme.palette.background.paper
   };
 });

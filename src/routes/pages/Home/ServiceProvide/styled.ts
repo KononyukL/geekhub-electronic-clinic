@@ -2,9 +2,10 @@ import { Box as MUIBox, Box, styled, Typography } from '@mui/material';
 
 export const Container = styled(Box)({
   background: 'transparent',
-  maxWidth: 1420,
+  maxWidth: 1480,
   margin: '0 auto',
-  marginBottom: 120
+  marginBottom: 120,
+  padding: '0 30px'
 });
 
 export const BoxInfo = styled(Box)({

@@ -29,7 +29,7 @@ export const Date = styled('span')(({ theme }) => {
     color: theme.palette.text.primary,
     fontWeight: 600,
     fontSize: 16,
-    padding: '6px 0'
+    padding: '0 0 6px 0'
   };
 });
 

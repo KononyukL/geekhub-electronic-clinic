@@ -6,9 +6,12 @@ import PersonalData from './PersonalData';
 import Security from 'components/view/profile/Security';
 import { useAppSelector } from 'store/hooks';
 import { selectProfile } from 'store/profile';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Profile = () => {
   const { profile } = useAppSelector(selectProfile);
+
+  useScrollToTop();
 
   return (
     <Container>

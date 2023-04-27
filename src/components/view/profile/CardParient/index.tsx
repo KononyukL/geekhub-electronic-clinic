@@ -4,7 +4,7 @@ import DataCardPatient from './DataCardPatient';
 import ProfileTabs from '../ProfileTabs';
 import { PATIENT_CARD_CONFIG } from './config';
 import { useSearchParams } from 'react-router-dom';
-import { Avatar, Box, SelectChangeEvent } from '@mui/material';
+import { Box, SelectChangeEvent } from '@mui/material';
 import { Select } from 'routes/pages/UserProfile/Visits/styled';
 import MenuItem from '@mui/material/MenuItem';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -13,7 +13,8 @@ import { specializations } from 'store/doctors/thunks';
 import { usePagination } from 'hooks/usePagination';
 import { getAuthData } from 'config/helpers';
 import { getCard, selectCardPatient } from 'store/cardPatient';
-import { theme } from 'theme';
+import Avatar from 'components/Avatar';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 export const CARD_PER_PAGE = 6;
 
@@ -28,6 +29,8 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
     const pageParam = searchParams.get('tab');
     return pageParam ? parseInt(pageParam) : 0;
   });
+
+  useScrollToTop();
 
   const [specialist, setSpecialist] = React.useState(() => {
     const pageParam = searchParams.get('specialist');
@@ -88,17 +91,7 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
     <Container>
       <PatientInfo>
         <BoxInfo>
-          <Avatar
-            sx={{
-              backgroundColor: theme.palette.background.default,
-              width: '80px',
-              height: '80px',
-              color: theme.palette.text.secondary,
-              fontSize: '30px'
-            }}
-            variant="square">
-            {cardPatient?.patient[0]}
-          </Avatar>
+          <Avatar>{cardPatient?.patient[0] || ''}</Avatar>
           <Info>
             <Name>{cardPatient?.patient || '-'}</Name>
             <Text>{cardPatient?.phone_num || '-'}</Text>

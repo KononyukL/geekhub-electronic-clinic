@@ -2,9 +2,10 @@ import { styled, Box } from '@mui/material';
 
 export const Container = styled(Box)(() => {
   return {
-    maxWidth: 1420,
+    maxWidth: 1480,
     width: '100%',
-    margin: '0 auto'
+    margin: '0 auto',
+    padding: '0 30px'
   };
 });
 

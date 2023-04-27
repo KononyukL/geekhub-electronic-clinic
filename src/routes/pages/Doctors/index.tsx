@@ -8,8 +8,9 @@ import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { IDoctor } from '../Doctor/interfaces';
-import { usePagination } from '../../../hooks/usePagination';
+import { usePagination } from 'hooks/usePagination';
 import { useSearchParams } from 'react-router-dom';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctors: FC = () => {
   const [searchParams] = useSearchParams();
@@ -20,14 +21,6 @@ const Doctors: FC = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [flagPagination, setFlagPagination] = useState<boolean>(false);
   const [itemsCount, setItemsCount] = useState<number>(0);
-
-  const onSetItemsCount = (count: number) => {
-    setItemsCount(count);
-  };
-
-  const { page, handleChangePage } = usePagination({
-    itemsCount
-  });
 
   useEffect(() => {
     dispatch(doctors({ page: page }));
@@ -40,6 +33,14 @@ const Doctors: FC = () => {
     }
   }, [selectedDoctors]);
 
+  const onSetItemsCount = (count: number) => {
+    setItemsCount(count);
+  };
+
+  const { page, handleChangePage } = usePagination({
+    itemsCount
+  });
+
   const handleFilterDoctors = (specialty: string, index: number) => {
     if (allDoctors && allDoctors.results?.length > 0) {
       const filteredDoctors = allDoctors.results?.filter(
@@ -49,6 +50,8 @@ const Doctors: FC = () => {
       setActiveButtonIndex(index);
     }
   };
+
+  useScrollToTop();
 
   return (
     <Container>
