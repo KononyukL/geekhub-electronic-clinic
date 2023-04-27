@@ -14,6 +14,7 @@ import { usePagination } from 'hooks/usePagination';
 import { getAuthData } from 'config/helpers';
 import { getCard, selectCardPatient } from 'store/cardPatient';
 import Avatar from 'components/Avatar';
+import { useScrollToTop } from 'hooks/useScrollToTop';
 
 export const CARD_PER_PAGE = 6;
 
@@ -28,6 +29,8 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
     const pageParam = searchParams.get('tab');
     return pageParam ? parseInt(pageParam) : 0;
   });
+
+  useScrollToTop();
 
   const [specialist, setSpecialist] = React.useState(() => {
     const pageParam = searchParams.get('specialist');

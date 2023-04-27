@@ -97,7 +97,7 @@ const Footer = () => {
         </BoxInfo>
       </Box>
       <BoxSmall>
-        <Typography paragraph>“Mediplus” 2023 Всі права захищені</Typography>
+        <Typography paragraph>© “Mediplus” 2023 Всі права захищені</Typography>
       </BoxSmall>
     </BoxFooter>
   );

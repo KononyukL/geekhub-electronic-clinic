@@ -42,7 +42,10 @@ export const LinkInfo = styled(Link)(({ theme }) => {
   return {
     color: theme.palette.secondary.contrastText,
     paddingBottom: 16,
-    textDecoration: 'none'
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.primary.main
+    }
   };
 });
 export const ContactsSocialBox = styled(MUIBox)({

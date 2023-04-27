@@ -9,8 +9,13 @@ export const Box = styled(MUIBox)({
   fontWeight: 600,
   columnGap: 56
 });
-export const StyledLink = styled(Link)({
-  color: 'inherit',
-  fontFamily: 'inherit',
-  textDecoration: 'none'
+export const StyledLink = styled(Link)(({ theme }) => {
+  return {
+    color: 'inherit',
+    fontFamily: 'inherit',
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.primary.main
+    }
+  };
 });
