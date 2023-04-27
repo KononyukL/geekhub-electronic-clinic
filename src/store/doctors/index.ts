@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { doctor, doctors, specializations, feedbacks } from './thunks';
+import { doctor, doctors, specializations, feedbacks, createFeedback } from './thunks';
 import { RootState } from '../index';
 import { initialState } from './initialState';
 
@@ -60,10 +60,23 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(createFeedback.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createFeedback.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.feedbacks = action.payload;
+      })
+      .addCase(createFeedback.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { doctors, doctor, specializations, feedbacks };
+export { doctors, doctor, specializations, feedbacks, createFeedback };
 
 export const {} = newsSlice.actions;
 

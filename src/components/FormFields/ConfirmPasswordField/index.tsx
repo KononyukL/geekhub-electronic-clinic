@@ -19,7 +19,7 @@ const ConfirmPasswordField: FC<IInputFormField> = ({ register, errors, getValues
         register={register}
         registerOptions={{
           pattern: {
-            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+            value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
             message: 'Неправильний формат паролю'
           },
           validate: (value) => value === getValues().password || 'Паролі не співпадають'

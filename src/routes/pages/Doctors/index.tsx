@@ -8,27 +8,47 @@ import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { IDoctor } from '../Doctor/interfaces';
+import { usePagination } from 'hooks/usePagination';
+import { useSearchParams } from 'react-router-dom';
 import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctors: FC = () => {
+  const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
   const { doctors: allDoctors, specializations: selectSpecializations } =
     useAppSelector(selectDoctors);
-  const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[]>([]);
+  const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[] | null>(null);
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [flagPagination, setFlagPagination] = useState<boolean>(false);
+  const [itemsCount, setItemsCount] = useState<number>(0);
+  console.log(allDoctors)
+  useEffect(() => {
+    dispatch(doctors(page || 1));
+    dispatch(specializations());
+  }, [searchParams, dispatch]);
 
   useEffect(() => {
-    dispatch(doctors());
-    dispatch(specializations());
-  }, []);
+    if (selectedDoctors) {
+      onSetItemsCount(allDoctors.count);
+    }
+  }, [selectedDoctors]);
+
+  const onSetItemsCount = (count: number) => {
+    setItemsCount(count);
+  };
+
+  const { page, handleChangePage } = usePagination({
+    itemsCount
+  });
 
   const handleFilterDoctors = (specialty: string, index: number) => {
-    const filteredDoctors =
-      allDoctors &&
-      allDoctors.results?.filter((doctor: IDoctor) => specialty === doctor.specialization);
-    setSelectedDoctors(filteredDoctors);
-    setActiveButtonIndex(index);
+    if (allDoctors && allDoctors.results?.length > 0) {
+      const filteredDoctors = allDoctors.results?.filter(
+        (doctor: IDoctor) => specialty === doctor.specialization
+      );
+      setSelectedDoctors(filteredDoctors);
+      setActiveButtonIndex(index);
+    }
   };
 
   useScrollToTop();
@@ -66,8 +86,14 @@ const Doctors: FC = () => {
           </WrapperButton>
         </Aside>
         <SelectedDoctorsList
+          page={page}
+          pageCount={Math.ceil(allDoctors.count / 6)}
+          handleChangePage={handleChangePage}
           flagPagination={flagPagination}
-          selectedDoctors={selectedDoctors.length > 0 ? selectedDoctors : allDoctors.results}
+          paginationCount={allDoctors.count}
+          selectedDoctors={
+            selectedDoctors && selectedDoctors.length > 0 ? selectedDoctors : allDoctors.results
+          }
         />
       </Wrapper>
     </Container>

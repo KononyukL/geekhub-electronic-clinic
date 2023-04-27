@@ -1,9 +1,15 @@
 import { styled, Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-export const Icon = styled('img')(() => {
+export const Icon = styled('img')(({theme}) => {
   return {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    transition: '.3s',
+    borderRadius: 6,
+
+    '&:hover': {
+      backgroundColor: theme.palette.background.paper,
+    }
   };
 });
 
@@ -16,7 +22,7 @@ export const ModalMessage = styled(Box)(({ theme }) => {
     width: 390,
     backgroundColor: theme.palette.background.paper,
     top: 40,
-    right: 0,
+    right: 0
   };
 });
 

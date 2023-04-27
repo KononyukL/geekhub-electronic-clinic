@@ -1,53 +1,56 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import {
-  Wrapper,
   Feedbacks,
   StyledBox,
   NameDoctor,
   Feedback,
   PaginationWrapper,
   HorizontalLine,
-  Rating
+  Rating,
+  Date
 } from './styled';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { feedbacks } from 'store/doctors/thunks';
 import { Box, Pagination } from '@mui/material';
 import { selectDoctors } from 'store/doctors';
+import { useSearchParams } from 'react-router-dom';
+import { FEEDBACKS_PER_PAGE } from '../index';
 
 interface IFeedbacksDoctor {
   doctorId: number;
+  onSetItemsCount: (count: number) => void;
+  page: number;
+  handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;
+  pageCount: number;
 }
 
-const FeedbacksDoctor: FC<IFeedbacksDoctor> = ({ doctorId }) => {
-  const [page, setPage] = useState<number>(1);
+const FeedbacksDoctor: FC<IFeedbacksDoctor> = ({
+  doctorId,
+  onSetItemsCount,
+  page,
+  handleChangePage,
+  pageCount
+}) => {
   const dispatch = useAppDispatch();
   const { feedbacks: currentFeedbacks } = useAppSelector(selectDoctors);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    dispatch(feedbacks({ doctorId: doctorId }));
-  }, [dispatch]);
+    dispatch(feedbacks({ doctorId: doctorId, page: searchParams.get('page') || 1 }));
+  }, [doctorId, searchParams, dispatch]);
 
-  const itemsPerPage = 3;
-  const pageCount = Math.ceil(feedbacks.length / itemsPerPage);
-
-  const getCurrentDoctors = () => {
-    if (currentFeedbacks && currentFeedbacks.results?.length) {
-      const startIndex = (page - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      return currentFeedbacks.results.slice(startIndex, endIndex);
+  useEffect(() => {
+    if (currentFeedbacks) {
+      onSetItemsCount(currentFeedbacks.count);
     }
-  };
-
-  const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
+  }, [currentFeedbacks]);
 
   return (
     <Box>
-      <Wrapper>
+      <Box>
         <HorizontalLine />
         {currentFeedbacks.results.length > 0 &&
-          getCurrentDoctors()?.map((feedback, index) => (
+          currentFeedbacks?.results?.map((feedback, index) => (
             <Feedbacks key={index}>
               <StyledBox>
                 <Box>
@@ -55,24 +58,21 @@ const FeedbacksDoctor: FC<IFeedbacksDoctor> = ({ doctorId }) => {
                     {feedback.patient_lastname} {feedback.patient_firstname}
                   </NameDoctor>
                   <Box>
-                    <Rating
-                      readOnly
-                      name="size-medium"
-                      defaultValue={parseInt(feedback.review_rating)}
-                    />
+                    <Rating readOnly name="size-medium" value={parseInt(feedback.review_rating)} />
                   </Box>
                 </Box>
+                <Date>{feedback.created_at}</Date>
               </StyledBox>
               <Feedback>{feedback.review_text}</Feedback>
               <HorizontalLine />
             </Feedbacks>
           ))}
-      </Wrapper>
+      </Box>
       <PaginationWrapper>
-        {currentFeedbacks && currentFeedbacks.results.length >= 3 && (
+        {currentFeedbacks && currentFeedbacks.count >= FEEDBACKS_PER_PAGE && (
           <Pagination
-            count={pageCount}
             page={page}
+            count={pageCount}
             onChange={handleChangePage}
             variant="outlined"
             shape="rounded"

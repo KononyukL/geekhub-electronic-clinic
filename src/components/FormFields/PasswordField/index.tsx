@@ -20,7 +20,7 @@ const PasswordField: FC<IInputFormField> = ({ register, errors }) => {
           required: "Це поле є обов'язковим",
           pattern: {
             value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
-            message: 'Пароль має містити латинскі літери A-Z та цифри 0-9'
+            message: "Пароль обов'язково має містити латинскі літери A-Z, a-z та цифри 0-9"
           }
         }}
       />

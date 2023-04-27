@@ -1,16 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import DetailsDoctor from './DetailsDoctor';
 import FeedbacksDoctor from './FeedbacksDoctor';
 import { AboutDoctor, Container, Wrapper } from './styled';
 import { IDoctorProps } from '../interfaces';
+import { useSearchParams } from 'react-router-dom';
+import { usePagination } from '../../../../hooks/usePagination';
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
+
+export const FEEDBACKS_PER_PAGE = 6;
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -39,16 +43,33 @@ function a11yProps(index: number) {
 }
 
 const DetailAndFeedbacks: FC<IDoctorProps> = ({ currentDoctor }) => {
-  const [value, setValue] = React.useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [itemsCount, setItemsCount] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  const [tab, setTab] = React.useState(() => {
+    const pageParam = searchParams.get('tab');
+    return pageParam ? parseInt(pageParam) : 0;
+  });
+
+  const onSetItemsCount = useCallback((count: number) => {
+    setItemsCount(count);
+  }, []);
+
+  const { page, pageCount, handleChangePage, resetPagination } = usePagination({
+    itemsCount
+  });
+
+  const handleChange = (event: React.SyntheticEvent, value: number) => {
+    setTab(value);
+    searchParams.set('tab', `${value}`);
+    setSearchParams(searchParams);
+    resetPagination();
   };
 
   return (
     <Container>
       <Wrapper>
-        <AboutDoctor value={value} onChange={handleChange}>
+        <AboutDoctor value={tab} onChange={handleChange}>
           <Tab
             sx={{
               textTransform: 'none',
@@ -67,11 +88,17 @@ const DetailAndFeedbacks: FC<IDoctorProps> = ({ currentDoctor }) => {
           />
         </AboutDoctor>
       </Wrapper>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={tab} index={0}>
         <DetailsDoctor currentDoctor={currentDoctor} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <FeedbacksDoctor doctorId={currentDoctor.id}/>
+      <TabPanel value={tab} index={1}>
+        <FeedbacksDoctor
+          handleChangePage={handleChangePage}
+          page={page}
+          pageCount={pageCount}
+          onSetItemsCount={onSetItemsCount}
+          doctorId={currentDoctor.id}
+        />
       </TabPanel>
     </Container>
   );

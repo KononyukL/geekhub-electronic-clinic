@@ -25,7 +25,7 @@ const Notification = () => {
   useEffect(() => {
     if (currentAllNotification && currentAllNotification.results?.length) {
       const filterMessage = currentAllNotification.results.filter(
-        (notification) => notification.is_read === true
+        (notification) => notification.is_read === false
       );
       setMessage(filterMessage.length);
     }
@@ -55,15 +55,18 @@ const Notification = () => {
       {showNotifications && (
         <Box sx={{ position: 'absolute' }}>
           <ModalMessage>
-            {currentAllNotification.results?.length &&
+            {currentAllNotification &&
               currentAllNotification.results
-                .filter((notification) => notification.is_read === true)
+                .filter((notification) => notification.is_read === false)
                 .map((notification) => (
                   <Wrapper key={notification.id}>
                     <Title>{notification.text}</Title>
                     <LinkButton
-                      to={`/feedback/${notification.id}`}
-                      onClick={() => handleLinkToFeedback(notification)}>
+                      to={`/feedback/${notification.doctor_id}/${notification.appointment}`}
+                      onClick={() => {
+                        handleLinkToFeedback(notification);
+                        setShowNotifications(!showNotifications);
+                      }}>
                       {notification.title}
                     </LinkButton>
                   </Wrapper>
