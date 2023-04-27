@@ -87,6 +87,7 @@ const Doctors: FC = () => {
           pageCount={Math.ceil(allDoctors.count / 6)}
           handleChangePage={handleChangePage}
           flagPagination={flagPagination}
+          paginationCount={allDoctors.count}
           selectedDoctors={
             selectedDoctors && selectedDoctors.length > 0 ? selectedDoctors : allDoctors.results
           }

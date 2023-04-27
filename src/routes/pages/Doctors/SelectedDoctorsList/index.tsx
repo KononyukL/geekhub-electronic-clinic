@@ -11,7 +11,8 @@ const SelectedDoctorsList: FC<ISelectedDoctor> = ({
   selectedDoctors,
   page,
   pageCount,
-  handleChangePage
+  handleChangePage,
+  paginationCount
 }) => {
   return (
     <Box>
@@ -21,7 +22,7 @@ const SelectedDoctorsList: FC<ISelectedDoctor> = ({
             <DoctorInfo key={doctor.id} currentDoctor={doctor} index={index} />
           ))}
       </Wrapper>
-      {selectedDoctors && selectedDoctors?.length >= DOCTORS_PER_PAGE && (
+      {paginationCount && paginationCount >= DOCTORS_PER_PAGE && (
         <Pagination
           count={pageCount}
           page={page}

@@ -1,5 +1,5 @@
-import { IDoctor } from "../Doctor/interfaces";
-import React from "react";
+import { IDoctor } from '../Doctor/interfaces';
+import React from 'react';
 
 export interface IDoctorAndIndex {
   currentDoctor: IDoctor;
@@ -12,4 +12,5 @@ export interface ISelectedDoctor {
   page: number;
   handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;
   pageCount: number;
+  paginationCount: number;
 }
