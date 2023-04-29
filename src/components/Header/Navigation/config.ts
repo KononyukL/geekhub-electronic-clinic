@@ -3,16 +3,19 @@ import ROUTES from '../../../routes/constants';
 interface INavigationConfig {
   path: string;
   name: string;
+  isLink?: boolean;
 }
 
 export const NAVIGATION_CONFIG = [
   {
     path: ROUTES.HOME.PATH,
-    name: 'Головна'
+    name: 'Головна',
+    isLink: true
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'Спеціальності та лікарі'
+    name: 'Спеціальності та лікарі',
+    isLink: true
   },
   {
     path: ROUTES.HOME.HASH_PATH.QUESTIONS,

@@ -7,13 +7,12 @@ import WorkingHours from 'components/WorkingHours';
 import { doctor } from 'store/doctors/thunks';
 import { clearAllData, selectDoctors } from 'store/doctors';
 import { useParams } from 'react-router-dom';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctor: FC = () => {
   const dispatch = useAppDispatch();
   const { doctor: currentDoctor } = useAppSelector(selectDoctors);
   const { doctorId } = useParams();
-  useScrollToTop();
+
   useEffect(() => {
     dispatch(clearAllData());
     dispatch(doctor({ doctorId: doctorId as string }));

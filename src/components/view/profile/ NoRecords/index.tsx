@@ -9,7 +9,7 @@ interface INoRecords {
 const NoRecords: FC<INoRecords> = ({ paddingSize = 0 }) => {
   return (
     <StyledBox sx={{ padding: `24px ${paddingSize}px` }}>
-      <Typography sx={{ fontWeight: 600 }}>На данний момент записів немає</Typography>
+      <Typography sx={{ fontWeight: 600 }}>На даний момент записів немає</Typography>
     </StyledBox>
   );
 };

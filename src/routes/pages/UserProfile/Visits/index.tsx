@@ -9,15 +9,12 @@ import { useSearchParams } from 'react-router-dom';
 import { usePagination } from 'hooks/usePagination';
 import { SelectChangeEvent } from '@mui/material';
 import ProfileTabs from 'components/view/profile/ProfileTabs';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 export const VISITS_PER_PAGE = 6;
 
 const Visits = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [itemsCount, setItemsCount] = useState(0);
-
-  useScrollToTop();
 
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');

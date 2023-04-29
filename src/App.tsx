@@ -24,8 +24,8 @@ import ProfileDoctor from './routes/pages/DoctorProfile/ProfileDoctor';
 import Patient from './routes/pages/DoctorProfile/Patient';
 import MyCard from 'routes/pages/UserProfile/MyCard';
 import PatientCard from 'routes/pages/DoctorProfile/Patient/PatientCard';
-import Error from 'routes/pages/Error'
-import Feedback from "./routes/pages/Feedback";
+import Error from 'routes/pages/Error';
+import Feedback from './routes/pages/Feedback';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
