@@ -7,7 +7,7 @@ import { ReactComponent as Cross } from 'assets/icons/cross.svg';
 import { ReactComponent as Tick } from 'assets/icons/tick.svg';
 import { Box, IconButton } from '@mui/material';
 import { IPaginationComponent } from 'types';
-import ModalRejectAppointment from 'components/Modal/ModalRejectAppointment';
+import { ActionAppointmentModal } from 'components/Modal';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { confirmVisits, deleteVisits, getUnconfirmedVisits, selectVisits } from 'store/visits';
 import { useSearchParams } from 'react-router-dom';
@@ -100,7 +100,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
                   <Tick />
                 </IconButton>
               </Box>
-              <ModalRejectAppointment
+              <ActionAppointmentModal
                 title="Відхилити прийом пацієнта?"
                 subTitle="Ви точно бажаєте відхилити прийом"
                 open={openModal}
@@ -110,7 +110,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
                 date={parseDate(visit.date, 'DD.MM.YYYY')}
                 time={visit.time}
               />
-              <ModalRejectAppointment
+              <ActionAppointmentModal
                 title="Підтвердити прийом пацієнта?"
                 subTitle="Ви точно бажаєте підтвердити прийом"
                 open={openConfirmModal}
