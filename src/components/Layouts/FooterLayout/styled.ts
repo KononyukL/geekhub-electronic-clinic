@@ -4,7 +4,7 @@ export const ContainerLayout = styled('div')(() => {
   return {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh'
+    minHeight: '100vh',
+    position: 'relative'
   } as CSSObject;
 });
-

@@ -1,5 +1,5 @@
 import { styled, Box as MUIBox } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Box = styled(MUIBox)({
   display: 'flex',
@@ -9,7 +9,7 @@ export const Box = styled(MUIBox)({
   fontWeight: 600,
   columnGap: 56
 });
-export const StyledLink = styled(Link)(({ theme }) => {
+export const StyledLink = styled(NavLink)(({ theme }) => {
   return {
     color: 'inherit',
     fontFamily: 'inherit',

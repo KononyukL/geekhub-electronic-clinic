@@ -23,14 +23,11 @@ import { ReactComponent as DoctorIcon } from 'assets/icons/doctor-icon.svg';
 import { ReactComponent as EquipmentIcon } from 'assets/icons/equipment-icon.svg';
 import { ReactComponent as ApproachIcon } from 'assets/icons/approach-icon.svg';
 import ServiceProvide from './ServiceProvide';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Home = () => {
   const navigate = useNavigate();
 
   const onOpenDoctors = () => navigate(ROUTES.DOCTORS.PATH);
-
-  useScrollToTop();
 
   return (
     <>
@@ -49,8 +46,8 @@ const Home = () => {
               З турботою про тебе
             </TypographyMain>
             <TypographyWhite paragraph sx={{ fontSize: 20, maxWidth: 460 }}>
-              Передові медичні технології, професіоналізм у поєднанні з своєчасністю надання послуг
-              та індивідуальний підхід до кожного пацієнта та ситуації – це філософія MediPlus
+              Передові медичні технології, професіоналізм у поєднанні зі своєчасністю надання послуг
+              та індивідуальним підходом до кожного пацієнта та ситуації – це філософія MediPlus
             </TypographyWhite>
             <Button onClick={onOpenDoctors} variant="contained" color="primary">
               Записатися

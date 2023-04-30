@@ -10,7 +10,6 @@ import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { IDoctor } from '../Doctor/interfaces';
 import { usePagination } from 'hooks/usePagination';
 import { useSearchParams } from 'react-router-dom';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctors: FC = () => {
   const [searchParams] = useSearchParams();
@@ -21,7 +20,7 @@ const Doctors: FC = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [flagPagination, setFlagPagination] = useState<boolean>(false);
   const [itemsCount, setItemsCount] = useState<number>(0);
-  console.log(allDoctors)
+  console.log(allDoctors);
   useEffect(() => {
     dispatch(doctors(page || 1));
     dispatch(specializations());
@@ -50,8 +49,6 @@ const Doctors: FC = () => {
       setActiveButtonIndex(index);
     }
   };
-
-  useScrollToTop();
 
   return (
     <Container>

@@ -9,15 +9,12 @@ import DataCardDoctor from 'components/view/profile/DataCardDoctor';
 import { doctor, selectDoctors } from 'store/doctors';
 import { getProfile } from 'store/profile';
 import Avatar from 'components/Avatar';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const ProfileDoctor = () => {
   const dispatch = useAppDispatch();
   const { id, user_id } = getAuthData();
 
   const { doctor: profile } = useAppSelector(selectDoctors);
-
-  useScrollToTop();
 
   useEffect(() => {
     if (id && user_id) {
