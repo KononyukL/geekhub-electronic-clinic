@@ -5,7 +5,7 @@ export const Container = styled(Box)(() => {
     display: 'flex',
     flexDirection: 'column',
     gap: '24px',
-    marginBottom: '40px'
+    marginBottom: '20px'
   };
 });
 
@@ -21,6 +21,6 @@ export const ContainerInput = styled(Box)(() => {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr',
     gridColumnGap: '24px',
-    gridRowGap: '1em'
+    gridRowGap: '4px'
   };
 });

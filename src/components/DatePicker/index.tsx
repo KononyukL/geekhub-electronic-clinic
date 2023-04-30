@@ -17,7 +17,8 @@ const DatePicker: FC<IDatePicker> = ({ control }) => {
         render={({ field }) => {
           return (
             <StyledDatePicker
-              label="Дата народження "
+              label="Дата народження"
+              disableFuture
               value={field.value ? dayjs(field.value, 'DD.MM.YYYY') : undefined}
               onChange={(date) => {
                 field.onChange(dayjs(date as dayjs.ConfigType).format('DD.MM.YYYY'));

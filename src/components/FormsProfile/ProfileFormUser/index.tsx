@@ -14,11 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import { Autocomplete, Box, createFilterOptions } from '@mui/material';
 import { genderOptions, oblastCenters } from 'routes/pages/UserProfile/Profile/mockData';
 import DatePicker from '../../DatePicker';
-import ErrorValidation from 'components/ErrorValidation';
 import { getAuthData, removeEmptyFields } from 'config/helpers';
 import { useAppDispatch } from 'store/hooks';
 import { IEditProfileFormData } from 'api/profile/types';
 import { editProfile, getProfile } from 'store/profile';
+import {
+  emailValidation,
+  nameValidation,
+  numberValidation,
+  phoneValidation,
+  streetValidation
+} from 'components/FormsProfile/ProfileFormUser/helpers';
+import EditProfileError from 'components/FormsProfile/EditProfileError';
 
 interface IProfileForm {
   closeEdit: () => void;
@@ -29,8 +36,8 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
     control,
     handleSubmit,
     reset,
-    formState: { isSubmitting, errors }
-  } = useForm<any>({
+    formState: { isSubmitting, errors, isDirty, isValid }
+  } = useForm<IEditProfileFormData>({
     mode: 'onBlur'
   });
 
@@ -42,7 +49,7 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
       data.sex = '';
     }
     removeEmptyFields(data);
-    if (user_id) {
+    if (user_id && Object.keys(data).length) {
       const { payload } = await dispatch(editProfile({ id: user_id, formData: data }));
 
       if (payload) {
@@ -59,66 +66,87 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
     <Container>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Box>
-          <ContainerForm title={'Персональні дані'}>
+          <ContainerForm>
             <Box>
-              <InputProfile placeholder="Ваше прізвище " name="last_name" register={register} />
+              <InputProfile
+                isError={!!errors.last_name}
+                placeholder="Ваше прізвище "
+                name="last_name"
+                register={register}
+                registerOptions={nameValidation}
+              />
+              <EditProfileError error={errors.last_name} />
             </Box>
             <Box>
-              <InputProfile placeholder="Ваше ім’я " name="first_name" register={register} />
+              <InputProfile
+                isError={!!errors.first_name}
+                placeholder="Ваше ім’я "
+                name="first_name"
+                register={register}
+                registerOptions={nameValidation}
+              />
+              <EditProfileError error={errors.first_name} />
             </Box>
 
             <Box>
-              <InputProfile placeholder="По-батькові" name="patronim_name" register={register} />
+              <InputProfile
+                isError={!!errors.patronim_name}
+                placeholder="По-батькові"
+                name="patronim_name"
+                register={register}
+                registerOptions={nameValidation}
+              />
+              <EditProfileError error={errors.patronim_name} />
             </Box>
             <DatePicker control={control} />
             <Box>
               <InputProfile
+                isError={!!errors.phone_num}
                 placeholder="+380 (___) __-__-___ "
                 name="phone_num"
                 register={register}
+                registerOptions={phoneValidation}
               />
+              <EditProfileError error={errors.phone_num} />
             </Box>
-            <Controller
-              name="sex"
-              control={control}
-              defaultValue="gender"
-              render={({ field }) => {
-                return (
-                  <StyledSelect
-                    value={field.value}
-                    defaultValue="gender"
-                    onChange={(event) => {
-                      field.onChange(event);
-                    }}>
-                    <MenuItem disabled value="gender">
-                      Оберіть вашу стать
-                    </MenuItem>
-                    {genderOptions.map(({ label, value }) => (
-                      <MenuItem key={value} value={value}>
-                        {label}
+            <Box>
+              <Controller
+                name="sex"
+                control={control}
+                defaultValue="gender"
+                render={({ field }) => {
+                  return (
+                    <StyledSelect
+                      value={field.value}
+                      defaultValue="gender"
+                      onChange={(event) => {
+                        field.onChange(event);
+                      }}>
+                      <MenuItem disabled value="gender">
+                        Оберіть вашу стать
                       </MenuItem>
-                    ))}
-                  </StyledSelect>
-                );
-              }}
-            />
+                      {genderOptions.map(({ label, value }) => (
+                        <MenuItem key={value} value={value}>
+                          {label}
+                        </MenuItem>
+                      ))}
+                    </StyledSelect>
+                  );
+                }}
+              />
+              <EditProfileError error={errors.sex} />
+            </Box>
             <Box sx={{ width: '330px' }}>
               <InputProfile
-                style={errors.email && { border: '1px solid red' }}
+                isError={!!errors.email}
                 placeholder="Електронна пошта"
                 name="email"
                 register={register}
-                registerOptions={{
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Невірний формат пошти. Приклад: Standart@gmail.com '
-                  }
-                }}
+                registerOptions={emailValidation}
               />
-              <ErrorValidation errors={errors.email} />
+              <EditProfileError error={errors.email} />
             </Box>
           </ContainerForm>
-
           <ContainerForm title="Адреса">
             <Box>
               <Controller
@@ -135,7 +163,7 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
                       filterOptions={(options, params) => {
                         const filtered = filterCity(options, params);
                         const { inputValue } = params;
-                        const isExisting = options.some((option) => inputValue === option.title);
+                        const isExisting = options.some((option) => inputValue === option);
                         if (inputValue !== '' && !isExisting) {
                           filtered.push(inputValue);
                         }
@@ -157,21 +185,47 @@ const ProfileFormUser: FC<IProfileForm> = ({ closeEdit }) => {
                   );
                 }}
               />
+              <EditProfileError error={errors.address_city} />
             </Box>
             <Box>
-              <InputProfile placeholder="Вулиця" name="address_street" register={register} />
+              <InputProfile
+                isError={!!errors.address_street}
+                placeholder="Вулиця"
+                name="address_street"
+                register={register}
+                registerOptions={streetValidation}
+              />
+              <EditProfileError error={errors.address_street} />
             </Box>
             <HouseNumber>
               <Box>
-                <InputProfile placeholder="Будинок" name="address_house" register={register} />
+                <InputProfile
+                  isError={!!errors.address_house}
+                  placeholder="Будинок"
+                  name="address_house"
+                  register={register}
+                  registerOptions={numberValidation}
+                />
+                <EditProfileError error={errors.address_house} />
               </Box>
               <Box>
-                <InputProfile placeholder="Корпус" name="address_appartment" register={register} />
+                <InputProfile
+                  isError={!!errors.address_appartment}
+                  placeholder="Корпус"
+                  name="address_appartment"
+                  register={register}
+                  registerOptions={numberValidation}
+                />
+                <EditProfileError error={errors.address_appartment} />
               </Box>
             </HouseNumber>
           </ContainerForm>
         </Box>
-        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          disabled={isSubmitting || !isDirty || !isValid}>
           Зберегти
         </Button>
       </Form>
