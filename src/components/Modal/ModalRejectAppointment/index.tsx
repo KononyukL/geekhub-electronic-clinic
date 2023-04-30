@@ -2,22 +2,26 @@ import React, { FC } from 'react';
 import { Box, BoxButton, Button, TextInfo, TextModal, TitleModal } from './styled';
 import { Modal } from '@mui/material';
 
-interface IRejectAppointment {
+interface IActionAppointmentModal {
   open: boolean;
   setOpen: (props: boolean) => void;
   name: string;
   date: string;
   time: string;
-  deleteVisit: () => void;
+  onAction: () => void;
+  title: string;
+  subTitle: string;
 }
 
-const ModalRejectAppointment: FC<IRejectAppointment> = ({
+const ActionAppointmentModal: FC<IActionAppointmentModal> = ({
   open,
   setOpen,
-  deleteVisit,
+  onAction,
   date,
   time,
-  name
+  name,
+  title,
+  subTitle
 }) => {
   const handleClose = () => {
     setOpen(false);
@@ -26,14 +30,14 @@ const ModalRejectAppointment: FC<IRejectAppointment> = ({
   return (
     <Modal sx={{ backgroundColor: 'transparent' }} hideBackdrop open={open} onClose={handleClose}>
       <Box>
-        <TitleModal>Відхилити прийом пацієнта?</TitleModal>
-        <TextModal>Ви точно бажаєте відхилити прийом</TextModal>
+        <TitleModal>{title}</TitleModal>
+        <TextModal>{subTitle}</TextModal>
         <TextInfo>{name}</TextInfo>
         <TextInfo>
           {date} о {time}
         </TextInfo>
         <BoxButton>
-          <Button variant="outlined" color="secondary" onClick={deleteVisit}>
+          <Button variant="outlined" color="secondary" onClick={onAction}>
             Так
           </Button>
           <Button variant="contained" color="secondary" onClick={handleClose}>
@@ -44,4 +48,4 @@ const ModalRejectAppointment: FC<IRejectAppointment> = ({
     </Modal>
   );
 };
-export default ModalRejectAppointment;
+export default ActionAppointmentModal;

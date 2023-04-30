@@ -20,6 +20,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
   onSetItemsCount,
   handleChangePage
 }) => {
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { unconfirmedVisits, isLoading } = useAppSelector(selectVisits);
   const dispatch = useAppDispatch();
@@ -58,7 +59,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
   const onConfirmVisit = useCallback(
     (id: string | number) => async () => {
       const { payload } = await dispatch(confirmVisits(id));
-      setOpenModal(false);
+      setOpenConfirmModal(false);
 
       if (payload) {
         dispatch(
@@ -70,8 +71,12 @@ const QueriesPatient: FC<IPaginationComponent> = ({
     },
     [searchParams]
   );
-  const handleClick = () => {
+  const handleDelete = () => {
     setOpenModal(!openModal);
+  };
+
+  const handleConfirm = () => {
+    setOpenConfirmModal(!openConfirmModal);
   };
 
   return (
@@ -88,17 +93,29 @@ const QueriesPatient: FC<IPaginationComponent> = ({
                 reception={visit.price}
               />
               <Box sx={{ display: 'flex', gap: '10px' }}>
-                <IconButton onClick={handleClick} disabled={isLoading}>
+                <IconButton onClick={handleDelete} disabled={isLoading}>
                   <Cross />
                 </IconButton>
-                <IconButton onClick={onConfirmVisit(visit.id)} disabled={isLoading}>
+                <IconButton onClick={handleConfirm} disabled={isLoading}>
                   <Tick />
                 </IconButton>
               </Box>
               <ModalRejectAppointment
+                title="Відхилити прийом пацієнта?"
+                subTitle="Ви точно бажаєте відхилити прийом"
                 open={openModal}
                 setOpen={setOpenModal}
-                deleteVisit={deleteVisit(visit.id)}
+                onAction={deleteVisit(visit.id)}
+                name={visit.patient}
+                date={parseDate(visit.date, 'DD.MM.YYYY')}
+                time={visit.time}
+              />
+              <ModalRejectAppointment
+                title="Підтвердити прийом пацієнта?"
+                subTitle="Ви точно бажаєте підтвердити прийом"
+                open={openConfirmModal}
+                setOpen={setOpenConfirmModal}
+                onAction={onConfirmVisit(visit.id)}
                 name={visit.patient}
                 date={parseDate(visit.date, 'DD.MM.YYYY')}
                 time={visit.time}
