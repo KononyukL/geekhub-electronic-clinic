@@ -71,3 +71,31 @@ export const confirmVisits = createAsyncThunk(
     }
   }
 );
+
+interface IGetPDFLink {
+  id: string | number;
+  data: string;
+  time: string;
+}
+
+export const getPDFLink = createAsyncThunk(
+  'PDF-link',
+  async ({ id, data, time }: IGetPDFLink, { rejectWithValue }) => {
+    try {
+      const result = await visitsApi.getPDFLink(id);
+      const url = window.URL.createObjectURL(
+        new Blob([result], {
+          type: 'application/pdf'
+        })
+      );
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Візит ${data} ${time}`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);

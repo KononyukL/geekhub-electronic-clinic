@@ -3,11 +3,22 @@ import { Box } from '@mui/material';
 import { ReactComponent as Download } from 'assets/icons/download.svg';
 import { Container, Title, Text, BoxInfo, Button, BoxButton } from './styled';
 import { IVisit } from 'api/visits/types';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getPDFLink, selectVisits } from 'store/visits';
+import { parseDate } from 'config/helpers';
 
 interface IConclusion {
   data: IVisit;
 }
 const Conclusion: FC<IConclusion> = ({ data }) => {
+  const dispatch = useAppDispatch();
+  const { isLoading } = useAppSelector(selectVisits);
+  const onClick = () => {
+    dispatch(
+      getPDFLink({ id: data.id, data: parseDate(data.date, 'DD.MM.YYYY'), time: data.time })
+    );
+  };
+
   return (
     <Container>
       <Box
@@ -37,7 +48,7 @@ const Conclusion: FC<IConclusion> = ({ data }) => {
         </BoxInfo>
       </Box>
       <BoxButton>
-        <Button color="primary" startIcon={<Download />}>
+        <Button disabled={isLoading} onClick={onClick} color="primary" startIcon={<Download />}>
           Завантажити PDF
         </Button>
       </BoxButton>
