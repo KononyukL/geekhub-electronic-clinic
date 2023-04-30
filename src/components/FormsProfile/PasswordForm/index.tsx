@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from '../styled';
 import { Box } from '@mui/material';
-import ErrorValidation from '../../ErrorValidation';
 import ContainerForm from '../ContainerForm';
-import Password from '../../view/profile/Password';
+import Password from './PasswordInput';
 import { useAppDispatch } from 'store/hooks';
 import { IEditPasswordFormData } from 'api/profile/types';
 import { editPassword } from 'store/profile';
 import { getAuthData } from 'config/helpers';
+import EditProfileError from 'components/FormsProfile/EditProfileError';
 
 interface IPasswordForm {
   closeEdit: () => void;
@@ -20,8 +20,8 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
     handleSubmit,
     reset,
     getValues,
-    formState: { errors, isSubmitting }
-  } = useForm<any>({
+    formState: { errors, isSubmitting, isDirty }
+  } = useForm<IEditPasswordFormData>({
     mode: 'onBlur'
   });
   const { user_id } = getAuthData();
@@ -44,13 +44,14 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="old_password"
             placeholder="Поточний пароль"
             registerOptions={{
+              required: "Це поле є обов'язковим",
               pattern: {
                 value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`
               }
             }}
           />
-          <ErrorValidation errors={errors.password} />
+          <EditProfileError error={errors.old_password} />
         </Box>
         <Box>
           <Password
@@ -59,13 +60,14 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="password"
             placeholder="Новий пароль"
             registerOptions={{
+              required: "Це поле є обов'язковим",
               pattern: {
                 value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`
               }
             }}
           />
-          <ErrorValidation errors={errors.newPassword} />
+          <EditProfileError error={errors.password} />
         </Box>
         <Box>
           <Password
@@ -74,6 +76,7 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
             name="password2"
             placeholder="Підтвердження паролю"
             registerOptions={{
+              required: "Це поле є обов'язковим",
               pattern: {
                 value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
                 message: `Пароль має містити латинскі літери A-Z та цифри 0-9`
@@ -82,7 +85,7 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
                 value === getValues().password || 'Підтвердження паролю не співпадає'
             }}
           />
-          <ErrorValidation errors={errors.confirmPassword} />
+          <EditProfileError error={errors.password2} />
         </Box>
       </ContainerForm>
 
@@ -91,7 +94,7 @@ const PasswordForm: FC<IPasswordForm> = ({ closeEdit }) => {
         color="secondary"
         children="Зберегти"
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !isDirty}
       />
     </Form>
   );

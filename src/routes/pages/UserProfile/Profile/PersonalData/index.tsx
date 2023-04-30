@@ -17,14 +17,16 @@ const PersonalData = () => {
 
   return (
     <BoxData>
-      {!isEdit && (
-        <BoxTitle>
-          <Title>Персональні дані</Title>
+      <BoxTitle>
+        <Title>Персональні дані</Title>
+        {isEdit ? (
+          <ButtonEdit onClick={closeEdit}>Закрити</ButtonEdit>
+        ) : (
           <ButtonEdit onClick={onEdit} startIcon={<Edit />}>
             Редагувати
           </ButtonEdit>
-        </BoxTitle>
-      )}
+        )}
+      </BoxTitle>
       {isEdit ? <ProfileFormUser closeEdit={closeEdit} /> : <PersonalDataCard />}
     </BoxData>
   );
