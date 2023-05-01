@@ -1,3 +1,5 @@
+import ROUTES from 'routes/constants';
+
 interface IInfoConfig {
   path: string;
   name: string;
@@ -5,15 +7,15 @@ interface IInfoConfig {
 
 export const INFO_CONFIG = [
   {
-    path: '/',
+    path: ROUTES.TERMS.PATH + '/terms',
     name: 'Умови користування'
   },
   {
-    path: '/',
+    path: ROUTES.TERMS.PATH + '/privacy',
     name: 'Політика конфіденційності'
   },
   {
-    path: '/',
+    path: ROUTES.TERMS.PATH + '/offer',
     name: 'Договір оферти'
   }
 ] as IInfoConfig[];
