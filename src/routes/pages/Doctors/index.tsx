@@ -21,7 +21,7 @@ const Doctors: FC = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
   const [flagPagination, setFlagPagination] = useState<boolean>(false);
   const [itemsCount, setItemsCount] = useState<number>(0);
-  console.log(allDoctors)
+
   useEffect(() => {
     dispatch(doctors(page || 1));
     dispatch(specializations());
