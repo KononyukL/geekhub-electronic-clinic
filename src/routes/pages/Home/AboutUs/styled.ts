@@ -57,10 +57,18 @@ export const LastTitle = styled(Typography)(({ theme }) => {
   };
 });
 
-export const Text = styled(Typography)(({ theme }) => {
+export const Text = styled(Typography)<{ isOpen: boolean }>(({ theme, isOpen }) => {
   return {
     color: theme.palette.text.primary,
-    marginBottom: '32px'
+    marginBottom: 0,
+    overflow: 'hidden',
+    height: isOpen ? '285px' : '118px',
+    transition: 'all .3s linear'
+  };
+});
+export const Span = styled('span')(() => {
+  return {
+    display: 'block'
   };
 });
 export const Button = styled(MUIButton)({

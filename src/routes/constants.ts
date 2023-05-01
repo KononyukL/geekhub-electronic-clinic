@@ -41,6 +41,10 @@ const ROUTES = {
   FEEDBACK: {
     PATH: '/feedback/:doctorId/:appointment'
   },
+  TERMS: {
+    PATH: '/terms',
+    SUB_PATH: '/terms/:termType'
+  },
   ERROR: {
     PATH: '*'
   }
