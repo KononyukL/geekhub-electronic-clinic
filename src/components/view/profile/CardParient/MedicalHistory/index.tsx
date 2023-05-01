@@ -25,6 +25,7 @@ import { getAuthData, parseDate } from 'config/helpers';
 import { getPatientFinishedVisits } from 'store/visits/thunks';
 import NoRecords from 'components/view/profile/ NoRecords';
 import Avatar from 'components/Avatar';
+import { selectDoctors } from 'store/doctors';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -34,10 +35,15 @@ const MedicalHistory: FC<IPaginationComponent> = ({
 }) => {
   const [searchParams] = useSearchParams();
 
-  const dispatch = useAppDispatch();
-  const { finishedVisits, patientFinishedVisits } = useAppSelector(selectVisits);
   const { is_doctor } = getAuthData();
   const { userId } = useParams();
+
+  const dispatch = useAppDispatch();
+
+  const { finishedVisits } = useAppSelector(selectVisits);
+  const {
+    specializations: { results: specializationsList }
+  } = useAppSelector(selectDoctors);
 
   useEffect(() => {
     if (finishedVisits) {
@@ -46,24 +52,22 @@ const MedicalHistory: FC<IPaginationComponent> = ({
   }, [finishedVisits]);
 
   useEffect(() => {
+    const page = searchParams.get('page') || 1;
+    const specialist = searchParams.get('specialist');
+    const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
+
     if (!is_doctor) {
-      dispatch(
-        getFinishedVisits({
-          page: searchParams.get('page') || 1
-        })
-      );
+      dispatch(getFinishedVisits({ page, specializationId }));
     } else if (userId) {
-      dispatch(getPatientFinishedVisits(userId));
+      dispatch(getPatientFinishedVisits({ patientId: userId, filter: { page, specializationId } }));
     }
   }, [searchParams, is_doctor, userId]);
 
-  const currentVisits = is_doctor ? patientFinishedVisits : finishedVisits?.results;
-
   return (
     <Container>
-      {currentVisits &&
-        (currentVisits.length ? (
-          currentVisits?.map((item, i) => (
+      {finishedVisits?.results &&
+        (finishedVisits?.results.length ? (
+          finishedVisits?.results?.map((item, i) => (
             <StyledAccordion key={i} sx={{}}>
               <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
                 <BoxAvatar>

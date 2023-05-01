@@ -18,6 +18,7 @@ import { getFinishedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
 import Avatar from 'components/Avatar';
+import { useUpdateEffect } from 'hooks';
 
 const HistoryPatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -36,7 +37,7 @@ const HistoryPatient: FC<IPaginationComponent> = ({
     }
   }, [finishedVisits]);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     dispatch(
       getFinishedVisits({
         page: searchParams.get('page') || 1
