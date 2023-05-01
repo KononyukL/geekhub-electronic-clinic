@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { StyledSlider, BoxFeedback, Review, Box, BoxName } from './styled';
+import { StyledSlider, BoxFeedback, Review, Box, BoxName, StyledRating } from './styled';
 import { feedbacks } from './mockData';
-import { Avatar, IconButton, Rating, Typography } from '@mui/material';
+import { Avatar, IconButton, Typography } from '@mui/material';
 import { theme } from 'theme';
 import Slider from 'react-slick';
 import { ReactComponent as ArrowLeft } from 'assets/icons/arrow-left.svg';
@@ -43,7 +43,7 @@ const FeedbackSlider = () => {
                 <Typography sx={{ color: theme.palette.primary.contrastText }}>
                   {feedback.name}
                 </Typography>
-                <Rating value={feedback.value} readOnly />
+                <StyledRating value={feedback.value} readOnly />
               </BoxName>
             </Box>
           </BoxFeedback>

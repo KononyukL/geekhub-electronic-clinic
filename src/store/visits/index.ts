@@ -4,6 +4,7 @@ import {
   deleteVisits,
   getFinishedVisits,
   getPatientFinishedVisits,
+  getPDFLink,
   getPlannedVisits,
   getUnconfirmedVisits
 } from './thunks';
@@ -108,10 +109,29 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(getPDFLink.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPDFLink.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(getPDFLink.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { getFinishedVisits, getPlannedVisits, getUnconfirmedVisits, deleteVisits, confirmVisits };
+export {
+  getFinishedVisits,
+  getPlannedVisits,
+  getUnconfirmedVisits,
+  deleteVisits,
+  confirmVisits,
+  getPDFLink
+};
 
 export const {} = newsSlice.actions;
 

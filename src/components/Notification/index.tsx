@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Badge, Box } from '@mui/material';
 import { Icon, ModalMessage, Title, LinkButton, Wrapper } from './styled';
 import IMGNotification from 'assets/icons/Notification.svg';
@@ -17,6 +17,9 @@ const Notification = () => {
   const [showNotifications, setShowNotifications] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const { allNotification: currentAllNotification } = useAppSelector(selectNotification);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  console.log(currentAllNotification);
 
   useEffect(() => {
     dispatch(allNotification());
@@ -30,6 +33,19 @@ const Notification = () => {
       setMessage(filterMessage.length);
     }
   }, [currentAllNotification]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef]);
 
   const handleLinkToFeedback = (notification: TNotification) => {
     dispatch(
@@ -53,7 +69,7 @@ const Notification = () => {
         />
       </Badge>
       {showNotifications && (
-        <Box sx={{ position: 'absolute' }}>
+        <Box sx={{ position: 'absolute' }} ref={modalRef}>
           <ModalMessage>
             {currentAllNotification &&
               currentAllNotification.results
@@ -65,7 +81,7 @@ const Notification = () => {
                       to={`/feedback/${notification.doctor_id}/${notification.appointment}`}
                       onClick={() => {
                         handleLinkToFeedback(notification);
-                        setShowNotifications(!showNotifications);
+                        setShowNotifications(false);
                       }}>
                       {notification.title}
                     </LinkButton>

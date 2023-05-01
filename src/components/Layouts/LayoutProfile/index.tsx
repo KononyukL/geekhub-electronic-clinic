@@ -6,7 +6,6 @@ import { BoxInfo, BoxLayout, BoxLink, BoxOutlet, Button } from './styled';
 import { ReactComponent as SingOut } from 'assets/icons/sign-out.svg';
 import { useAppDispatch } from 'store/hooks';
 import { logout } from 'store/auth';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 interface ILayoutProfile {
   children: ReactNode;
@@ -19,8 +18,6 @@ const LayoutProfile: FC<ILayoutProfile> = ({ children }) => {
   const onLogout = () => {
     dispatch(logout(navigate));
   };
-
-  useScrollToTop();
 
   return (
     <BoxLayout>

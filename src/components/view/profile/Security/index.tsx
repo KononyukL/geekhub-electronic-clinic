@@ -29,7 +29,9 @@ const Security: FC<ISecurity> = ({ sx }) => {
     <BoxData sx={sx}>
       <BoxTitle>
         <Title>Безпека</Title>
-        {!isEdit && (
+        {isEdit ? (
+          <ButtonEdit onClick={closeEdit}>Закрити</ButtonEdit>
+        ) : (
           <ButtonEdit onClick={onEdit} startIcon={<Edit />}>
             Редагувати
           </ButtonEdit>

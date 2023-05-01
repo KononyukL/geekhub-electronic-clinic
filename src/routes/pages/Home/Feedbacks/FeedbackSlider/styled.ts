@@ -1,5 +1,5 @@
 import Slider from 'react-slick';
-import { Box as MUIBox, styled, Typography } from '@mui/material';
+import { Box as MUIBox, Rating, styled, Typography } from '@mui/material';
 
 export const StyledSlider = styled(Slider)({
   maxWidth: 695,
@@ -26,3 +26,11 @@ export const Box = styled(MUIBox)({
 });
 
 export const BoxName = styled(MUIBox)({});
+
+export const StyledRating = styled(Rating)(({ theme }) => {
+  return {
+    '&.MuiRating-root': {
+      color: theme.palette.primary.main
+    }
+  };
+});

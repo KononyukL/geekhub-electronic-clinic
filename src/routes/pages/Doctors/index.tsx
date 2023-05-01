@@ -10,7 +10,6 @@ import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { IDoctor } from '../Doctor/interfaces';
 import { usePagination } from 'hooks/usePagination';
 import { useSearchParams } from 'react-router-dom';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 const Doctors: FC = () => {
   const [searchParams] = useSearchParams();
@@ -50,8 +49,6 @@ const Doctors: FC = () => {
       setActiveButtonIndex(index);
     }
   };
-
-  useScrollToTop();
 
   return (
     <Container>

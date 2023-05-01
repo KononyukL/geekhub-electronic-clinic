@@ -4,15 +4,12 @@ import { useSearchParams } from 'react-router-dom';
 import { usePagination } from 'hooks/usePagination';
 import { PATIENT_CONFIG } from './config';
 import ProfileTabs from 'components/view/profile/ProfileTabs';
-import { useScrollToTop } from 'hooks/useScrollToTop';
 
 export const PATIENT_PER_PAGE = 6;
 
 const Patient = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [itemsCount, setItemsCount] = useState(0);
-
-  useScrollToTop();
 
   const [tab, setTab] = React.useState(() => {
     const pageParam = searchParams.get('tab');

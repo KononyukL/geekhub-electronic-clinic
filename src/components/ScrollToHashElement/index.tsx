@@ -1,35 +1,37 @@
-import { useMemo, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { InitBox } from './styled';
 
 const ScrollToHashElement = () => {
-  let location = useLocation();
-
-  let hashElement = useMemo(() => {
-    let hash = location.hash;
-    const removeHashCharacter = (str: string) => {
-      const result = str.slice(1);
-      return result;
-    };
-
-    if (hash) {
-      let element = document.getElementById(removeHashCharacter(hash));
-      return element;
-    } else {
-      return null;
-    }
-  }, [location]);
+  const { hash, key, pathname } = useLocation();
+  const [init, setInit] = useState(false);
 
   useEffect(() => {
-    if (hashElement) {
-      hashElement.scrollIntoView({
-        behavior: 'smooth',
-        // block: "end",
-        inline: 'nearest'
-      });
-    }
-  }, [hashElement]);
+    setTimeout(() => {
+      setInit(true);
+    }, 300);
+  }, []);
 
-  return null;
+  useEffect(() => {
+    if (hash === '') {
+      window.scrollTo(0, 0);
+    } else {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 0);
+    }
+  }, [hash, key, pathname]);
+
+  if (init) {
+    return null;
+  }
+
+  return <InitBox />;
 };
 
 export default ScrollToHashElement;

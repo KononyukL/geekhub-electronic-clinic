@@ -25,7 +25,7 @@ export const getAuthData = (): IGetAuthDataResult => {
 
 export function removeEmptyFields(data: Record<string, any>) {
   Object.keys(data).forEach((key) => {
-    if (data[key] === '' || data[key] === null) {
+    if (!data[key]) {
       delete data[key];
     }
   });

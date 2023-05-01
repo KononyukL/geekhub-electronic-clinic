@@ -31,5 +31,11 @@ export const visitsApi = {
       params: filter
     });
     return result.data;
+  },
+  async getPDFLink(id: string | number) {
+    const result = await axiosInstance.get(`finished/id-${id}/create-pdf`, {
+      responseType: 'arraybuffer'
+    });
+    return result.data;
   }
 };

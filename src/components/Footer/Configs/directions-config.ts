@@ -20,7 +20,7 @@ export const DIRECTIONS_CONFIG = [
   },
   {
     path: ROUTES.DOCTORS.PATH,
-    name: 'Пульманологія'
+    name: 'Пульмонологія'
   },
   {
     path: ROUTES.DOCTORS.PATH,

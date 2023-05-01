@@ -65,7 +65,7 @@ const Footer = () => {
             <House />
             <TextBox>
               <Typography sx={{ margin: 0 }} paragraph>
-                м. Черкасси, вул. Чорновола 92
+                м. Черкаси,, вул. Чорновола 92
               </Typography>
               <Typography sx={{ margin: 0, fontSize: 14 }} paragraph>
                 пн-пт 09:00-18:00
@@ -79,7 +79,7 @@ const Footer = () => {
                 MediPlus@gmail.com
               </Typography>
               <Typography sx={{ margin: 0, fontSize: 14 }} paragraph>
-                пиши по будь-яким питанням
+                Пишіть по будь-яким питанням
               </Typography>
             </TextBox>
           </ContactsSocialBox>

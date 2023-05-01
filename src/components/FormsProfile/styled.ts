@@ -39,12 +39,13 @@ export const StyledSelect = styled(Select)`
   }
 `;
 
-export const InputProfile = styled(Input)(({ theme }) => {
+export const InputProfile = styled(Input)<{ isError?: boolean }>(({ theme, isError }) => {
   return {
     height: '50px',
     paddingLeft: '20px',
     fontSize: '16px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    borderColor: isError ? theme.palette.error.main : ''
   };
 });
 
