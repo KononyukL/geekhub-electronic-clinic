@@ -65,3 +65,17 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+export const registerConfirm = createAsyncThunk(
+  'auth/registerConfirm',
+  async (
+    { userId, userToken }: { userId: string | undefined; userToken: string | undefined },
+    { rejectWithValue }
+  ) => {
+    try {
+      return await authApi.registerConfirm({ userId, userToken });
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);

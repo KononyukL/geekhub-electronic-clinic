@@ -18,8 +18,7 @@ const Notification = () => {
   const dispatch = useAppDispatch();
   const { allNotification: currentAllNotification } = useAppSelector(selectNotification);
   const modalRef = useRef<HTMLDivElement>(null);
-
-  console.log(currentAllNotification);
+  const iconRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     dispatch(allNotification());
@@ -32,11 +31,16 @@ const Notification = () => {
       );
       setMessage(filterMessage.length);
     }
-  }, [currentAllNotification]);
+  }, [currentAllNotification?.results]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node) &&
+        iconRef.current &&
+        !iconRef.current.contains(event.target as Node)
+      ) {
         setShowNotifications(false);
       }
     };
@@ -45,9 +49,10 @@ const Notification = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [modalRef]);
+  }, [modalRef, iconRef]);
 
   const handleLinkToFeedback = (notification: TNotification) => {
+    dispatch(allNotification());
     dispatch(
       statusNotification({
         id: notification.id,
@@ -58,22 +63,29 @@ const Notification = () => {
     );
   };
 
+  const updateNotification = () => {
+    dispatch(allNotification());
+    setShowNotifications(!showNotifications);
+  };
+
   return (
     <Box sx={{ display: 'inline-block' }}>
       <Badge sx={{ marginRight: 4 }} badgeContent={message} color="secondary">
         <Icon
+          ref={iconRef}
           src={IMGNotification}
           alt="Notification"
           title="Notification"
-          onClick={() => setShowNotifications(!showNotifications)}
+          onClick={updateNotification}
         />
       </Badge>
       {showNotifications && (
         <Box sx={{ position: 'absolute' }} ref={modalRef}>
           <ModalMessage>
             {currentAllNotification &&
+              currentAllNotification.results &&
               currentAllNotification.results
-                .filter((notification) => notification.is_read === false)
+                .filter((notification) => !notification.is_read)
                 .map((notification) => (
                   <Wrapper key={notification.id}>
                     <Title>{notification.text}</Title>

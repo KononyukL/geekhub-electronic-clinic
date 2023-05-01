@@ -19,7 +19,7 @@ export const WrapperConfirm = styled(Box)(({ theme }) => {
 
 export const Wrapper = styled(WrapperConfirm)(() => {
   return {
-    height: 314
+    height: 250
   };
 });
 

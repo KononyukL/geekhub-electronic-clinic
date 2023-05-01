@@ -2,18 +2,8 @@ import React, { FC, useState } from 'react';
 import { Container, ButtonSwitch, DateStyle, Day } from './styled';
 import { TCalendar } from '../types';
 
-const MAX_DATES = 2;
-
-const Calendar: FC<TCalendar> = ({ updateCurrentDate, max_date }) => {
+const Calendar: FC<TCalendar> = ({ updateCurrentDate }) => {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
-
-  const dates: Date[] = Array.from({ length: (max_date || MAX_DATES) + 1 })
-    .fill(0)
-    .map((_, index) => {
-      const date = new Date(currentDate);
-      date.setDate(currentDate.getDate() + index);
-      return date;
-    });
 
   const handlerActiveData = (date: Date) => {
     setCurrentDate(date);
@@ -21,24 +11,32 @@ const Calendar: FC<TCalendar> = ({ updateCurrentDate, max_date }) => {
   };
 
   const handlePrevPage = () => {
-    if (currentDate.getDate() !== new Date().getDate()) {
-      setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)));
-    }
+    setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)));
+    updateCurrentDate(currentDate.toISOString().substr(0, 10));
   };
 
-  const handleNextPage = () =>
+  const handleNextPage = () => {
     setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 1)));
+    updateCurrentDate(currentDate.toISOString().substr(0, 10));
+  };
 
   return (
     <Container>
       <ButtonSwitch onClick={handlePrevPage}>❮</ButtonSwitch>
-      {dates.map((date, index) => (
-        <DateStyle onClick={() => handlerActiveData(date)} key={date.toISOString()}>
-          <Day className={index === 0 ? 'active' : ''}>
-            {date.toLocaleDateString('uk-UA', { weekday: 'short', day: 'numeric', month: 'short' })}
-          </Day>
-        </DateStyle>
-      ))}
+      {[-1, 0, 1].map((day) => {
+        const date = new Date(currentDate);
+        date.setDate(currentDate.getDate() + day);
+        return (
+          <DateStyle
+            key={date.toISOString()}
+            onClick={() => handlerActiveData(date)}
+            className={day === 0 ? 'active' : ''}>
+            <Day>
+              {date.toLocaleString('uk-UA', { day: 'numeric', month: 'short', weekday: 'short' })}
+            </Day>
+          </DateStyle>
+        );
+      })}
       <ButtonSwitch onClick={handleNextPage}>❯</ButtonSwitch>
     </Container>
   );

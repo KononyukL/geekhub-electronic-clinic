@@ -27,6 +27,7 @@ import PatientCard from 'routes/pages/DoctorProfile/Patient/PatientCard';
 import Error from 'routes/pages/Error';
 import Feedback from './routes/pages/Feedback';
 import Terms from 'routes/pages/Terms';
+import RegistrationConfirm from './routes/pages/RegistrationConfirm';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +51,7 @@ const router = createBrowserRouter(
         <Route path={ROUTES.DOCTOR.PATH} element={<Doctor />} />
         <Route path={ROUTES.FEEDBACK.PATH} element={<Feedback />} />
         <Route path={ROUTES.TERMS.SUB_PATH} element={<Terms />} />
+        <Route path={ROUTES.REGISTRATION_CONFIRM.PATH} element={<RegistrationConfirm />} />
         <Route path={ROUTES.ERROR.PATH} element={<Error />} />
       </Route>
     </Route>

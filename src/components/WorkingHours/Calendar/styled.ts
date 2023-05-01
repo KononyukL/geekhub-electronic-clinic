@@ -34,23 +34,24 @@ export const DateStyle = styled(Box)(({ theme }) => {
 
     '&:hover': {
       cursor: 'pointer'
+    },
+    '&.active': {
+      color: theme.palette.text.primary,
+      fontWeight: '500'
     }
   };
 });
 
 export const Day = styled(Box)(({ theme }) => {
   return {
+    textAlign: 'center',
     width: 88,
     fontSize: 14,
     fontWeight: 400,
     transition: '.3s',
 
     '&:hover': {
-      color: theme.palette.text.primary,
-    },
-    '&.active': {
-      color: theme.palette.text.primary,
-      fontWeight: '500'
+      color: theme.palette.text.primary
     }
   };
 });
