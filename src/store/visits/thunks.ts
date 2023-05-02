@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { visitsApi } from 'api';
-import { IVisitFilter } from 'api/visits/types';
+import { IPatientVisitFilter, IVisitFilter } from 'api/visits/types';
 import { toast } from 'react-toastify';
 
 export const getFinishedVisits = createAsyncThunk(
@@ -38,9 +38,9 @@ export const getUnconfirmedVisits = createAsyncThunk(
 
 export const getPatientFinishedVisits = createAsyncThunk(
   'patient-finished-visits',
-  async (id: string | number, { rejectWithValue }) => {
+  async (filter: IPatientVisitFilter, { rejectWithValue }) => {
     try {
-      return await visitsApi.getPatientFinishedVisit(id);
+      return await visitsApi.getPatientFinishedVisit(filter);
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }

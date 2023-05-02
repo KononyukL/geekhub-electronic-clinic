@@ -24,13 +24,13 @@ export const newsSlice = createSlice({
       .addCase(getProfile.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getProfile.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getProfile.fulfilled, (state, action: PayloadAction<IProfile>) => {
         state.isLoading = false;
         state.profile = action.payload;
       })
-      .addCase(getProfile.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -40,9 +40,9 @@ export const newsSlice = createSlice({
       .addCase(editPassword.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(editPassword.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(editPassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -52,9 +52,9 @@ export const newsSlice = createSlice({
       .addCase(editProfile.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(editProfile.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(editProfile.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   }
 });

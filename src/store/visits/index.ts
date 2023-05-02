@@ -9,11 +9,10 @@ import {
   getUnconfirmedVisits
 } from './thunks';
 import { RootState } from '../index';
-import { IVisit, IVisits } from 'api/visits/types';
+import { IVisits } from 'api/visits/types';
 
 interface IVisitState {
   finishedVisits: IVisits | null;
-  patientFinishedVisits: IVisit[] | null;
   plannedVisits: IVisits | null;
   unconfirmedVisits: IVisits | null;
   isLoading: boolean;
@@ -23,7 +22,6 @@ interface IVisitState {
 const initialState: IVisitState = {
   finishedVisits: null,
   plannedVisits: null,
-  patientFinishedVisits: null,
   unconfirmedVisits: null,
   isLoading: false,
   error: ''
@@ -38,52 +36,52 @@ export const newsSlice = createSlice({
       .addCase(getFinishedVisits.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getFinishedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getFinishedVisits.fulfilled, (state, action: PayloadAction<IVisits>) => {
         state.isLoading = false;
         state.finishedVisits = action.payload;
       })
-      .addCase(getFinishedVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getFinishedVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(getPlannedVisits.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getPlannedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getPlannedVisits.fulfilled, (state, action: PayloadAction<IVisits>) => {
         state.isLoading = false;
         state.plannedVisits = action.payload;
       })
-      .addCase(getPlannedVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getPlannedVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(getPatientFinishedVisits.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getPatientFinishedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getPatientFinishedVisits.fulfilled, (state, action: PayloadAction<IVisits>) => {
         state.isLoading = false;
-        state.patientFinishedVisits = action.payload;
+        state.finishedVisits = action.payload;
       })
-      .addCase(getPatientFinishedVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getPatientFinishedVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(getUnconfirmedVisits.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getUnconfirmedVisits.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getUnconfirmedVisits.fulfilled, (state, action: PayloadAction<IVisits>) => {
         state.isLoading = false;
         state.unconfirmedVisits = action.payload;
       })
-      .addCase(getUnconfirmedVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getUnconfirmedVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -93,9 +91,9 @@ export const newsSlice = createSlice({
       .addCase(deleteVisits.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(deleteVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(deleteVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -105,9 +103,9 @@ export const newsSlice = createSlice({
       .addCase(confirmVisits.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(confirmVisits.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(confirmVisits.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -117,9 +115,9 @@ export const newsSlice = createSlice({
       .addCase(getPDFLink.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(getPDFLink.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getPDFLink.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   }
 });

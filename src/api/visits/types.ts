@@ -1,5 +1,11 @@
 export interface IVisitFilter {
   page: string | number;
+  specializationId?: string | number;
+}
+
+export interface IPatientVisitFilter {
+  patientId: string | number;
+  filter: IVisitFilter;
 }
 
 export interface IVisit {

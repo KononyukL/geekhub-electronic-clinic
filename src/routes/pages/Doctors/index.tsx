@@ -7,47 +7,53 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
-import { IDoctor } from '../Doctor/interfaces';
-import { usePagination } from 'hooks/usePagination';
+import { usePagination, useUpdateEffect } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
 
 const Doctors: FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [activeButton, setActiveButton] = useState(() => {
+    const specialist = searchParams.get('specialist');
+    return specialist || 'all';
+  });
+
   const dispatch = useAppDispatch();
   const { doctors: allDoctors, specializations: selectSpecializations } =
     useAppSelector(selectDoctors);
-  const [selectedDoctors, setSelectedDoctors] = useState<IDoctor[] | null>(null);
-  const [activeButtonIndex, setActiveButtonIndex] = useState<number>(0);
-  const [flagPagination, setFlagPagination] = useState<boolean>(false);
-  const [itemsCount, setItemsCount] = useState<number>(0);
-  console.log(allDoctors);
-  useEffect(() => {
-    dispatch(doctors(page || 1));
-    dispatch(specializations());
-  }, [searchParams, dispatch]);
 
-  useEffect(() => {
-    if (selectedDoctors) {
-      onSetItemsCount(allDoctors.count);
-    }
-  }, [selectedDoctors]);
-
-  const onSetItemsCount = (count: number) => {
-    setItemsCount(count);
-  };
-
-  const { page, handleChangePage } = usePagination({
-    itemsCount
+  const { page, pageCount, handleChangePage, resetPagination } = usePagination({
+    itemsCount: allDoctors.count
   });
 
-  const handleFilterDoctors = (specialty: string, index: number) => {
-    if (allDoctors && allDoctors.results?.length > 0) {
-      const filteredDoctors = allDoctors.results?.filter(
-        (doctor: IDoctor) => specialty === doctor.specialization
-      );
-      setSelectedDoctors(filteredDoctors);
-      setActiveButtonIndex(index);
+  useEffect(() => {
+    dispatch(specializations());
+  }, []);
+
+  useUpdateEffect(() => {
+    const specialist = searchParams.get('specialist');
+    const specializationId = selectSpecializations.results.find(
+      (item) => item.name === specialist
+    )?.id;
+
+    dispatch(
+      doctors({
+        page: searchParams.get('page') || 1,
+        specializationId
+      })
+    );
+
+    if (specialist && specialist !== activeButton) {
+      setActiveButton(specialist);
     }
+  }, [searchParams, selectSpecializations.results]);
+
+  const handleFilterDoctors = (specialty: string) => () => {
+    searchParams.set('specialist', specialty);
+    searchParams.set('page', '1');
+    setSearchParams(searchParams);
+    setActiveButton(specialty);
+    resetPagination();
   };
 
   return (
@@ -58,24 +64,18 @@ const Doctors: FC = () => {
           <WrapperButton>
             {selectSpecializations && (
               <ButtonDoctor
-                isActiveButton={activeButtonIndex === 0}
-                onClick={() => {
-                  handleFilterDoctors('Всі лікарі', 0);
-                  setFlagPagination(!flagPagination);
-                }}>
+                isActiveButton={activeButton === 'all'}
+                onClick={handleFilterDoctors('all')}>
                 <Icon src={IMGAllDoctors} alt="Всі лікарі" />
                 Всі лікарі
               </ButtonDoctor>
             )}
             {selectSpecializations &&
-              selectSpecializations.results.map((specialty, index) => (
+              selectSpecializations.results.map((specialty) => (
                 <ButtonDoctor
                   key={specialty.name}
-                  isActiveButton={activeButtonIndex === index + 1}
-                  onClick={() => {
-                    handleFilterDoctors(specialty.name, index + 1);
-                    setFlagPagination(!flagPagination);
-                  }}>
+                  isActiveButton={activeButton === specialty.name}
+                  onClick={handleFilterDoctors(specialty.name)}>
                   <Icon src={specialty.image} alt={specialty.name} />
                   {specialty.name}
                 </ButtonDoctor>
@@ -84,13 +84,10 @@ const Doctors: FC = () => {
         </Aside>
         <SelectedDoctorsList
           page={page}
-          pageCount={Math.ceil(allDoctors.count / 6)}
+          pageCount={pageCount}
           handleChangePage={handleChangePage}
-          flagPagination={flagPagination}
           paginationCount={allDoctors.count}
-          selectedDoctors={
-            selectedDoctors && selectedDoctors.length > 0 ? selectedDoctors : allDoctors.results
-          }
+          selectedDoctors={allDoctors.results}
         />
       </Wrapper>
     </Container>

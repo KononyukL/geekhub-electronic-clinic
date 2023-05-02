@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Container } from './styled';
 import { useSearchParams } from 'react-router-dom';
-import { usePagination } from 'hooks/usePagination';
+import { usePagination } from 'hooks';
 import { PATIENT_CONFIG } from './config';
 import ProfileTabs from 'components/view/profile/ProfileTabs';
 
@@ -27,6 +27,7 @@ const Patient = () => {
   const handleTabChange = (_event: React.SyntheticEvent, value: number) => {
     setTab(value);
     searchParams.set('tab', `${value}`);
+    searchParams.set('page', '1');
     setSearchParams(searchParams);
     resetPagination();
   };
