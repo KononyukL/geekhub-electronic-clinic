@@ -108,16 +108,6 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
               будь-ласка, зв’яжіться з нами за номером:
               <Text>+38 (067) 20 20 773</Text>
             </Typography>
-            <WrapperButtons>
-              {/*<HomeButton*/}
-              {/*  onClick={() => {*/}
-              {/*    goHomePage();*/}
-              {/*    handleClose();*/}
-              {/*    postVisit();*/}
-              {/*  }}>*/}
-              {/*  Повернутись на головну*/}
-              {/*</HomeButton>*/}
-            </WrapperButtons>
           </Wrapper>
         </Modal>
       )}
