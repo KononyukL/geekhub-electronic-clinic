@@ -23,10 +23,11 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   'auth/logout',
-  async (navigate: NavigateFunction, { rejectWithValue }) => {
+  async (navigate: NavigateFunction, { rejectWithValue, dispatch }) => {
     try {
       await authApi.logout();
       localStorage.removeItem(AUTH_DATA);
+      dispatch({ type: 'logout/LOGOUT' });
       navigate(ROUTES.HOME.PATH);
       return {};
     } catch (e: any) {
@@ -74,6 +75,24 @@ export const registerConfirm = createAsyncThunk(
   ) => {
     try {
       return await authApi.registerConfirm({ userId, userToken });
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
+export const resetPasswordConfirm = createAsyncThunk(
+  'auth/resetPasswordConfirm',
+  async (
+    {
+      uid,
+      token,
+      new_password
+    }: { uid: string | undefined; token: string | undefined; new_password: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      return await authApi.resetPasswordConfirm({ uid, token, new_password });
     } catch (e: any) {
       rejectWithValue(e.message || 'Something went wrong');
     }

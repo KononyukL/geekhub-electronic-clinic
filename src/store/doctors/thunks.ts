@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { doctorsApi } from '../../api';
+import { doctorsApi } from 'api';
+import { IDoctorsFilter } from 'store/doctors/interfaces';
 
 interface IDoctor {
   doctorId: string | number;
@@ -13,13 +14,16 @@ interface IFeedback {
   created_at: string;
 }
 
-export const doctors = createAsyncThunk('doctors', async (page: number, { rejectWithValue }) => {
-  try {
-    return await doctorsApi.doctors(page);
-  } catch (e: any) {
-    rejectWithValue(e.message || 'Something went wrong');
+export const doctors = createAsyncThunk(
+  'doctors',
+  async (filter: IDoctorsFilter, { rejectWithValue }) => {
+    try {
+      return await doctorsApi.doctors(filter);
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
   }
-});
+);
 
 export const doctor = createAsyncThunk(
   'doctor',
@@ -45,7 +49,10 @@ export const specializations = createAsyncThunk(
 
 export const feedbacks = createAsyncThunk(
   'doctors/doctor-${doctorId}/reviews',
-  async ({ doctorId, page }: { doctorId: string | number; page: string | number }, { rejectWithValue }) => {
+  async (
+    { doctorId, page }: { doctorId: string | number; page: string | number },
+    { rejectWithValue }
+  ) => {
     try {
       return await doctorsApi.feedbacks({ doctorId, page });
     } catch (e: any) {

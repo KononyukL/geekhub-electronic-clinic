@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import MenuItem from '@mui/material/MenuItem';
 import { useSearchParams } from 'react-router-dom';
-import { usePagination } from 'hooks/usePagination';
+import { usePagination } from 'hooks';
 import { SelectChangeEvent } from '@mui/material';
 import ProfileTabs from 'components/view/profile/ProfileTabs';
 
@@ -22,8 +22,8 @@ const Visits = () => {
   });
 
   const [specialist, setSpecialist] = React.useState(() => {
-    const pageParam = searchParams.get('specialist');
-    return pageParam || 'all';
+    const specialist = searchParams.get('specialist');
+    return specialist || 'all';
   });
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
@@ -43,9 +43,10 @@ const Visits = () => {
 
   const handleTabChange = (_event: React.SyntheticEvent, value: number) => {
     setTab(value);
-    searchParams.set('tab', `${value}`);
-    setSearchParams(searchParams);
     resetPagination();
+    searchParams.set('tab', `${value}`);
+    searchParams.set('page', '1');
+    setSearchParams(searchParams);
   };
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {

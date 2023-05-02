@@ -7,7 +7,7 @@ const LastNameField: FC<IInputFormField> = ({ register, errors }) => {
   return (
     <StyledInput
       style={errors.lastName && { border: '1px solid red' }}
-      placeholder="Прізвище"
+      placeholder="Прізвище*"
       name="lastName"
       register={register}
       registerOptions={

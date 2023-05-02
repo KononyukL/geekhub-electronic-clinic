@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { AUTH_DATA } from 'config';
 import ROUTES from 'routes/constants';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from 'store/hooks';
 
 export const useAuth = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   axiosInstance.interceptors.request.use((config) => {
     const { token } = getAuthData();
@@ -26,6 +28,7 @@ export const useAuth = () => {
       if (statusCode === 401) {
         localStorage.removeItem(AUTH_DATA);
         navigate(ROUTES.HOME.PATH);
+        dispatch({ type: 'logout/LOGOUT' });
         toast.error(error.message || 'Something went wrong', { toastId: '401' });
       }
 

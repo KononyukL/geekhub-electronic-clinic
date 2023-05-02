@@ -3,7 +3,7 @@ import { Box, styled } from '@mui/material';
 export const Container = styled(Box)(() => {
   return {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     maxWidth: 530,
     width: '100%',
     marginBottom: 8,

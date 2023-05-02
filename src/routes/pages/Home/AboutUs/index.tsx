@@ -49,7 +49,6 @@ const AboutUs = () => {
             найкращу можливу медичну допомогу!
           </Span>
         </Text>
-
         <Button onClick={onClick} variant="contained" color="primary">
           {!open ? 'Детальніше' : 'Приховати'}
         </Button>

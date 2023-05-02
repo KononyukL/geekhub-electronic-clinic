@@ -13,6 +13,7 @@ import { confirmVisits, deleteVisits, getUnconfirmedVisits, selectVisits } from 
 import { useSearchParams } from 'react-router-dom';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
+import { useUpdateEffect } from 'hooks';
 
 const QueriesPatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -32,7 +33,7 @@ const QueriesPatient: FC<IPaginationComponent> = ({
     }
   }, [unconfirmedVisits]);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     dispatch(
       getUnconfirmedVisits({
         page: searchParams.get('page') || 1

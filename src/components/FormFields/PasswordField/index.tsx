@@ -12,7 +12,7 @@ const PasswordField: FC<IInputFormField> = ({ register, errors }) => {
     <>
       <StyledInput
         style={errors.password && { border: '1px solid red' }}
-        placeholder="Пароль"
+        placeholder="Пароль*"
         name="password"
         type={iconPassword ? 'text' : 'password'}
         register={register}

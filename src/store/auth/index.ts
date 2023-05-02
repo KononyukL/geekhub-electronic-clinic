@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { login, logout, registration, resetPassword, registerConfirm } from './thunks';
+import {
+  login,
+  logout,
+  registration,
+  resetPassword,
+  registerConfirm,
+  resetPasswordConfirm
+} from './thunks';
 import { RootState } from '../index';
 
 interface IAuthState {
@@ -23,52 +30,52 @@ export const newsSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(login.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(login.fulfilled, (state, action: PayloadAction<Record<string, unknown>>) => {
         state.isLoading = false;
         state.login = action.payload;
       })
-      .addCase(login.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(logout.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
-        state.login = action.payload;
+        state.login = {};
       })
-      .addCase(logout.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(registration.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registration.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(registration.fulfilled, (state, action: PayloadAction<Record<string, unknown>>) => {
         state.isLoading = false;
         state.login = action.payload;
       })
-      .addCase(registration.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(registration.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
       .addCase(resetPassword.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(resetPassword.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(resetPassword.fulfilled, (state, action: PayloadAction<Record<string, unknown>>) => {
         state.isLoading = false;
         state.login = action.payload;
       })
-      .addCase(resetPassword.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(resetPassword.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -83,10 +90,23 @@ export const newsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       });
+
+    builder
+      .addCase(resetPasswordConfirm.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(resetPasswordConfirm.fulfilled, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.login = action.payload;
+      })
+      .addCase(resetPasswordConfirm.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   }
 });
 
-export { login, logout, registration, resetPassword, registerConfirm };
+export { login, logout, registration, resetPassword, registerConfirm, resetPasswordConfirm };
 
 export const {} = newsSlice.actions;
 

@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { specializations } from 'store/doctors/thunks';
-import { usePagination } from 'hooks/usePagination';
+import { usePagination } from 'hooks';
 import { getAuthData } from 'config/helpers';
 import { getCard, selectCardPatient } from 'store/cardPatient';
 import Avatar from 'components/Avatar';

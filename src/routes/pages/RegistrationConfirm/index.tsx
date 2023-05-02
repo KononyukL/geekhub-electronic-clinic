@@ -16,7 +16,7 @@ const RegistrationConfirm: FC = () => {
   return (
     <Container>
       <Wrapper>
-        <Text>Ваша акаунт успішно зареєстровано!</Text>
+        <Text>Ваш акаунт успішно зареєстровано!</Text>
         <Button to={ROUTES.HOME.PATH}>Повернутися на головну</Button>
       </Wrapper>
     </Container>

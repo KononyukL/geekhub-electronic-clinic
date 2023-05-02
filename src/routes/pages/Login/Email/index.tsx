@@ -14,7 +14,7 @@ const Email: FC<IPhoneNumberField> = ({ register, errors }) => {
         <StyledInput
           style={errors.email && { border: '1px solid red' }}
           type="email"
-          placeholder="Електронна адреса"
+          placeholder="Електронна адреса*"
           name="email"
           register={register}
           registerOptions={{

@@ -48,6 +48,9 @@ const ROUTES = {
   REGISTRATION_CONFIRM: {
     PATH: '/register-user-confirm/:userId/:userToken'
   },
+  RESET_PASSWORD_CONFIRM: {
+    PATH: '/password-reset-confirm/:userId/:userToken'
+  },
   ERROR: {
     PATH: '*'
   }

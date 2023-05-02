@@ -11,6 +11,7 @@ import { getPlannedVisits, selectVisits } from 'store/visits';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
+import { useUpdateEffect } from 'hooks';
 
 const ActivePatient: FC<IPaginationComponent> = ({
   pageCount,
@@ -23,7 +24,7 @@ const ActivePatient: FC<IPaginationComponent> = ({
   const dispatch = useAppDispatch();
   const { plannedVisits } = useAppSelector(selectVisits);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     dispatch(
       getPlannedVisits({
         page: searchParams.get('page') || 1

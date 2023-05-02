@@ -24,13 +24,13 @@ export const newsSlice = createSlice({
       .addCase(getCard.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCard.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(getCard.fulfilled, (state, action: PayloadAction<ICardPatient>) => {
         state.isLoading = false;
         state.cardPatient = action.payload;
       })
-      .addCase(getCard.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(getCard.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   }
 });

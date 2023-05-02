@@ -11,6 +11,8 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
+import { selectDoctors } from 'store/doctors';
+import { useUpdateEffect } from 'hooks';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -24,6 +26,9 @@ const PlannedVisits: FC<IPaginationComponent> = ({
 
   const dispatch = useAppDispatch();
   const { plannedVisits } = useAppSelector(selectVisits);
+  const {
+    specializations: { results: specializationsList }
+  } = useAppSelector(selectDoctors);
 
   useEffect(() => {
     if (plannedVisits) {
@@ -31,13 +36,17 @@ const PlannedVisits: FC<IPaginationComponent> = ({
     }
   }, [plannedVisits]);
 
-  useEffect(() => {
+  useUpdateEffect(() => {
+    const specialist = searchParams.get('specialist');
+    const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
+
     dispatch(
       getPlannedVisits({
-        page: searchParams.get('page') || 1
+        page: searchParams.get('page') || 1,
+        specializationId
       })
     );
-  }, [searchParams]);
+  }, [searchParams, specializationsList]);
 
   const handleClick = () => {
     setOpenModal(!openModal);
@@ -87,7 +96,6 @@ const PlannedVisits: FC<IPaginationComponent> = ({
         ) : (
           <NoRecords paddingSize={24} />
         ))}
-
       {plannedVisits && plannedVisits.count > VISITS_PER_PAGE && (
         <Pagination
           sx={{ padding: '28px' }}

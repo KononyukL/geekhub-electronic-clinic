@@ -7,7 +7,7 @@ const NameField: FC<IInputFormField> = ({ register, errors }) => {
   return (
     <StyledInput
       style={errors.firstName && { border: '1px solid red' }}
-      placeholder="Ім'я"
+      placeholder="Ім'я*"
       name="firstName"
       register={register}
       registerOptions={

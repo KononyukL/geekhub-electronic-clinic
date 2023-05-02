@@ -1,4 +1,5 @@
 import { axiosInstance } from '../config';
+import { IDoctorsFilter } from 'store/doctors/interfaces';
 interface IFeedback {
   id: string | undefined;
   review_text: string;
@@ -7,8 +8,13 @@ interface IFeedback {
 }
 
 export const doctorsApi = {
-  async doctors(page: number) {
-    const result = await axiosInstance.get(`doctors?page=${page}`);
+  async doctors({ specializationId: id, page }: IDoctorsFilter) {
+    const result = await axiosInstance.get(`${id ? `filter-doctors/${id}` : 'doctors'}`, {
+      params: {
+        page
+      }
+    });
+
     return result.data;
   },
 

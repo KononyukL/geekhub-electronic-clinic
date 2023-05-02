@@ -1,21 +1,41 @@
 import { axiosInstance } from 'api/config';
-import { IVisitFilter } from 'api/visits/types';
+import { IPatientVisitFilter, IVisitFilter } from 'api/visits/types';
 
 export const visitsApi = {
-  async getFinishedVisits(filter: IVisitFilter) {
-    const result = await axiosInstance.get(`finished`, {
-      params: filter
+  async getFinishedVisits({ specializationId: id, page }: IVisitFilter) {
+    const result = await axiosInstance.get(`finished${id ? `/filter/specialization-${id}` : ''}`, {
+      params: {
+        page
+      }
     });
+
     return result.data;
   },
-  async getPlannedVisits(filter: IVisitFilter) {
-    const result = await axiosInstance.get(`active-appointments`, {
-      params: filter
-    });
+  async getPlannedVisits({ specializationId: id, page }: IVisitFilter) {
+    const result = await axiosInstance.get(
+      `active-appointments${id ? `/filter/specialization-${id}` : ''}`,
+      {
+        params: {
+          page
+        }
+      }
+    );
+
     return result.data;
   },
-  async getPatientFinishedVisit(id: string | number) {
-    const result = await axiosInstance.get(`patient-finished/${id}`);
+  async getPatientFinishedVisit({
+    patientId,
+    filter: { specializationId: id, page }
+  }: IPatientVisitFilter) {
+    const result = await axiosInstance.get(
+      `patient-finished/${patientId}${id ? `/filter/specialization-${id}` : ''}`,
+      {
+        params: {
+          page
+        }
+      }
+    );
+
     return result.data;
   },
   async deleteVisit(id: string | number) {

@@ -3,13 +3,13 @@ import { finishAppointment, newAppointment } from './thunks';
 import { RootState } from '../index';
 
 interface IAppointmentState {
-  login: Record<string, unknown>;
+  appointments: Record<string, unknown>;
   isLoading: boolean;
   error: Error | string;
 }
 
 const initialState: IAppointmentState = {
-  login: {},
+  appointments: {},
   isLoading: false,
   error: ''
 };
@@ -23,13 +23,16 @@ export const newsSlice = createSlice({
       .addCase(newAppointment.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(newAppointment.fulfilled, (state, action: PayloadAction<any>) => {
+      .addCase(
+        newAppointment.fulfilled,
+        (state, action: PayloadAction<Record<string, unknown>>) => {
+          state.isLoading = false;
+          state.appointments = action.payload;
+        }
+      )
+      .addCase(newAppointment.rejected, (state, action) => {
         state.isLoading = false;
-        state.login = action.payload;
-      })
-      .addCase(newAppointment.rejected, (state, action: PayloadAction<any>) => {
-        state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
 
     builder
@@ -39,9 +42,9 @@ export const newsSlice = createSlice({
       .addCase(finishAppointment.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(finishAppointment.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(finishAppointment.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   }
 });
