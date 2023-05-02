@@ -22,8 +22,8 @@ const Visits = () => {
   });
 
   const [specialist, setSpecialist] = React.useState(() => {
-    const pageParam = searchParams.get('specialist');
-    return pageParam || 'all';
+    const specialist = searchParams.get('specialist');
+    return specialist || 'all';
   });
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({

@@ -46,7 +46,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams]);
+  }, [searchParams, specializationsList]);
 
   return (
     <VisitsContainer>

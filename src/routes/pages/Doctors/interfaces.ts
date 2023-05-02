@@ -8,7 +8,6 @@ export interface IDoctorAndIndex {
 
 export interface ISelectedDoctor {
   selectedDoctors: any;
-  flagPagination: boolean;
   page: number;
   handleChangePage: (event: React.ChangeEvent<unknown>, value: number) => void;
   pageCount: number;

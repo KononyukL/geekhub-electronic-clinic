@@ -6,7 +6,10 @@ export interface ISpecialization {
   image: string;
   id: string | number;
 }
-
+export interface IDoctorsFilter {
+  page: string | number;
+  specializationId?: string | number;
+}
 export interface IFeedback {
   patient_lastname: string;
   patient_firstname: string;

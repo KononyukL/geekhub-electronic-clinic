@@ -65,7 +65,7 @@ const Footer = () => {
             <House />
             <TextBox>
               <Typography sx={{ margin: 0 }} paragraph>
-                м. Черкаси,, вул. Чорновола 92
+                м. Черкаси, вул. Чорновола 92
               </Typography>
               <Typography sx={{ margin: 0, fontSize: 14 }} paragraph>
                 пн-пт 09:00-18:00
@@ -97,7 +97,7 @@ const Footer = () => {
         </BoxInfo>
       </Box>
       <BoxSmall>
-        <Typography paragraph>© “Mediplus” 2023 Всі права захищені</Typography>
+        <Typography paragraph>© “MediPlus” 2023 Всі права захищені</Typography>
       </BoxSmall>
     </BoxFooter>
   );

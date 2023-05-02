@@ -61,7 +61,7 @@ const MedicalHistory: FC<IPaginationComponent> = ({
     } else if (userId) {
       dispatch(getPatientFinishedVisits({ patientId: userId, filter: { page, specializationId } }));
     }
-  }, [searchParams, is_doctor, userId]);
+  }, [searchParams, is_doctor, userId, specializationsList]);
 
   return (
     <Container>

@@ -46,7 +46,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams]);
+  }, [searchParams, specializationsList]);
 
   const handleClick = () => {
     setOpenModal(!openModal);
