@@ -40,7 +40,7 @@ export const streetValidation = {
 
 export const numberValidation = {
   pattern: {
-    value: /^[0-9]\/*[0-9]+$/,
+    value: /^[0-9]*\/*[0-9]+$/,
     message: 'Мають бути лише цифри'
   }
 };
