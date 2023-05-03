@@ -57,12 +57,12 @@ export const LastTitle = styled(Typography)(({ theme }) => {
   };
 });
 
-export const Text = styled(Typography)<{ isOpen: boolean }>(({ theme, isOpen }) => {
+export const Text = styled(Typography)<{ open: boolean }>(({ theme, open }) => {
   return {
     color: theme.palette.text.primary,
     marginBottom: 0,
     overflow: 'hidden',
-    height: isOpen ? '285px' : '118px',
+    height: open ? '285px' : '118px',
     transition: 'all .3s linear'
   };
 });
