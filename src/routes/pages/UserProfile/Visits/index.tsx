@@ -23,7 +23,7 @@ const Visits = () => {
 
   const [specialist, setSpecialist] = React.useState(() => {
     const specialist = searchParams.get('specialist');
-    return specialist || 'all';
+    return specialist || '0';
   });
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
@@ -68,9 +68,9 @@ const Visits = () => {
         onChange={handleTabChange}
         tabsList={USER_VISITS_CONFIG}>
         <Select value={specialist} onChange={handleSelectChange}>
-          <MenuItem value="all">{'Всі лікарі'}</MenuItem>
+          <MenuItem value="0">{'Всі лікарі'}</MenuItem>
           {selectSpecializations?.results?.map((el, i) => (
-            <MenuItem key={i} value={el.name}>
+            <MenuItem key={i} value={el.id}>
               {el.name}
             </MenuItem>
           ))}

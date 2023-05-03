@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
-import { usePagination, useUpdateEffect } from 'hooks';
+import { usePagination } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
 
 const Doctors: FC = () => {
@@ -15,7 +15,7 @@ const Doctors: FC = () => {
 
   const [activeButton, setActiveButton] = useState(() => {
     const specialist = searchParams.get('specialist');
-    return specialist || 'all';
+    return specialist || '0';
   });
 
   const dispatch = useAppDispatch();
@@ -30,11 +30,9 @@ const Doctors: FC = () => {
     dispatch(specializations());
   }, []);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     const specialist = searchParams.get('specialist');
-    const specializationId = selectSpecializations.results.find(
-      (item) => item.name === specialist
-    )?.id;
+    const specializationId = parseInt(specialist || '');
 
     dispatch(
       doctors({
@@ -46,7 +44,7 @@ const Doctors: FC = () => {
     if (specialist && specialist !== activeButton) {
       setActiveButton(specialist);
     }
-  }, [searchParams, selectSpecializations.results]);
+  }, [searchParams]);
 
   const handleFilterDoctors = (specialty: string) => () => {
     searchParams.set('specialist', specialty);
@@ -64,8 +62,8 @@ const Doctors: FC = () => {
           <WrapperButton>
             {selectSpecializations && (
               <ButtonDoctor
-                isActiveButton={activeButton === 'all'}
-                onClick={handleFilterDoctors('all')}>
+                isActiveButton={activeButton === '0'}
+                onClick={handleFilterDoctors('0')}>
                 <Icon src={IMGAllDoctors} alt="Всі лікарі" />
                 Всі лікарі
               </ButtonDoctor>
@@ -73,9 +71,9 @@ const Doctors: FC = () => {
             {selectSpecializations &&
               selectSpecializations.results.map((specialty) => (
                 <ButtonDoctor
-                  key={specialty.name}
-                  isActiveButton={activeButton === specialty.name}
-                  onClick={handleFilterDoctors(specialty.name)}>
+                  key={specialty.id}
+                  isActiveButton={+activeButton === specialty.id}
+                  onClick={handleFilterDoctors(`${specialty.id}`)}>
                   <Icon src={specialty.image} alt={specialty.name} />
                   {specialty.name}
                 </ButtonDoctor>

@@ -25,7 +25,6 @@ import { getAuthData, parseDate } from 'config/helpers';
 import { getPatientFinishedVisits } from 'store/visits/thunks';
 import NoRecords from 'components/view/profile/ NoRecords';
 import Avatar from 'components/Avatar';
-import { selectDoctors } from 'store/doctors';
 
 const MedicalHistory: FC<IPaginationComponent> = ({
   page,
@@ -41,9 +40,6 @@ const MedicalHistory: FC<IPaginationComponent> = ({
   const dispatch = useAppDispatch();
 
   const { finishedVisits } = useAppSelector(selectVisits);
-  const {
-    specializations: { results: specializationsList }
-  } = useAppSelector(selectDoctors);
 
   useEffect(() => {
     if (finishedVisits) {
@@ -54,14 +50,14 @@ const MedicalHistory: FC<IPaginationComponent> = ({
   useEffect(() => {
     const page = searchParams.get('page') || 1;
     const specialist = searchParams.get('specialist');
-    const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
+    const specializationId = parseInt(specialist || '');
 
     if (!is_doctor) {
       dispatch(getFinishedVisits({ page, specializationId }));
     } else if (userId) {
       dispatch(getPatientFinishedVisits({ patientId: userId, filter: { page, specializationId } }));
     }
-  }, [searchParams, is_doctor, userId, specializationsList]);
+  }, [searchParams, is_doctor, userId]);
 
   return (
     <Container>

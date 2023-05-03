@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
-import { selectDoctors } from 'store/doctors';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -25,9 +24,6 @@ const PlannedVisits: FC<IPaginationComponent> = ({
 
   const dispatch = useAppDispatch();
   const { plannedVisits } = useAppSelector(selectVisits);
-  const {
-    specializations: { results: specializationsList }
-  } = useAppSelector(selectDoctors);
 
   useEffect(() => {
     if (plannedVisits) {
@@ -37,7 +33,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
 
   useEffect(() => {
     const specialist = searchParams.get('specialist');
-    const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
+    const specializationId = parseInt(specialist || '');
 
     dispatch(
       getPlannedVisits({
@@ -45,7 +41,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams, specializationsList]);
+  }, [searchParams]);
 
   const handleClick = () => {
     setOpenModal(!openModal);
