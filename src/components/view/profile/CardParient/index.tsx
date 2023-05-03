@@ -31,7 +31,7 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
 
   const [specialist, setSpecialist] = React.useState(() => {
     const pageParam = searchParams.get('specialist');
-    return pageParam || 'all';
+    return pageParam || '0';
   });
 
   const dispatch = useAppDispatch();
@@ -104,9 +104,9 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
         <ProfileTabs value={tab} onChange={handleTabChange} tabsList={CurrentCardConfig}>
           {tab === 0 && (
             <Select value={specialist} onChange={handleSelectChange}>
-              <MenuItem value="all">{'Всі лікарі'}</MenuItem>
+              <MenuItem value="0">{'Всі лікарі'}</MenuItem>
               {selectSpecializations?.results?.map((el, i) => (
-                <MenuItem key={i} value={el.name}>
+                <MenuItem key={i} value={el.id}>
                   {el.name}
                 </MenuItem>
               ))}

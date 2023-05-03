@@ -13,7 +13,6 @@ import { getFinishedVisits, selectVisits } from 'store/visits';
 import { useSearchParams } from 'react-router-dom';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
-import { selectDoctors } from 'store/doctors';
 
 const CompletedVisits: FC<IPaginationComponent> = ({
   page,
@@ -25,9 +24,6 @@ const CompletedVisits: FC<IPaginationComponent> = ({
 
   const dispatch = useAppDispatch();
   const { finishedVisits } = useAppSelector(selectVisits);
-  const {
-    specializations: { results: specializationsList }
-  } = useAppSelector(selectDoctors);
 
   useEffect(() => {
     if (finishedVisits) {
@@ -37,7 +33,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
 
   useEffect(() => {
     const specialist = searchParams.get('specialist');
-    const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
+    const specializationId = parseInt(specialist || '');
 
     dispatch(
       getFinishedVisits({
@@ -45,7 +41,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams, specializationsList]);
+  }, [searchParams]);
 
   return (
     <VisitsContainer>
