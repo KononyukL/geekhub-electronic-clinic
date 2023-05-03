@@ -68,6 +68,7 @@ const CardPatient: FC<ICardPatient> = ({ cardId }) => {
     const { value } = event.target;
     setSpecialist(value as string);
     searchParams.set('specialist', value as string);
+    searchParams.set('page', '1');
     setSearchParams(searchParams);
     resetPagination();
   };
