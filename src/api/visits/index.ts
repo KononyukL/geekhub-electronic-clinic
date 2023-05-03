@@ -23,6 +23,12 @@ export const visitsApi = {
 
     return result.data;
   },
+  async getPlannedVisit(id: string | number) {
+    const result = await axiosInstance.get(`active-appointments/appointment-${id}`);
+
+    return result.data;
+  },
+
   async getPatientFinishedVisit({
     patientId,
     filter: { specializationId: id, page }

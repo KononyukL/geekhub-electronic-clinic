@@ -25,6 +25,17 @@ export const getPlannedVisits = createAsyncThunk(
   }
 );
 
+export const getPlannedVisit = createAsyncThunk(
+  'planned-visit',
+  async (id: string | number, { rejectWithValue }) => {
+    try {
+      return await visitsApi.getPlannedVisit(id);
+    } catch (e: any) {
+      rejectWithValue(e.message || 'Something went wrong');
+    }
+  }
+);
+
 export const getUnconfirmedVisits = createAsyncThunk(
   'unconfirmed-visits',
   async (filter: IVisitFilter, { rejectWithValue }) => {

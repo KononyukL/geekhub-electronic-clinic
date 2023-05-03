@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BoxConclusion,
   BoxData,
   Form,
+  Span,
   StyledButton,
   StyledTextareaAutosize,
   Title,
   TitleData
 } from './styled';
 import { useForm } from 'react-hook-form';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { IFinishAppointmentFormData } from 'api/appointments/types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { finishAppointment } from 'store/appointments';
 import ROUTES from 'routes/constants';
+import { getPlannedVisit } from 'store/visits/thunks';
+import { selectVisits } from 'store/visits';
+import dayjs from 'dayjs';
 
 const ConclusionDoctor = () => {
   const {
@@ -25,9 +29,16 @@ const ConclusionDoctor = () => {
     mode: 'onBlur'
   });
 
-  const dispatch = useAppDispatch();
   const { appointmentId } = useParams();
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
+  const { plannedVisit } = useAppSelector(selectVisits);
+
+  const isBeforeVisitDate = dayjs().isBefore(dayjs(plannedVisit?.date));
+  console.log(isBeforeVisitDate);
+
   const onSubmit = async (data: IFinishAppointmentFormData) => {
     if (appointmentId) {
       const { payload } = await dispatch(finishAppointment({ formData: data, id: appointmentId }));
@@ -39,10 +50,19 @@ const ConclusionDoctor = () => {
     }
   };
 
+  useEffect(() => {
+    if (appointmentId) {
+      dispatch(getPlannedVisit(appointmentId));
+    }
+  }, [appointmentId]);
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <BoxConclusion>
-        <Title>Заключення</Title>
+        <Title>
+          Заключення
+          {isBeforeVisitDate && <Span>Ви не можете зробити заключення раніше ніж дата візиту</Span>}
+        </Title>
         <BoxData>
           <TitleData>Анамнез захворювання:</TitleData>
           <StyledTextareaAutosize
@@ -83,7 +103,11 @@ const ConclusionDoctor = () => {
             minRows={6}
           />
         </BoxData>
-        <StyledButton disabled={isSubmitting} type="submit" variant="contained" color="secondary">
+        <StyledButton
+          disabled={isSubmitting || isBeforeVisitDate || !plannedVisit}
+          type="submit"
+          variant="contained"
+          color="secondary">
           Зберегти
         </StyledButton>
       </BoxConclusion>
