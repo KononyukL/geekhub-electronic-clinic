@@ -12,7 +12,6 @@ import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
 import { selectDoctors } from 'store/doctors';
-import { useUpdateEffect } from 'hooks';
 
 const PlannedVisits: FC<IPaginationComponent> = ({
   pageCount,
@@ -36,7 +35,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
     }
   }, [plannedVisits]);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     const specialist = searchParams.get('specialist');
     const specializationId = specializationsList.find((item) => item.name === specialist)?.id;
 
