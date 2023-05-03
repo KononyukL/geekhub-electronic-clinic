@@ -23,7 +23,6 @@ const ResetPassword: FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timeout | undefined>(undefined);
   const dispatch = useAppDispatch();
-
   const {
     register,
     handleSubmit,

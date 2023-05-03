@@ -20,7 +20,7 @@ const Password: FC<IPhoneNumberField> = ({ register, errors, currenLogin }) => {
       <StyledInput
         style={errors.password && { border: '1px solid red' }}
         type={iconPassword ? 'text' : 'password'}
-        placeholder="Пароль"
+        placeholder="Пароль*"
         name="password"
         register={register}
         registerOptions={{

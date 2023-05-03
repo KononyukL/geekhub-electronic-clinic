@@ -35,5 +35,29 @@ export const authApi = {
   async resetPassword({ email }: IResetPasswordInput) {
     const result = await axiosInstance.post('accounts/password-reset/', { email });
     return result.data;
+  },
+  async registerConfirm({
+    userId,
+    userToken
+  }: {
+    userId: string | undefined;
+    userToken: string | undefined;
+  }) {
+    const result = await axiosInstance.post(`register-user-confirm/${userId}/${userToken}`);
+    return result.data;
+  },
+  async resetPasswordConfirm({
+    uid,
+    token,
+    new_password
+  }: {
+    uid: string | undefined;
+    token: string | undefined;
+    new_password: string;
+  }) {
+    const result = await axiosInstance.post(`password-reset-confirm/${uid}/${token}`, {
+      new_password
+    });
+    return result.data;
   }
 };

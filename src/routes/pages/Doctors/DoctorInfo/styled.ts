@@ -28,11 +28,20 @@ export const Wrapper = styled(Box)(() => {
   };
 });
 
-export const Typography = styled(MUITypography)(() => {
+export const Typography = styled(MUITypography)(({theme}) => {
   return {
+    maxWidth: 616,
+    width: '100%',
     fontSize: 16,
     color: theme.palette.text.primary,
-    marginBottom: 10
+    marginBottom: 10,
+    transition: '.3s',
+
+    '&:hover': {
+      transition: '.3s',
+      color: theme.palette.primary.light,
+      cursor: 'pointer'
+    }
   };
 });
 

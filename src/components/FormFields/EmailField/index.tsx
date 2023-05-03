@@ -6,7 +6,7 @@ const EmailField: FC<IInputFormField> = ({ register, errors }) => {
   return (
     <StyledInput
       style={errors.email && { border: '1px solid red' }}
-      placeholder="Електронна адреса"
+      placeholder="Електронна адреса*"
       name="email"
       register={register}
       registerOptions={{

@@ -12,7 +12,7 @@ const PasswordField: FC<IInputFormField> = ({ register, errors }) => {
     <>
       <StyledInput
         style={errors.password && { border: '1px solid red' }}
-        placeholder="Пароль"
+        placeholder="Пароль*"
         name="password"
         type={iconPassword ? 'text' : 'password'}
         register={register}
@@ -20,7 +20,7 @@ const PasswordField: FC<IInputFormField> = ({ register, errors }) => {
           required: "Це поле є обов'язковим",
           pattern: {
             value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
-            message: "Пароль обов'язково має містити латинскі літери A-Z, a-z та цифри 0-9"
+            message: "Пароль має бути довжиною від 6 до 20 символів, який містить принаймні одну цифру, одну велику та одну малу літери."
           }
         }}
       />

@@ -19,11 +19,11 @@ export const WrapperConfirm = styled(Box)(({ theme }) => {
 
 export const Wrapper = styled(WrapperConfirm)(() => {
   return {
-    height: 314
+    height: 250
   };
 });
 
-export const Date = styled('span')(({ theme }) => {
+export const Text = styled('span')(({ theme }) => {
   return {
     display: 'block',
     color: theme.palette.text.primary,
@@ -43,7 +43,7 @@ export const TitleConfirm = styled(Typography)(({ theme }) => {
 
 export const Title = styled(TitleConfirm)(({ theme }) => {
   return {
-    padding: 0,
+    padding: '0 0 6px 0',
     color: theme.palette.primary.main
   };
 });

@@ -11,9 +11,9 @@ import { useDispatch } from 'react-redux';
 import { TWorkingHours } from './types';
 import Calendar from './Calendar';
 import { RootState } from 'store';
-import {getAuthData} from "../../config/helpers";
+import { getAuthData } from '../../config/helpers';
 
-const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) => {
+const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();
   const { workingHours: allWorkingHours } = useAppSelector(selectWorkingHours);
   const [buttonSwitcher, setButtonSwitcher] = useState<boolean>(true);
@@ -27,7 +27,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
   const [isDoctor, setIsDoctor] = useState<boolean>();
 
   useEffect(() => {
-    const { is_doctor } = getAuthData()
+    const { is_doctor } = getAuthData();
     setIsDoctor(is_doctor);
   }, [isDoctor]);
 
@@ -75,7 +75,7 @@ const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId, max_date }) =
 
   return (
     <>
-      <Calendar max_date={max_date} updateCurrentDate={updateCurrentDate} />
+      <Calendar updateCurrentDate={updateCurrentDate} />
       <Wrapper>
         {freeHours && freeHours?.length > 0 ? (
           freeHours.slice(0, visibleHours).map((time) => (

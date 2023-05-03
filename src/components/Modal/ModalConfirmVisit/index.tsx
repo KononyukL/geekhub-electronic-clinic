@@ -1,15 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Typography, Container } from '@mui/material';
 import {
   WrapperConfirm,
   Wrapper,
-  Date,
+  Text,
   TitleConfirm,
   Title,
   WrapperButtons,
   ConfirmButton,
-  CanselButton,
-  HomeButton
+  CanselButton
 } from './styled';
 
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
@@ -20,6 +19,7 @@ import { useAppDispatch } from 'store/hooks';
 import ROUTES from 'routes/constants';
 import { RootState } from 'store';
 import { Modal } from './styled';
+import { workingHours } from '../../../store/workingHours';
 
 type IModalConfirmVisit = {
   open: boolean;
@@ -42,12 +42,12 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
   const { token } = getAuthData();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(workingHours({ doctor_id: doctor_id, date: currentDate }));
+  }, [thankForBook]);
+
   const postVisit = () => {
     setThankForBook(!thankForBook);
-  };
-
-  const goHomePage = () => {
-    navigate(ROUTES.HOME.PATH);
   };
 
   const handleBookingVisit = () => {
@@ -56,6 +56,11 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
     } else {
       navigate(ROUTES.LOGIN.PATH);
     }
+  };
+
+  const handleCloseWindow = () => {
+    handleClose();
+    postVisit();
   };
 
   return (
@@ -70,9 +75,9 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
             <TitleConfirm id="modal-modal-title">Підтвердити запис?</TitleConfirm>
             <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
               Обрана дата:
-              <Date>
+              <Text>
                 {currentDate} о {bookVisit}
-              </Date>
+              </Text>
             </Typography>
             <WrapperButtons>
               <ConfirmButton
@@ -89,29 +94,20 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
       ) : (
         <Modal
           open={open}
+          onClose={handleCloseWindow}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description">
           <Wrapper>
             <Title id="modal-modal-title">Дякуємо за запис на прийом!</Title>
-            <Typography id="modal-modal-description" sx={{ mt: 2, fontSize: '14px' }}>
-              <Date>
+            <Text>Очікуйте підтвердження від лікаря.</Text>
+            <Typography id="modal-modal-description" sx={{ mt: 1, fontSize: '14px' }}>
+              <Text>
                 {currentDate}, {bookVisit}
-              </Date>
+              </Text>
               Якщо у Вас є додаткові питання, Вам потрібно змінити час, або відмінити прийом,
               будь-ласка, зв’яжіться з нами за номером:
-              <Date>+38 (067) 20 20 773</Date>
-              <Typography>Очікуйте підтвердження від лікаря.</Typography>
+              <Text>+38 (067) 20 20 773</Text>
             </Typography>
-            <WrapperButtons>
-              <HomeButton
-                onClick={() => {
-                  goHomePage();
-                  handleClose();
-                  postVisit();
-                }}>
-                Повернутись на головну
-              </HomeButton>
-            </WrapperButtons>
           </Wrapper>
         </Modal>
       )}
