@@ -10,7 +10,7 @@ import { VisitsContainer } from '../styled';
 import { IPaginationComponent } from 'types';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getFinishedVisits, selectVisits } from 'store/visits';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { parseDate } from 'config/helpers';
 import NoRecords from 'components/view/profile/ NoRecords';
 import { selectDoctors } from 'store/doctors';
@@ -23,6 +23,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
   onSetItemsCount
 }) => {
   const [searchParams] = useSearchParams();
+  const { search } = useLocation();
 
   const dispatch = useAppDispatch();
   const { finishedVisits } = useAppSelector(selectVisits);
@@ -46,7 +47,7 @@ const CompletedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams, specializationsList]);
+  }, [search, specializationsList]);
 
   return (
     <VisitsContainer>

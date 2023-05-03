@@ -6,7 +6,7 @@ import { Pagination } from 'components';
 import { VISITS_PER_PAGE } from '../index';
 import { VisitsContainer } from '../styled';
 import { IPaginationComponent } from 'types';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { deleteVisits, getPlannedVisits, selectVisits } from 'store/visits';
 import { parseDate } from 'config/helpers';
@@ -21,6 +21,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
   handleChangePage
 }) => {
   const [openModal, setOpenModal] = useState(false);
+  const { search } = useLocation();
 
   const [searchParams] = useSearchParams();
 
@@ -46,7 +47,7 @@ const PlannedVisits: FC<IPaginationComponent> = ({
         specializationId
       })
     );
-  }, [searchParams, specializationsList]);
+  }, [search, specializationsList]);
 
   const handleClick = () => {
     setOpenModal(!openModal);

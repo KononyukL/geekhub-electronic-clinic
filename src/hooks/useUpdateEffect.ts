@@ -5,7 +5,6 @@ export const useUpdateEffect = (effect: EffectCallback, deps: DependencyList): v
 
   useEffect(() => {
     if (isMounted.current) {
-      console.log(111111111);
       return effect();
     }
     isMounted.current = true;
