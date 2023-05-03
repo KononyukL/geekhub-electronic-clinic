@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { selectDoctors } from 'store/doctors';
 import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
-import { usePagination, useUpdateEffect } from 'hooks';
+import { usePagination } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
 
 const Doctors: FC = () => {
@@ -30,7 +30,7 @@ const Doctors: FC = () => {
     dispatch(specializations());
   }, []);
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     const specialist = searchParams.get('specialist');
     const specializationId = parseInt(specialist || '');
 
