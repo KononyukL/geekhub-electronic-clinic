@@ -5,7 +5,8 @@ export const Form = styled('form')(() => {
 });
 export const BoxConclusion = styled(Box)(() => {
   return {
-    width: '700px'
+    width: '700px',
+    margin: '24px 0'
   };
 });
 export const Title = styled(Typography)(() => {
@@ -47,5 +48,13 @@ export const StyledButton = styled(Button)(() => {
     borderRadius: 0,
     width: '200px',
     padding: '14px 0'
+  };
+});
+
+export const Span = styled('span')(({ theme }) => {
+  return {
+    fontSize: 12,
+    display: 'block',
+    color: theme.palette.error.main
   };
 });
