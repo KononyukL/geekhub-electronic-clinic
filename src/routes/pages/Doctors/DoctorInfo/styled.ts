@@ -16,6 +16,8 @@ export const WrapperWorkingHours = styled(Box)(({ theme }) => {
   return {
     width: '100%',
     maxWidth: 380,
+    maxHeight: 390,
+    height: '100%',
     backgroundColor: theme.palette.background.paper,
     padding: 12,
     border: `1px solid ${theme.palette.text.primary}`
@@ -28,7 +30,7 @@ export const Wrapper = styled(Box)(() => {
   };
 });
 
-export const Typography = styled(MUITypography)(({theme}) => {
+export const Typography = styled(MUITypography)(({ theme }) => {
   return {
     maxWidth: 616,
     width: '100%',
@@ -39,7 +41,7 @@ export const Typography = styled(MUITypography)(({theme}) => {
 
     '&:hover': {
       transition: '.3s',
-      color: theme.palette.primary.light,
+      color: theme.palette.text.secondary,
       cursor: 'pointer'
     }
   };

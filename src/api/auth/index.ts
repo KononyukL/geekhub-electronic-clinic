@@ -56,6 +56,8 @@ export const authApi = {
     new_password: string;
   }) {
     const result = await axiosInstance.post(`password-reset-confirm/${uid}/${token}`, {
+      uid,
+      token,
       new_password
     });
     return result.data;

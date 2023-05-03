@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container, Wrapper, Title } from './styled';
+import { Container, Wrapper, Title, Img } from './styled';
 import IMGLogo from 'assets/icons/logo.svg';
 import { useForm } from 'react-hook-form';
 import PasswordField from 'components/FormFields/PasswordField';
 import ErrorValidation from 'components/ErrorValidation';
 import { ButtonSubmit, InputWrapper, StyledForm } from 'components/FormFields/styled';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch } from 'store/hooks';
 import { useParams } from 'react-router-dom';
-import { resetPasswordConfirm } from '../../../store/auth';
+import { resetPasswordConfirm } from 'store/auth';
 
 type FormData = {
   password: string;
@@ -37,7 +37,7 @@ const ResetPasswordConfirm = () => {
     <Container>
       <Wrapper>
         <Title>
-          <img style={{ marginRight: '16px' }} src={IMGLogo} alt="Logo" title="Logo" />
+          <Img style={{ marginRight: '16px' }} src={IMGLogo} alt="Logo" title="Logo" />
           Відновлення паролю
         </Title>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>

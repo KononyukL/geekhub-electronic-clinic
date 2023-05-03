@@ -1,4 +1,4 @@
-import { styled, Box, Typography } from '@mui/material';
+import { styled, Box } from '@mui/material';
 
 export const Container = styled(Box)(() => {
   return {
@@ -9,7 +9,7 @@ export const Container = styled(Box)(() => {
   };
 });
 
-export const Wrapper = styled(Box)(({theme}) => {
+export const Wrapper = styled(Box)(({ theme }) => {
   return {
     maxWidth: 480,
     width: '100%',
@@ -27,6 +27,6 @@ export const Title = styled('h1')(() => {
   };
 });
 
-export const Text = styled(Typography)(() => {
+export const Img = styled('img')(() => {
   return {};
 });
