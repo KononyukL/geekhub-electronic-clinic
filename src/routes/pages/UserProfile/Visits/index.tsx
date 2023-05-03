@@ -43,16 +43,17 @@ const Visits = () => {
 
   const handleTabChange = (_event: React.SyntheticEvent, value: number) => {
     setTab(value);
-    resetPagination();
     searchParams.set('tab', `${value}`);
     searchParams.set('page', '1');
     setSearchParams(searchParams);
+    resetPagination();
   };
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     const { value } = event.target;
     setSpecialist(value as string);
     searchParams.set('specialist', value as string);
+    searchParams.set('page', '1');
     setSearchParams(searchParams);
     resetPagination();
   };
