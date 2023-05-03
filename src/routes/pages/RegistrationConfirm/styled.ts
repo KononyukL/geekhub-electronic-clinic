@@ -6,36 +6,39 @@ export const Container = styled(Box)(() => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '70vh'
+    height: '60vh'
   };
 });
 
 export const Wrapper = styled(Box)(({ theme }) => {
   return {
     textAlign: 'center',
-    width: 400,
-    height: 150,
+    maxWidth: 476,
+    width: '100%',
+    height: 200,
     backgroundColor: theme.palette.background.paper,
-    paddingTop: 24
+    padding: 40
   };
 });
 
-export const Text = styled(Typography)(({ theme }) => {
+export const Text = styled(Typography)(() => {
   return {
-    fontSize: 20,
-    color: theme.palette.primary.main,
-    marginBottom: 22
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 22,
+    marginBottom: 38
   };
 });
 
 export const Button = styled(Link)(({ theme }) => {
   return {
     backgroundColor: theme.palette.secondary.main,
-    padding: '14px 68px',
+    padding: '14px 98px',
     fontSize: 16,
     color: theme.palette.primary.contrastText,
     transition: '.3s',
     textDecoration: 'none',
+    fontWeight: 600,
 
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
@@ -45,4 +48,8 @@ export const Button = styled(Link)(({ theme }) => {
       backgroundColor: theme.palette.secondary.dark
     }
   };
+});
+
+export const Img = styled('img')(() => {
+  return {};
 });
