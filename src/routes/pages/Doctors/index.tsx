@@ -9,6 +9,7 @@ import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { usePagination } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
+import Loader from 'components/Loader';
 
 const Doctors: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,8 +61,8 @@ const Doctors: FC = () => {
   return (
     <Container>
       <DoctorsBreadcrumbs />
-      <Wrapper>
-        {!loading && (
+      {!loading ? (
+        <Wrapper>
           <Aside>
             <WrapperButton>
               {selectSpecializations && (
@@ -84,15 +85,17 @@ const Doctors: FC = () => {
                 ))}
             </WrapperButton>
           </Aside>
-        )}
-        <SelectedDoctorsList
-          page={page}
-          pageCount={pageCount}
-          handleChangePage={handleChangePage}
-          paginationCount={allDoctors.count}
-          selectedDoctors={allDoctors.results}
-        />
-      </Wrapper>
+          <SelectedDoctorsList
+            page={page}
+            pageCount={pageCount}
+            handleChangePage={handleChangePage}
+            paginationCount={allDoctors.count}
+            selectedDoctors={allDoctors.results}
+          />
+        </Wrapper>
+      ) : (
+        <Loader />
+      )}
     </Container>
   );
 };
