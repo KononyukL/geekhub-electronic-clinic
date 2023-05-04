@@ -37,7 +37,6 @@ const ConclusionDoctor = () => {
   const { plannedVisit } = useAppSelector(selectVisits);
 
   const isBeforeVisitDate = dayjs().isBefore(dayjs(plannedVisit?.date));
-  console.log(isBeforeVisitDate);
 
   const onSubmit = async (data: IFinishAppointmentFormData) => {
     if (appointmentId) {
