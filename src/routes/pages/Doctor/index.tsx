@@ -25,7 +25,7 @@ const Doctor: FC = () => {
         <Wrapper>
           <DoctorProfileCard currentDoctor={currentDoctor} />
           <WrapperWorkingHours>
-            <WorkingHours max_date={3} doctorId={doctorId} showAllHours={true} />
+            <WorkingHours doctorId={doctorId} showAllHours={true} />
           </WrapperWorkingHours>
         </Wrapper>
       </ProfileDoctor>

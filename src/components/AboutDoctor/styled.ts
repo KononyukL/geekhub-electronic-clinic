@@ -24,7 +24,7 @@ export const Img = styled(Avatar)(() => {
   return {
     width: 150,
     height: 150,
-    borderRadius: '0'
+    borderRadius: '0',
   };
 });
 

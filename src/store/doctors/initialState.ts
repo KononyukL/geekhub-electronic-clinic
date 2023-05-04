@@ -19,9 +19,9 @@ export const initialState: IDoctorsState = {
     category: '',
     experience: '',
     info: '',
-    education: '',
-    courses: '',
-    procedures_performed: '',
+    education: [],
+    courses: [],
+    procedures_performed: [],
     rating: 0
   },
   specializations: {

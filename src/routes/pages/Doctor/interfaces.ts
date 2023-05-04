@@ -10,9 +10,9 @@ export interface IDoctor {
   category: string;
   experience: string;
   info: string;
-  education: string,
-  courses: string,
-  procedures_performed: string,
+  education: string[],
+  courses: string[],
+  procedures_performed: string[],
   rating: number;
 }
 
