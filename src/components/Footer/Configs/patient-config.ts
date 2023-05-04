@@ -23,7 +23,7 @@ export const PATIENT_CONFIG = [
     name: 'Спеціальності та лікарі'
   },
   {
-    path: ROUTES.HOME.PATH,
+    path: ROUTES.HOME.HASH_PATH.CONTACTS,
     name: 'Адреса'
   }
 ] as IPatientConfig[];
