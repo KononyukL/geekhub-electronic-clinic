@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import { TWorkingHours } from './types';
 import Calendar from './Calendar';
 import { RootState } from 'store';
-import { getAuthData } from '../../config/helpers';
+import { getAuthData } from 'config/helpers';
 
 const WorkingHours: FC<TWorkingHours> = ({ showAllHours, doctorId }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useDispatch();

@@ -12,14 +12,15 @@ import {
 } from './styled';
 
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
-import { newAppointment } from 'store/appointments';
+import { newAppointment, selectAppointments } from 'store/appointments';
 import { useNavigate } from 'react-router-dom';
 import { getAuthData } from 'config/helpers';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import ROUTES from 'routes/constants';
 import { RootState } from 'store';
 import { Modal } from './styled';
-import { workingHours } from '../../../store/workingHours';
+import { workingHours } from 'store/workingHours';
+import { useWorkingHours } from 'hooks/useWorkingHours';
 
 type IModalConfirmVisit = {
   open: boolean;
@@ -37,10 +38,17 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
   doctor_id
 }) => {
   const dispatch: ThunkDispatch<RootState, undefined, AnyAction> = useAppDispatch();
-  const [thankForBook, setThankForBook] = useState(true);
-
+  const [thankForBook, setThankForBook] = useState<boolean>(true);
+  const { error: errorCode, isLoading: loading } = useAppSelector(selectAppointments);
   const { token } = getAuthData();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (errorCode === "Cannot read properties of undefined (reading 'data')") {
+      setThankForBook(true)
+      handleClose();
+    }
+  }, [errorCode]);
 
   useEffect(() => {
     dispatch(workingHours({ doctor_id: doctor_id, date: currentDate }));
@@ -62,6 +70,8 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
     handleClose();
     postVisit();
   };
+
+  useWorkingHours();
 
   return (
     <Container>
@@ -91,7 +101,7 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
             </WrapperButtons>
           </WrapperConfirm>
         </Modal>
-      ) : (
+      ) : !loading && (
         <Modal
           open={open}
           onClose={handleCloseWindow}

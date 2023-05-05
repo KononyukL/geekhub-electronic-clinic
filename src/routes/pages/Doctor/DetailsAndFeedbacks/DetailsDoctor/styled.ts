@@ -21,6 +21,6 @@ export const Li = styled('li')(() => {
 
 export const Title = styled('p')(() => {
   return {
-    fontWeight: 500
+    fontWeight: 600
   };
 });

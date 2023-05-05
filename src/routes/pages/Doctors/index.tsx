@@ -9,6 +9,7 @@ import { doctors, specializations } from 'store/doctors/thunks';
 import IMGAllDoctors from 'assets/icons/AllDoctors.svg';
 import { usePagination } from 'hooks';
 import { useSearchParams } from 'react-router-dom';
+import Loader from 'components/Loader';
 
 const Doctors: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -19,8 +20,11 @@ const Doctors: FC = () => {
   });
 
   const dispatch = useAppDispatch();
-  const { doctors: allDoctors, specializations: selectSpecializations } =
-    useAppSelector(selectDoctors);
+  const {
+    doctors: allDoctors,
+    specializations: selectSpecializations,
+    isLoading: loading
+  } = useAppSelector(selectDoctors);
 
   const { page, pageCount, handleChangePage, resetPagination } = usePagination({
     itemsCount: allDoctors.count
@@ -57,37 +61,41 @@ const Doctors: FC = () => {
   return (
     <Container>
       <DoctorsBreadcrumbs />
-      <Wrapper>
-        <Aside>
-          <WrapperButton>
-            {selectSpecializations && (
-              <ButtonDoctor
-                isActiveButton={activeButton === '0'}
-                onClick={handleFilterDoctors('0')}>
-                <Icon src={IMGAllDoctors} alt="Всі лікарі" />
-                Всі лікарі
-              </ButtonDoctor>
-            )}
-            {selectSpecializations &&
-              selectSpecializations.results.map((specialty) => (
+      {!loading ? (
+        <Wrapper>
+          <Aside>
+            <WrapperButton>
+              {selectSpecializations && (
                 <ButtonDoctor
-                  key={specialty.id}
-                  isActiveButton={+activeButton === specialty.id}
-                  onClick={handleFilterDoctors(`${specialty.id}`)}>
-                  <Icon src={specialty.image} alt={specialty.name} />
-                  {specialty.name}
+                  isActiveButton={activeButton === '0'}
+                  onClick={handleFilterDoctors('0')}>
+                  <Icon src={IMGAllDoctors} alt="Всі лікарі" />
+                  Всі лікарі
                 </ButtonDoctor>
-              ))}
-          </WrapperButton>
-        </Aside>
-        <SelectedDoctorsList
-          page={page}
-          pageCount={pageCount}
-          handleChangePage={handleChangePage}
-          paginationCount={allDoctors.count}
-          selectedDoctors={allDoctors.results}
-        />
-      </Wrapper>
+              )}
+              {selectSpecializations &&
+                selectSpecializations.results.map((specialty) => (
+                  <ButtonDoctor
+                    key={specialty.id}
+                    isActiveButton={+activeButton === specialty.id}
+                    onClick={handleFilterDoctors(`${specialty.id}`)}>
+                    <Icon src={specialty.image} alt={specialty.name} />
+                    {specialty.name}
+                  </ButtonDoctor>
+                ))}
+            </WrapperButton>
+          </Aside>
+          <SelectedDoctorsList
+            page={page}
+            pageCount={pageCount}
+            handleChangePage={handleChangePage}
+            paginationCount={allDoctors.count}
+            selectedDoctors={allDoctors.results}
+          />
+        </Wrapper>
+      ) : (
+        <Loader />
+      )}
     </Container>
   );
 };

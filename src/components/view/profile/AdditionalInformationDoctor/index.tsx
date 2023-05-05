@@ -17,19 +17,25 @@ const AdditionalInformationDoctor: FC<IAdditionalInformationDoctor> = ({ profile
       <BoxInfo>
         <TitleUl>Освіта:</TitleUl>
         <Ul>
-          <Li>{profile?.education}</Li>
+          {profile?.education.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </BoxInfo>
       <BoxInfo sx={{ padding: ' 32px 0' }}>
         <TitleUl>Курси:</TitleUl>
         <Ul>
-          <Li>{profile?.courses}</Li>
+          {profile?.courses.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </BoxInfo>
       <BoxInfo>
         <TitleUl>Виконувані процедури:</TitleUl>
         <Ul>
-          <Li>{profile?.procedures_performed}</Li>
+          {profile?.procedures_performed.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </BoxInfo>
     </Container>

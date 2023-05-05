@@ -15,7 +15,7 @@ export const newAppointment = createAsyncThunk(
     try {
       return await appointmentsApi.newAppointment({ doctor_id, date, time });
     } catch (e: any) {
-      rejectWithValue(e.message || 'Something went wrong');
+      return rejectWithValue(e.message || 'Something went wrong');
     }
   }
 );

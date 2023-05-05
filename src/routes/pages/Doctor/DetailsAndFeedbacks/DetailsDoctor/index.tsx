@@ -9,21 +9,27 @@ const DetailsDoctor: FC<IDoctorProps> = ({ currentDoctor }) => {
       <Wrapper>
         <Title>Освіта</Title>
         <Ul>
-          <Li>{currentDoctor.education}</Li>
+          {currentDoctor?.education.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </Wrapper>
 
       <Wrapper>
         <Title>Курси</Title>
         <Ul>
-          <Li>{currentDoctor.courses}</Li>
+          {currentDoctor?.courses.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </Wrapper>
 
       <Wrapper>
         <Title>Виконувані процедури</Title>
         <Ul>
-          <Li>{currentDoctor.procedures_performed}</Li>
+          {currentDoctor?.procedures_performed.map((text) => (
+            <Li key={text}>{text}</Li>
+          ))}
         </Ul>
       </Wrapper>
     </Box>
