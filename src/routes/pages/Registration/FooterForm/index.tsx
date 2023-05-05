@@ -6,7 +6,7 @@ const FooterForm = () => {
     <Container>
       <Wrapper>
         Підтвердження паролю
-        <Link to="/"> Політика конфіденційності</Link>
+        <Link to="/terms/privacy"> Політика конфіденційності</Link>
         <Login style={{ display: 'block' }}>
           Вже маєте обліковий запис?
           <Link to="/login"> Увійти</Link>
