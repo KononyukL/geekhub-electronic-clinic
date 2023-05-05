@@ -1,10 +1,33 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, AnyAction, combineReducers } from '@reduxjs/toolkit';
 import auth from './auth';
+import doctors from './doctors';
+import workingHours from './workingHours';
+import profile from './profile';
+import appointments from './appointments';
+import visits from './visits';
+import cardPatient from './cardPatient';
+import notification from './notification';
+
+const appReducer = combineReducers({
+  auth,
+  doctors,
+  workingHours,
+  profile,
+  appointments,
+  visits,
+  cardPatient,
+  notification
+});
+
+const reducerProxy = (state: any, action: AnyAction) => {
+  if (action.type === 'logout/LOGOUT') {
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 export const index = configureStore({
-  reducer: {
-    auth
-  }
+  reducer: reducerProxy
 });
 
 export type AppDispatch = typeof index.dispatch;

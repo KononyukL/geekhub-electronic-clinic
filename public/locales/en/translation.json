@@ -1,0 +1,253 @@
+{
+  "title": "Electronic polyclinic",
+  "layout": {
+    "address": "м. Черкасси, вул. Чорновола 92",
+    "navigation": {
+      "home": "Home",
+      "doctors": "Specialties and doctors",
+      "questions": "Frequently asked questions",
+      "aboutUs": "About us",
+      "contacts": "Contact"
+    },
+    "footer": {
+      "rights": "All rights reserved",
+      "email": "write for any questions",
+      "info": {
+        "title": "Information",
+        "terms": "Terms of use",
+        "policy": "Privacy policy",
+        "agreement": "Offer agreement"
+      },
+      "patient": {
+        "title": "For the patient",
+        "address": "Address"
+      },
+      "directions": {
+        "title": "Directions",
+        "dermatology": "Dermatology",
+        "therapy": "Therapy",
+        "gastroenterology": "Gastroenterology",
+        "pulmonology": "Pulmonology",
+        "neuroscience": "Neuroscience",
+        "cardiology": "Cardiology"
+      },
+      "contactsSocial": {
+        "title": "Contacts and Social Networks"
+      }
+    }
+  },
+  "home": {
+    "title": "Polyclinic MediPlus",
+    "subTitle": "Taking care of you",
+    "firstText": "We provide the best",
+    "lastText": "Advanced medical technologies, professionalism combined with timely service delivery and an individual approach to each patient and situation - this is the philosophy of MediPlus",
+    "cardInfo": {
+      "title": {
+        "doctor": "Qualified doctors",
+        "equipment": "Modern equipment",
+        "approach": "Individual approach",
+        "cardiology": "Cardiology",
+        "pulmonology": "Pulmonology",
+        "neurology": "Neurology",
+        "therapy": "Therapy",
+        "dermatology": "Dermatology",
+        "gastroenterology": "Gastroenterology"
+      },
+      "text": {
+        "doctor": "We are constantly improving our knowledge and skills to provide the best treatment for our patients.",
+        "equipment": "We use modern equipment and technologies to diagnose and treat various diseases.",
+        "approach": "Our team does not just treat, we create an atmosphere of trust and support to make you feel comfortable."
+      }
+    },
+    "aboutUs": {
+      "aboutTeam": "ABOUT OUR TEAM",
+      "polyclinic": "Polyclinic MediPlus",
+      "text": "We are a team of experienced professionals who are always ready to help you. In our clinic, we take care of each patient, providing an individual approach and using modern equipment. We know that health is the most precious gift, and that is why we do our best to make our patients feel comfortable and protected. Feel the care and attention to your health in our clinic!"
+    },
+    "serviceProvide": {
+      "firstTitle": "WHAT WE DO",
+      "lastTitle": "The service we provide",
+      "text": "We invest our knowledge and experience to provide optimal treatment to each patient. We work to maintain your health and help you return to a full life."
+    },
+    "questions": {
+      "firstTitle": "WHAT IF?",
+      "lastTitle": "Frequently asked questions",
+      "accordion": {
+        "questions": {
+          "one": "How do you guarantee the confidentiality of my medical data?",
+          "two": "How to make an appointment with a doctor?",
+          "three": "What types of medical services do you provide?",
+          "four": "What payment methods do you accept?",
+          "five": "Як довго триває прийом у лікаря?"
+        },
+        "text": {
+          "one": "We respect the privacy of our patients and ensure the confidentiality of medical information through protective technologies and proper storage methods.",
+          "two": "You can call our clinic, use the online appointment form on the website, or visit us in person.",
+          "three": "Our clinic offers a wide range of medical services, including consultations with doctors of various specialties, laboratory tests, ultrasound diagnostics and other procedures.",
+          "four": "We accept payment in cash, by credit card and electronic funds. The payment is made at the reception after the appointment with the doctor.",
+          "five": "The duration of an appointment depends on the doctor's specialization and the purpose of the visit. Usually, an appointment lasts from 20 to 60 minutes."
+        }
+      }
+    },
+    "reviews": {
+      "firstTitle": "WHAT THEY SAY ABOUT US",
+      "lastTitle": "Feedback from our customers",
+      "textOne": "I was impressed by how friendly and attentive the staff at this clinic was. The doctor I saw listened to my complaints in detail and conducted a top-level examination. I recommend this clinic to all my friends! I will definitely come here again and again."
+    }
+  },
+  "buttons": {
+    "translate": "Translate",
+    "edit": "Edit",
+    "save": "Save",
+    "open": "Open",
+    "myOffice": "My office",
+    "signUp": "Sign up",
+    "readMore": "Read more",
+    "yes": "Yes",
+    "no": "No",
+    "createProfile": "Create an account",
+    "button": "Back to home",
+    "sigIn": "Sign in",
+    "home": "Home",
+    "cancel": "Cancel"
+  },
+  "validationErrors": {
+    "required": "This field is required",
+    "email": "Incorrect email format. Example: Standart@gmail.com",
+    "password": "The password must contain Latin letters A-Z and numbers 0-9",
+    "confirmPassword": "Passwords do not match",
+    "firstName": {
+      "firstBigLatter": "The first letter must be capitalized. Numbers and special characters are not allowed.",
+      "minLength": "The minimum number of characters is 3",
+      "maxLength": "The maximum number of characters is 255"
+    },
+    "phoneNumber": "Enter a valid phone number in the format: +380XXXXXXXXX"
+  },
+  "userProfile": {
+    "link": {
+      "profile": "Profile",
+      "visits": "My visits",
+      "card": "Patient card"
+    },
+    "profile": {
+      "cardNumber": "Patient card number",
+      "data": {
+        "personalData": "Personal data",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "middleName": "Middle name",
+        "birthday": "Date of birth",
+        "email": "Email",
+        "phone": "Phone number",
+        "gender": "Gender",
+        "female": "Female",
+        "male": "Male",
+        "other": "Other"
+      },
+      "address": {
+        "address": "Address",
+        "city": "City",
+        "street": "Street",
+        "house": "House",
+        "apartment": "Apartment"
+      },
+      "security": {
+        "security": "Security",
+        "password": "Password",
+        "oldPassword": "Old password",
+        "newPassword": "New password",
+        "config": "Password confirmation"
+      }
+    },
+    "visits": {
+      "tabs": {
+        "planned": "Planned",
+        "completed": "Completed"
+      },
+      "date": "Date",
+      "time": "Time",
+      "reception": "Reception",
+      "currency": "UAH",
+      "conclusion": "Conclusion",
+      "history": "Medical history:",
+      "status": "Objective status:",
+      "diagnosis": "Diagnosis:",
+      "examination": "Examination:",
+      "recommendations": "Recommendations:",
+      "download": "Download",
+      "modalTitle": "Cancel an appointment with a doctor?",
+      "modalText": "Please note that the appointment can be canceled only until 8 a.m. on the day of the visit"
+    }
+  },
+  "doctors": {
+    "navigation": {
+      "home": "Home",
+      "specialtiesAndDoctors": "Specialties and doctors"
+    },
+    "specialties": {
+      "allDoctors": "All Doctors",
+      "dermatologist": "Дерматолог",
+      "cardiologist": "Кардіолог",
+      "therapist": "Терапевт",
+      "pulmonologist": "Пульмонолог",
+      "gastroenterologist": "Гастроентеролог"
+    },
+    "details": {
+      "experience": "Experience",
+      "category": "Category",
+      "reception": "Reception"
+    },
+    "moreAboutDoctor": "More about doctor",
+    "showMore": "Show more",
+    "hide": "Hide",
+    "modalDoctors": {
+      "confirm": {
+        "title": "Confirm the entry?",
+        "text": "Selected date:",
+        "yes": "Yes",
+        "no": "No"
+      },
+      "cansel": {
+        "title": "Thank you for making an appointment!",
+        "text": "If you have additional questions, need to change the time, or cancel your appointment, please contact us by phone:"
+      }
+    }
+  },
+  "doctor": {
+    "navigation": {
+      "doctorPage": "Doctor"
+    }
+  },
+  "registration": {
+    "registration": "Registration",
+    "name": "Name",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "loginText": "Already have an account?",
+    "login": "Sign in",
+    "confidenceText": "By creating an account, I agree to",
+    "privacyPolicy": "Privacy policy",
+    "modalWindow": {
+      "thank": "Thank you for registering",
+      "text": "We have sent an email to the email address you provided. Please click on the to confirm and complete your registration. If you did not found the email, please check your spam folder"
+    }
+  },
+  "login": {
+    "login": "Login",
+    "rememberMe": "Remember me",
+    "confidenceText": "By signing in, I confirm that I have read and agree to",
+    "privacyPolicy": "Privacy policy",
+    "forgotPassword": "Forgot password",
+    "registration": "Sign up"
+  },
+  "resetPassword": {
+    "resetPassword": "Reset Password",
+    "info": "If you do not find the email, check your spam folder. Please note that the temporary password is valid for 10 minutes",
+    "back": "Back to sign in",
+    "registration": "Sign up",
+    "repeat": "Repeat after",
+    "send": "Send a new password"
+  }
+}
