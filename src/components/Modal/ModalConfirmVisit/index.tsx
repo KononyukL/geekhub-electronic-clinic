@@ -45,7 +45,8 @@ const ModalConfirmVisit: FC<IModalConfirmVisit> = ({
 
   useEffect(() => {
     if (errorCode === "Cannot read properties of undefined (reading 'data')") {
-      handleCloseWindow();
+      setThankForBook(true)
+      handleClose();
     }
   }, [errorCode]);
 
