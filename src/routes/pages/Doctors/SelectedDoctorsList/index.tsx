@@ -22,7 +22,7 @@ const SelectedDoctorsList: FC<ISelectedDoctor> = ({
             <DoctorInfo key={doctor.id} currentDoctor={doctor} index={index} />
           ))}
       </Wrapper>
-      {paginationCount && paginationCount >= DOCTORS_PER_PAGE && (
+      {paginationCount && paginationCount > DOCTORS_PER_PAGE && (
         <Pagination
           count={pageCount}
           page={page}
