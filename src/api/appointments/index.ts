@@ -7,7 +7,10 @@ export const appointmentsApi = {
     return result.data;
   },
   async finishAppointment({ id, formData }: IFinishAppointmentData) {
-    const result = await axiosInstance.put(`active-appointments/appointment-${id}/close`, formData);
+    const result = await axiosInstance.patch(
+      `active-appointments/appointment-${id}/close`,
+      formData
+    );
     return result.data;
   }
 };
